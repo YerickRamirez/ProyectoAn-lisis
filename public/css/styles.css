@@ -1,0 +1,238 @@
+
+.border {
+	text-align: center;
+	border-bottom: 1px #e5e5e5 solid;
+	width: 230px;
+	box-shadow: 0px 0px 0px black;
+}
+
+.bg-color {
+	background-color: #E6E6FA;
+}
+
+.margin-left-title {
+  margin-left: 10px;
+}
+
+/*Content of the body page**/
+div.content {
+  margin-top: 35px; 
+  margin-left: 225px;
+  margin-bottom: 35px;
+  padding: 1px 16px;
+  /*eight: 1000px;*//
+}
+
+/*navbar**/
+@media (max-width: 600px) {
+  nav.navbar {
+     
+  }
+}
+
+nav.navbar {
+    background-color: #0B2C55; 
+    box-shadow: 0px 0px 15px black;
+    /*border-radius: 9px 9px 9px 9px;**/
+}
+
+/*Color of the menu button in navbar**/
+.icon-bar {
+   background-color:#FFFFFF !important;
+}
+
+/*Transition for the sidebar**/
+nav.sidebar, .main {
+    -webkit-transition: margin 200ms ease-out;
+    -moz-transition: margin 200ms ease-out;
+    -o-transition: margin 200ms ease-out;
+    transition: margin 200ms ease-out;
+}
+
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+/*Size of the sidebar**/
+#sidebar-wrapper {
+  /*box-shadow: 13px -1px 28px -8px rgba(0,0,0,0.6);**/
+  /*border-radius: 0px 10px 9px 9px;*/		
+  top: 51px;
+  left: -230px;
+  width: 230px;
+  background-color: #224A8B; 
+  color: white;
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  overflow: auto;
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 230px;
+  list-style: none;
+}
+.sidebar-nav li {
+	/*margin-left: 10px;**/
+  /*text-align: center;**/
+  line-height: 45px;
+}
+.sidebar-nav li a {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+.sidebar-nav li a:hover {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  text-decoration: none;
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+#sidebar-wrapper.sidebar-toggle {
+  transition: all 0.3s ease-out;
+  margin-left: -200px;
+}
+@media (min-width: 768px) {
+  #sidebar-wrapper.sidebar-toggle {
+    transition: 0s;
+    left: 200px;
+  }
+}
+
+/*footer**/
+.main-footer {
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  margin-left: 230px;
+}
+
+@media (max-width: 767px) {
+  .main-footer {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .right-side,
+  .sidebar-open .main-footer {
+    -webkit-transform: translate(230px, 0);
+    -ms-transform: translate(230px, 0);
+    -o-transform: translate(230px, 0);
+    transform: translate(230px, 0);
+  }
+}
+
+.main-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  padding: 8px;
+  color: #444;
+  border-top: 1px solid #d2d6de;
+}
+ 
+@media only screen and (max-width: 768px) {
+ul{font-size:12px;}
+}
+
+html {
+  font-size: 20px;
+}
+
+@media (max-width: 1280px) {
+  html { font-size: 14px; }
+}
+
+@media (max-width: 800px) {
+  html { font-size: 12px; }
+}
+
+.pull-right {
+	margin-top: 15px; 
+	margin-right: 20px;
+    float: right!important;
+}
+
+.lead {
+  font-size: 5vh
+    font-size: 5vw;
+}
+
+/*Size of title "Oficina de Bienestar y Salud"**/
+@media screen and (min-width: 363px) {
+  div.example {
+    margin-top: 8px;
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 362px) {
+  div.example {
+    font-size: 18px;
+    margin-top: 12px;
+  }
+}
+
+@media screen and (max-width: 313px) {
+  div.example {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 8px;
+  }
+}
+
+
+
+
+.navbar-login
+{
+    margin-top: 0px;
+    width: 200px;
+    padding: 10px;
+    padding-bottom: 0px;
+    /*background-color:#0B2C55; **/
+}
+
+.color-drop-down {
+  background-color: #0B2C55 !important;
+}
+
+.text-colorr {
+  color:#1A8DBB;
+}
+
+.right {
+  margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
