@@ -227,6 +227,11 @@ html {
   margin-right: 10px;
 }
 
+.logo-ucr {
+  position: relative;
+    text-align: center;
+    bottom:0px;
+}
 
 
 

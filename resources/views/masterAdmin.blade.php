@@ -32,7 +32,6 @@
 				<div class="margin-left-title example" style="color:#FFFFFF"><font FACE="small fonts"></font>Oficina de Bienestar y Salud</div>
 						    				
 			</div>
-		<div><h1 style="color:red">Adan, commit from Visual Studio Code try 7 <hr></h1></div>
 		<ul class="nav navbar-nav navbar-right" >
 				 <li class="dropdown" >
                     <a href="#" class="dropdown-toggle"style="color:white" data-toggle="dropdown">
@@ -40,19 +39,13 @@
                        
                         <!--<span class="glyphicon glyphicon-chevron-down right"></span>-->
                     </a>
-                     <ul class="dropdown-menu">
-    					<li><a href="#" style="color:#0D91CF"><strong>Nombre</strong></a></li>
-    					<li><a href="#" style="color:#CF220D"><strong>Cerrar Sesión</strong></a></li>
-  					</ul>
+                   
                 </li>
             </ul>
 
-
-
-
-
 			<div id="sidebar-wrapper" class="sidebar-toggle sidebar">
 				<ul class="sidebar-nav">
+
 		    		<li>
 		      			<a style="font-size:15px;" class="border" href="prueba">Inicio&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-home"></span></a>
 		    		</li>
@@ -71,7 +64,7 @@
 		    		<li>
 		      			<a style="font-size:15px;" class="border" href="#item3">Salir&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-log-out"></a>
 		    		</li>
-      			
+      			<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
 		  		</ul>
 			</div>
   		</div>
