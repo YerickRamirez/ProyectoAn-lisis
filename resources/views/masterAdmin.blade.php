@@ -32,7 +32,7 @@
 				<div class="margin-left-title example" style="color:#FFFFFF"><font FACE="small fonts"></font>Oficina de Bienestar y Salud</div>
 						    				
 			</div>
-
+		<div><h1>Adan, commit from VS Code <hr></h1></div>
 		<ul class="nav navbar-nav navbar-right" >
 				 <li class="dropdown" >
                     <a href="#" class="dropdown-toggle"style="color:white" data-toggle="dropdown">
