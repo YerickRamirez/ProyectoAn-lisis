@@ -23,29 +23,20 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				
-				<!--
-				<ul>
-				<a class="navbar-brand" style="color:#FFFFFF" href="#">Oficina de Binestar y Salud</a></ul>-->
-				
-				
-				<div class="margin-left-title example" style="color:#FFFFFF"><font FACE="small fonts"></font>Oficina de Bienestar y Salud</div>
-						    				
+				<div class="margin-left-title example serif" style="color:#FFFFFF" >Oficina de Bienestar y Salud</div>
+
 			</div>
-		<ul class="nav navbar-nav navbar-right" >
-				 <li class="dropdown" >
-                    <a href="#" class="dropdown-toggle"style="color:white" data-toggle="dropdown">
+
+			<ul class="nav navbar-nav navbar-right hide-button" >
+				 <li>
+                    <a href="#" class="dropdown-toggle logout-button"style="color:white" data-toggle="dropdown">
                          <strong>Salir&nbsp</strong><span class="glyphicon glyphicon-log-out" style="color:white"></span> 
-                       
-                        <!--<span class="glyphicon glyphicon-chevron-down right"></span>-->
-                    </a>
-                   
+                    </a>  
                 </li>
-            </ul>
+        	</ul>
 
 			<div id="sidebar-wrapper" class="sidebar-toggle sidebar">
 				<ul class="sidebar-nav">
-
 		    		<li>
 		      			<a style="font-size:15px;" class="border" href="prueba">Inicio&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-home"></span></a>
 		    		</li>
@@ -61,10 +52,13 @@
 		    		<li>
 		      			<a  style="font-size:15px;"class="border" href="#item3">Menú 5&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-check"></a>
 		    		</li>
-		    		<li>
+		    		<li class="hide-button-side">
 		      			<a style="font-size:15px;" class="border" href="#item3">Salir&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-log-out"></a>
 		    		</li>
-      			<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
+		    		<li>	
+      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
+      				</li>
+      			      			
 		  		</ul>
 			</div>
   		</div>

@@ -23,13 +23,6 @@ div.content {
   /*eight: 1000px;*//
 }
 
-/*navbar**/
-@media (max-width: 600px) {
-  nav.navbar {
-     
-  }
-}
-
 nav.navbar {
     background-color: #0B2C55; 
     box-shadow: 0px 0px 15px black;
@@ -49,15 +42,28 @@ nav.sidebar, .main {
     transition: margin 200ms ease-out;
 }
 
+/*Hide button exit from sidebar**/
+@media screen and (min-width: 701px) {
+  li.hide-button-side {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
     height: auto;
     position: relative;
+  }  
+}
+
+@media screen and (max-width: 750px) {
+  /*Hide button out**/
+  ul.hide-button {
+    display:none;
   }
-  .sidebar a {float: left;}
   div.content {margin-left: 0;}
+  .sidebar a {float: left;}
 }
 
 @media screen and (max-width: 400px) {
@@ -68,9 +74,7 @@ nav.sidebar, .main {
 }
 
 /*Size of the sidebar**/
-#sidebar-wrapper {
-  /*box-shadow: 13px -1px 28px -8px rgba(0,0,0,0.6);**/
-  /*border-radius: 0px 10px 9px 9px;*/		
+#sidebar-wrapper {	
   top: 51px;
   left: -230px;
   width: 230px;
@@ -81,6 +85,7 @@ nav.sidebar, .main {
   z-index: 1;
   overflow: auto;
 }
+
 .sidebar-nav {
   position: absolute;
   top: 0;
@@ -89,9 +94,8 @@ nav.sidebar, .main {
   width: 230px;
   list-style: none;
 }
+
 .sidebar-nav li {
-	/*margin-left: 10px;**/
-  /*text-align: center;**/
   line-height: 45px;
 }
 .sidebar-nav li a {
@@ -99,14 +103,17 @@ nav.sidebar, .main {
   display: block;
   text-decoration: none;
 }
+
 .sidebar-nav li a:hover {
   background: rgba(255,255,255,0.25);
   color: white;
   text-decoration: none;
 }
+
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
   text-decoration: none;
 }
+
 #sidebar-wrapper.sidebar-toggle {
   transition: all 0.3s ease-out;
   margin-left: -200px;
@@ -153,22 +160,6 @@ nav.sidebar, .main {
   border-top: 1px solid #d2d6de;
 }
  
-@media only screen and (max-width: 768px) {
-ul{font-size:12px;}
-}
-
-html {
-  font-size: 20px;
-}
-
-@media (max-width: 1280px) {
-  html { font-size: 14px; }
-}
-
-@media (max-width: 800px) {
-  html { font-size: 12px; }
-}
-
 .pull-right {
 	margin-top: 15px; 
 	margin-right: 20px;
@@ -184,7 +175,14 @@ html {
 @media screen and (min-width: 363px) {
   div.example {
     margin-top: 8px;
-    font-size: 22px;
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  div.example {
+    font-size: 24px;
+    text-align: center;
   }
 }
 
@@ -203,17 +201,15 @@ html {
   }
 }
 
-
-
-
+/*
 .navbar-login
 {
     margin-top: 0px;
     width: 200px;
     padding: 10px;
     padding-bottom: 0px;
-    /*background-color:#0B2C55; **/
-}
+  
+} 
 
 .color-drop-down {
   background-color: #0B2C55 !important;
@@ -221,16 +217,20 @@ html {
 
 .text-colorr {
   color:#1A8DBB;
-}
+}**/
 
 .right {
   margin-right: 10px;
 }
 
 .logo-ucr {
-  position: relative;
+    position: relative;
     text-align: center;
     bottom:0px;
+}
+
+.serif {
+    font-family: "Times New Roman", Times, serif;
 }
 
 
