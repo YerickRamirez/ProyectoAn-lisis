@@ -20,4 +20,7 @@ Route::get('prueba', function () {
     return view('Prueba/index') ;
 });
 
+Route::get('paciente', function () {
+    return view('Prueba/paciente') ;
+});
 

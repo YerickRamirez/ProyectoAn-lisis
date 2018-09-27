@@ -47,7 +47,7 @@
 		      			<a style="font-size:15px;" class="border" href="#item3">Configuración&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon glyphicon-wrench"></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="#item3">Menú 4&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-paperclip"></a>
+		      			<a style="font-size:15px;" class="border" href="paciente">Paciente 4&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-paperclip"></a>
 		    		</li>
 		    		<li>
 		      			<a  style="font-size:15px;"class="border" href="#item3">Menú 5&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-check"></a>
@@ -67,6 +67,7 @@
 
 	<div class="panel-heading">
 		<div class="content">
+		<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
 
@@ -77,8 +78,8 @@
   			<h3>Resize the browser window to see the effect.</h3>
 		</div>
 	</div>
-
-	
+-->
+	@yield('contenido')
 	
 	<footer class="main-footer">
         <div class="pull-right hidden-xs">

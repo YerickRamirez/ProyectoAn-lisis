@@ -12,10 +12,14 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '752af1c2bdb339e8474c3c31b22b7d54' => __DIR__ . '/..' . '/illuminate/html/helpers.php',
+        'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '907c39b36ca90bbc699da4c70ce5bad5' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Constants/Constants.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -70,6 +74,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Mitul\\' => 6,
         ),
         'L' => 
         array (
@@ -78,6 +83,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         ),
         'I' => 
         array (
+            'Illuminate\\Html\\' => 16,
             'Illuminate\\' => 11,
         ),
         'F' => 
@@ -99,9 +105,11 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
         ),
         'A' => 
         array (
+            'Appzcoder\\CrudGenerator\\' => 24,
             'App\\' => 4,
         ),
     );
@@ -221,6 +229,10 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Mitul\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -228,6 +240,10 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'Illuminate\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/html',
         ),
         'Illuminate\\' => 
         array (
@@ -265,6 +281,14 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
+        'Appzcoder\\CrudGenerator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/appzcoder/crud-generator/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -292,6 +316,13 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
             'Mockery' => 
             array (
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
+            ),
+        ),
+        'L' => 
+        array (
+            'Laracasts\\Flash' => 
+            array (
+                0 => __DIR__ . '/..' . '/laracasts/flash/src',
             ),
         ),
         'J' => 
@@ -334,6 +365,15 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudApiCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudApiCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudApiControllerCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudApiControllerCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudControllerCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudControllerCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudLangCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudLangCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudMigrationCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudMigrationCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudModelCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudModelCommand.php',
+        'Appzcoder\\CrudGenerator\\Commands\\CrudViewCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudViewCommand.php',
+        'Appzcoder\\CrudGenerator\\CrudGeneratorServiceProvider' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/CrudGeneratorServiceProvider.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
@@ -342,6 +382,13 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
@@ -352,6 +399,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Cron\\MinutesField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
+        'CrudGeneratorTest' => __DIR__ . '/..' . '/appzcoder/crud-generator/tests/CrudGeneratorTest.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -1409,6 +1457,11 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Illuminate\\Foundation\\Validation\\ValidatesRequests' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php',
         'Illuminate\\Hashing\\BcryptHasher' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Hashing/BcryptHasher.php',
         'Illuminate\\Hashing\\HashServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Hashing/HashServiceProvider.php',
+        'Illuminate\\Html\\FormBuilder' => __DIR__ . '/..' . '/illuminate/html/FormBuilder.php',
+        'Illuminate\\Html\\FormFacade' => __DIR__ . '/..' . '/illuminate/html/FormFacade.php',
+        'Illuminate\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/illuminate/html/HtmlBuilder.php',
+        'Illuminate\\Html\\HtmlFacade' => __DIR__ . '/..' . '/illuminate/html/HtmlFacade.php',
+        'Illuminate\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/illuminate/html/HtmlServiceProvider.php',
         'Illuminate\\Http\\Concerns\\InteractsWithContentTypes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithContentTypes.php',
         'Illuminate\\Http\\Concerns\\InteractsWithFlashData' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithFlashData.php',
         'Illuminate\\Http\\Concerns\\InteractsWithInput' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php',
@@ -1746,6 +1799,12 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
         'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
+        'Kernel' => __DIR__ . '/..' . '/appzcoder/crud-generator/tests/Kernel.php',
+        'Laracasts\\Flash\\Flash' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
+        'Laracasts\\Flash\\FlashNotifier' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashNotifier.php',
+        'Laracasts\\Flash\\FlashServiceProvider' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashServiceProvider.php',
+        'Laracasts\\Flash\\LaravelSessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/LaravelSessionStore.php',
+        'Laracasts\\Flash\\SessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/SessionStore.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
@@ -1796,6 +1855,30 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'Mitul\\Controller\\AppBaseController' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Controller/AppBaseController.php',
+        'Mitul\\Generator\\CommandData' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/CommandData.php',
+        'Mitul\\Generator\\Commands\\APIGeneratorCommand' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Commands/APIGeneratorCommand.php',
+        'Mitul\\Generator\\Commands\\BaseCommand' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Commands/BaseCommand.php',
+        'Mitul\\Generator\\Commands\\PublishBaseControllerCommand' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Commands/PublishBaseControllerCommand.php',
+        'Mitul\\Generator\\Commands\\ScaffoldAPIGeneratorCommand' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Commands/ScaffoldAPIGeneratorCommand.php',
+        'Mitul\\Generator\\Commands\\ScaffoldGeneratorCommand' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Commands/ScaffoldGeneratorCommand.php',
+        'Mitul\\Generator\\File\\FileHelper' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/File/FileHelper.php',
+        'Mitul\\Generator\\GeneratorServiceProvider' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/GeneratorServiceProvider.php',
+        'Mitul\\Generator\\Generators\\API\\APIControllerGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/API/APIControllerGenerator.php',
+        'Mitul\\Generator\\Generators\\API\\RepoAPIControllerGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/API/RepoAPIControllerGenerator.php',
+        'Mitul\\Generator\\Generators\\Common\\MigrationGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Common/MigrationGenerator.php',
+        'Mitul\\Generator\\Generators\\Common\\ModelGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Common/ModelGenerator.php',
+        'Mitul\\Generator\\Generators\\Common\\RepositoryGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Common/RepositoryGenerator.php',
+        'Mitul\\Generator\\Generators\\Common\\RequestGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Common/RequestGenerator.php',
+        'Mitul\\Generator\\Generators\\Common\\RoutesGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Common/RoutesGenerator.php',
+        'Mitul\\Generator\\Generators\\GeneratorProvider' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/GeneratorProvider.php',
+        'Mitul\\Generator\\Generators\\Scaffold\\RepoViewControllerGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Scaffold/RepoViewControllerGenerator.php',
+        'Mitul\\Generator\\Generators\\Scaffold\\ViewControllerGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Scaffold/ViewControllerGenerator.php',
+        'Mitul\\Generator\\Generators\\Scaffold\\ViewGenerator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Generators/Scaffold/ViewGenerator.php',
+        'Mitul\\Generator\\SchemaCreator' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/SchemaCreator.php',
+        'Mitul\\Generator\\TemplatesHelper' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/TemplatesHelper.php',
+        'Mitul\\Generator\\Utils\\GeneratorUtils' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Utils/GeneratorUtils.php',
+        'Mitul\\Generator\\Utils\\ResponseManager' => __DIR__ . '/..' . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Utils/ResponseManager.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -2415,6 +2498,8 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'PhpParser\\Builder\\Namespace_' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Namespace_.php',
         'PhpParser\\Builder\\Param' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Param.php',
         'PhpParser\\Builder\\Property' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Property.php',
+        'PhpParser\\Builder\\TraitUse' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/TraitUse.php',
+        'PhpParser\\Builder\\TraitUseAdaptation' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/TraitUseAdaptation.php',
         'PhpParser\\Builder\\Trait_' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Trait_.php',
         'PhpParser\\Builder\\Use_' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Use_.php',
         'PhpParser\\Comment' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Comment.php',
@@ -3559,6 +3644,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Symfony\\Thanks\\Command\\ThanksCommand' => __DIR__ . '/..' . '/symfony/thanks/src/Command/ThanksCommand.php',
         'Symfony\\Thanks\\GitHubClient' => __DIR__ . '/..' . '/symfony/thanks/src/GitHubClient.php',
         'Symfony\\Thanks\\Thanks' => __DIR__ . '/..' . '/symfony/thanks/src/Thanks.php',
+        'TestCase' => __DIR__ . '/..' . '/appzcoder/crud-generator/tests/TestCase.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
