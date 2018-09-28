@@ -27,3 +27,5 @@ Route::get('paciente', function () {
     return view('Prueba/paciente') ;
 });
 
+Route::post('login', 'Auth\LoginController@login')-> name('loging');
+
