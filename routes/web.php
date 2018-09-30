@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('masterAdmin');
-});
+//Route::get('/', function () {
+  //  return view('masterAdmin');
+//});
 
+ Route::get('/',function () {
+     return view('Prueba.login');
+ });
 
 Route::get('prueba', function () {
     return view('Prueba/index') ;
@@ -23,4 +26,6 @@ Route::get('prueba', function () {
 Route::get('paciente', function () {
     return view('Prueba/paciente') ;
 });
+
+Route::post('login', 'Auth\LoginController@login')-> name('login');
 
