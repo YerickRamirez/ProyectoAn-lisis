@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="{{asset('//code.jquery.com/jquery-1.11.1.min.js')}}"></script>
 
 </head>
 <body class="bg-color">
