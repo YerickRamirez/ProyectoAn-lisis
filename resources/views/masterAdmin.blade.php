@@ -23,7 +23,7 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				<div class="margin-left-title example serif" style="color:#FFFFFF" >Oficina de Bienestar y Salud</div>
+				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" > Servicio de Salud</div>
 
 			</div>
 
@@ -36,29 +36,29 @@
         	</ul>
 
 			<div id="sidebar-wrapper" class="sidebar-toggle sidebar">
+				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="prueba">Inicio&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-home"></span></a>
+		      			<a style="font-size:15px;" class="border" href="prueba">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon"></span></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="">Perfil&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-user"></a>
+		      			<a style="font-size:15px;" class="border" href="">Perfil<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="#item3">Configuración&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon glyphicon-wrench"></a>
+		      			<a style="font-size:15px;" class="border" href="#item3">Configuración<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon-c"></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="paciente">Paciente 4&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-paperclip"></a>
+		      			<a style="font-size:15px;" class="border" href="paciente">Paciente<span class="glyphicon glyphicon-paperclip right-aling-glyphicon-p"></a>
 		    		</li>
 		    		<li>
-		      			<a  style="font-size:15px;"class="border" href="#item3">Menú 5&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-check"></a>
+		      			<a  style="font-size:15px;"class="border" href="#item3">Menú 5<span class="glyphicon glyphicon-check right-aling-glyphicon-m"></a>
 		    		</li>
 		    		<li class="hide-button-side">
-		      			<a style="font-size:15px;" class="border" href="#item3">Salir&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-log-out"></a>
+		      			<a style="font-size:15px;" class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>	
       					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
-      				</li>
-      			      			
+      				</li>    			
 		  		</ul>
 			</div>
   		</div>
@@ -66,8 +66,8 @@
 
 
 	<div class="panel-heading">
-		<div class="content">
-		<!--
+		<div class="content w3-container">
+			<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
 
@@ -76,25 +76,18 @@
   			
   			<p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
   			<h3>Resize the browser window to see the effect.</h3>
+  			-->
 		</div>
 	</div>
--->
+
 	@yield('contenido')
-	
-	<footer class="main-footer">
-        <div class="pull-right hidden-xs">
-        </div>
-        <p class="">Copyright &copy; 2018 <a href="https://www.ucr.ac.cr/">Universidad de Costa Rica</a>.</p> 
-    </footer>
-
-
-
-
-	<!--
-<footer class="cent">
-  <img src="https://image.winudf.com/v2/image/Y3IuYWMudWNyLnRyYW5zcG9ydGVzbW9iaWxlX2ljb25fMTUwNjIwNDQ3N18wMzc/icon.png?w=170&fakeurl=1&type=.png" height="80"></img>
-</footer>-->
-	
+	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+    <footer class="main-footer">
+  	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
+    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+  	</div>
+	</footer>
+</div>
 
 
 	<script type="text/javascript">

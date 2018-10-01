@@ -11,9 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-  //  return view('masterAdmin');
-//});
+Route::get('master', function () {
+    return view('masterAdmin');
+});
 
  Route::get('/',function () {
      return view('Prueba.login');
