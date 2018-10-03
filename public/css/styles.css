@@ -7,11 +7,7 @@
 }
 
 .bg-color {
-	background-color: #E6E6FA;
-}
-
-.margin-left-title {
-  margin-left: 10px;
+	background-color: #FFFFFF;
 }
 
 /*Content of the body page**/
@@ -20,13 +16,12 @@ div.content {
   margin-left: 225px;
   margin-bottom: 35px;
   padding: 1px 16px;
-  /*eight: 1000px;*//
 }
 
+/*Color navbar**/
 nav.navbar {
     background-color: #0B2C55; 
     box-shadow: 0px 0px 15px black;
-    /*border-radius: 9px 9px 9px 9px;**/
 }
 
 /*Color of the menu button in navbar**/
@@ -118,10 +113,18 @@ nav.sidebar, .main {
   transition: all 0.3s ease-out;
   margin-left: -200px;
 }
+
 @media (min-width: 768px) {
   #sidebar-wrapper.sidebar-toggle {
     transition: 0s;
     left: 200px;
+  }
+  div.logo-ucr {
+    position: fixed;
+    align: center;
+    margin-left: 45px;
+    bottom:250px;
+
   }
 }
 
@@ -131,12 +134,13 @@ nav.sidebar, .main {
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  margin-left: 230px;
+  margin-left: 0px;
 }
 
 @media (max-width: 767px) {
   .main-footer {
     margin-left: 0;
+    text-align: center;
   }
 }
 
@@ -155,80 +159,71 @@ nav.sidebar, .main {
   position: fixed;
   bottom: 0;
   background: #fff;
-  padding: 8px;
-  color: #444;
+  padding: 4px;
+  background-color: #DEDEE3;
   border-top: 1px solid #d2d6de;
 }
- 
-.pull-right {
-	margin-top: 15px; 
-	margin-right: 20px;
-    float: right!important;
-}
 
+.margin-logo {
+  margin-left: 20px;
+}
+ 
 .lead {
   font-size: 5vh
     font-size: 5vw;
 }
 
-/*Size of title "Oficina de Bienestar y Salud"**/
-@media screen and (min-width: 363px) {
-  div.example {
-    margin-top: 8px;
-    font-size: 24px;
+@media screen and (max-height:550px) {
+  div.logo-ucr {
+    display: none;
   }
 }
 
+@media screen and (min-width: 700px) {
+  div.tittle {
+    margin-top: 5px;
+    font-size: 24px;
+    text-align: center;
+    margin-left: 100px;
+  }
+
+}
 @media screen and (max-width: 700px) {
-  div.example {
+  div.tittle {
     font-size: 24px;
     text-align: center;
   }
 }
 
-@media screen and (max-width: 362px) {
-  div.example {
-    font-size: 18px;
-    margin-top: 12px;
-  }
-}
-
-@media screen and (max-width: 313px) {
-  div.example {
-    font-size: 16px;
+@media screen and (max-width: 300px) {
+  div.tittle {
+    font-size: 20px;
     text-align: center;
-    margin-top: 8px;
   }
 }
 
-/*
-.navbar-login
-{
-    margin-top: 0px;
-    width: 200px;
-    padding: 10px;
-    padding-bottom: 0px;
-  
-} 
-
-.color-drop-down {
-  background-color: #0B2C55 !important;
+.right-aling-glyphicon{
+  margin-left:120px;
 }
 
-.text-colorr {
-  color:#1A8DBB;
-}**/
+.right-aling-glyphicon-c{
+  margin-left:64px;
+}
 
-.right {
-  margin-right: 10px;
+.right-aling-glyphicon-p{
+  margin-left:95px;
+}
+
+.right-aling-glyphicon-m{
+  margin-left:103px;
 }
 
 .logo-ucr {
-    position: relative;
-    text-align: center;
-    bottom:0px;
+    position: fixed;
+    align: center;
+    margin-left: 45px;
+    bottom:100px;
 }
-
 .serif {
     font-family: "Times New Roman", Times, serif;
 }
