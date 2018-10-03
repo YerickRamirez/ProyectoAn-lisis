@@ -29,3 +29,13 @@ Route::get('paciente', function () {
 
 Route::post('login', 'Auth\LoginController@login')-> name('login');
 
+
+Route::get('datepicker', function () {
+    return view('Prueba/datepicker');
+});
+
+Route::post('/test/save', ['as' => 'save-date',
+                           'uses' => 'DateController@showDate', 
+                            function () {
+                                return '';
+                            }]);
