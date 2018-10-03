@@ -16,6 +16,7 @@ class LoginController extends Controller
             'lastName' => 'required|string'
         ]);
 
+
         if(Auth::attempt($credentials)){
             return 'The session was began';
         }  
