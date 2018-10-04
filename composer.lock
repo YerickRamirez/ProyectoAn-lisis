@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e79a9a5b0587281888ff4dfca2deb6f6",
+    "content-hash": "c330724da558f5c2e71a06c2a0d34562",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1400,6 +1400,56 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "squareboat/flash",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/squareboat/flash.git",
+                "reference": "4cd57885f5e3af8e564c1f9da198fb438ee2a553"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/squareboat/flash/zipball/4cd57885f5e3af8e564c1f9da198fb438ee2a553",
+                "reference": "4cd57885f5e3af8e564c1f9da198fb438ee2a553",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/session": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SquareBoat\\Flash\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Amit Gupta",
+                    "email": "akaamitgupta@gmail.com"
+                }
+            ],
+            "description": "An easy way for Laravel flash notifications.",
+            "keywords": [
+                "flash",
+                "laravel",
+                "notifications"
+            ],
+            "time": "2016-10-06T05:46:23+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

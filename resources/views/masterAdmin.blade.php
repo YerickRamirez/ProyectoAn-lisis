@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Oficina de Salud y Bienestar</title>
 
+	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
@@ -105,6 +106,17 @@
 	</div>
 
 	@yield('contenido')
+	<div class="content w3-container">
+
+	
+	<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					@include('flash::message')
+		    </div>
+	</div>
+
+</div>
+	
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
