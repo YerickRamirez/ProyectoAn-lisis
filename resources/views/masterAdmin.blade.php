@@ -11,7 +11,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
 	<script src="{{asset('//code.jquery.com/jquery-1.11.1.min.js')}}"></script>
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
         <link href="./css/base.css" rel="stylesheet">
         <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
@@ -104,6 +105,7 @@
 
 	<div class="panel-heading">
 		<div class="content w3-container">
+			@yield('contenido')
 			<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
@@ -117,6 +119,8 @@
 		</div>
 	</div>
 
+	
+	
 	@yield('contenido')
 	<div class="content w3-container">
 
@@ -135,7 +139,7 @@
     	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
-</div>
+
 
 
 	<script type="text/javascript">
