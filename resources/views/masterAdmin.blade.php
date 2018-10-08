@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Oficina de Salud y Bienestar</title>
 
+	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
@@ -87,7 +88,19 @@
 			</div>
   		</div>
 	</nav>
+	@if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
 
+                        @if (Request::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 
 	<div class="panel-heading">
 		<div class="content w3-container">
@@ -105,8 +118,24 @@
 		</div>
 	</div>
 
+<<<<<<< HEAD
 	
 	
+=======
+	@yield('contenido')
+	<div class="content w3-container">
+
+	
+	<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					@include('flash::message')
+		    </div>
+	</div>
+
+</div>
+	
+	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+>>>>>>> f5bd7d010ea4f41e98bcc94ace98239ffe85baf2
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
     	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >

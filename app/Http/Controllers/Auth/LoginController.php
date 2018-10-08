@@ -16,11 +16,14 @@ class LoginController extends Controller
             'lastName' => 'required|string'
         ]);
 
-
+        //return $credentials;
+            
         if(Auth::attempt($credentials)){
             return 'The session was began';
-        }  
-        return back()->withErrors(['email' => trans('auth.failed')]);        
+        } // else {
+            return 'Error en la autenticacion';
+        //return back()->withErrors(['email' => trans('auth.failed')]);        
         //return back()->withErrors(['email' => 'This email does not exist']);
+    //}
     }
 }

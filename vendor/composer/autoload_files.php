@@ -19,4 +19,5 @@ return array(
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     '907c39b36ca90bbc699da4c70ce5bad5' => $vendorDir . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Constants/Constants.php',
+    '2547af993c5e11da0789ef07655a5fa2' => $vendorDir . '/squareboat/flash/src/helpers.php',
 );
