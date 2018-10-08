@@ -121,7 +121,7 @@
 
 	
 	
-	@yield('contenido')
+	@yield('12345')
 	<div class="content w3-container">
 
 	
