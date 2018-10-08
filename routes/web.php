@@ -11,9 +11,10 @@
 |
 */
 
+
 Route::get('master', function () {
     return view('masterAdmin');
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
  Route::get('/',function () {
      return view('auth/login');
@@ -21,11 +22,11 @@ Route::get('master', function () {
 
 Route::get('prueba', function () {
     return view('Prueba/index') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('paciente', function () {
     return view('Prueba/paciente') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::post('login', 'Auth\LoginController@login')-> name('login');
 
@@ -79,3 +80,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
