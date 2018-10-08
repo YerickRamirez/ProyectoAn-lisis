@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('master', function () {
     return view('masterAdmin');
 })->middleware('auth.basic');
