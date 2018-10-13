@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Administrador Servicio de Salud</title>
+	<title>Servicio de Salud</title>
 
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
@@ -68,16 +68,13 @@
 		      			<a class="border" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		      			<a class="border" href="cuentas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
+		      			<a class="border" href="horarios">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="servicios">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
-		    		</li>
-		    		<li>
-		      			<a class="border" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
+		      			<a class="border" href="servicios">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
@@ -102,11 +99,10 @@
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
-		<a class="border-a" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
-		<a class="border-a" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
-		<a class="border-a" href="servicios">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
-		<a class="border-a" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
+	    <a class="border-a" href="#">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+		<a class="border-a" href="#">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
+		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
+		<a class="border-a" href="#">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
       	<a class="border-a hide-button-exit" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
@@ -127,8 +123,11 @@
 
 	<div class="panel-heading">
 		<div class="content w3-container">
-		
-			@yield('contenido_Admin')
+		<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
+
+			Augue tellus lacus mollis tristique lacinia duis, quam cum velit mi feugiat. Turpis erat urna viverra litora sodales laoreet, fermentum vitae mattis quis mauris dictumst, vestibulum sed ligula risus feugiat. Eleifend integer nostra mauris porta morbi luctus bibendum phasellus tempor aptent faucibus diam sodales, nam sapien platea ultrices lobortis maecenas nunc at neque conubia habitasse imperdiet.
+  			</h4>
+			@yield('content_Patient')
 			<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.

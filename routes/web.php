@@ -14,7 +14,15 @@
 
 Route::get('master', function () {
     return view('masterAdmin');
-})->middleware('auth.basic');
+});//->middleware('auth.basic');
+
+Route::get('root', function () {
+    return view('masterRoot');
+});//->middleware('auth.basic');
+
+Route::get('patient', function () {
+    return view('masterPatient');
+});//->middleware('auth.basic');
 
  Route::get('/',function () {
      return view('auth/login');

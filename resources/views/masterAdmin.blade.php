@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Oficina de Salud y Bienestar</title>
+	<title>Servicio de Salud</title>
 
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
@@ -65,22 +65,22 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="prueba">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon"></span></a>
+		      			<a class="border menu-options" href="prueba">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon"></span></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="">Perfil<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="#item3">Configuración<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon-c"></a>
+		      			<a class="border" href="#item3">Configuración<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon-c"></a>
 		    		</li>
 		    		<li>
-		      			<a style="font-size:15px;" class="border" href="paciente">Paciente<span class="glyphicon glyphicon-paperclip right-aling-glyphicon-p"></a>
+		      			<a class="border" href="paciente">Paciente<span class="glyphicon glyphicon-paperclip right-aling-glyphicon-p"></a>
 		    		</li>
 		    		<li>
-		      			<a  style="font-size:15px;"class="border" href="#item3">Menú 5<span class="glyphicon glyphicon-check right-aling-glyphicon-m"></a>
+		      			<a class="border" href="#item3">Menú 5<span class="glyphicon glyphicon-check right-aling-glyphicon-m"></a>
 		    		</li>
 		    		<li class="hide-button-side">
-		      			<a style="font-size:15px;" class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
+		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>	
       					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
@@ -89,7 +89,27 @@
 			</div>
   		</div>
 	</nav>
-	@if (Route::has('login'))
+
+	<div class="sidebar-mobile">       
+      <div>      
+        <button type="button" class="navbar-toggle collapsed border-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+        </button>
+            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="prueba">Servicio de Salud</a>
+      </div>
+
+      <div id="myNavbar">
+      	<a class="border-a" href="prueba">Inicio</a>
+      	<a class="border-a" href="prueba">Perfil</a>
+      	<a class="border-a" href="prueba">Citas</a>
+      	<a class="border-a" href="prueba">Especialistas</a>
+      	<a class="border-a hide-button-exit" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+      </div>
+    </div>
+	<!--@if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -101,7 +121,7 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif-->
 
 	<div class="panel-heading">
 		<div class="content w3-container">
