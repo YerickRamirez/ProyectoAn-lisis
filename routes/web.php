@@ -24,6 +24,33 @@ Route::get('prueba', function () {
     return view('Prueba/index') ;
 })->middleware('auth.basic');
 
+//---------------------------------------
+//Rutas de Adminitrador
+//---------------------------------------
+
+Route::get('admin', function () {
+    return view('Admin/index') ;
+});//->middleware('auth.basic');
+
+Route::get('cuentas', function () {
+    return view('Admin/configurarCuentas') ;
+});//->middleware('auth.basic');
+
+Route::get('horarios', function () {
+    return view('Admin/configurarHorarios') ;
+});//->middleware('auth.basic');
+
+Route::get('recintos', function () {
+    return view('Admin/configurarRecintos') ;
+});//->middleware('auth.basic');
+
+Route::get('servicios', function () {
+    return view('Admin/configurarServicios') ;
+});//->middleware('auth.basic');
+
+//---------------------------------------
+//---------------------------------------
+
 Route::get('paciente', function () {
     return view('Prueba/paciente') ;
 })->middleware('auth.basic');
