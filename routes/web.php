@@ -48,7 +48,18 @@ Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@
 Route::get('especialistas/{cedula}/eliminarEspecialista', 'EspecialistaController@eliminarEspecialista');
 
 Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaController@actualizarEspecialista');
+
+Route::resource('especialistas/viewAnnadir', 'EspecialistaController@viewAnnadir');
+
+Route::any('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
+
 //Fin rutas tabla especialista
+
+
+//Rutas prueba comboxo autorefresh
+Route::any('combobox', 'EspecialistaController@combobox');
+//Fin rutas pruebas combobox autorefresh
+
 
 //Auth::routes();
 

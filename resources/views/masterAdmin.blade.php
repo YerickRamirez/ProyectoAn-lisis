@@ -115,28 +115,18 @@
   			
   			<p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
   			<h3>Resize the browser window to see the effect.</h3>
-  			-->
+			  -->
+						@include('flash::message')
 		</div>
 	</div>
 
 	
 	
-	@yield('contenido')
-	<div class="content w3-container">
-
-	
-	<div class="row">
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-					@include('flash::message')
-		    </div>
-	</div>
-
-</div>
 	
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
-    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 
