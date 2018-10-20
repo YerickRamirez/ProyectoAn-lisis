@@ -49,7 +49,7 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" > Servicio de Salud</div>
+				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" >Servicio de Salud</div>
 
 			</div>
 
@@ -65,25 +65,22 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border menu-options" href="prueba">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon"></span></a>
+		      			<a class="border" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		      			<a class="border" href="cuentas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="#item3">Configuración<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon-c"></a>
+		      			<a class="border" href="horarios">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="paciente">Paciente<span class="glyphicon glyphicon-paperclip right-aling-glyphicon-p"></a>
-		    		</li>
-		    		<li>
-		      			<a class="border" href="#item3">Menú 5<span class="glyphicon glyphicon-check right-aling-glyphicon-m"></a>
+		      			<a class="border" href="servicios">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
 		    		</li>
 		    		<li class="hide-button-side">
-		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
+		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
 		    		<li>	
-      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
+      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
       				</li>    			
 		  		</ul>
 			</div>
@@ -102,14 +99,14 @@
       </div>
 
       <div id="myNavbar">
-      	<a class="border-a" href="prueba">Inicio</a>
-      	<a class="border-a" href="prueba">Perfil</a>
-      	<a class="border-a" href="prueba">Citas</a>
-      	<a class="border-a" href="prueba">Especialistas</a>
+	    <a class="border-a" href="#">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+		<a class="border-a" href="#">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
+		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
+		<a class="border-a" href="#">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
       	<a class="border-a hide-button-exit" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
-	<!--@if (Route::has('login'))
+<!--	@if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -121,11 +118,16 @@
                         @endif
                     @endauth
                 </div>
-            @endif-->
+            @endif
+            -->
 
 	<div class="panel-heading">
 		<div class="content w3-container">
-			@yield('contenido')
+		<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
+
+			Augue tellus lacus mollis tristique lacinia duis, quam cum velit mi feugiat. Turpis erat urna viverra litora sodales laoreet, fermentum vitae mattis quis mauris dictumst, vestibulum sed ligula risus feugiat. Eleifend integer nostra mauris porta morbi luctus bibendum phasellus tempor aptent faucibus diam sodales, nam sapien platea ultrices lobortis maecenas nunc at neque conubia habitasse imperdiet.
+  			</h4>
+			@yield('content_Patient')
 			<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
@@ -135,18 +137,26 @@
   			
   			<p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
   			<h3>Resize the browser window to see the effect.</h3>
-			  -->
-						@include('flash::message')
+  			-->
 		</div>
 	</div>
 
 	
+	<div class="content w3-container">
+
 	
+	<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					@include('flash::message')
+		    </div>
+	</div>
+
+</div>
 	
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
-    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 

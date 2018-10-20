@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Servicio de Salud</title>
+	<title>Administrador Servicio de Salud</title>
 
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
@@ -49,7 +49,7 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" > Servicio de Salud</div>
+				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" >Servicio de Salud</div>
 
 			</div>
 
@@ -65,25 +65,25 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border menu-options" href="prueba">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon"></span></a>
+		      			<a class="border" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		      			<a class="border" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="#item3">Configuración<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon-c"></a>
+		      			<a class="border" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="paciente">Paciente<span class="glyphicon glyphicon-paperclip right-aling-glyphicon-p"></a>
+		      			<a class="border" href="servicios">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="#item3">Menú 5<span class="glyphicon glyphicon-check right-aling-glyphicon-m"></a>
+		      			<a class="border" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
 		    		</li>
 		    		<li class="hide-button-side">
-		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
+		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
 		    		<li>	
-      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
+      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
       				</li>    			
 		  		</ul>
 			</div>
@@ -102,14 +102,15 @@
       </div>
 
       <div id="myNavbar">
-      	<a class="border-a" href="prueba">Inicio</a>
-      	<a class="border-a" href="prueba">Perfil</a>
-      	<a class="border-a" href="prueba">Citas</a>
-      	<a class="border-a" href="prueba">Especialistas</a>
+	    <a class="border-a" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+		<a class="border-a" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		<a class="border-a" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
+		<a class="border-a" href="servicios">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
+		<a class="border-a" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
       	<a class="border-a hide-button-exit" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
-	<!--@if (Route::has('login'))
+<!--	@if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -121,11 +122,13 @@
                         @endif
                     @endauth
                 </div>
-            @endif-->
+            @endif
+            -->
 
 	<div class="panel-heading">
 		<div class="content w3-container">
-			@yield('contenido')
+		
+			@yield('contenido_Admin')
 			<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
@@ -135,18 +138,26 @@
   			
   			<p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
   			<h3>Resize the browser window to see the effect.</h3>
-			  -->
-						@include('flash::message')
+  			-->
 		</div>
 	</div>
 
 	
+	<div class="content w3-container">
+
 	
+	<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					@include('flash::message')
+		    </div>
+	</div>
+
+</div>
 	
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
-    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 
