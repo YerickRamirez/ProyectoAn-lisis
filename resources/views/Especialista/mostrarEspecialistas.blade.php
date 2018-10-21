@@ -1,9 +1,9 @@
 @extends ('masterAdmin')
 @section ('contenido')
 
-<section class="content">
+<section class="">
 
-    <div class="content w3-container">
+    <div class=" w3-container">
  	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Especialistas</h3>
             <a href="{{ url("especialistas/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Especialistas</a>
@@ -11,7 +11,7 @@
 </div>
 <br>
 <div class="panel-heading">
-    <div class="content w3-container">
+    <div class="w3-container">
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>

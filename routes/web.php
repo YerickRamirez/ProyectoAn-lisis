@@ -88,6 +88,14 @@ Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 
 //Fin rutas tabla especialista
 
+//Rutas tabla recinto
+Route::resource('recintos', 'RecintoController');
+Route::view('recintos/viewAnnadir', 'Recinto.annadirRecinto');
+Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarRecinto');
+//Fin rutas recinto
+
+
+
 
 //Rutas prueba comboxo autorefresh
 Route::any('combobox', 'EspecialistaController@combobox');
