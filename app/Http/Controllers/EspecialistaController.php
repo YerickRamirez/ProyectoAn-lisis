@@ -24,10 +24,10 @@ class EspecialistaController extends Controller
 
     }
 
-    public function show()
+    /*public function show()
 	{
 		return view('Especialista.annadirEspecialista');
-	}
+	}*/ 
 
     public function index(Request $request){
 		if ($request) {

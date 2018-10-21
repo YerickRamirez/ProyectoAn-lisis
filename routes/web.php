@@ -76,7 +76,7 @@ Route::post('/test/save', ['as' => 'save-date',
                                 return '';
                             }]);
 // Rutas de la tabla especialista
-Route::resource('especialistas', 'EspecialistaController');
+Route::get('especialistas', 'EspecialistaController@index');
 
 Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@editarEspecialista');
 
@@ -84,9 +84,7 @@ Route::get('especialistas/{cedula}/eliminarEspecialista', 'EspecialistaControlle
 
 Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaController@actualizarEspecialista');
 
-Route::resource('especialistas/viewAnnadir', 'EspecialistaController@viewAnnadir');
-
-Route::any('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
+Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 
 //Fin rutas tabla especialista
 
