@@ -75,6 +75,7 @@ Route::post('/test/save', ['as' => 'save-date',
                             function () {
                                 return '';
                             }]);
+                            
 // Rutas de la tabla especialista
 Route::get('especialistas', 'EspecialistaController@index');
 
@@ -90,8 +91,24 @@ Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 
 
 //Rutas prueba comboxo autorefresh
-Route::any('combobox', 'EspecialistaController@combobox');
+Route::get('/recintosCombo', 'AjaxController@combobox');
+
+Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
+
+Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
+
+
+Route::get('combobox',function(){
+    return view('PruebaCombobox.pruebacombo');
+ });
+
+Route::get('ajax',function(){
+    return view('message');
+ });
+ Route::get('/getmsg','AjaxController@index');
+ 
 //Fin rutas pruebas combobox autorefresh
+
 
 
 //Auth::routes();
