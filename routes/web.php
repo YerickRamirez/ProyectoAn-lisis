@@ -11,7 +11,7 @@
 |
 */
 
-
+/* CREO QUE NINGUNO ES NECESARIO
 Route::get('master', function () {
     return view('masterAdmin');
 });//->middleware('auth.basic');
@@ -20,17 +20,23 @@ Route::get('root', function () {
     return view('masterRoot');
 });//->middleware('auth.basic');
 
+/*CREO QUE NO ES NECESARIO ESTE
 Route::get('patient', function () {
     return view('masterPatient');
 });//->middleware('auth.basic');
 
- Route::get('/',function () {
-     return view('auth/login');
- });//->middleware('auth.basic');
+
+
 
 Route::get('prueba', function () {
-    return view('Prueba/index') ;
+    return view('Paciente/index') ;
 })->middleware('auth.basic');
+*/
+
+Route::get('/',function () {
+    return view('auth/login');
+});//->middleware('auth.basic');
+
 
 //---------------------------------------
 //Rutas de Adminitrador
@@ -56,25 +62,43 @@ Route::get('servicios', function () {
     return view('Admin/configurarServicios') ;
 });//->middleware('auth.basic');
 
+
 //---------------------------------------
+//Rutas Paciente
 //---------------------------------------
 
 Route::get('paciente', function () {
-    return view('Prueba/paciente') ;
-})->middleware('auth.basic');
+    return view('Paciente/index') ;
+});//->middleware('auth.basic');
 
-Route::post('login', 'Auth\LoginController@login')-> name('login');
+Route::get('citas', function () {
+    return view('Paciente/citas') ;
+});//->middleware('auth.basic');
 
+Route::get('perfil', function () {
+    return view('Paciente/perfil') ;
+});//->middleware('auth.basic');
+
+Route::get('informacion', function () {
+    return view('Paciente/informacion') ;
+});//->middleware('auth.basic');
 
 Route::get('datepicker', function () {
-    return view('Prueba/datepicker');
+    return view('Paciente/datepicker');
 });
+
+
+//---------------------------------------
+//---------------------------------------
+
+Route::post('login', 'Auth\LoginController@login')-> name('login');
 
 Route::post('/test/save', ['as' => 'save-date',
                            'uses' => 'DateController@showDate', 
                             function () {
                                 return '';
                             }]);
+                            
 // Rutas de la tabla especialista
 Route::get('especialistas', 'EspecialistaController@index');
 
@@ -102,8 +126,24 @@ Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mai
 
 
 //Rutas prueba comboxo autorefresh
-Route::any('combobox', 'EspecialistaController@combobox');
+Route::get('/recintosCombo', 'AjaxController@combobox');
+
+Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
+
+Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
+
+
+Route::get('combobox',function(){
+    return view('PruebaCombobox.pruebacombo');
+ });
+
+Route::get('ajax',function(){
+    return view('message');
+ });
+ Route::get('/getmsg','AjaxController@index');
+ 
 //Fin rutas pruebas combobox autorefresh
+
 
 
 //Auth::routes();
