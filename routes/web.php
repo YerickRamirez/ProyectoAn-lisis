@@ -95,6 +95,10 @@ Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarR
 //Fin rutas recinto
 
 
+//------------------------Rutas para correos
+//Route::get('send/email/{email}/{name}/{fecha}', 'correoCitaController@mail');
+
+Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mail');
 
 
 //Rutas prueba comboxo autorefresh
