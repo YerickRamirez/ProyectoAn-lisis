@@ -1,6 +1,6 @@
-@extends ('masterAdmin')
-@section ('contenido')
-	<h3>Pantalla de Paciente</h3>
+@extends ('masterPaciente')
+@section ('contenido_Paciente')
+	<h3>Pantalla de Citas</h3>
 
 	<br>
 	<br>
