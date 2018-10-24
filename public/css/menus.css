@@ -1,0 +1,16 @@
+div.inforation-menu {
+	background-color:#2189E2 !important;
+}
+
+.text-style {
+	text-align: center;
+	font-size: 3vh;
+}
+
+.panel-size {
+	min-height: 125px !important;
+}
+
+.center {
+	text-align: center;
+}

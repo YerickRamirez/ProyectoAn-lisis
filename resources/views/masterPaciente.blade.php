@@ -65,16 +65,16 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+		      			<a class="border" href="paciente">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="cuentas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
+		      			<a class="border" href="citas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="horarios">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
+		      			<a class="border" href="perfil">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="servicios">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
+		      			<a class="border" href="informacion">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
@@ -123,11 +123,7 @@
 
 	<div class="panel-heading">
 		<div class="content w3-container">
-		<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
-
-			Augue tellus lacus mollis tristique lacinia duis, quam cum velit mi feugiat. Turpis erat urna viverra litora sodales laoreet, fermentum vitae mattis quis mauris dictumst, vestibulum sed ligula risus feugiat. Eleifend integer nostra mauris porta morbi luctus bibendum phasellus tempor aptent faucibus diam sodales, nam sapien platea ultrices lobortis maecenas nunc at neque conubia habitasse imperdiet.
-  			</h4>
-			@yield('content_Patient')
+			@yield('contenido_Paciente')
 			<!--
   			<h2>Example</h2>
   			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.

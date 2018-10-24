@@ -11,7 +11,7 @@
 |
 */
 
-
+/* CREO QUE NINGUNO ES NECESARIO
 Route::get('master', function () {
     return view('masterAdmin');
 });//->middleware('auth.basic');
@@ -20,17 +20,23 @@ Route::get('root', function () {
     return view('masterRoot');
 });//->middleware('auth.basic');
 
+/*CREO QUE NO ES NECESARIO ESTE
 Route::get('patient', function () {
     return view('masterPatient');
 });//->middleware('auth.basic');
 
- Route::get('/',function () {
-     return view('auth/login');
- });//->middleware('auth.basic');
+
+
 
 Route::get('prueba', function () {
-    return view('Prueba/index') ;
+    return view('Paciente/index') ;
 })->middleware('auth.basic');
+*/
+
+Route::get('/',function () {
+    return view('auth/login');
+});//->middleware('auth.basic');
+
 
 //---------------------------------------
 //Rutas de Adminitrador
@@ -56,19 +62,36 @@ Route::get('servicios', function () {
     return view('Admin/configurarServicios') ;
 });//->middleware('auth.basic');
 
+
 //---------------------------------------
+//Rutas Paciente
 //---------------------------------------
 
 Route::get('paciente', function () {
-    return view('Prueba/paciente') ;
-})->middleware('auth.basic');
+    return view('Paciente/index') ;
+});//->middleware('auth.basic');
 
-Route::post('login', 'Auth\LoginController@login')-> name('login');
+Route::get('citas', function () {
+    return view('Paciente/citas') ;
+});//->middleware('auth.basic');
 
+Route::get('perfil', function () {
+    return view('Paciente/perfil') ;
+});//->middleware('auth.basic');
+
+Route::get('informacion', function () {
+    return view('Paciente/informacion') ;
+});//->middleware('auth.basic');
 
 Route::get('datepicker', function () {
-    return view('Prueba/datepicker');
+    return view('Paciente/datepicker');
 });
+
+
+//---------------------------------------
+//---------------------------------------
+
+Route::post('login', 'Auth\LoginController@login')-> name('login');
 
 Route::post('/test/save', ['as' => 'save-date',
                            'uses' => 'DateController@showDate', 
@@ -88,6 +111,14 @@ Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaContro
 Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 
 //Fin rutas tabla especialista
+
+//Rutas tabla recinto
+Route::resource('recintos', 'RecintoController');
+Route::view('recintos/viewAnnadir', 'Recinto.annadirRecinto');
+Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarRecinto');
+//Fin rutas recinto
+
+
 
 
 //Rutas prueba comboxo autorefresh
