@@ -9,15 +9,11 @@
 
 <section class="">
 
-	<div class="content-b w3-container">
+	<div class="content-c w3-container">
  		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        	<h3>Recintos</h3>
         	<a href="{{ url("recintos/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Recinto</a>
 		</div>
 	</div>
-	<br>
-
-
 
 	<div class="panel-heading">
 		<div class="content-b w3-container">

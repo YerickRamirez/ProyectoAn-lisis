@@ -74,19 +74,11 @@ Route::get('paciente', function () {
 Route::get('citas', function () {
     return view('Paciente/citas') ;
 });//->middleware('auth.basic');
-<<<<<<< HEAD
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
 });//->middleware('auth.basic');
 
-=======
-
-Route::get('perfil', function () {
-    return view('Paciente/perfil') ;
-});//->middleware('auth.basic');
-
->>>>>>> de8564b0c63843a30b79c8f0a0c2bed948d135a4
 Route::get('informacion', function () {
     return view('Paciente/informacion') ;
 });//->middleware('auth.basic');

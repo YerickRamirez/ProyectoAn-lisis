@@ -1,23 +1,27 @@
 @extends ('masterAdmin')
 @section ('contenido')
 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <p style="text-align: center; font-size: 3vh;">Configuración de especialistas</p>
+    </div>
+    <div class="panel-body">
 <section class="">
 
-    <div class=" w3-container">
+    <div class="content-c w3-container">
  	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-			<h3>Especialistas</h3>
             <a href="{{ url("especialistas/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Especialistas</a>
     </div>
 </div>
-<br>
+
 <div class="panel-heading">
-    <div class="w3-container">
+    <div class="content-b w3-container">
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
-					<th>Cédula</th>
-                    <th>Nombre</th>
-                    <th>Opciones</th>
+					<th class="center">Cédula</th>
+                    <th class="center">Nombre</th>
+                    <th class="center">Opciones</th>
 				</thead>
 
 <script>
@@ -31,11 +35,11 @@ function confirmarEliminar(cedula) {
 
 @foreach ($especialistas as $especialista)
 				<tr>
-					<td>{{ $especialista->Cédula}}</td>
-                    <td>{{ $especialista->Primer_Apellido . " " . $especialista->Segundo_Apellido .
-                     ", " . $especialista->Nombre}}</td>
+					<td class="center">{{ $especialista->Cédula}}</td>
+                    <td class="center">{{ $especialista->Primer_Apellido . " " . $especialista->Segundo_Apellido .
+                     " " . $especialista->Nombre}}</td>
                 
-                    <td>
+                    <td class="center">
 						<?php /*$placaEncrypted = Crypt::encrypt($carrito->placa)*/ ?>
 
 						<a href="{{url('especialistas', $especialista->Cédula)}}/editarEspecialista"><button class="btn btn-info">Editar</button></a>
@@ -51,4 +55,6 @@ function confirmarEliminar(cedula) {
 </div> 
 </div> 
 </section>
+					</div>
+					</div>
 @endsection
