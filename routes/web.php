@@ -110,6 +110,8 @@ Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaContro
 
 Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 
+Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
+
 //Fin rutas tabla especialista
 
 //Rutas tabla recinto
