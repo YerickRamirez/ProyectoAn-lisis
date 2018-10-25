@@ -9,9 +9,10 @@ class Recinto extends Model
     protected $table='recinto';
 
     protected $primaryKey='ID_Recinto';
+
+    public $timestamps=false;
     
     protected $fillable = [
-      'ID_Recinto', 
       'Nombre'];
 
 

@@ -162,12 +162,13 @@ nav.sidebar, .main {
   }
 }
 
+
+
 .main-footer {
   width: 100%;
   position: fixed;
-  bottom: 0;
-  background: #fff;
-  padding: 4px;
+  bottom: 0 !important;
+
   background-color: #DEDEE3;
   border-top: 1px solid #d2d6de;
 }

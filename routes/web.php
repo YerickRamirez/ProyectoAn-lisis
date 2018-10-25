@@ -118,6 +118,7 @@ Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregar
 Route::resource('recintos', 'RecintoController');
 Route::view('recintos/viewAnnadir', 'Recinto.annadirRecinto');
 Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarRecinto');
+Route::post('recintos/agregarRecinto', 'RecintoController@agregarRecinto');
 //Fin rutas recinto
 
 

@@ -9,9 +9,17 @@
 
 <section class="">
 
-	<div class="content-c w3-container">
- 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        	<a href="{{ url("recintos/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Recinto</a>
+	<div class="content-c w3-container mobile">
+ 		<div>
+             <form method = 'POST' action = '{!! url("recintos")!!}/agregarRecinto'>
+                    <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+                    <div class="row col-md-3" id="agregar">
+                    <input id="nombre" placeholder="Nombre" class="form-control" name = "nombre" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo"> 
+                    </div>
+                    <button style="margin-left: 5px;" class = 'btn btn-success mobile' type ='submit'><i class="fa fa-floppy-o"
+                    </i>Agregar Recinto</button>
+            </form>
+        	<!--<a href="{{ url("recintos/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Recinto</a>-->
 		</div>
 	</div>
 
@@ -32,6 +40,16 @@
 		}
 		return false;
 		}
+
+            function muestra_oculta(id){
+if (document.getElementById){ //se obtiene el id
+var el = document.getElementById(id); //se define la variable "el" igual a nuestro div
+el.style.display = (el.style.display == 'none') ? 'block' : 'none'; //damos un atributo display:none que oculta el div
+}
+}
+window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
+muestra_oculta('contenido');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
+}
 	</script>
 
 	@foreach ($recintos as $recinto)

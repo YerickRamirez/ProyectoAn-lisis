@@ -1,44 +1,33 @@
 @extends ('masterAdmin')
 @section ('contenido')
 
-<section class="content">
-    <div class="content w3-container">
-         
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-            <h3>Añadir Especialistas</h3>
-            <a href="/especialistas" class = 'btn btn-primary'><i class="fa fa-home"></i>Ver Especialistas</a>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <p style="text-align: center; font-size: 3vh;">Agregar especialistas</p>
+    </div>
+    <div class="panel-body">
+        <section class="">
+        <div class="content-c w3-container">    
+            <div class=" center">
+                <div class="col-md-4 col-md-offset-4">
+                    <form method = 'POST' action = '{!! url("especialistas")!!}/agregarEspecialista'>
+                        <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+                        <input id="cedula" placeholder="Cédula" class="form-control" name = "cedula" type = 'text' required>
+                        <br>
+                        <input id="nombre" placeholder="Nombre" class="form-control" name = "nombre" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo"> 
+                        <br>
+                        <input id="primer_apellido"placeholder="Primer Apellido" class="form-control" name = "primer_apellido" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo" required>            
+                        <br>
+                        <input id="segundo_apellido" placeholder="Segundo Apellido" class="form-control" name = "segundo_apellido" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo" required>    
+                        <br>
+                        <button  style="margin-top: 5px;" class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i>Agregar Especialista</button>
+                        <a style="margin-top: 5px;" href="/especialistas" class = 'btn btn-primary'><i class="fa fa-home"></i>Ver Especialistas</a>
+                    </form>
+                </div>
         </div>
-        <br>
-
-
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-    <form method = 'POST' action = '{!! url("especialistas")!!}/agregarEspecialista'>
-        <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-        <br>
-            <label for="cedula">Cédula</label>
-            <br>
-            <input id="cedula"  name = "cedula" type = 'text' required>
-        
-        <br>
-            <label for="nombre">Nombre</label>
-            <br>
-            <input id="nombre" name = "nombre" type="text" required> 
-
-        <br>
-            <label for="primer_apellido">Primer Apellido</label>
-            <br>
-            <input id="primer_apellido" name = "primer_apellido" type="text" required> 
-            
-        <br>
-            <label for="segundo_apellido">Segundo Apellido</label>
-            <br>
-            <input id="segundo_apellido" name = "segundo_apellido" type="text" required>
-           
-        <br>
-        <br>
-            <button class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i>Agregar Especialista</button>
-        </form>
+        </div>
+        </section>
     </div>
-    </div>
-</section>
+</div>
+
 @endsection

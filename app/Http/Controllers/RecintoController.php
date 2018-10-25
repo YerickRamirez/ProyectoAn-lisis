@@ -62,10 +62,18 @@ class RecintoController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		return view('recintos.create');
-	}
+	   public function agregarRecinto(Request $request)
+    {
+        $recinto = new Recinto();
+
+        $recinto->Nombre = $request->nombre;
+        
+        $recinto->save();
+
+        /*Flash::success("Recinto " . $recinto->Nombre . " guardado satisfactoriamente");*/
+
+        return redirect('recintos');
+    }
 
 	/**
 	 * Store a newly created resource in storage.
