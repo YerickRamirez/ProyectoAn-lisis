@@ -33,7 +33,7 @@ class EspecialistaController extends Controller
 		if ($request) {
 			/*$query=trim($request->get('searchText'));*/
             
-            $especialistas=DB::table('especialista')->orderBy('Primer_Apellido','desc')->paginate(5);
+            $especialistas=DB::table('especialista')->orderBy('Primer_Apellido','desc')->get();
             if ($especialistas == null) {
                 Flash::message("No hay especialistas para mostrar");
             }
@@ -45,7 +45,6 @@ class EspecialistaController extends Controller
     {
         $especialista = new EspecialistaModel();
 
-        
         $especialista->Cédula = $request->cedula;
 
         $especialista->Nombre = $request->nombre;

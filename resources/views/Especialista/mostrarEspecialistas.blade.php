@@ -1,6 +1,8 @@
 @extends ('masterAdmin')
 @section ('contenido')
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <p style="text-align: center; font-size: 3vh;">Configuración de especialistas</p>
@@ -16,7 +18,7 @@
         <div class="panel-heading">
             <div class="content-b w3-container">
 		      <div class="table-responsive">
-			     <table class="table table-striped table-bordered table-condensed table-hover">
+			     <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
 				    <thead>
 					   <th class="center">Cédula</th>
                         <th class="center">Nombre</th>
@@ -49,10 +51,27 @@
 				@endforeach
 			    </table>
 		    </div>
-		      {{$especialistas->render()}}
             </div> 
         </div> 
         </section>
 	</div>
 </div>
+
+<script>
+
+    $('#tablita').DataTable(
+         {
+ 
+        "language": {
+ 
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+ 
+    } ,
+     stateSave: true,
+     "ordering": false,
+ 
+        
+        } );
+    </script>
+
 @endsection
