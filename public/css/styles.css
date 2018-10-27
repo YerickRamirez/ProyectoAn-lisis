@@ -1,13 +1,9 @@
-
 .border {
+  font-size:15px;
 	text-align: center;
 	border-bottom: 1px #e5e5e5 solid;
 	width: 230px;
 	box-shadow: 0px 0px 0px black;
-}
-
-.bg-color {
-	background-color: #FFFFFF;
 }
 
 /*Content of the body page**/
@@ -18,9 +14,21 @@ div.content {
   padding: 1px 16px;
 }
 
+div.content-b {
+  margin-top: 15px; 
+  margin-bottom: 10px;
+  padding: 1px 1px;
+}
+
+div.content-c {
+  margin-top: 5px; 
+  margin-bottom: 35px;
+  padding: 1px 1px;
+}
+
 /*Color navbar**/
 nav.navbar {
-    background-color: #0B2C55; 
+    background-color: #276091; 
     box-shadow: 0px 0px 15px black;
 }
 
@@ -38,7 +46,7 @@ nav.sidebar, .main {
 }
 
 /*Hide button exit from sidebar**/
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 770px) {
   li.hide-button-side {
     display: none;
   }
@@ -73,7 +81,7 @@ nav.sidebar, .main {
   top: 51px;
   left: -230px;
   width: 230px;
-  background-color: #0B2C55; 
+  background-color: #276091; 
   color: white;
   position: fixed;
   height: 100%;
@@ -154,12 +162,13 @@ nav.sidebar, .main {
   }
 }
 
+
+
 .main-footer {
   width: 100%;
   position: fixed;
-  bottom: 0;
-  background: #fff;
-  padding: 4px;
+  bottom: 0 !important;
+
   background-color: #DEDEE3;
   border-top: 1px solid #d2d6de;
 }
@@ -169,7 +178,7 @@ nav.sidebar, .main {
 }
  
 .lead {
-  font-size: 5vh
+  font-size: 5vh;
     font-size: 5vw;
 }
 
@@ -202,12 +211,35 @@ nav.sidebar, .main {
   }
 }
 
+
+.right-aling-glyphicon-i {
+  margin-left:54px;
+}
+
+.right-citas {
+  margin-left:55px;
+}
+
+.right-perfil {
+  margin-left:55px;
+}
+
+.right-info {
+  margin-left:12px;
+}
+.right-aling-glyphicon-se {
+  margin-left:33px;
+}
+
+.right-aling-glyphicon-s {
+  margin-left:64px;
+}
 .right-aling-glyphicon{
-  margin-left:25px;
+  margin-left:35px;
 }
 
 .right-aling-glyphicon-c{
-  margin-left:64px;
+  margin-left:74px;
 }
 
 .right-aling-glyphicon-p{
@@ -227,6 +259,154 @@ nav.sidebar, .main {
 .serif {
     font-family: "Times New Roman", Times, serif;
 }
+
+
+/*Sidebar for mobile device**/
+.sidebar-mobile {
+  top:51px;
+  margin: 0;
+  padding: 0;
+  width: 230px;
+  background-color: #1D73BC;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  color: #FFFFFF;
+   box-shadow: 0px 0px 15px black;
+}
+
+.sidebar-mobile a {
+  display: block;
+  color: #FFFFFF;
+  padding: 14px;
+  text-decoration: none;
+}
+ 
+.sidebar-mobile a.active {
+  background-color: #276091;
+  color: white;
+}
+
+.sidebar-mobile a:hover:not(.active) {
+  background-color: #099DBE;
+  color: white;
+}
+
+.sidebar-nav a:hover:not(.active) {
+  background-color: #099DBE;
+  color: white;
+}
+
+
+@media screen and (max-width: 500px) {
+  nav.navbar {
+    display:none;
+  }
+  .sidebar-mobile {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top:0px;
+  }
+  .sidebar-mobile a {float: left;}
+  
+  div.content {
+    margin-top:0px;
+  }
+  div.content {margin-left: 0;}
+  
+  .sidebar-mobile a {
+  display: block;
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  }
+
+}
+
+@media screen and (min-width: 50px) {
+  .sidebar-mobile a {
+    text-align: center;
+    float: none;
+    color: #FFFFFF;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  a.hide-title {
+    display: none;
+  }
+  
+  div.content {
+    margin-top:51px;
+  }
+
+  button.navbar-toggle {
+    display: none;
+  }
+
+  .sidebar-mobile {
+    display:none;
+  }
+
+}
+
+@media screen and (min-width: 770px) {
+      a.hide-button-exit {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 770px) {
+    ul.hide-button {
+    display:none;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  div.tittle {
+    margin-top: 5px;
+    font-size: 24px;
+    text-align: center;
+    margin-left: 100px;
+  }
+}
+@media screen and (max-width: 700px) {
+  div.tittle {
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  div.tittle {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 220px) {
+  a.tittle {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.tittle-mobile {
+  font-size:22px; height: 50px
+}
+
+.border-a {
+  font-size:15px;
+  text-align: center;
+  border-bottom: 1px #e5e5e5 solid;
+  box-shadow: 0px 0px 0px black;
+}
+
+.border-toggle {
+ border-color: #ddd;
+}
+
 
 
 

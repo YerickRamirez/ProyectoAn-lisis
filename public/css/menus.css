@@ -1,0 +1,27 @@
+div.inforation-menu {
+	background-color:#3F8ED5 !important;
+}
+
+.text-style {
+	text-align: center;
+	font-size: 3vh;
+}
+
+.panel-size {
+	min-height: 125px !important;
+}
+
+.center {
+	text-align: center !important;
+}
+
+
+@media screen and (max-width: 982px) {
+div.mobile{
+text-align: center;
+} 
+button.mobile {
+	margin-top: 5px;
+}
+}
+

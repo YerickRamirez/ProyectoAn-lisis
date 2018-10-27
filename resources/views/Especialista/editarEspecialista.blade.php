@@ -15,12 +15,12 @@
 
         
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <form method = 'POST' action = '{!! url("especialistas")!!}/{!!$especialistaEditar->Cédula!!}/actualizarEspecialista'> 
+        <form method = 'POST' action = '{!! url("especialistas")!!}/{!!$cedEspecialista!!}/actualizarEspecialista'> 
             <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <br>
             <label for="cedula">Cédula</label>
             <br>
-            <input id="cedula" type = 'text' value = "{{$especialistaEditar->Cédula}}" disabled>
+            <input id="cedula" type = 'text' value = "{{$cedEspecialista}}" disabled>
         
         <br>
             <label for="nombre">Nombre</label>
@@ -46,6 +46,5 @@
     </div>
     </div>
     </div>
-</div>
 </section>
 @endsection

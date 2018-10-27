@@ -24,6 +24,11 @@ class EspecialistaController extends Controller
 
     }
 
+    /*public function show()
+	{
+		return view('Especialista.annadirEspecialista');
+	}*/ 
+
     public function index(Request $request){
 		if ($request) {
 			/*$query=trim($request->get('searchText'));*/
@@ -34,6 +39,26 @@ class EspecialistaController extends Controller
             }
 			return view('Especialista.mostrarEspecialistas', ["especialistas"=>$especialistas]);
 		}
+    }
+
+    public function agregarEspecialista(Request $request)
+    {
+        $especialista = new EspecialistaModel();
+
+        
+        $especialista->Cédula = $request->cedula;
+
+        $especialista->Nombre = $request->nombre;
+
+        $especialista->Primer_Apellido = $request->primer_apellido;
+
+        $especialista->Segundo_Apellido = $request->segundo_apellido;
+        
+        $especialista->save();
+
+        Flash::success("Especialista " . $especialista->Nombre . " guardado satisfactoriamente");
+
+        return redirect('especialistas');
     }
 
     public function eliminarEspecialista($cedulaEspecialista)
@@ -60,10 +85,10 @@ class EspecialistaController extends Controller
         $especialista = EspecialistaModel::find($cedulaEspecialista);
 
         if($especialista == null) {
-            Flash::error("Error, no se ha encontrado al especialista con la cédula: " + $cedulaEspecialista);
+            Flash::error("Error, no se ha encontrado al especialista con la cédula: " . $cedulaEspecialista);
             return redirect('especialistas');    
         } else {
-            return view('Especialista.editarEspecialista',["especialistaEditar"=>$especialista]);
+            return view('Especialista.editarEspecialista',["especialistaEditar"=>$especialista, "cedEspecialista"=>$cedulaEspecialista]);
         }
 }
 
@@ -72,7 +97,7 @@ public function actualizarEspecialista($cedula, Request $request){
     $especialista= EspecialistaModel::find($cedula);
 
         if($especialista == null) {
-            Flash::error("Error, no se ha encontrado al especialista con la cédula: " + $cedulaEspecialista);
+            Flash::error("Error, no se ha encontrado al especialista con la cédula: " + $cedula);
             return redirect('especialistas');    
         } else {
 
@@ -86,6 +111,19 @@ public function actualizarEspecialista($cedula, Request $request){
 
     return redirect('especialistas');    
 }
+}
+
+public function combobox(Request $request){
+    if ($request) {
+        /*$query=trim($request->get('searchText'));*/
+        $conditionForSelected = "";
+        
+        $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
+        if ($recintos == null) {
+            Flash::message("No hay recintos para mostrar");
+        }
+        return view('PruebaCombobox.pruebacombo', ["recintos"=>$recintos, "conditionForSelected"=>$conditionForSelected]);
+    }
 }
 
 }
