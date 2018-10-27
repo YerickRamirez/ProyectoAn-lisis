@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\Confirmacion;
+use Mail;
+
+
 
 class RegisterController extends Controller
 {
@@ -27,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -55,6 +59,13 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function mail($email, $name)
+    {
+      
+       Mail::to($email)->send(new SendMailable($name));
+       
+       return view('auth/login');
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -63,6 +74,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+       Mail::to($data['email'])->send(new Confirmacion($data['name']));
+
         return User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],
