@@ -33,7 +33,7 @@ class LoginController extends Controller
       
        Mail::to($email)->send(new Confirmacion($name));
        
-       return view('auth/login');
+       return view('login');
     }
 
     /**
@@ -72,7 +72,7 @@ class LoginController extends Controller
         //logout user
         auth()->logout();
         // redirect to homepage
-        return redirect('auth/login');
+        return redirect('login');
     }
     use AuthenticatesUsers;
 
@@ -81,7 +81,7 @@ class LoginController extends Controller
      *
      * @var string
      */ 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
