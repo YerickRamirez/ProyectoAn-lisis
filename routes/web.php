@@ -101,6 +101,7 @@ Route::post('/test/save', ['as' => 'save-date',
                             }]);
                             
 // Rutas de la tabla especialista
+
 Route::get('especialistas', 'EspecialistaController@index');
 
 Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@editarEspecialista');
@@ -120,6 +121,8 @@ Route::resource('recintos', 'RecintoController');
 Route::view('recintos/viewAnnadir', 'Recinto.annadirRecinto');
 Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarRecinto');
 Route::post('recintos/agregarRecinto', 'RecintoController@agregarRecinto');
+Route::get('recintos/{id}/editarRecinto', 'RecintoController@editarRecinto');
+Route::post('recintos/{id}/actualizarRecinto', 'RecintoController@actualizarRecinto');
 //Fin rutas recinto
 
 

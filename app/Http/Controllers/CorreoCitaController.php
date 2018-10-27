@@ -14,6 +14,6 @@ class CorreoCitaController extends Controller
   
    Mail::to($email)->send(new SendMailable($name, $fecha, $hora));
    
-   return view('masterPatient');
+   return view('masterPaciente');
 }
 }

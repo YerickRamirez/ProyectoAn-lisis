@@ -33,7 +33,7 @@ class EspecialistaController extends Controller
 		if ($request) {
 			/*$query=trim($request->get('searchText'));*/
             
-            $especialistas=DB::table('especialista')->orderBy('Primer_Apellido','desc')->paginate(5);
+            $especialistas=DB::table('especialista')->orderBy('Primer_Apellido','desc')->get();
             if ($especialistas == null) {
                 Flash::message("No hay especialistas para mostrar");
             }
@@ -45,7 +45,6 @@ class EspecialistaController extends Controller
     {
         $especialista = new EspecialistaModel();
 
-        
         $especialista->Cédula = $request->cedula;
 
         $especialista->Nombre = $request->nombre;
@@ -113,17 +112,17 @@ public function actualizarEspecialista($cedula, Request $request){
 }
 }
 
-public function combobox(Request $request){
-    if ($request) {
+//public function combobox(Request $request){
+   // if ($request) {
         /*$query=trim($request->get('searchText'));*/
-        $conditionForSelected = "";
+     //   $conditionForSelected = "";
         
-        $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
-        if ($recintos == null) {
-            Flash::message("No hay recintos para mostrar");
-        }
-        return view('PruebaCombobox.pruebacombo', ["recintos"=>$recintos, "conditionForSelected"=>$conditionForSelected]);
-    }
-}
+     //   $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
+       // if ($recintos == null) {
+       //     Flash::message("No hay recintos para mostrar");
+       // }
+       // return view('PruebaCombobox.pruebacombo', ["recintos"=>$recintos, "conditionForSelected"=>$conditionForSelected]);
+   // }
+//}
 
 }

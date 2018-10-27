@@ -16,8 +16,7 @@
                     <div class="row col-md-3" id="agregar">
                     <input id="nombre" placeholder="Nombre" class="form-control" name = "nombre" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo"> 
                     </div>
-                    <button style="margin-left: 5px;" class = 'btn btn-success mobile' type ='submit'><i class="fa fa-floppy-o"
-                    </i>Agregar Recinto</button>
+                    <button style="margin-left: 5px;" class = 'btn btn-success mobile' type ='submit'>Agregar Recinto</button>
             </form>
         	<!--<a href="{{ url("recintos/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Recinto</a>-->
 		</div>
@@ -60,7 +59,7 @@ muestra_oculta('contenido');/* "contenido_a_mostrar" es el nombre que le dimos a
                 <td>
                     <?php /*$placaEncrypted = Crypt::encrypt($carrito->placa)*/ ?>
                     <div class="center">
-                    <a href="{{url('recintos', $recinto->ID_Recinto)}}/editarEspecialista"><button class="btn btn-info">Editar</button></a>
+                    <a href="{{url('recintos', $recinto->ID_Recinto)}}/editarRecinto"><button class="btn btn-info">Editar</button></a>
                     
                     <a onclick="confirmarEliminar({{json_encode($recinto->ID_Recinto)}})" ><button class="btn btn-danger">Eliminar</button></a>
                     </div>
