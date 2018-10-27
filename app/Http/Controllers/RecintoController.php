@@ -75,100 +75,19 @@ class RecintoController extends Controller
         return redirect('recintos');
     }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param Request $request
-	 * @return Response
-	 */
-	public function store(Request $request, User $user)
-	{
-		$recinto = new Recinto();
+    public function editarRecinto($idRecinto){
+        /*$placa = Crypt::decrypt($placaParam);*/
+        $recinto = Recinto::find($idRecinto);
 
-		$recinto->name = ucfirst($request->input("name"));
-		$recinto->slug = str_slug($request->input("name"), "-");
-		$recinto->description = ucfirst($request->input("description"));
-		$recinto->active_flag = 1;
-		$recinto->author_id = $request->user()->id;
+        if($recinto == null) {
+            Flash::error("Error, no se ha encontrado al especialista con la cédula: " . $idRecinto);
+            return redirect('recintos');    
+        } else {
+            return view('Recinto.editarRecinto',["recintoEditar"=>$recinto, "idRecintos"=>$idRecinto]);
+        }
+	}	
 
-		$this->validate($request, [
-					 'name' => 'required|max:255|unique:recintos',
-					 'description' => 'required'
-			 ]);
-
-		$recinto->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Recinto \"<a href='recintos/$recinto->slug'>" . $recinto->name . "</a>\" was Created.");
-
-		return redirect()->route('recintos.index');
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show(Recinto $recinto)
-	{
-		//$recinto = $this->model->findOrFail($id);
-
-		return view('recintos.show', compact('recinto'));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit(Recinto $recinto)
-	{
-		//$recinto = $this->model->findOrFail($id);
-
-		return view('recintos.edit', compact('recinto'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @param Request $request
-	 * @return Response
-	 */
-	public function update(Request $request, Recinto $recinto, User $user)
-	{
-
-		$recinto->name = ucfirst($request->input("name"));
-    $recinto->slug = str_slug($request->input("name"), "-");
-		$recinto->description = ucfirst($request->input("description"));
-		$recinto->active_flag = 1;//change to reflect current status or changed status
-		$recinto->author_id = $request->user()->id;
-
-		$this->validate($request, [
-					 'name' => 'required|max:255|unique:recintos,name,' . $recinto->id,
-					 'description' => 'required'
-			 ]);
-
-		$recinto->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Recinto \"<a href='recintos/$recinto->slug'>" . $recinto->name . "</a>\" was Updated.");
-
-		return redirect()->route('recintos.index');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function eliminarRecinto($ID_Recinto)
     {
         /*$placaDecrypted = Crypt::decrypt($placa);*/
@@ -187,6 +106,25 @@ class RecintoController extends Controller
         return redirect('recintos');    
     }
     }
+
+    public function actualizarRecinto($id, Request $request){
+
+    $recinto= Recinto::find($id);
+
+        if($recinto == null) {
+            Flash::error("Error, no se ha encontrado el recinto con el identificador: " + $id);
+            return redirect('recintos');    
+        } else {
+
+    $recinto->Nombre=$request->get('nombre');
+
+    $recinto->update();
+
+    Flash::success('Recinto actualizado satisfactoriamente.');
+
+    return redirect('recintos');    
+	}
+	}
 
 	/**
 	 * Re-Activate the specified resource from storage.

@@ -82,9 +82,11 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         array (
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
+            'Laralib\\L5scaffold\\' => 19,
         ),
         'J' => 
         array (
+            'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
         'I' => 
@@ -251,6 +253,14 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Laralib\\L5scaffold\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laralib/l5scaffold/src',
+        ),
+        'JakubOnderka\\PhpConsoleHighlighter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
+        ),
         'JakubOnderka\\PhpConsoleColor\\' => 
         array (
             0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
@@ -339,13 +349,6 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
                 0 => __DIR__ . '/..' . '/laracasts/flash/src',
             ),
         ),
-        'J' => 
-        array (
-            'JakubOnderka\\PhpConsoleHighlighter' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
-            ),
-        ),
         'D' => 
         array (
             'Doctrine\\Common\\Lexer\\' => 
@@ -359,25 +362,30 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\EspecialistaModel' => __DIR__ . '/../..' . '/app/EspecialistaModel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AjaxController' => __DIR__ . '/../..' . '/app/Http/Controllers/AjaxController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\CorreoCitaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoCitaController.php',
         'App\\Http\\Controllers\\DateController' => __DIR__ . '/../..' . '/app/Http/Controllers/DateController.php',
         'App\\Http\\Controllers\\EspecialistaController' => __DIR__ . '/../..' . '/app/Http/Controllers/EspecialistaController.php',
-        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\RecintoController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecintoController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\SendMailable' => __DIR__ . '/../..' . '/app/Mail/SendMailable.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Recinto' => __DIR__ . '/../..' . '/app/Recinto.php',
+        'App\\RecintoModel' => __DIR__ . '/../..' . '/app/Http/RecintoModel.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Appzcoder\\CrudGenerator\\Commands\\CrudApiCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudApiCommand.php',
         'Appzcoder\\CrudGenerator\\Commands\\CrudApiControllerCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudApiControllerCommand.php',
@@ -1811,7 +1819,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
-        'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'Kernel' => __DIR__ . '/..' . '/appzcoder/crud-generator/tests/Kernel.php',
         'Laracasts\\Flash\\Flash' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
@@ -1819,6 +1827,25 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'Laracasts\\Flash\\FlashServiceProvider' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashServiceProvider.php',
         'Laracasts\\Flash\\LaravelSessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/LaravelSessionStore.php',
         'Laracasts\\Flash\\SessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/SessionStore.php',
+        'Laralib\\L5scaffold\\Commands\\ScaffoldMakeCommand' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Commands/ScaffoldMakeCommand.php',
+        'Laralib\\L5scaffold\\GeneratorException' => __DIR__ . '/..' . '/laralib/l5scaffold/src/GeneratorException.php',
+        'Laralib\\L5scaffold\\GeneratorsServiceProvider' => __DIR__ . '/..' . '/laralib/l5scaffold/src/GeneratorsServiceProvider.php',
+        'Laralib\\L5scaffold\\Localizations\\SchemaParser' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Localizations/SchemaParser.php',
+        'Laralib\\L5scaffold\\Localizations\\SyntaxBuilder' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Localizations/SyntaxBuilder.php',
+        'Laralib\\L5scaffold\\Makes\\MakeController' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeController.php',
+        'Laralib\\L5scaffold\\Makes\\MakeLayout' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeLayout.php',
+        'Laralib\\L5scaffold\\Makes\\MakeLocalization' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeLocalization.php',
+        'Laralib\\L5scaffold\\Makes\\MakeMigration' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeMigration.php',
+        'Laralib\\L5scaffold\\Makes\\MakeModel' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeModel.php',
+        'Laralib\\L5scaffold\\Makes\\MakeRoute' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeRoute.php',
+        'Laralib\\L5scaffold\\Makes\\MakeSeed' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeSeed.php',
+        'Laralib\\L5scaffold\\Makes\\MakeView' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakeView.php',
+        'Laralib\\L5scaffold\\Makes\\MakerTrait' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Makes/MakerTrait.php',
+        'Laralib\\L5scaffold\\Migrations\\NameParser' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Migrations/NameParser.php',
+        'Laralib\\L5scaffold\\Migrations\\SchemaParser' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Migrations/SchemaParser.php',
+        'Laralib\\L5scaffold\\Migrations\\SyntaxBuilder' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Migrations/SyntaxBuilder.php',
+        'Laralib\\L5scaffold\\Validators\\SchemaParser' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Validators/SchemaParser.php',
+        'Laralib\\L5scaffold\\Validators\\SyntaxBuilder' => __DIR__ . '/..' . '/laralib/l5scaffold/src/Validators/SyntaxBuilder.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',

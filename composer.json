@@ -4,7 +4,14 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+    {
+    "type": "vcs",
+    "url": "https://github.com/ace3/l5scaffold"
+    }
+    ],
     "require": {
+        "laralib/l5scaffold": "dev-master",
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
         "illuminate/html": "~5.0",
