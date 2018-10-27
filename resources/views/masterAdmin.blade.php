@@ -57,9 +57,36 @@
 
 			<ul class="nav navbar-nav navbar-right hide-button" >
 				 <li>
-                    <a href="#" class="dropdown-toggle logout-button"style="color:white" data-toggle="dropdown">
+				 <!--
+				 <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+					-->
+					<li class="dropdown logout-button">
+                                <!--a href="#" style="color:white" class="dropdown-toggle logout-button"data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            <strong>Logout</strong>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form -->
+                    <!--a href="{{ url('/logout') }}" class="dropdown-toggle logout-button"style="color:white" data-toggle="dropdown">
+					
+					--><a href="{{ url('/logout') }}"> <!--logout </a>-->
                          <strong>Salir&nbsp</strong><span class="glyphicon glyphicon-log-out" style="color:white"></span> 
                     </a>  
+					
                 </li>
         	</ul>
 
@@ -79,8 +106,31 @@
 		      			<a class="border" href="citas">Citas<span class="glyphicon glyphicon-paperclip right-aling-glyphicon-p"></a>
 		    		</li>
 		    		<li class="hide-button-side">
+<<<<<<< HEAD
+			
+						<!--div ><li class="dropdown logout-button">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            <strong>Logout</strong>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form></div> -->
+		      			 <a style="font-size:15px;" class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
+		    				
+					</li>
+=======
 		      			<a class="border" href="/">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
 		    		</li>
+>>>>>>> acc5efab4a2bd7ece7db5aaf9e4613c5d7a737ae
 		    		<li>	
       					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:140px; height:140px;"></div>
       				</li>    			

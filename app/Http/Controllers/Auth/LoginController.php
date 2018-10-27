@@ -20,12 +20,20 @@ class LoginController extends Controller
         //return $credentials;
             
         if(Auth::attempt($credentials)){
-            return 'The session was began';
-        } // else {
-            return 'Error en la autenticacion';
-        //return back()->withErrors(['email' => trans('auth.failed')]);        
+            return view('masterAdmin');
+        } else {
+            //return 'Error en la autenticacion';
+        return back()->withErrors(['email' => trans('auth.failed')]);        
         //return back()->withErrors(['email' => 'This email does not exist']);
-    //}
+    }
+    }
+
+    public function mail($email)
+    {
+      
+       Mail::to($email)->send(new Confirmacion($name));
+       
+       return view('login');
     }
 
     /**
@@ -60,7 +68,12 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    public function logout () {
+        //logout user
+        auth()->logout();
+        // redirect to homepage
+        return redirect('login');
+    }
     use AuthenticatesUsers;
 
     /**
@@ -68,7 +81,7 @@ class LoginController extends Controller
      *
      * @var string
      */ 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
