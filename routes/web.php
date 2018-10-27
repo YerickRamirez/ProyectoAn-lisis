@@ -100,6 +100,7 @@ Route::post('/test/save', ['as' => 'save-date',
                             }]);
                             
 // Rutas de la tabla especialista
+
 Route::get('especialistas', 'EspecialistaController@index');
 
 Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@editarEspecialista');

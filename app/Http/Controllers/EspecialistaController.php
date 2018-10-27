@@ -113,17 +113,17 @@ public function actualizarEspecialista($cedula, Request $request){
 }
 }
 
-public function combobox(Request $request){
-    if ($request) {
+//public function combobox(Request $request){
+   // if ($request) {
         /*$query=trim($request->get('searchText'));*/
-        $conditionForSelected = "";
+     //   $conditionForSelected = "";
         
-        $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
-        if ($recintos == null) {
-            Flash::message("No hay recintos para mostrar");
-        }
-        return view('PruebaCombobox.pruebacombo', ["recintos"=>$recintos, "conditionForSelected"=>$conditionForSelected]);
-    }
-}
+     //   $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
+       // if ($recintos == null) {
+       //     Flash::message("No hay recintos para mostrar");
+       // }
+       // return view('PruebaCombobox.pruebacombo', ["recintos"=>$recintos, "conditionForSelected"=>$conditionForSelected]);
+   // }
+//}
 
 }
