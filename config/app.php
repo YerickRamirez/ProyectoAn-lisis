@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         SquareBoat\Flash\FlashServiceProvider::class,
+        Laralib\L5scaffold\GeneratorsServiceProvider::class,
 
         /*
          * Package Service Providers...
