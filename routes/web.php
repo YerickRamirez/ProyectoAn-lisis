@@ -11,11 +11,11 @@
 |
 */
 
-/* CREO QUE NINGUNO ES NECESARIO
+//CREO QUE NINGUNO ES NECESARIO
 Route::get('master', function () {
     return view('masterAdmin');
 });//->middleware('auth.basic');
-
+/*
 Route::get('root', function () {
     return view('masterRoot');
 });//->middleware('auth.basic');
@@ -91,7 +91,8 @@ Route::get('datepicker', function () {
 //---------------------------------------
 //---------------------------------------
 
-Route::post('login', 'Auth\LoginController@login')-> name('login');
+Route::post('login', 'Auth\LoginController@login')-> name('login')-> middleware('guest');
+//Route::post('login', 'Auth\LoginController@login')-> name('login');
 
 Route::post('/test/save', ['as' => 'save-date',
                            'uses' => 'DateController@showDate', 

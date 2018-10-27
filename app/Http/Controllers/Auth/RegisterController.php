@@ -63,7 +63,7 @@ class RegisterController extends Controller
     {
       
        Mail::to($email)->send(new SendMailable($name));
-       
+       Auth::logout();
        return view('auth/login');
     }
     /**
