@@ -28,6 +28,14 @@ class LoginController extends Controller
     }
     }
 
+    public function mail($email)
+    {
+      
+       Mail::to($email)->send(new Confirmacion($name));
+       
+       return view('auth/login');
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -64,7 +72,7 @@ class LoginController extends Controller
         //logout user
         auth()->logout();
         // redirect to homepage
-        return redirect('/');
+        return redirect('auth/login');
     }
     use AuthenticatesUsers;
 
