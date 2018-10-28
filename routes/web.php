@@ -55,8 +55,6 @@ Route::get('horarios', function () {
 });//->middleware('auth.basic');
 
 
-
-
 Route::get('recintos', function () {
     return view('recintos/index');
 })->name('recintos');
@@ -92,6 +90,15 @@ Route::get('informacion', function () {
 Route::get('datepicker', function () {
     return view('Paciente/datepicker');
 });
+
+
+//---------------------------------------
+//Rutas de Especialista
+//---------------------------------------
+Route::get('especialistasas', function () {
+    return view('masterEspecialista');
+})->name('especialistasas');
+
 
 
 //---------------------------------------
