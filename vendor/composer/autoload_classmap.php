@@ -1467,7 +1467,10 @@ return array(
     'Illuminate\\View\\ViewServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
+<<<<<<< HEAD
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
+=======
+>>>>>>> 9a42b03ad8375c4b75411f7f6a0d08703719a733
     'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
     'Kernel' => $vendorDir . '/appzcoder/crud-generator/tests/Kernel.php',
     'Laracasts\\Flash\\Flash' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
