@@ -13,7 +13,6 @@
  	            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <a href="{{ url("especialistas/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Especialistas</a>
                 </div>
-                <a style='cursor: pointer;' onClick="muestra_oculta('contenido')" title="" class="boton_mostrar">Mostrar / Ocultar</a>
             </div>
         <div class="panel-heading">
             <div class="content-b w3-container">

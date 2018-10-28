@@ -91,7 +91,10 @@
 		    		</li>
 		    		<li class="hide-button-side">
 			
+<<<<<<< HEAD
+=======
 			
+>>>>>>> 867a1f6ed740b7f2dc1c9bc1f9c4612984260f5b
 		      			 <a style="font-size:15px;" class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon"></a>
 		    				
 					</li>
