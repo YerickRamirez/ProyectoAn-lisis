@@ -25,3 +25,23 @@ button.mobile {
 }
 }
 
+.margin-lft {
+	margin-left: 15px;
+}
+
+.margin-button {
+	margin-left: 20px;
+}
+
+
+@media screen and (max-width: 991px) {
+
+input.margin-lft {
+	margin-left: 0px;
+}
+
+button.margin-button {
+	margin-left: 0px;
+}
+}
+

@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recinto extends Model
 {
-    protected $table='recinto';
+	protected $table='recinto';
 
     protected $primaryKey='ID_Recinto';
 
     public $timestamps=false;
-    
-    protected $fillable = [
-      'Nombre'];
 
+    protected $fillable = ['chema=id_recinto', 'nombre'];
 
-
+    public function Author(){
+      return $this->belongsTo('App\User','author_id');
+        }
 }
