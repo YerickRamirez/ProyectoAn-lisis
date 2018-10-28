@@ -64,8 +64,21 @@ public function comboServicios($ID_Recinto, Request $request){
         } else {
 
     return ["servicios"=>$servicios];
-
     }
+}
+
+public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $datepicked, Request $request){
+    /*$query=trim($request->get('searchText'));*/
+
+    //$servicios=DB::table('servicio')->where('Recinto', '=', $ID_Recinto)->get();
+
+    //if ($servicios->isEmpty()) {
+     //   Flash::error("No hay especialistas para el recinto seleccionado recinto");
+     //   } else {
+
+        $xD = $dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $datepicked;
+    return json_encode(["xD"=>$xD]);
+   // }
 }
 
 }

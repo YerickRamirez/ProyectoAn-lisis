@@ -100,19 +100,12 @@ Route::post('/test/save', ['as' => 'save-date',
                             }]);
                             
 // Rutas de la tabla especialista
-
 Route::get('especialistas', 'EspecialistaController@index');
-
 Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@editarEspecialista');
-
 Route::get('especialistas/{cedula}/eliminarEspecialista', 'EspecialistaController@eliminarEspecialista');
-
 Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaController@actualizarEspecialista');
-
 Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
-
 Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
-
 //Fin rutas tabla especialista
 
 //Rutas tabla recinto
@@ -131,13 +124,12 @@ Route::post('recintos/{id}/actualizarRecinto', 'RecintoController@actualizarReci
 Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mail');
 
 
-//Rutas prueba comboxo autorefresh
+//Rutas prueba ajax
 Route::get('/recintosCombo', 'AjaxController@combobox');
-
 Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
-
 Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
-
+Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
+//fin rutas de ajax
 
 Route::get('combobox',function(){
     return view('PruebaCombobox.pruebacombo');
