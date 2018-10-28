@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*//*
 
 //CREO QUE NINGUNO ES NECESARIO
 Route::get('master', function () {
@@ -44,23 +44,23 @@ Route::get('/',function () {
 
 Route::get('admin', function () {
     return view('Admin/index') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('cuentas', function () {
     return view('Admin/configurarCuentas') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('recintos', function () {
     return view('Admin/configurarRecintos') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('servicios', function () {
     return view('Admin/configurarServicios') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 
 //---------------------------------------
@@ -69,19 +69,19 @@ Route::get('servicios', function () {
 
 Route::get('paciente', function () {
     return view('Paciente/index') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('citas', function () {
     return view('Paciente/citas') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('informacion', function () {
     return view('Paciente/informacion') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('datepicker', function () {
     return view('Paciente/datepicker');
