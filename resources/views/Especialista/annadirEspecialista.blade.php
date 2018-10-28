@@ -1,5 +1,5 @@
-@extends ('masterAdmin')
-@section ('contenido')
+@extends ('masterRoot')
+@section ('contenido_Admin')
 
 <div class="panel panel-primary">
     <div class="panel-heading">

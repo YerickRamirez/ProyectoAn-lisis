@@ -1,4 +1,4 @@
-@extends ('masterAdmin')
+@extends ('masterRoot')
 @section ('contenido')
 
             
