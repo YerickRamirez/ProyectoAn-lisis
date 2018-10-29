@@ -9,14 +9,18 @@
 
 <section class="">
 
-    <div class="content-c w3-container mobile">
+        <div class="content-c w3-container mobile">
         <div>
+            <button id="mybutton" class = ' margin-button-plus btn btn-success mobile' onclick="myFunction()">+</button>
              <form method = 'POST' action = '{!! url("recintos")!!}/agregarRecinto'>
                     <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+                    <div id="myDIV" style="display: none;">
                     <div class="row col-md-3" id="agregar">
-                    <input id="nombre" placeholder="Nombre" class="margin-lft form-control" name = "nombre" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo"> 
+
+                    <input placeholder="Nombre" class="nombre margin-lft form-control" name = "nombre" type="text" pattern="[a-zA-Z]{2,48}" title="No se permiten números en este campo"> 
                     </div>
-                    <button class = 'margin-button btn btn-success mobile' type ='submit'>Agregar Recinto</button>
+                    
+                    <button  class = ' margin-button btn btn-success mobile' type ='submit'>Agregar Recinto</button></div>
             </form>
             <!--<a href="{{ url("recintos/viewAnnadir") }}" class = 'btn btn-success'><i class="fa fa-home"></i>Añadir Recinto</a>-->
         </div>

@@ -15,6 +15,11 @@ div.inforation-menu {
 	text-align: center !important;
 }
 
+button.margin-button-plus {
+margin-left: 15px;
+margin-bottom: 10px;
+}
+
 
 @media screen and (max-width: 982px) {
 div.mobile{
