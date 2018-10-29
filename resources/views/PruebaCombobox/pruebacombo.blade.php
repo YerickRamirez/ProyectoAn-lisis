@@ -31,9 +31,9 @@ $('#dropRecintos').empty();
 $('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
 $.each(datos, function()
 {
-        $.each(this.data, function(){//los datos del server vienen en una variable data
+        $.each(datos.recintos, function(){//los datos del server vienen en una variable data
         //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
-        $('#dropRecintos').append('<option value="' + this.ID_Recinto + '">' + this.Nombre + '</option>');
+        $('#dropRecintos').append('<option value="' + this.ID_RECINTO + '">' + this.NOMBRE_RECINTO + '</option>');
         })        
 })
 

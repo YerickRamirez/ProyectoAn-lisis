@@ -27,7 +27,7 @@ class AjaxController extends Controller {
    public function combobox(){
         /*$query=trim($request->get('searchText'));*/
 
-        $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
+        $recintos=DB::table('recinto')->orderBy('NOMBRE_RECINTO','desc')->get();
         if ($recintos == null) {
             Flash::message("No hay recintos para mostrar");
         }
@@ -77,6 +77,9 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
      //   } else {
 
         $xD = $dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $datepicked;
+
+        DB::table('recinto')->where('ID_Recinto', '=', $dropRecintos)->get();
+
     return json_encode(["xD"=>$xD]);
    // }
 }

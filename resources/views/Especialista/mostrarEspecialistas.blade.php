@@ -34,9 +34,9 @@
                 </script>
                 @foreach ($especialistas as $especialista)
 				<tr>
-					<td class="center">{{ $especialista->Cédula}}</td>
-                    <td class="center">{{ $especialista->Primer_Apellido . " " . $especialista->Segundo_Apellido .
-                     " " . $especialista->Nombre}}</td>
+					<td class="center">{{ $especialista->cedula_especialista}}</td>
+                    <td class="center">{{ $especialista->primer_apellido_especialista . " " . $especialista->segundo_apellido_especialista .
+                     " " . $especialista->nombre}}</td>
                 
                     <td class="center">
 						<?php /*$placaEncrypted = Crypt::encrypt($carrito->placa)*/ ?>

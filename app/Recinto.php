@@ -6,15 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recinto extends Model
 {
-	protected $table='recinto';
 
-    protected $primaryKey='ID_Recinto';
-
-    public $timestamps=false;
-
-    protected $fillable = ['chema=id_recinto', 'nombre'];
+  protected $table='recintos';
+  public $timestamps=false;
+  protected $fillable = ['descripcion'];
 
     public function Author(){
       return $this->belongsTo('App\User','author_id');
         }
+
+
+        public function servicios()
+    {   //        modeloQuetengoN  nombreCrossTable //FkMiaCrossTable //FkOtroCrossTable
+        return $this->belongsToMany('App\Servicio', 'recinto_servicios', 'recinto_id', 'servicio_id');
+    }
+    
 }

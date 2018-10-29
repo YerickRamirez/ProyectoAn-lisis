@@ -33,11 +33,21 @@ class EspecialistaController extends Controller
 		if ($request) {
 			/*$query=trim($request->get('searchText'));*/
             
-            $especialistas=DB::table('especialista')->orderBy('Primer_Apellido','desc')->get();
-            if ($especialistas == null) {
-                Flash::message("No hay especialistas para mostrar");
-            }
-			return view('Especialista.mostrarEspecialistas', ["especialistas"=>$especialistas]);
+            
+		$especialistas = EspecialistaModel::where('estado', 1)->orderBy('primer_apellido_especialista', 'desc')->get();
+        
+        return view('Especialista.mostrarEspecialistas', ["especialistas"=>$especialistas]);
+
+
+       // $especialistas = EspecialistaModel::where('estado', 1)->orderBy('primer_apellido_especialista', 'desc')->get();
+
+       // $especialistas_data = array();
+        //foreach ($especialistas as $especialista) {
+         //   array_push($especialistas_data,  $especialista->bloqueo_horario);
+        //}
+        
+       // return  ["especialistas"=>$especialistas_data];
+
 		}
     }
 
