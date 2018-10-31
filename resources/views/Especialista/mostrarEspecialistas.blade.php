@@ -1,5 +1,5 @@
-@extends ('masterAdmin')
-@section ('contenido')
+@extends ('masterRoot')
+@section ('contenido_Admin')
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
@@ -34,9 +34,9 @@
                 </script>
                 @foreach ($especialistas as $especialista)
 				<tr>
-					<td class="center">{{ $especialista->Cédula}}</td>
-                    <td class="center">{{ $especialista->Primer_Apellido . " " . $especialista->Segundo_Apellido .
-                     " " . $especialista->Nombre}}</td>
+					<td class="center">{{ $especialista->cedula_especialista}}</td>
+                    <td class="center">{{ $especialista->primer_apellido_especialista . " " . $especialista->segundo_apellido_especialista .
+                     " " . $especialista->nombre}}</td>
                 
                     <td class="center">
 						<?php /*$placaEncrypted = Crypt::encrypt($carrito->placa)*/ ?>

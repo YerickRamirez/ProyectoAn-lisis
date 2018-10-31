@@ -1,5 +1,5 @@
-@extends ('masterAdmin')
-@section ('contenido')
+@extends ('masterRoot')
+@section ('contenido_Admin')
 
 <select id="dropRecintos" class="form-control"></select>
 <br>
@@ -31,9 +31,9 @@ $('#dropRecintos').empty();
 $('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
 $.each(datos, function()
 {
-        $.each(this.data, function(){//los datos del server vienen en una variable data
+        $.each(datos.recintos, function(){//los datos del server vienen en una variable data
         //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
-        $('#dropRecintos').append('<option value="' + this.ID_Recinto + '">' + this.Nombre + '</option>');
+        $('#dropRecintos').append('<option value="' + this.ID_RECINTO + '">' + this.NOMBRE_RECINTO + '</option>');
         })        
 })
 
@@ -68,8 +68,7 @@ $.each(datos, function()
 }, error:function() {
         $('#dropEspecialistas').empty();
         $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
-        alert("El servicio seleccionado no tiene especialistas disponibles para su atención." +
-         " Si cree que esto es un error por favor comuníquese con el Servicio de Salud");
+        alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
 }
 }); //fin ajax
 }//fin especialistas 
@@ -131,7 +130,41 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 
 </script>
 
-<button onclick="recintos()">Alert</button>
+<button onclick="revisarDisponibilidad()">Alert</button>
+
+<script>
+function revisarDisponibilidad() {
+        var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+                var datepicked = new Date(dateTime);
+                alert("Hace postback: " + datepicked.toDateString()); 
+                var dropRecintos = $('#dropRecintos').val();           
+                alert(dropRecintos);
+                var dropServicios = $('#dropServicios').val();           
+                alert(dropServicios);
+                var dropEspecialistas = $('#dropEspecialistas').val();           
+                alert(dropEspecialistas);
+                if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
+                 dropEspecialistas == 'defecto') {
+                        alert("Elija una opción válida en todos los campos");
+               } else {
+                $.ajax({
+  url: '/verificarCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas + '/' 
+  + datepicked,
+  type: 'GET',
+  dataType: "json",
+  success:function(datos){ 
+        $.each(datos, function()
+{
+        alert(datos.xD);
+})
+}, error:function() {
+     alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
+     " con el Servicio de Salud");   
+},
+timeout: 15000
+}); 
+}}
+</script>
 
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
@@ -159,11 +192,6 @@ function limpiarDrop(nombreDrop, nombreTexto) {
             //disabledDates: ["10/24/2018"] //Lista de fechas que bloquear. 
             disabledDates: [] //Lista de fechas que bloquear. 
         }).on('dp.change', function prueba() {
-                var button = document.getElementById("datetimepicker5");
-                var button2 = $('#datetimepicker5').data("DateTimePicker").date();
-                var datepicked = new Date(button2);
-                alert("Hace postback: " + datepicked.toDateString());                
-                return true;
             });
     
     

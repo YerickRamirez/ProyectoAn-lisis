@@ -3,24 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
 use Auth;
 
 use App\Recinto;
+use Illuminate\Http\Request;
 use \Session;
-
-use Illuminate\Support\Facades\Redirect;
-
-use DB;
-
-use Flash;
-
-use Illuminate\Support\Facades\Crypt;
-
 
 class RecintoController extends Controller
 {
@@ -41,98 +31,17 @@ class RecintoController extends Controller
 		$this->model = $model;
 	}
 
-
-
-	public function index(Request $request)
-	{
-		if ($request) {
-			$recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
-			if ($recintos == null) {
-                Flash::message("No hay recintos para mostrar");
-            }
-		}
-		return view('recintos/index', ["recintos"=>$recintos]);
-		
-	}
-
 	/**
-	 * Show the form for creating a new resource.
+	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	   public function agregarRecinto(Request $request)
-    {
-        $recinto = new Recinto();
-
-        $recinto->Nombre = $request->nombre;
-        
-        $recinto->save();
-
-        /*Flash::success("Recinto " . $recinto->Nombre . " guardado satisfactoriamente");*/
-
-        return redirect('recintos');
-    }
-
-    public function editarRecinto($idRecinto){
-        /*$placa = Crypt::decrypt($placaParam);*/
-        $recinto = Recinto::find($idRecinto);
-
-        if($recinto == null) {
-            Flash::error("Error, no se ha encontrado el recinto con el identificador: " . $idRecinto);
-            return redirect('recintos');    
-        } else {
-            return view('recintos.edit',["recintoEditar"=>$recinto, "idRecintos"=>$idRecinto]);
-        }
-	}	
-
-	
-	public function eliminarRecinto($ID_Recinto)
-    {
-        /*$placaDecrypted = Crypt::decrypt($placa);*/
-        $recinto= Recinto::find($ID_Recinto);
-
-        if($recinto == null) {
-                Flash::error("Error, no se ha encontrado el recinto: " + $ID_Recinto);
-                return redirect('recintos');
-            } else {
-
-		//$especialista->estado= estado_deshabilitado;
-        //$especialista->update();
-
-        Flash::error('Especialista eliminado satisfactoriamente.');
-
-        return redirect('recintos');    
-    }
-    }
-
-    public function actualizarRecinto($id, Request $request){
-
-    $recinto= Recinto::find($id);
-
-        if($recinto == null) {
-            Flash::error("Error, no se ha encontrado el recinto con el identificador: " + $id);
-            return redirect('recintos');    
-        } else {
-
-    $recinto->Nombre=$request->get('nombre');
-
-    $recinto->update();
-
-    Flash::success('Recinto actualizado satisfactoriamente.');
-
-    return redirect('recintos');    
+	public function index()
+	{
+		$recintos = Recinto::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		$active = Recinto::where('active_flag', 1);
+		return view('recintos.index', compact('recintos', 'active'));
 	}
-	}
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -201,7 +110,36 @@ class RecintoController extends Controller
 		return view('recintos.edit', compact('recinto'));
 	}
 
-	
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function update(Request $request, Recinto $recinto, User $user)
+	{
+
+		$recinto->name = ucfirst($request->input("name"));
+    $recinto->slug = str_slug($request->input("name"), "-");
+		$recinto->description = ucfirst($request->input("description"));
+		$recinto->active_flag = 1;//change to reflect current status or changed status
+		$recinto->author_id = $request->user()->id;
+
+		$this->validate($request, [
+					 'name' => 'required|max:255|unique:recintos,name,' . $recinto->id,
+					 'description' => 'required'
+			 ]);
+
+		$recinto->save();
+
+		Session::flash('message_type', 'blue');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', "The Recinto \"<a href='recintos/$recinto->slug'>" . $recinto->name . "</a>\" was Updated.");
+
+		return redirect()->route('recintos.index');
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -240,11 +178,4 @@ class RecintoController extends Controller
 
 		return redirect()->route('recintos.index');
 	}
-
-	
-
-
-
-
-
 }

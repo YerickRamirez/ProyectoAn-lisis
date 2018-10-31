@@ -69,8 +69,8 @@ class ServicioController extends Controller
 		$servicio->author_id = $request->user()->id;
 
 		$this->validate($request, [
-					 'nombre' => 'required|max:255',
-					 'descripcion' => 'required|max:255'
+					 'name' => 'required|max:255|unique:servicios',
+					 'description' => 'required'
 			 ]);
 
 		$servicio->save();
@@ -121,6 +121,7 @@ class ServicioController extends Controller
 
 		$servicio->nombre = ucfirst($request->input("nombre"));
 		$servicio->descripcion = ucfirst($request->input("descripcion"));
+		$servicio->name = ucfirst($request->input("name"));
 		$servicio->active_flag = 1;//change to reflect current status or changed status
 		$servicio->author_id = $request->user()->id;
 
@@ -134,7 +135,7 @@ class ServicioController extends Controller
 		Session::flash('message_type', 'blue');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		//Session::flash('message', "The Servicio \"<a href='servicios/$servicio->slug'>" . $servicio->nombre . "</a>\" was Updated.");
+		Session::flash('message', "The Servicio \"<a href='servicios/$servicio->slug'>" . $servicio->name . "</a>\" was Updated.");
 
 		return redirect()->route('servicios.index');
 	}

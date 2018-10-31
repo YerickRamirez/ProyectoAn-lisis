@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Servicio de Salud</title>
 
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href="https://revistas.ucr.ac.cr/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -124,16 +127,7 @@
 	<div class="panel-heading">
 		<div class="content w3-container">
 			@yield('contenido_Paciente')
-			<!--
-  			<h2>Example</h2>
-  			<h4 class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit velit pharetra, taciti orci neque proin accumsan tempor libero eu aliquet tellus, laoreet morbi mauris eleifend pretium iaculis parturient porta. A nascetur metus vivamus aptent interdum curabitur inceptos ultricies, venenatis faucibus turpis ornare conubia hac hendrerit euismod vestibulum, parturient phasellus mollis convallis molestie blandit integer. Cras varius cubilia suscipit gravida velit accumsan aliquet vel quisque turpis, nec imperdiet dictumst eu nisl lobortis mattis pretium mus class, faucibus dapibus proin praesent leo augue id tempus urna.
 
-			Augue tellus lacus mollis tristique lacinia duis, suspendisse congue parturient conubia massa volutpat donec, quam cum velit mi feugiat. Turpis erat urna viverra litora sodales laoreet, fermentum vitae mattis quis mauris dictumst, vestibulum sed ligula risus feugiat. Eleifend integer nostra mauris porta morbi luctus bibendum phasellus tempor aptent faucibus diam sodales, nam sapien platea ultrices lobortis maecenas nunc at neque conubia habitasse imperdiet.
-  			</h4>
-  			
-  			<p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
-  			<h3>Resize the browser window to see the effect.</h3>
-  			-->
 		</div>
 	</div>
 

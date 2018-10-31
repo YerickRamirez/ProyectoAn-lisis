@@ -137,14 +137,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-	<div class="content w3-container">
-
-	
-
-
-</div>
 	
 	
     <footer class="main-footer">
@@ -153,53 +145,7 @@
   	</div>
 	</footer>
 
-
-
-	<script type="text/javascript">
-	$(window).resize(function() {
-		var path = $(this);
-		var contW = path.width();
-		if(contW >= 751){
-			document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-		}else{
-		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-		}
-	});
-	$(document).ready(function() {
-		$('.dropdown').on('show.bs.dropdown', function(e){
-	    	$(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
-		});
-		$('.dropdown').on('hide.bs.dropdown', function(e){
-			$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
-		});
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			var elem = document.getElementById("sidebar-wrapper");
-			left = window.getComputedStyle(elem,null).getPropertyValue("left");
-			if(left == "200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-			}
-			else if(left == "-200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-			}
-		});
-
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			var elem = document.getElementById("sidebar-wrapper");
-			left = window.getComputedStyle(elem,null).getPropertyValue("left");
-			if(left == "200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-			}
-			else if(left == "-230px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-			}
-		});
-
-	});
-
-	</script>
-
+	<script src="{{asset('js/menus_dinamicos.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
