@@ -78,7 +78,7 @@
 		      			<a class="border" href="{{ route('servicios.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
+		      			<a class="border" href="{{asset('recintos')}}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
