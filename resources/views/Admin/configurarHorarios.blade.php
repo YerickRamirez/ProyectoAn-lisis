@@ -7,5 +7,7 @@
 <br>
 <br>
 <h2>Se encuentra en la pagina de configurar Horarios</h2>
-		
+
+
+
 @stop

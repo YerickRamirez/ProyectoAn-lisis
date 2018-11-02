@@ -62,9 +62,14 @@ Route::get('recintos', function () {
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
-Route::get('servicios', function () {
-    return view('Admin/configurarServicios') ;
-});//->middleware('auth.basic');
+Route::get('servicios', 'ServicioController@index')->name('servicios.index');//->middleware('auth.basic');
+Route::get('mostrarServicio', 'ServicioController@show')->name('servicios.show');//->middleware('auth.basic');
+Route::get('editarServicio', 'ServicioController@edit')->name('servicios.edit');//->middleware('auth.basic');
+Route::post('eliminarServicio', 'ServicioController@destroy')->name('servicios.destroy');//->middleware('auth.basic');
+Route::get('crearServicio', 'ServicioController@create')->name('servicios.create');//->middleware('auth.basic');
+Route::post('almacenarServicio', 'ServicioController@store')->name('servicios.store');//->middleware('auth.basic');
+Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.update');//->middleware('auth.basic');
+
 
 
 //---------------------------------------

@@ -9,7 +9,7 @@ class Servicio extends Model
 
   protected $table='servicios';
   public $timestamps=false;
-  protected $fillable = ['id', 'nombre', 'descripcion'];
+  protected $fillable = ['nombre', 'descripcion'];
 
     public function Author(){
       return $this->belongsTo('App\User','author_id');

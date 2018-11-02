@@ -40,7 +40,7 @@ class ServicioController extends Controller
 	{
 		$servicios = Servicio::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
 		$active = Servicio::where('active_flag', 1);
-		return view('servicios.index', compact('servicios', 'active'));
+		return view('servicio.index', compact('servicios', 'active'));
 	}
 
 	/**
@@ -50,7 +50,7 @@ class ServicioController extends Controller
 	 */
 	public function create()
 	{
-		return view('servicios.create');
+		return view('servicio.create');
 	}
 
 	/**
@@ -63,9 +63,8 @@ class ServicioController extends Controller
 	{
 		$servicio = new Servicio();
 
-		$servicio->name = ucfirst($request->input("name"));
-		$servicio->slug = str_slug($request->input("name"), "-");
-		$servicio->description = ucfirst($request->input("description"));
+		$servicio->nombre = ucfirst($request->input("nombre"));
+		$servicio->descripcion = ucfirst($request->input("descripcion"));
 		$servicio->active_flag = 1;
 		$servicio->author_id = $request->user()->id;
 
@@ -79,7 +78,7 @@ class ServicioController extends Controller
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Servicio \"<a href='servicios/$servicio->slug'>" . $servicio->name . "</a>\" was Created.");
+		Session::flash('message', "The Servicio \"<a href='servicios/$servicio->slug'>" . $servicio->nombre . "</a>\" was Created.");
 
 		return redirect()->route('servicios.index');
 	}
@@ -94,7 +93,7 @@ class ServicioController extends Controller
 	{
 		//$servicio = $this->model->findOrFail($id);
 
-		return view('servicios.show', compact('servicio'));
+		return view('servicio.show', compact('servicio'));
 	}
 
 	/**
@@ -107,7 +106,7 @@ class ServicioController extends Controller
 	{
 		//$servicio = $this->model->findOrFail($id);
 
-		return view('servicios.edit', compact('servicio'));
+		return view('servicio.edit', compact('servicio'));
 	}
 
 	/**
@@ -120,15 +119,15 @@ class ServicioController extends Controller
 	public function update(Request $request, Servicio $servicio, User $user)
 	{
 
+		$servicio->nombre = ucfirst($request->input("nombre"));
+		$servicio->descripcion = ucfirst($request->input("descripcion"));
 		$servicio->name = ucfirst($request->input("name"));
-    $servicio->slug = str_slug($request->input("name"), "-");
-		$servicio->description = ucfirst($request->input("description"));
 		$servicio->active_flag = 1;//change to reflect current status or changed status
 		$servicio->author_id = $request->user()->id;
 
 		$this->validate($request, [
-					 'name' => 'required|max:255|unique:servicios,name,' . $servicio->id,
-					 'description' => 'required'
+					 'nombre' => 'required|max:255' . $servicio->nombre,
+					 'descripcion' => 'required|max:255'.$servicio->descripcion
 			 ]);
 
 		$servicio->save();
@@ -155,7 +154,7 @@ class ServicioController extends Controller
 		Session::flash('message_type', 'negative');
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Servicio ' . $servicio->name . ' was De-Activated.');
+		Session::flash('message', 'The Servicio ' . $servicio->nombre . ' was De-Activated.');
 
 		return redirect()->route('servicios.index');
 	}
@@ -174,7 +173,7 @@ class ServicioController extends Controller
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Servicio ' . $servicio->name . ' was Re-Activated.');
+		Session::flash('message', 'The Servicio ' . $servicio->nombre . ' was Re-Activated.');
 
 		return redirect()->route('servicios.index');
 	}
