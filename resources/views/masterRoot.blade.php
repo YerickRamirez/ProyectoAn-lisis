@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
 	<script src="{{asset('//code.jquery.com/jquery-1.11.1.min.js')}}"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://revistas.ucr.ac.cr/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 
         <link href="./css/base.css" rel="stylesheet">
@@ -78,7 +79,7 @@
 		      			<a class="border" href="{{ route('servicios.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="{{asset('recintos')}}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
+		      			<a class="border" href="{{ route('recintos.index') }}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
@@ -141,7 +142,7 @@
 	
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
-    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 

@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="panel-heading">
-		<div class="content-b w3-container">
+		<div class="content-recintos w3-container" style="margin-top: 5px">
     		<div class="table-responsive">
         	<table class="table table-striped table-bordered table-condensed table-hover">
             	<thead>

@@ -138,7 +138,7 @@
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
-    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 
