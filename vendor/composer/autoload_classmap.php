@@ -64,7 +64,6 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Recinto' => $baseDir . '/app/Recinto.php',
     'App\\RecintoModel' => $baseDir . '/app/Http/RecintoModel.php',
-    'App\\Recinto_Especialista' => $baseDir . '/app/Recinto_Especialista.php',
     'App\\Recinto_servicio' => $baseDir . '/app/Recinto_servicio.php',
     'App\\Servicio' => $baseDir . '/app/Servicio.php',
     'App\\Telefono' => $baseDir . '/app/Telefono.php',

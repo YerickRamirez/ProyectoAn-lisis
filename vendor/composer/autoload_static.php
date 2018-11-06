@@ -417,7 +417,6 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Recinto' => __DIR__ . '/../..' . '/app/Recinto.php',
         'App\\RecintoModel' => __DIR__ . '/../..' . '/app/Http/RecintoModel.php',
-        'App\\Recinto_Especialista' => __DIR__ . '/../..' . '/app/Recinto_Especialista.php',
         'App\\Recinto_servicio' => __DIR__ . '/../..' . '/app/Recinto_servicio.php',
         'App\\Servicio' => __DIR__ . '/../..' . '/app/Servicio.php',
         'App\\Telefono' => __DIR__ . '/../..' . '/app/Telefono.php',
