@@ -8,13 +8,6 @@
 <select id="dropEspecialistas" class="form-control"></select>
 
 <script>
-        /*
-        var combo = document.getElementById("comboRecintos");
-        document.getElementById("p").innerHTML = combo.options[combo.selectedIndex].text; //.text*/
-        </script>
-        
-        <script>
-
 function recintos(){
         $('#dropRecintos').empty();
         $('#dropRecintos').append("<option>Cargando...</option>");
@@ -129,19 +122,18 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 
 </script>
 
-<button onclick="revisarDisponibilidad()">Alert</button>
-
 <script>
 function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
                 var datepicked = new Date(dateTime);
-                alert("Hace postback: " + datepicked.toDateString()); 
+                datepicked = datepicked.toISOString();
+                alert("Fecha elegida: " + datepicked);
                 var dropRecintos = $('#dropRecintos').val();           
-                alert(dropRecintos);
+                //alert(dropRecintos);
                 var dropServicios = $('#dropServicios').val();           
-                alert(dropServicios);
+                //alert(dropServicios);
                 var dropEspecialistas = $('#dropEspecialistas').val();           
-                alert(dropEspecialistas);
+                //alert(dropEspecialistas);
                 if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
                  dropEspecialistas == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
@@ -273,7 +265,7 @@ timeout: 15000
     maximo = dia + "/0/" + (anno + 1);
     break;
     }
-    console.log("Máxima " + maximo);
+    //console.log("Máxima " + maximo);
     var parts = maximo.split("/");
     var newMaximo =   Number(parts[1])+1 +  "/" + Number(parts[0]) + "/" + Number(parts[2]);
     var fechaMax =  new Date(Date.parse(newMaximo));
@@ -284,9 +276,6 @@ timeout: 15000
         fechaMax.setDate(fechaMax.getDate()-1);
     }
     console.log("Fecha nueva prueba " + fechaMax);
-    //var d1 = new Date(Number(parts[2]), Number(parts[1]), Number(parts[0]));
-    //console.log(d1);
-    //console.log("newMaxima " + newMaximo);
         return fechaMax;
     }
     
@@ -296,9 +285,7 @@ timeout: 15000
         </div>
     </div>
     
-
-
-
+    <button onclick="revisarDisponibilidad()">Alert</button>
 
 @endsection
 
