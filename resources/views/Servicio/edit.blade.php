@@ -17,7 +17,8 @@
 	<input class="form-control" type="text" name="nombre" id="nombre-field" value="{{ old('nombre', $servicio->nombre ) }}" />
 </div> <div class="form-group">
 	<label for="descripcion-field">Descripcion</label>
-	<input class="form-control" type="text" name="descripcion" id="descripcion-field" value="{{ old('descripcion', $servicio->descripcion ) }}" />
+	<input class="form-control" type="text" name="descripcion" id="descripcion-field" 
+    value="{{ old('descripcion', $servicio->descripcion ) }}" />
 </div>
 
                 <div class="well well-sm">

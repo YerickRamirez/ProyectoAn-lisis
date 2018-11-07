@@ -105,8 +105,16 @@ class ServicioController extends Controller
 	public function edit(Servicio $servicio)
 	{
 		//$servicio = $this->model->findOrFail($id);
+		$servicio = Servicio::find($servicio);
 
-		return view('servicio.edit', compact('servicio'));
+		if($servicio == null) {
+            Flash::error("Error, no se ha encontrado el servicio con el identificador: " . $servicio);
+            return redirect('servicio');    
+        } else {
+            return view('servicio.edit',["servicioEditar"=>$servicio, "id"=>$servicio]);
+        }
+
+		//return view('servicio.edit', compact('servicio'));
 	}
 
 	/**
