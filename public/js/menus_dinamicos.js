@@ -9,9 +9,12 @@ $(document).ready(function(){
 
 
 function myFunction() {
-    var x = document.getElementById("myDIV");
-    var button = document.getElementById("mybutton");
+	var x = document.getElementById("myDIV");
+	var y = document.getElementById("mybutton");
+	var button = document.getElementById("mybutton");
+	
     if (x.style.display === "none") {
+		y.style.display ="none";
         x.style.display = "block";
         boton.setBackgroundColor(0xFF00FF00);
     } else {
