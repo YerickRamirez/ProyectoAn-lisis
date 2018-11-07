@@ -13,6 +13,10 @@ use App\Recinto;
 
 use App\Servicio;
 
+use App\Cita;
+
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Redirect;
 
 use DB;
@@ -63,9 +67,22 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
      //   Flash::error("No hay especialistas para el recinto seleccionado recinto");
      //   } else {
 
-        $xD = $dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $datepicked;
+    
+        $newDate = Carbon::parse($datepicked)->format('Y-m-d');
 
-        DB::table('recinto')->where('ID_Recinto', '=', $dropRecintos)->get();
+        $fechaCitas = Cita::whereDate('fecha_cita', $newDate)->get();
+
+        $horasOcupadas = array();
+
+        if(!empty($fechaCitas)) {
+        foreach ($fechaCitas as $fechaCita) {
+           array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i:s'));
+        }
+        }
+
+        $horasOcupadas = json_encode($horasOcupadas);
+        
+        $xD = /*$dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $newDate . ' ' .*/ $horasOcupadas;
 
     return json_encode(["xD"=>$xD]);
    // }
