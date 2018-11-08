@@ -287,6 +287,79 @@ timeout: 15000
     
     <button onclick="revisarDisponibilidad()">Alert</button>
 
+
+    <!-- /////////////////////////////////////////////////////////////////////////// -->
+    <div class="panel-heading">
+<div class="table-responsive">
+<table class="table table-striped table-bordered table-condensed table-hover">
+                    
+                    <?php $hora = 8; $des = "am"; $horaMilitar = 8;?>
+                <tbody>
+                    @for ($i = 0; $i < 4; $i++)
+                        <?php $minutos = 00;?>
+                        <tr>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                </form> <?php $minutos = $minutos + 20;?>
+                            </td>
+                            <td style="text-align: center">
+                                <form style="text-align: center" action="" method="POST"  onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = $minutos + 20;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = 00;  $hora = $hora + 1; $horaMilitar = $horaMilitar + 1;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar. 0 . $minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = $minutos + 20;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = $minutos + 20;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $hora = $hora + 1; $horaMilitar = $horaMilitar + 1;?>
+                        </tr>
+
+                        @if ($i == 1)
+                            <?php $des = "pm"; $hora = 1; $horaMilitar = 13;?>
+                        @endif
+                    @endfor
+                </tbody>
+</table>
+
+
+<?php
+$array = array(800, 820, 840, 1,  1);
+$holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
+?>
+<script>
+    window.addEventListener("load", function(event) {
+    @foreach($holas as $hola)
+    document.getElementById("{{$hola}}").disabled = true;
+    document.getElementById('{{$hola}}').style.backgroundColor = "#871407";
+    @endforeach
+    });
+</script>
+
+</div>
+</div>
+
 @endsection
 
 
