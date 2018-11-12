@@ -76,7 +76,7 @@
 		      			<a class="border" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="{{ route('servicios.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
+		      			<a class="border" href="{{ route('servicio.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('recintos.index') }}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
+            <form action="{{ route('servicio.update', $servicio->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -23,7 +23,7 @@
 
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <a class="btn btn-link pull-right" href="{{ route('servicios.index') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
+                    <a class="btn btn-link pull-right" href="{{ route('servicio.index') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
                 </div>
             </form>
 
