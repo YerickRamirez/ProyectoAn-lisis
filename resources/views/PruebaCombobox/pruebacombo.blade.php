@@ -280,12 +280,12 @@ timeout: 15000
         </div>
     </div>
     
-    <button onclick="revisarDisponibilidad()">Verificar Disponibilidad</button>
+    <button id="mostar-tabla"  class = ' margin-button-agregar btn btn-success mobile' onclick="revisarDisponibilidad()">Mostrar horario</button>
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->
     
     <div class="panel-heading">
-<div class="table-responsive">
+<div class="table-responsive" id="ocultar-tabla" style="display: none;">
        
 <table class="table table-striped table-bordered table-condensed table-hover">
                     
@@ -297,7 +297,7 @@ timeout: 15000
                             <td style="text-align: center">
                                 <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success" disabled>{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
                                 </form> <?php $minutos = $minutos + 20;?>
                             </td>
                             <td style="text-align: center">
@@ -355,8 +355,9 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
             alert(entry);
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
+    
 });
-
+mostarHorario();
 }
 </script>
 </div>

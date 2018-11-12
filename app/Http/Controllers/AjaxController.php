@@ -78,7 +78,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
 
         if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {
-                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i'));
+                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i:s'));
             }
         }
 
