@@ -29,7 +29,7 @@ function mostarHorario() {
 	//var button = document.getElementById("mostar-tabla");
 	
     if (x.style.display === "none") {
-		y.style.display ="none";
+		//y.style.display ="none";
         x.style.display = "block";
     } else {
 
