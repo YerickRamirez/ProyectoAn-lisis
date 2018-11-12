@@ -1,11 +1,11 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
 
-<select id="dropRecintos" class="form-control"></select>
-<br>
-<select id="dropServicios" class="form-control"></select>
-<br>
-<select id="dropEspecialistas" class="form-control"></select>
+
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
+
 
 <script>
 function recintos(){
@@ -144,10 +144,7 @@ function revisarDisponibilidad() {
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-        $.each(datos, function()
-{
-        alert(datos.xD);
-})
+        cargarFechasDisponibles(datos.xD);
 }, error:function() {
      alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
      " con el Servicio de Salud");   
@@ -161,7 +158,7 @@ timeout: 15000
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 <div class="container">
         <div class="row">
-            <div class='col-sm-6'>
+            <div class='col-sm-3'>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepicker5'>
                         <input type='text' class="form-control" onchange="prueba()" />
@@ -194,7 +191,7 @@ timeout: 15000
         var anno = maximo.getFullYear();
         var bisiesto = false;
     
-    console.log("Actual " + dia+"/"+mes+"/"+anno);
+    //console.log("Actual " + dia+"/"+mes+"/"+anno);
         
     if ((anno % 4 == 0) && ((anno % 100 != 0) || (anno % 400 == 0))) {
         bisiesto = true;
@@ -275,22 +272,21 @@ timeout: 15000
     if(fechaMax.getDay() == 6) {
         fechaMax.setDate(fechaMax.getDate()-1);
     }
-    console.log("Fecha nueva prueba " + fechaMax);
+   // console.log("Fecha nueva prueba " + fechaMax);
         return fechaMax;
     }
-    
-    
     });
             </script>
         </div>
     </div>
     
-    <button onclick="revisarDisponibilidad()">Alert</button>
-
+    <button id="mostar-tabla"  class = ' margin-button-agregar btn btn-success mobile' onclick="revisarDisponibilidad()">Mostrar horario</button>
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->
+    
     <div class="panel-heading">
-<div class="table-responsive">
+<div class="table-responsive" id="ocultar-tabla" style="display: none;">
+       
 <table class="table table-striped table-bordered table-condensed table-hover">
                     
                     <?php $hora = 8; $des = "am"; $horaMilitar = 8;?>
@@ -349,14 +345,21 @@ $array = array(800, 820, 840, 1,  1);
 $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 ?>
 <script>
-    window.addEventListener("load", function(event) {
-    @foreach($holas as $hola)
-    document.getElementById("{{$hola}}").disabled = true;
-    document.getElementById('{{$hola}}').style.backgroundColor = "#871407";
-    @endforeach
-    });
+    function cargarFechasDisponibles(horas) {
+        alert(horas);
+        horas.forEach(function(entry) {
+            entry = entry.replace(/\:/g, '');
+            if(entry.charAt(0) == "0") {
+                entry = entry.replace("0", "")
+            }
+            alert(entry);
+    document.getElementById(entry).disabled = true;
+    document.getElementById(entry).style.backgroundColor = "#656161";
+    
+});
+mostarHorario();
+}
 </script>
-
 </div>
 </div>
 
