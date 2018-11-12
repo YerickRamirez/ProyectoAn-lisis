@@ -15,6 +15,11 @@ div.inforation-menu {
 	text-align: center !important;
 }
 
+button.margin-button-plus {
+margin-left: 15px;
+margin-bottom: 10px;
+}
+
 
 @media screen and (max-width: 982px) {
 div.mobile{
@@ -22,6 +27,26 @@ text-align: center;
 } 
 button.mobile {
 	margin-top: 5px;
+}
+}
+
+.margin-lft {
+	margin-left: 15px;
+}
+
+.margin-button {
+	margin-left: 20px;
+}
+
+
+@media screen and (max-width: 991px) {
+
+input.margin-lft {
+	margin-left: 0px;
+}
+
+button.margin-button {
+	margin-left: 0px;
 }
 }
 

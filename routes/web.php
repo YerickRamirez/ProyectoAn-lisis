@@ -54,9 +54,15 @@ Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
 })->middleware('auth.basic');
 
+
 Route::get('recintos', function () {
     return view('Admin/configurarRecintos') ;
 })->middleware('auth.basic');
+   // return view('recintos/index');
+//})->name('recintos');
+
+
+Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
 Route::get('servicios', function () {
     return view('Admin/configurarServicios') ;
@@ -89,6 +95,15 @@ Route::get('datepicker', function () {
 
 
 //---------------------------------------
+//Rutas de Especialista
+//---------------------------------------
+Route::get('especialistasas', function () {
+    return view('masterEspecialista');
+})->name('especialistasas');
+
+
+
+//---------------------------------------
 //---------------------------------------
 
 Route::post('login', 'Auth\LoginController@login')-> name('login')-> middleware('guest');
@@ -101,26 +116,27 @@ Route::post('/test/save', ['as' => 'save-date',
                             }]);
                             
 // Rutas de la tabla especialista
-
 Route::get('especialistas', 'EspecialistaController@index');
-
 Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@editarEspecialista');
-
 Route::get('especialistas/{cedula}/eliminarEspecialista', 'EspecialistaController@eliminarEspecialista');
-
 Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaController@actualizarEspecialista');
-
 Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
-
 Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
-
 //Fin rutas tabla especialista
 
 //Rutas tabla recinto
 Route::resource('recintos', 'RecintoController');
+
+Route::post('recintos/agregarRecinto', 'RecintoController@agregarRecinto')->name('recintos.agregarRecinto');
+
+
+
+
 Route::view('recintos/viewAnnadir', 'Recinto.annadirRecinto');
 Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarRecinto');
+
 Route::post('recintos/agregarRecinto', 'RecintoController@agregarRecinto');
+
 Route::get('recintos/{id}/editarRecinto', 'RecintoController@editarRecinto');
 Route::post('recintos/{id}/actualizarRecinto', 'RecintoController@actualizarRecinto');
 //Fin rutas recinto
@@ -132,13 +148,12 @@ Route::post('recintos/{id}/actualizarRecinto', 'RecintoController@actualizarReci
 Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mail');
 
 
-//Rutas prueba comboxo autorefresh
+//Rutas prueba ajax
 Route::get('/recintosCombo', 'AjaxController@combobox');
-
 Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
-
 Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
-
+Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
+//fin rutas de ajax
 
 Route::get('combobox',function(){
     return view('PruebaCombobox.pruebacombo');

@@ -11,12 +11,12 @@ div.content {
   margin-top: 35px; 
   margin-left: 225px;
   margin-bottom: 35px;
-  padding: 1px 16px;
+  padding: 1px 1px;
 }
 
 div.content-b {
-  margin-top: 15px; 
-  margin-bottom: 10px;
+  margin-top: 5px; 
+  margin-bottom: 5px;
   padding: 1px 1px;
 }
 
@@ -227,15 +227,23 @@ nav.sidebar, .main {
 .right-info {
   margin-left:12px;
 }
+
+.right-hora {
+  margin-left:42px;
+}
 .right-aling-glyphicon-se {
   margin-left:33px;
 }
 
 .right-aling-glyphicon-s {
-  margin-left:64px;
+  margin-left:62px;
 }
 .right-aling-glyphicon{
   margin-left:35px;
+}
+
+.right-pacientes {
+  margin-left:25px;
 }
 
 .right-aling-glyphicon-c{

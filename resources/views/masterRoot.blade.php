@@ -78,7 +78,7 @@
 		      			<a class="border" href="servicios">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
+		      			<a class="border" href="{{asset('recintos')}}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
@@ -123,14 +123,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-	<div class="content w3-container">
-
-	
-
-
-</div>
 	
 	
     <footer class="main-footer">
@@ -139,53 +131,7 @@
   	</div>
 	</footer>
 
-
-
-	<script type="text/javascript">
-	$(window).resize(function() {
-		var path = $(this);
-		var contW = path.width();
-		if(contW >= 751){
-			document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-		}else{
-		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-		}
-	});
-	$(document).ready(function() {
-		$('.dropdown').on('show.bs.dropdown', function(e){
-	    	$(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
-		});
-		$('.dropdown').on('hide.bs.dropdown', function(e){
-			$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
-		});
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			var elem = document.getElementById("sidebar-wrapper");
-			left = window.getComputedStyle(elem,null).getPropertyValue("left");
-			if(left == "200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-			}
-			else if(left == "-200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-			}
-		});
-
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			var elem = document.getElementById("sidebar-wrapper");
-			left = window.getComputedStyle(elem,null).getPropertyValue("left");
-			if(left == "200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-			}
-			else if(left == "-230px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-			}
-		});
-
-	});
-
-	</script>
-
+	<script src="{{asset('js/menus_dinamicos.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
