@@ -1,11 +1,10 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
 
-<select id="dropRecintos" class="form-control"></select>
-<br>
-<select id="dropServicios" class="form-control"></select>
-<br>
-<select id="dropEspecialistas" class="form-control"></select>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
+
 
 <script>
 function recintos(){
@@ -161,7 +160,7 @@ timeout: 15000
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 <div class="container">
         <div class="row">
-            <div class='col-sm-6'>
+            <div class='col-sm-3'>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepicker5'>
                         <input type='text' class="form-control" onchange="prueba()" />
@@ -352,7 +351,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
     window.addEventListener("load", function(event) {
     @foreach($holas as $hola)
     document.getElementById("{{$hola}}").disabled = true;
-    document.getElementById('{{$hola}}').style.backgroundColor = "#871407";
+    document.getElementById('{{$hola}}').style.backgroundColor = "#656161";
     @endforeach
     });
 </script>
