@@ -62,6 +62,9 @@ Route::get('recintos', function () {
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
+Route::resource('servicio', 'ServicioController');
+
+/*
 Route::get('servicios', 'ServicioController@index')->name('servicios.index');//->middleware('auth.basic');
 Route::get('mostrarServicio', 'ServicioController@show')->name('servicios.show');//->middleware('auth.basic');
 Route::get('editarServicio', 'ServicioController@edit')->name('servicios.edit');//->middleware('auth.basic');
@@ -70,7 +73,7 @@ Route::get('crearServicio', 'ServicioController@create')->name('servicios.create
 Route::post('almacenarServicio', 'ServicioController@store')->name('servicios.store');//->middleware('auth.basic');
 Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.update');//->middleware('auth.basic');
 
-
+*/
 
 //---------------------------------------
 //Rutas Paciente

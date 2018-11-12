@@ -7,7 +7,7 @@
 @section('contenido_Admin')
 <div class="page-header clearfix">
         <h1>
-            <a class="btn btn-success pull-right" href="{{ route('servicios.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
+            <a class="btn btn-success pull-right" href="{{ route('servicio.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
         </h1>
     </div>
     <div class="row">
@@ -32,11 +32,11 @@
                                 
                                 <td class="text-right">
                                                                        
-                                    <a class="btn btn-xs btn-warning" href="{{ route('servicios.edit', $servicio->id) }}">
+                                    <a class="btn btn-xs btn-warning" href="{{ route('servicio.edit', $servicio->id) }}">
                                         <i class="glyphicon glyphicon-edit"></i> Editar
                                     </a>
 
-                                    <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                    <form action="{{ route('servicio.destroy', $servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
