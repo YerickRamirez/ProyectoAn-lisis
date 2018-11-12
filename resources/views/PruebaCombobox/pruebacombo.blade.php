@@ -1,6 +1,7 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
 
+
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
@@ -143,10 +144,7 @@ function revisarDisponibilidad() {
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-        $.each(datos, function()
-{
-        alert(datos.xD);
-})
+        cargarFechasDisponibles(datos.xD);
 }, error:function() {
      alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
      " con el Servicio de Salud");   
@@ -193,7 +191,7 @@ timeout: 15000
         var anno = maximo.getFullYear();
         var bisiesto = false;
     
-    console.log("Actual " + dia+"/"+mes+"/"+anno);
+    //console.log("Actual " + dia+"/"+mes+"/"+anno);
         
     if ((anno % 4 == 0) && ((anno % 100 != 0) || (anno % 400 == 0))) {
         bisiesto = true;
@@ -274,22 +272,21 @@ timeout: 15000
     if(fechaMax.getDay() == 6) {
         fechaMax.setDate(fechaMax.getDate()-1);
     }
-    console.log("Fecha nueva prueba " + fechaMax);
+   // console.log("Fecha nueva prueba " + fechaMax);
         return fechaMax;
     }
-    
-    
     });
             </script>
         </div>
     </div>
     
-    <button onclick="revisarDisponibilidad()">Alert</button>
-
+    <button onclick="revisarDisponibilidad()">Verificar Disponibilidad</button>
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->
+    
     <div class="panel-heading">
 <div class="table-responsive">
+       
 <table class="table table-striped table-bordered table-condensed table-hover">
                     
                     <?php $hora = 8; $des = "am"; $horaMilitar = 8;?>
@@ -300,7 +297,7 @@ timeout: 15000
                             <td style="text-align: center">
                                 <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success" disabled>{{$hora}}:0{{$minutos}} {{$des}}</button>
                                 </form> <?php $minutos = $minutos + 20;?>
                             </td>
                             <td style="text-align: center">
@@ -348,14 +345,20 @@ $array = array(800, 820, 840, 1,  1);
 $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 ?>
 <script>
-    window.addEventListener("load", function(event) {
-    @foreach($holas as $hola)
-    document.getElementById("{{$hola}}").disabled = true;
-    document.getElementById('{{$hola}}').style.backgroundColor = "#656161";
-    @endforeach
-    });
-</script>
+    function cargarFechasDisponibles(horas) {
+        alert(horas);
+        horas.forEach(function(entry) {
+            entry = entry.replace(/\:/g, '');
+            if(entry.charAt(0) == "0") {
+                entry = entry.replace("0", "")
+            }
+            alert(entry);
+    document.getElementById(entry).disabled = true;
+    document.getElementById(entry).style.backgroundColor = "#656161";
+});
 
+}
+</script>
 </div>
 </div>
 

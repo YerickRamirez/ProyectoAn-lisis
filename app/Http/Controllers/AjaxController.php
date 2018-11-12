@@ -70,17 +70,39 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
     
         $newDate = Carbon::parse($datepicked)->format('Y-m-d');
 
-        $fechaCitas = Cita::whereDate('fecha_cita', $newDate)->get();
+        $fechaCitas = Cita::whereDate('fecha_cita', $newDate)->get();//citas en la fecha elegida
+
+        $horarios_deshabilitados_esp = EspecialistaModel::findOrFail($dropEspecialistas)->horario_deshabilitado;
 
         $horasOcupadas = array();
 
-        if(!empty($fechaCitas)) {
-        foreach ($fechaCitas as $fechaCita) {
-           array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i:s'));
-        }
+        if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
+            foreach ($fechaCitas as $fechaCita) {
+                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i'));
+            }
         }
 
-        $horasOcupadas = json_encode($horasOcupadas);
+        if(!empty($horarios_deshabilitados_esp)) {//fecha/hora deshabilitada por el especialista 
+            foreach ($horarios_deshabilitados_esp as $deshabilitado_esp) {
+                $carb_inicio = Carbon::parse($deshabilitado_esp->fecha_inicio_deshabilitar)->format('Y-m-d');//fecha inicio deshabilitar
+                $carb_fin = Carbon::parse($deshabilitado_esp->fecha_fin_deshabilitar)->format('Y-m-d');
+                
+                if($newDate->greaterThanOrEqualTo($carb_inicio) && $newDate->lessThanOrEqualTo($carb_inicio)) {
+                    $hora_inicio_deshabilitar = arreglarHora($deshabilitado_esp->hora_inicio_deshabilitar);
+                    $hora_fin_deshabilitar = arreglarHora($deshabilitado_esp->hora_fin_deshabilitar);
+                   
+                        array_push($horasOcupadas,  Carbon::parse($deshabilitado_esp->fecha_cita)->format('H:i:s'));
+                    
+                }
+            }
+        }
+
+        //$horasOcupadas = json_encode($horasOcupadas);
+
+        /*$users = DB::table('users')
+                    ->whereBetween('votes', array(1, 100))->get(); */
+
+        
         
         $xD = /*$dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $newDate . ' ' .*/ $horasOcupadas;
 
@@ -88,4 +110,43 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
    // }
 }
 
+private function arreglarHora($hora) {
+    $ultimos_digitos_hora  = substr($hora, -2);
+
+    if(substr($ultimos_digitos_hora, -1) != "0") { //Obliga los minutos a terminar en 0 
+    $ultimos_digitos_hora  = substr($ultimos_digitos_hora, 1) . "0";
+    } 
+    $int_ultimos_digitos = intval($ultimos_digitos_hora);
+    while($int_ultimos_digitos != 0 || $int_ultimos_digitos != 20 || $int_ultimos_digitos != 40 || $int_ultimos_digitos != 60) {
+        $int_ultimos_digitos = $int_ultimos_digitos+5;
+    }
+    $ultimos_digitos_correctos = $int_ultimos_digitos; 
+
+    if($int_ultimos_digitos == 60) {
+        if($primeros_dos_digitos = "09"){
+            return "10:" . $ultimos_digitos_correctos;
+        } else {//si la hora no es 09
+        $primer_digito =  substr($hora, 1);
+        $primeros_dos_digitos = substr($hora, 2);
+        $segundo_digito_int =  intval(substr($primeros_dos_digitos, -1));
+        /*$horaParse = strtotime($primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos);
+        $horaReturn = date('H:i', $horaParse);*/
+        $horaReturn = $primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos;
+        return $horaReturn;
+        }
+    } else {
+        $primeros_dos_digitos = substr($hora, 2);
+        $horaReturn = $primeros_dos_digitos . ':' . $ultimos_digitos_correctos;
+        return $horaReturn;
+    }
+}
+
+private function llenarArrayhoras($array, $horaInicio, $horaFin) {
+    /*$timeInicio = strtotime('horaInicio');
+    $timeFin = strtotime('horaFin');
+    $parseTime = date('H:i', $timestamp);
+    for() {
+
+    }*/
+}
 }
