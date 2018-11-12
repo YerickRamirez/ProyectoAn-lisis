@@ -95,6 +95,7 @@ $(document).ready(function() {
         recintos();
         
         $('#dropRecintos').change(function() {
+        ocultarHorario();
         var ID_Recinto = $('#dropRecintos').val();
         if(ID_Recinto != 'defecto'){
         servicios(ID_Recinto);   
@@ -106,6 +107,7 @@ $(document).ready(function() {
         })
         
         $('#dropServicios').change(function() {
+        ocultarHorario();
         var ID_Servicio = $('#dropServicios').val();
         if(ID_Servicio != 'defecto'){
         especialistas(ID_Servicio);   
@@ -113,6 +115,16 @@ $(document).ready(function() {
         limpiarDrop("dropEspecialistas", "Especialista")
         }
         })
+
+        $('#dropEspecialistas').change(function() {
+            ocultarHorario();
+            }
+        )
+
+        $('#datetimepicker5').click(function() {
+            ocultarHorario();
+            }
+        )
 })
 
 function limpiarDrop(nombreDrop, nombreTexto) {
@@ -127,7 +139,7 @@ function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
                 var datepicked = new Date(dateTime);
                 datepicked = datepicked.toISOString();
-                alert("Fecha elegida: " + datepicked);
+                //alert("Fecha elegida: " + datepicked);
                 var dropRecintos = $('#dropRecintos').val();           
                 //alert(dropRecintos);
                 var dropServicios = $('#dropServicios').val();           
@@ -280,7 +292,8 @@ timeout: 15000
         </div>
     </div>
     
-    <button id="mostar-tabla"  class = ' margin-button-agregar btn btn-success mobile' onclick="revisarDisponibilidad()">Mostrar horario</button>
+    <button id="mostar-tabla"  class = 'margin-button-agregar btn btn-success mobile' 
+    onclick="revisarDisponibilidad()">Mostrar horario</button>
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->
     
@@ -295,40 +308,29 @@ timeout: 15000
                         <?php $minutos = 00;?>
                         <tr>
                             <td style="text-align: center">
-                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
-                                </form> <?php $minutos = $minutos + 20;?>
+                                        <button id="{{$horaMilitar . '0' . $minutos}}" type="submit" style=" width:80px;" class="size btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                 <?php $minutos = $minutos + 20;?>
                             </td>
                             <td style="text-align: center">
-                                <form style="text-align: center" action="" method="POST"  onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
-                                </form>
+                                        <button id="{{$horaMilitar.$minutos}}" type="submit" style=" width:80px;" class="btn btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:{{$minutos}} {{$des}}</button>
                             </td><?php $minutos = $minutos + 20;?>
                             <td style="text-align: center">
-                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
-                                </form>
+                                        <button id="{{$horaMilitar.$minutos}}" type="submit" style=" width:80px;" class="btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:{{$minutos}} {{$des}}</button>
                             </td><?php $minutos = 00;  $hora = $hora + 1; $horaMilitar = $horaMilitar + 1;?>
                             <td style="text-align: center">
-                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar. 0 . $minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
-                                </form>
+                                        <button id="{{$horaMilitar. 0 . $minutos}}" type="submit" style=" width:80px;" class="btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:0{{$minutos}} {{$des}}</button>
                             </td><?php $minutos = $minutos + 20;?>
                             <td style="text-align: center">
-                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
-                                </form>
+                                        <button id="{{$horaMilitar.$minutos}}" type="submit" style=" width:80px;" class="btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:{{$minutos}} {{$des}}</button>
                             </td><?php $minutos = $minutos + 20;?>
                             <td style="text-align: center">
-                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
                                         {{csrf_field()}}
-                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
-                                </form>
+                                        <button id="{{$horaMilitar.$minutos}}" type="submit" style=" width:80px;" class="btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:{{$minutos}} {{$des}}</button>
                             </td><?php $hora = $hora + 1; $horaMilitar = $horaMilitar + 1;?>
                         </tr>
 
@@ -339,6 +341,34 @@ timeout: 15000
                 </tbody>
 </table>
 
+<script>
+        function confirmarCita(hora , minutos) {
+            var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+            var datepicked = new Date(dateTime);
+            datepicked = datepicked.toLocaleDateString();
+               // alert("Fecha elegida: " + datepicked);
+               minutos = String(minutos);
+               if(minutos == "0") {
+                   minutos = "00";
+               }
+        if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked + "?")) {
+            var datepicked = new Date(dateTime);
+                datepicked = datepicked.toISOString();
+                var dropRecintos = $('#dropRecintos').val();           
+                var dropServicios = $('#dropServicios').val();           
+                var dropEspecialistas = $('#dropEspecialistas').val();           
+                if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
+                 dropEspecialistas == 'defecto') {
+                        alert("Elija una opción válida en todos los campos");
+               } else {
+            horaCita = String(hora) + minutos;
+            window.location.replace("/annadirCita/" + horaCita + '/' + dropRecintos + 
+            '/' + dropServicios + '/' + dropEspecialistas + '/' + datepicked);
+        }
+        return false;
+        }
+    }
+    </script>
 
 <?php
 $array = array(800, 820, 840, 1,  1);
@@ -346,51 +376,32 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 ?>
 <script>
     function cargarFechasDisponibles(horas) {
-        alert(horas);
+        limpiarCitas();
         horas.forEach(function(entry) {
             entry = entry.replace(/\:/g, '');
             if(entry.charAt(0) == "0") {
                 entry = entry.replace("0", "")
             }
-            alert(entry);
+            //alert(entry);
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
     
 });
 mostarHorario();
 }
+
+function limpiarCitas() {
+    var horaCita;
+    for (horaCita = 800; horaCita <= 1640; horaCita++) {
+        
+        if(document.getElementById(horaCita) != null){
+        document.getElementById(horaCita).disabled = false;
+        document.getElementById(horaCita).style.backgroundColor = "#33cc33";
+    }
+} 
+}
 </script>
 </div>
 </div>
 
 @endsection
-
-
-
-
-<!--<script type="text/Javascript">
-function state() {
-        alert("a");
-        $.ajax({
-                type: "POST",
-                url: "controlerprueba.php",
-                data: {action: 'combobox'},
-                success:function(data) {
-                        alert(data);
-                },
-                error: function() {
-                        alert("puta vida");
-                },
-        });
-}
-
-$(document).ready(function() {
-        state();
-});
-
-        /*var combo = document.getElementById("comboRecintos");
-        document.getElementById("p").innerHTML = combo.options[combo.selectedIndex].text; //.text */
-        
-        </script>
--->
-

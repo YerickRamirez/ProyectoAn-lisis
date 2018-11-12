@@ -58,7 +58,7 @@ public function comboEspecialistas($ID_Servicio, Request $request){
     return ["especialistas"=>$especialistas];
 }
 
-public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $datepicked, Request $request){
+public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked, Request $request){
     /*$query=trim($request->get('searchText'));*/
 
     //$servicios=DB::table('servicio')->where('Recinto', '=', $ID_Recinto)->get();
@@ -67,6 +67,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
      //   Flash::error("No hay especialistas para el recinto seleccionado recinto");
      //   } else {
 
+        $dropEspecialistas = $request->dropEspecialistas;
     
         $newDate = Carbon::parse($datepicked)->format('Y-m-d');
 
@@ -78,7 +79,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
 
         if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {
-                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i:s'));
+                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i'));
             }
         }
 

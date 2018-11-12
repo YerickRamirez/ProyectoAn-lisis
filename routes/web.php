@@ -80,10 +80,11 @@ Route::get('paciente', function () {
     return view('Paciente/index') ;
 });//->middleware('auth.basic');
 
+/*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
 });//->middleware('auth.basic');
-
+*/
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
 });//->middleware('auth.basic');
@@ -136,6 +137,11 @@ Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
 Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
 //fin rutas de ajax
+
+//Ruta citas
+Route::resource('citas', 'CitaController');
+Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
+//
 
 Route::get('combobox',function(){
     return view('PruebaCombobox.pruebacombo');

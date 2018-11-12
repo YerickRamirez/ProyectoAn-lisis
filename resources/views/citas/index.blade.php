@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">#</th>
-                            <th>Chema=id</th> <th>Estado_cita_id</th> <th>Paciente_id</th> <th>Servicio_id</th> <th>Fecha_cita</th>
+                            <th>id</th> <th>Estado_cita_id</th> <th>Paciente_id</th> <th>Servicio_id</th> <th>Fecha_cita</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
@@ -27,7 +27,7 @@
                             <tr>
                                 <td class="text-center"><strong>{{$cita->id}}</strong></td>
 
-                                <td>{{$cita->chema=id}}</td> <td>{{$cita->estado_cita_id}}</td> <td>{{$cita->paciente_id}}</td> <td>{{$cita->servicio_id}}</td> <td>{{$cita->fecha_cita}}</td>
+                                <td>{{$cita->id}}</td> <td>{{$cita->estado_cita_id}}</td> <td>{{$cita->paciente_id}}</td> <td>{{$cita->servicio_id}}</td> <td>{{$cita->fecha_cita}}</td>
                                 
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('citas.show', $cita->id) }}">

@@ -31,10 +31,14 @@ function mostarHorario() {
     if (x.style.display === "none") {
 		//y.style.display ="none";
         x.style.display = "block";
-    } else {
-
-        x.style.display = "none";
     }
+}
+
+function ocultarHorario() {
+	var x = document.getElementById("ocultar-tabla");
+	var y = document.getElementById("mostar-tabla");
+	//var button = document.getElementById("mostar-tabla");
+    x.style.display = "none";
 }
 
 
