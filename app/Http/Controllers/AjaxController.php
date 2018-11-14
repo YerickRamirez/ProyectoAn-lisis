@@ -9,6 +9,14 @@ use App\Http\Requests;
 
 use App\EspecialistaModel;
 
+use App\Recinto;
+
+use App\Servicio;
+
+use App\Cita;
+
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Redirect;
 
 use DB;
@@ -27,44 +35,27 @@ class AjaxController extends Controller {
    public function combobox(){
         /*$query=trim($request->get('searchText'));*/
 
-        $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
+        $recintos=DB::table('recintos')->where('active_flag', '=', 1)->orderBy('descripcion','desc')->get();
         if ($recintos == null) {
             Flash::message("No hay recintos para mostrar");
         }
         return json_encode(["recintos"=>$recintos]);
 }
 
-public function comboEspecialistas($ID_Servicio, Request $request){
-    /*$query=trim($request->get('searchText'));*/
-
-    $especialistas=DB::table('servicio_especialista')->where('Servicio', '=', $ID_Servicio)->get();
-
-    if ($especialistas->isEmpty()) {
-        return view('PruebaCombobox.pruebacombo');
-        } else {
-
-    $especialistas_data = array();
-    //array_shift($recinto_especialista2); //elimina primer elemento array, le hace return
-    foreach ($especialistas as $especialista) {
-        $cedulaEsp=$especialista->Especialista;
-        array_push($especialistas_data,  DB::table('especialista')->where('Cédula', '=', $cedulaEsp)->get());
-    }
-    return ["especialistas"=>$especialistas_data];
-
-    }
-}
-
 public function comboServicios($ID_Recinto, Request $request){
     /*$query=trim($request->get('searchText'));*/
 
-    $servicios=DB::table('servicio')->where('Recinto', '=', $ID_Recinto)->get();
-
-    if ($servicios->isEmpty()) {
-        Flash::error("No hay especialistas para el recinto seleccionado recinto");
-        } else {
+    $servicios= Recinto::findOrFail($ID_Recinto)->servicios->where('active_flag', '=', 1);
 
     return ["servicios"=>$servicios];
-    }
+}
+
+public function comboEspecialistas($ID_Servicio, Request $request){
+    /*$query=trim($request->get('searchText'));*/
+
+    $especialistas= Servicio::findOrFail($ID_Servicio)->especialistas->where('active_flag', '=', 1);
+
+    return ["especialistas"=>$especialistas];
 }
 
 public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $datepicked, Request $request){
@@ -76,9 +67,86 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
      //   Flash::error("No hay especialistas para el recinto seleccionado recinto");
      //   } else {
 
-        $xD = $dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $datepicked;
+    
+        $newDate = Carbon::parse($datepicked)->format('Y-m-d');
+
+        $fechaCitas = Cita::whereDate('fecha_cita', $newDate)->get();//citas en la fecha elegida
+
+        $horarios_deshabilitados_esp = EspecialistaModel::findOrFail($dropEspecialistas)->horario_deshabilitado;
+
+        $horasOcupadas = array();
+
+        if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
+            foreach ($fechaCitas as $fechaCita) {
+                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i:s'));
+            }
+        }
+
+        if(!empty($horarios_deshabilitados_esp)) {//fecha/hora deshabilitada por el especialista 
+            foreach ($horarios_deshabilitados_esp as $deshabilitado_esp) {
+                $carb_inicio = Carbon::parse($deshabilitado_esp->fecha_inicio_deshabilitar)->format('Y-m-d');//fecha inicio deshabilitar
+                $carb_fin = Carbon::parse($deshabilitado_esp->fecha_fin_deshabilitar)->format('Y-m-d');
+                
+                if($newDate->greaterThanOrEqualTo($carb_inicio) && $newDate->lessThanOrEqualTo($carb_inicio)) {
+                    $hora_inicio_deshabilitar = arreglarHora($deshabilitado_esp->hora_inicio_deshabilitar);
+                    $hora_fin_deshabilitar = arreglarHora($deshabilitado_esp->hora_fin_deshabilitar);
+                   
+                        array_push($horasOcupadas,  Carbon::parse($deshabilitado_esp->fecha_cita)->format('H:i:s'));
+                    
+                }
+            }
+        }
+
+        //$horasOcupadas = json_encode($horasOcupadas);
+
+        /*$users = DB::table('users')
+                    ->whereBetween('votes', array(1, 100))->get(); */
+
+        
+        
+        $xD = /*$dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $newDate . ' ' .*/ $horasOcupadas;
+
     return json_encode(["xD"=>$xD]);
    // }
 }
 
+private function arreglarHora($hora) {
+    $ultimos_digitos_hora  = substr($hora, -2);
+
+    if(substr($ultimos_digitos_hora, -1) != "0") { //Obliga los minutos a terminar en 0 
+    $ultimos_digitos_hora  = substr($ultimos_digitos_hora, 1) . "0";
+    } 
+    $int_ultimos_digitos = intval($ultimos_digitos_hora);
+    while($int_ultimos_digitos != 0 || $int_ultimos_digitos != 20 || $int_ultimos_digitos != 40 || $int_ultimos_digitos != 60) {
+        $int_ultimos_digitos = $int_ultimos_digitos+5;
+    }
+    $ultimos_digitos_correctos = $int_ultimos_digitos; 
+
+    if($int_ultimos_digitos == 60) {
+        if($primeros_dos_digitos = "09"){
+            return "10:" . $ultimos_digitos_correctos;
+        } else {//si la hora no es 09
+        $primer_digito =  substr($hora, 1);
+        $primeros_dos_digitos = substr($hora, 2);
+        $segundo_digito_int =  intval(substr($primeros_dos_digitos, -1));
+        /*$horaParse = strtotime($primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos);
+        $horaReturn = date('H:i', $horaParse);*/
+        $horaReturn = $primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos;
+        return $horaReturn;
+        }
+    } else {
+        $primeros_dos_digitos = substr($hora, 2);
+        $horaReturn = $primeros_dos_digitos . ':' . $ultimos_digitos_correctos;
+        return $horaReturn;
+    }
+}
+
+private function llenarArrayhoras($array, $horaInicio, $horaFin) {
+    /*$timeInicio = strtotime('horaInicio');
+    $timeFin = strtotime('horaFin');
+    $parseTime = date('H:i', $timestamp);
+    for() {
+
+    }*/
+}
 }

@@ -1,21 +1,13 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
 
-<select id="dropRecintos" class="form-control"></select>
-<br>
-<select id="dropServicios" class="form-control"></select>
-<br>
-<select id="dropEspecialistas" class="form-control"></select>
+
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
+<div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
 
 
 <script>
-        /*
-        var combo = document.getElementById("comboRecintos");
-        document.getElementById("p").innerHTML = combo.options[combo.selectedIndex].text; //.text*/
-        </script>
-        
-        <script>
-
 function recintos(){
         $('#dropRecintos').empty();
         $('#dropRecintos').append("<option>Cargando...</option>");
@@ -31,9 +23,9 @@ $('#dropRecintos').empty();
 $('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
 $.each(datos, function()
 {
-        $.each(this.data, function(){//los datos del server vienen en una variable data
+        $.each(this, function(){//los datos del server vienen en una variable data
         //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
-        $('#dropRecintos').append('<option value="' + this.ID_Recinto + '">' + this.Nombre + '</option>');
+        $('#dropRecintos').append('<option value="' + this.id + '">' + this.descripcion + '</option>');
         })        
 })
 
@@ -44,35 +36,6 @@ $.each(datos, function()
 }
 });
 }
-
-function especialistas(ID_Servicio){
-            $('#dropEspecialistas').empty();
-            $('#dropEspecialistas').append("<option>Cargando...<option>");
-                $.ajax({
-  url: '/especialistasCombo/' + ID_Servicio,
-  type: 'GET',
-  dataType: "json",
-  success:function(datos){ 
-$('#dropEspecialistas').empty();
-$('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
-$.each(datos, function()
-{
-        var i;
-        for (i = 0; i < this.length; i++) {
-        $('#dropEspecialistas').append('<option value="' + this[i][0].Cédula + '">' + this[i][0].Nombre +  " " + 
-        this[i][0].Primer_Apellido + " " + this[i][0].Segundo_Apellido + '</option>');
-} 
-
-})
-
-}, error:function() {
-        $('#dropEspecialistas').empty();
-        $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
-        alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
-}
-}); //fin ajax
-}//fin especialistas 
-
 
 function servicios(ID_Recinto){
             $('#dropServicios').empty();
@@ -87,7 +50,7 @@ $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----<
 $.each(datos, function()
 {
         $.each(this, function(){
-        $('#dropServicios').append('<option value="' + this.ID_Servicio + '">' + this.Nombre + '</option>');
+        $('#dropServicios').append('<option value="' + this.id + '">' + this.nombre + '</option>');
         }) 
 }) 
 
@@ -97,7 +60,36 @@ $.each(datos, function()
         alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
 }
 }); //fin ajax
+}//fin servicios 
+
+function especialistas(ID_Servicio){
+            $('#dropEspecialistas').empty();
+            $('#dropEspecialistas').append("<option>Cargando...<option>");
+                $.ajax({
+  url: '/especialistasCombo/' + ID_Servicio,
+  type: 'GET',
+  dataType: "json",
+  success:function(datos){ 
+$('#dropEspecialistas').empty();
+$('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+$.each(datos, function()
+{
+        $.each(this, function(){
+        $('#dropEspecialistas').append('<option value="' + this.id + '">' + this.nombre + " "  + this.primer_apellido_especialista + 
+        " " +  this.segundo_apellido_especialista + '</option>');
+        }) 
+
+})
+
+}, error:function() {
+        $('#dropEspecialistas').empty();
+        $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+        alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
+}
+}); //fin ajax
 }//fin especialistas 
+
+
 
 $(document).ready(function() {
         recintos();
@@ -130,19 +122,18 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 
 </script>
 
-<button onclick="revisarDisponibilidad()">Alert</button>
-
 <script>
 function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
                 var datepicked = new Date(dateTime);
-                alert("Hace postback: " + datepicked.toDateString()); 
+                datepicked = datepicked.toISOString();
+                alert("Fecha elegida: " + datepicked);
                 var dropRecintos = $('#dropRecintos').val();           
-                alert(dropRecintos);
+                //alert(dropRecintos);
                 var dropServicios = $('#dropServicios').val();           
-                alert(dropServicios);
+                //alert(dropServicios);
                 var dropEspecialistas = $('#dropEspecialistas').val();           
-                alert(dropEspecialistas);
+                //alert(dropEspecialistas);
                 if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
                  dropEspecialistas == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
@@ -153,10 +144,7 @@ function revisarDisponibilidad() {
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-        $.each(datos, function()
-{
-        alert(datos.xD);
-})
+        cargarFechasDisponibles(datos.xD);
 }, error:function() {
      alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
      " con el Servicio de Salud");   
@@ -170,7 +158,7 @@ timeout: 15000
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 <div class="container">
         <div class="row">
-            <div class='col-sm-6'>
+            <div class='col-sm-3'>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepicker5'>
                         <input type='text' class="form-control" onchange="prueba()" />
@@ -183,7 +171,7 @@ timeout: 15000
                     <script type="text/javascript">
                 $(function () {
                     var momento = new Date();
-                    console.log(momento);
+                    console.log("Actual parseada: " + momento);
         $('#datetimepicker5').datetimepicker({
             minDate: momento, //Muestra el calendario desde el dia actual y no desde antes
             maxDate: fechaMaxima(momento),
@@ -203,7 +191,7 @@ timeout: 15000
         var anno = maximo.getFullYear();
         var bisiesto = false;
     
-    console.log(dia+"/"+mes+"/"+anno);
+    //console.log("Actual " + dia+"/"+mes+"/"+anno);
         
     if ((anno % 4 == 0) && ((anno % 100 != 0) || (anno % 400 == 0))) {
         bisiesto = true;
@@ -212,11 +200,13 @@ timeout: 15000
     switch(mes){
     case 0:
     if (dia > 28) {
-    if	(bisiesto == 1) {
-    maximo = anno + "-02-29";
+    if	(bisiesto == true) {
+    maximo = "29/1/" + anno;
     } else {
-        maximo = anno + "-02-28";
+        maximo = "28/1/" + anno;
     }
+    } else {
+        maximo = dia + "/" + mes+1 + "/" + anno;   
     }
     break;
     
@@ -230,16 +220,17 @@ timeout: 15000
     if(dia == 30) {
     mes = (mes + 1);
     if (mes < 10) {
-    maximo = "31/" + "/" + "0" + mes + anno;
+
+    maximo = "31/"+ mes + "/" + anno;
     } else {
-    maximo = "31/" + "/" + mes + anno ;
+        maximo = "31/"+ mes + "/" + anno;
     }
     } else {
     mes = (mes + 1);
     if (mes < 10) {
     maximo = dia + "/" + "0" + mes + "/" + anno;
     } else {
-    maximo = dia + "/" + mes + "/" + anno;
+    maximo = "0" + dia + "/" + mes + "/" + anno;
     }
     }
     break;
@@ -251,39 +242,126 @@ timeout: 15000
     case 7:
     case 9:
     if(dia == 31) {
-    mes = (mes + 2);
+    mes = (mes + 1);
     if (mes < 10) {
-    maximo = "30/" + "/0" + mes + anno;
+    maximo = "30/" + mes + "/"+ anno;
     } else {
-    maximo = "30/" + "/" + mes + anno;
+    maximo = "30/" + mes + "/"+ anno;
     }
     } else {
-    mes = (mes + 2);
+    mes = (mes + 1);
     if (mes < 10) {
-    maximo = "0" + mes + "/" + dia + "/"  + anno;
+    maximo =  dia + "/" + "0" + mes + "/" + anno;
     } else {
-    maximo =  mes + "/" + dia + "/" + anno  ;
+    maximo =  dia + "/" + mes + "/" + anno  ;
     }
     }
     break;
     
     case 11:
-    maximo = dia + "/01/" + (anno + 1);
+    maximo = dia + "/0/" + (anno + 1);
     break;
     }
-    console.log(new Date(Date.parse(maximo)));
-        return maximo;
+    //console.log("Máxima " + maximo);
+    var parts = maximo.split("/");
+    var newMaximo =   Number(parts[1])+1 +  "/" + Number(parts[0]) + "/" + Number(parts[2]);
+    var fechaMax =  new Date(Date.parse(newMaximo));
+    if(fechaMax.getDay() == 0) {
+        fechaMax.setDate(fechaMax.getDate()-2);
     }
-    
-    
+    if(fechaMax.getDay() == 6) {
+        fechaMax.setDate(fechaMax.getDate()-1);
+    }
+   // console.log("Fecha nueva prueba " + fechaMax);
+        return fechaMax;
+    }
     });
             </script>
         </div>
     </div>
     
+    <button id="mostar-tabla"  class = ' margin-button-agregar btn btn-success mobile' onclick="revisarDisponibilidad()">Mostrar horario</button>
+
+    <!-- /////////////////////////////////////////////////////////////////////////// -->
+    
+    <div class="panel-heading">
+<div class="table-responsive" id="ocultar-tabla" style="display: none;">
+       
+<table class="table table-striped table-bordered table-condensed table-hover">
+                    
+                    <?php $hora = 8; $des = "am"; $horaMilitar = 8;?>
+                <tbody>
+                    @for ($i = 0; $i < 4; $i++)
+                        <?php $minutos = 00;?>
+                        <tr>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar . '0' . $minutos}}00" type="submit" style=" width:80px;" class="size btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                </form> <?php $minutos = $minutos + 20;?>
+                            </td>
+                            <td style="text-align: center">
+                                <form style="text-align: center" action="" method="POST"  onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = $minutos + 20;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = 00;  $hora = $hora + 1; $horaMilitar = $horaMilitar + 1;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':0' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar. 0 . $minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:0{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = $minutos + 20;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $minutos = $minutos + 20;?>
+                            <td style="text-align: center">
+                                <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea reservar la cita a las ' + '{{$hora}}' +':' + '{{$minutos}}' + ' {{$des}}' + '?');">
+                                        {{csrf_field()}}
+                                        <button id="{{$horaMilitar.$minutos}}00" type="submit" style=" width:80px;" class="btn  btn-success">{{$hora}}:{{$minutos}} {{$des}}</button>
+                                </form>
+                            </td><?php $hora = $hora + 1; $horaMilitar = $horaMilitar + 1;?>
+                        </tr>
+
+                        @if ($i == 1)
+                            <?php $des = "pm"; $hora = 1; $horaMilitar = 13;?>
+                        @endif
+                    @endfor
+                </tbody>
+</table>
 
 
-
+<?php
+$array = array(800, 820, 840, 1,  1);
+$holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
+?>
+<script>
+    function cargarFechasDisponibles(horas) {
+        alert(horas);
+        horas.forEach(function(entry) {
+            entry = entry.replace(/\:/g, '');
+            if(entry.charAt(0) == "0") {
+                entry = entry.replace("0", "")
+            }
+            alert(entry);
+    document.getElementById(entry).disabled = true;
+    document.getElementById(entry).style.backgroundColor = "#656161";
+    
+});
+mostarHorario();
+}
+</script>
+</div>
+</div>
 
 @endsection
 

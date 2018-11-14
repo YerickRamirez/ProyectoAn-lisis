@@ -5,7 +5,7 @@
       <div class="panel-heading ">
             <p style="text-align: center; font-size: 3vh;">Bienvenido al modulo de administrador del sistema del Servicio de Salud</p></div>
             <div class="panel-body">
-            <h4 style="text-align: center">Este módulo permite gestionar todas las configraciones necesarias para el mantenimiento del sistema.</h4>
+            <p style="text-align: center; font-size: 2.5vh;" >Este módulo permite gestionar todas las configraciones necesarias para el mantenimiento del sistema.</p>
             <div class="col-md-6">
                   <div class="panel panel-primary ">
                   <div class="panel-heading inforation-menu">

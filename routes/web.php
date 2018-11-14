@@ -56,18 +56,24 @@ Route::get('horarios', function () {
 
 
 Route::get('recintos', function () {
-    return view('Admin/configurarRecintos') ;
-})->middleware('auth.basic');
-   // return view('recintos/index');
-//})->name('recintos');
+    return view('recintos/index');
+})->name('recintosA');
 
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
-Route::get('servicios', function () {
-    return view('Admin/configurarServicios') ;
-})->middleware('auth.basic');
+Route::resource('servicio', 'ServicioController');
 
+/*
+Route::get('servicios', 'ServicioController@index')->name('servicios.index');//->middleware('auth.basic');
+Route::get('mostrarServicio', 'ServicioController@show')->name('servicios.show');//->middleware('auth.basic');
+Route::get('editarServicio', 'ServicioController@edit')->name('servicios.edit');//->middleware('auth.basic');
+Route::post('eliminarServicio', 'ServicioController@destroy')->name('servicios.destroy');//->middleware('auth.basic');
+Route::get('crearServicio', 'ServicioController@create')->name('servicios.create');//->middleware('auth.basic');
+Route::post('almacenarServicio', 'ServicioController@store')->name('servicios.store');//->middleware('auth.basic');
+Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.update');//->middleware('auth.basic');
+
+*/
 
 //---------------------------------------
 //Rutas Paciente
@@ -95,15 +101,6 @@ Route::get('datepicker', function () {
 
 
 //---------------------------------------
-//Rutas de Especialista
-//---------------------------------------
-Route::get('especialistasas', function () {
-    return view('masterEspecialista');
-})->name('especialistasas');
-
-
-
-//---------------------------------------
 //---------------------------------------
 
 Route::post('login', 'Auth\LoginController@login')-> name('login')-> middleware('guest');
@@ -124,21 +121,9 @@ Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
 //Fin rutas tabla especialista
 
+
 //Rutas tabla recinto
 Route::resource('recintos', 'RecintoController');
-
-Route::post('recintos/agregarRecinto', 'RecintoController@agregarRecinto')->name('recintos.agregarRecinto');
-
-
-
-
-Route::view('recintos/viewAnnadir', 'Recinto.annadirRecinto');
-Route::get('recintos/{ID_Recinto}/eliminarRecinto', 'RecintoController@eliminarRecinto');
-
-Route::post('recintos/agregarRecinto', 'RecintoController@agregarRecinto');
-
-Route::get('recintos/{id}/editarRecinto', 'RecintoController@editarRecinto');
-Route::post('recintos/{id}/actualizarRecinto', 'RecintoController@actualizarRecinto');
 //Fin rutas recinto
 
 
@@ -170,7 +155,7 @@ Route::get('ajax',function(){
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

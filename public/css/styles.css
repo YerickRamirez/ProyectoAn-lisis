@@ -15,7 +15,13 @@ div.content {
 }
 
 div.content-b {
-  margin-top: 5px; 
+  margin-top: 25px; 
+  margin-bottom: 5px;
+  padding: 1px 1px;
+}
+
+div.content-recintos {
+  margin-top: 1px; 
   margin-bottom: 5px;
   padding: 1px 1px;
 }

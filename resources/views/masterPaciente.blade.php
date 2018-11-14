@@ -113,77 +113,23 @@
 	<div class="panel-heading">
 		<div class="content w3-container">
 			@yield('contenido_Paciente')
-
-		</div>
-	</div>
-
-	
-	<div class="content w3-container">
-
-	
-	<div class="row">
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+			<div class="row">
+			<div >
 					@include('flash::message')
 		    </div>
 	</div>
-
-</div>
+		</div>
+	</div>
 	
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
   	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
-    	<a href="https://mdbootstrap.com/bootstrap-tutorial/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 
-
-
-	<script type="text/javascript">
-	$(window).resize(function() {
-		var path = $(this);
-		var contW = path.width();
-		if(contW >= 751){
-			document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-		}else{
-		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-		}
-	});
-	$(document).ready(function() {
-		$('.dropdown').on('show.bs.dropdown', function(e){
-	    	$(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
-		});
-		$('.dropdown').on('hide.bs.dropdown', function(e){
-			$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
-		});
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			var elem = document.getElementById("sidebar-wrapper");
-			left = window.getComputedStyle(elem,null).getPropertyValue("left");
-			if(left == "200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-			}
-			else if(left == "-200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-			}
-		});
-
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			var elem = document.getElementById("sidebar-wrapper");
-			left = window.getComputedStyle(elem,null).getPropertyValue("left");
-			if(left == "200px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
-			}
-			else if(left == "-230px"){
-				document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
-			}
-		});
-
-	});
-	</script>
-
+	<script src="{{asset('js/menus_dinamicos.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
 </body>
 
