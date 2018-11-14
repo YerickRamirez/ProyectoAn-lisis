@@ -15,6 +15,7 @@ class CreateEspecialistaserviciosTable extends Migration {
 		Schema::create('especialista_servicios', function(Blueprint $table) {
             $table->increments('id');
 			$table->integer('id_especialista');
+			$table->integer('id_recinto');
 			$table->integer('id_servicio');
             $table->boolean('active_flag');
         });

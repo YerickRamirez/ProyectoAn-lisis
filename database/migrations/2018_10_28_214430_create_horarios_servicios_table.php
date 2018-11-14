@@ -14,7 +14,8 @@ class CreateHorariosserviciosTable extends Migration {
 	{
 		Schema::create('horarios_servicios', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_dia');
+			$table->integer('id_dia');
+			$table->integer('id_recinto');
             $table->integer('id_servicio');
             $table->integer('id_especialista');
             $table->date('fecha_inicio_servicio');

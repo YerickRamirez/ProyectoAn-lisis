@@ -11,6 +11,7 @@ use Auth;
 use App\Cita;
 use Illuminate\Http\Request;
 use \Session;
+use Carbon\Carbon;
 
 class CitaController extends Controller
 {
@@ -63,26 +64,36 @@ class CitaController extends Controller
 	{
 		$cita = new Cita();
 
-		$cita->name = ucfirst($request->input("name"));
-		$cita->slug = str_slug($request->input("name"), "-");
-		$cita->description = ucfirst($request->input("description"));
+		$cita->estado_cita_id = 1;
+		$cita->paciente_id = 1;
+		$cita->servicio_id = $request->dropServicios;
+		$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+		$minutosCita = substr($request->horaCita, -2);
+		$horaCita = $request->horaCita[0];
+		if($horaCita == "9" || $horaCita == "8") {
+			$horaCita = "0" . $horaCita . ':' . $minutosCita;
+		} else {
+			$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+		}
+		//return json_encode(["xD"=>$fechaCita . ' - ' . $horaCita]);
+		$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
 		$cita->active_flag = 1;
-		$cita->author_id = $request->user()->id;
+		//$cita->author_id = $request->user()->id;
 
-		$this->validate($request, [
+		/*$this->validate($request, [
 					 'name' => 'required|max:255|unique:citas',
 					 'description' => 'required'
-			 ]);
+			 ]);*/
 
 		$cita->save();
 
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Cita \"<a href='citas/$cita->slug'>" . $cita->name . "</a>\" was Created.");
+		Session::flash('message', "La cita fue añadida exitosamente");
 
 		return redirect()->route('citas.index');
-	}
+		}
 
 	/**
 	 * Display the specified resource.

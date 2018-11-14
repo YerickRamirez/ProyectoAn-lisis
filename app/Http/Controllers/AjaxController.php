@@ -36,7 +36,7 @@ class AjaxController extends Controller {
         /*$query=trim($request->get('searchText'));*/
 
         $recintos=DB::table('recintos')->where('active_flag', '=', 1)->orderBy('descripcion','desc')->get();
-        if ($recintos == null) {
+        if ($recintos == null || empty($recintos)) {
             Flash::message("No hay recintos para mostrar");
         }
         return json_encode(["recintos"=>$recintos]);
@@ -58,7 +58,7 @@ public function comboEspecialistas($ID_Servicio, Request $request){
     return ["especialistas"=>$especialistas];
 }
 
-public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $datepicked, Request $request){
+public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked, Request $request){
     /*$query=trim($request->get('searchText'));*/
 
     //$servicios=DB::table('servicio')->where('Recinto', '=', $ID_Recinto)->get();
@@ -67,6 +67,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
      //   Flash::error("No hay especialistas para el recinto seleccionado recinto");
      //   } else {
 
+        $dropEspecialistas = $request->dropEspecialistas;
     
         $newDate = Carbon::parse($datepicked)->format('Y-m-d');
 
@@ -78,7 +79,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
 
         if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {
-                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i:s'));
+                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i'));
             }
         }
 
@@ -111,7 +112,34 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistas, $da
 }
 
 private function arreglarHora($hora) {
+
     $ultimos_digitos_hora  = substr($hora, -2);
+
+    if($ultimos_digitos_hora != 00 && $ultimos_digitos_hora != 20 && $ultimos_digitos_hora != 40) {
+
+    if($ultimos_digitos_hora < 20) {
+        $nuevosMins = "20";
+        $nuevaHora = strtotime(substr($hora, 0, 3) . $nuevosMins);
+        $date = date('H:i' , $nuevaHora);
+        return $date;
+
+    } elseif ($ultimos_digitos_hora < 40) {
+        $nuevosMins = "40";
+        $nuevosMins = "20";
+        $nuevaHora = strtotime(substr($hora, 0, 3) . $nuevosMins);
+        $date = date('H:i' , $nuevaHora);
+        return $date;
+
+    } elseif ($ultimos_digitos_hora > 40) {
+        $nuevaHora = strtotime(substr($hora, 0, 3) . "00") + 60*60;
+        $date = date('H:i' , $nuevaHora);
+        return $date;
+    }
+} else {
+    return $hora;
+}
+
+   /* $ultimos_digitos_hora  = substr($hora, -2);
 
     if(substr($ultimos_digitos_hora, -1) != "0") { //Obliga los minutos a terminar en 0 
     $ultimos_digitos_hora  = substr($ultimos_digitos_hora, 1) . "0";
@@ -129,8 +157,8 @@ private function arreglarHora($hora) {
         $primer_digito =  substr($hora, 1);
         $primeros_dos_digitos = substr($hora, 2);
         $segundo_digito_int =  intval(substr($primeros_dos_digitos, -1));
-        /*$horaParse = strtotime($primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos);
-        $horaReturn = date('H:i', $horaParse);*/
+        //$horaParse = strtotime($primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos);
+        //$horaReturn = date('H:i', $horaParse);
         $horaReturn = $primer_digito . ':' . $segundo_digito_int+1 . $ultimos_digitos_correctos;
         return $horaReturn;
         }
@@ -138,7 +166,7 @@ private function arreglarHora($hora) {
         $primeros_dos_digitos = substr($hora, 2);
         $horaReturn = $primeros_dos_digitos . ':' . $ultimos_digitos_correctos;
         return $horaReturn;
-    }
+    }*/
 }
 
 private function llenarArrayhoras($array, $horaInicio, $horaFin) {

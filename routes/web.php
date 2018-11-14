@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*//*
 
 //CREO QUE NINGUNO ES NECESARIO
 Route::get('master', function () {
@@ -44,15 +44,15 @@ Route::get('/',function () {
 
 Route::get('admin', function () {
     return view('Admin/index') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('cuentas', function () {
     return view('Admin/configurarCuentas') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
-});//->middleware('auth.basic');
+})->middleware('auth.basic');
 
 
 Route::get('recintos', function () {
@@ -81,19 +81,20 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 
 Route::get('paciente', function () {
     return view('Paciente/index') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
+/*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('informacion', function () {
     return view('Paciente/informacion') ;
-});//->middleware('auth.basic');
+})->middleware('auth');
 
 Route::get('datepicker', function () {
     return view('Paciente/datepicker');
@@ -139,6 +140,11 @@ Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
 Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
 //fin rutas de ajax
+
+//Ruta citas
+Route::resource('citas', 'CitaController');
+Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
+//
 
 Route::get('combobox',function(){
     return view('PruebaCombobox.pruebacombo');
