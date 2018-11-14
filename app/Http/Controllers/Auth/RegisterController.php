@@ -76,12 +76,13 @@ class RegisterController extends Controller
     {
 
        Mail::to($data['email'])->send(new Confirmacion($data['name']));
-
+        $tipo = 'paciente';
         return User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'tipo' => $tipo,
         ]);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-//use Auth;
+use App;
 
 class LoginController extends Controller
 {
@@ -13,18 +13,23 @@ class LoginController extends Controller
         $credentials = $this->validate(request(),[
             'email' => 'email|required|string',
             'password' => 'required|string'//,
-            //'name' => 'required|string',
-            //'lastName' => 'required|string'
         ]);
 
-        //return $credentials;
-            
         if(Auth::attempt($credentials)){
-            return view('masterAdmin');
+//            if(auth()->user()->tipo() => 'paciente'){
+            if(Auth::attempt(['tipo'=> 'paciente'])){
+          // return view('Paciente.index');
+          //$user = Auth::user();
+        //  $tipo = Auth::tipo();
+         // return $tipo;
+                return redirect('especialistas');
+               // return redirect('paciente');
+            } else{
+                return redirect('paciente');
+               // return redirect('especialistas');
+            }
         } else {
-            //return 'Error en la autenticacion';
         return back()->withErrors(['email' => trans('auth.failed')]);        
-        //return back()->withErrors(['email' => 'This email does not exist']);
     }
     }
 
@@ -71,6 +76,11 @@ class LoginController extends Controller
     public function logout () {
         //logout user
         auth()->logout();
+       // App::after(function ($request, $response) {
+         //   $response->headers->set("Cache-Control","no-cache,no-store, must-revalidate");
+           // $response->headers->set("Pragma", "no-cache"); //HTTP 1.0
+            //$response->headers->set("Expires"," Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+        //});
         // redirect to homepage
         return redirect('login');
     }
