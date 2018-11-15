@@ -73,7 +73,7 @@
 		      			<a class="border" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
+		      			<a class="border" href="{{ route('Admin.horarios') }}">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('servicio.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
@@ -106,9 +106,9 @@
       <div id="myNavbar">
 	    <a class="border-a" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		<a class="border-a" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
-		<a class="border-a" href="horarios">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
-		<a class="border-a" href="servicios">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
-		<a class="border-a" href="recintos">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
+		<a class="border-a" href="{{ route('Admin.horarios') }}">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
+		<a class="border-a" href="{{ route('servicio.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
+		<a class="border-a" href="{{ route('recintos.index') }}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
       	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
@@ -133,6 +133,7 @@
 	</footer>
 
 	<script src="{{asset('js/menus_dinamicos.js')}}"></script>
+	<script src="{{asset('js/horarios_servicios.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>

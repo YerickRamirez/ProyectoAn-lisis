@@ -1,60 +1,45 @@
-@extends('layout')
+@extends ('masterRoot')
+@section ('contenido_Admin')
 
-@section('header')
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Horarios_servicio
-            <a class="btn btn-success pull-right" href="{{ route('horarios_servicios.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
+<div class="panel panel-primary class border-panel " >
+    <div class="panel-heading border-panel bg-color-panel">
+        <p class="center" style="font-size: 3vh;">Configuración de horarios</p>
     </div>
-@endsection
+    <div class="panel-body">
+    <section class="">
+        <div class="panel-heading">
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
 
-@section('content')
-    <div class="row">
-        <div class="col-md-12">
-            @if($horarios_servicios->count())
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th>Chema=id</th> <th>Id_dia</th> <th>Id_servicio</th> <th>Id_especialista</th> <th>Fecha_inicio_servicio</th> <th>Fecha_fin_servicio</th> <th>Hora_inicio_servicio</th> <th>Hora_fin_servicio</th>
-                            <th class="text-right">OPTIONS</th>
-                        </tr>
-                    </thead>
+        <?php
+            $holas = array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
+        ?>
 
-                    <tbody>
-                        @foreach($horarios_servicios as $horarios_servicio)
+        <div class="panel-heading" style="height:100%;">
+            <div class="table-responsive" id="ocultar-tabla" style="display: none;">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-condensed table-hover">
+                        <thead>
+                            <th class="text-center">Día</th>
+                            <th class="text-center">Mañana</th>
+                            <th class="text-center">Tarde</th>                        
+                        </thead>
+                        @foreach($holas as $hola)
+                        <tbody>
                             <tr>
-                                <td class="text-center"><strong>{{$horarios_servicio->id}}</strong></td>
-
-                                <td>{{$horarios_servicio->chema=id}}</td> <td>{{$horarios_servicio->id_dia}}</td> <td>{{$horarios_servicio->id_servicio}}</td> <td>{{$horarios_servicio->id_especialista}}</td> <td>{{$horarios_servicio->fecha_inicio_servicio}}</td> <td>{{$horarios_servicio->fecha_fin_servicio}}</td> <td>{{$horarios_servicio->hora_inicio_servicio}}</td> <td>{{$horarios_servicio->hora_fin_servicio}}</td>
-                                
-                                <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('horarios_servicios.show', $horarios_servicio->id) }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i> View
-                                    </a>
-                                    
-                                    <a class="btn btn-xs btn-warning" href="{{ route('horarios_servicios.edit', $horarios_servicio->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Edit
-                                    </a>
-
-                                    <form action="{{ route('horarios_servicios.destroy', $horarios_servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="DELETE">
-
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-                                    </form>
-                                </td>
+                                <td class="text-center">{{$hola}}</td>
+                                <td class="text-center"><input type="checkbox" autocomplete="off"></td>
+                                <td class="text-center"><input type="checkbox" autocomplete="off"></td>        
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
-                {!! $horarios_servicios->render() !!}
-            @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
-            @endif
-
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+        </section>
     </div>
-
-@endsection
+    </div>
+</div>
+ @endsection

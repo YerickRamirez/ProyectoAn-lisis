@@ -194,3 +194,14 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rutas horarios servicios////////////////////////////////////////
+Route::get('horarios', function () {
+    return view('Admin/configurarHorarios') ;
+})->name('Admin.horarios');
+
+Route::get('horarios_servicios', function () {
+    return view('horarios_servicios/index') ;
+})->name('horarios_servicios.index');
+
+Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'AjaxController@datosHorariosServicios');
