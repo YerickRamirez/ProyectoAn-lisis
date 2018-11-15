@@ -14,7 +14,7 @@ class CreateRecintosTable extends Migration {
 	{
 		Schema::create('recintos', function(Blueprint $table) {
             $table->increments('id');
-            $table->text('descripcion');
+            $table->string('descripcion', 30);
             $table->boolean('active_flag');
         });
 

@@ -50,23 +50,39 @@ public function comboServicios($ID_Recinto, Request $request){
     return ["servicios"=>$servicios];
 }
 
-public function comboEspecialistas($ID_Servicio, Request $request){
+public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
     /*$query=trim($request->get('searchText'));*/
 
-    $especialistas= Servicio::findOrFail($ID_Servicio)->especialistas->where('active_flag', '=', 1);
+    $especialistas_servicio = Servicio::findOrFail($ID_Servicio)->where('active_flag', '=', 1)->first()
+    ->especialistas->where('active_flag', '=', 1);
+    
 
-    return ["especialistas"=>$especialistas];
+    $especialistas_return = array();
+    foreach ($especialistas_servicio as $especialista) {
+       
+        $horario_servicio_esp = $especialista->horarios_servicios->where
+        ('active_flag', '=', 1)->where('id_servicio' , $ID_Servicio);
+        
+        //return ["especialistas"=> $horario_servicio_esp];
+
+        if(!empty($horario_servicio_esp)) {
+
+            foreach ($horario_servicio_esp as $horario) {
+                
+                if(!empty($horario)) {
+                    if($horario->id_recinto == $ID_Recinto) {
+                    array_push($especialistas_return,  $especialista);
+                    }
+                }
+            }
+        }
+    }
+    return ["especialistas"=> $especialistas_return];
 }
 
 public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked, Request $request){
-    /*$query=trim($request->get('searchText'));*/
 
-    //$servicios=DB::table('servicio')->where('Recinto', '=', $ID_Recinto)->get();
-
-    //if ($servicios->isEmpty()) {
-     //   Flash::error("No hay especialistas para el recinto seleccionado recinto");
-     //   } else {
-
+    
         $dropEspecialistas = $request->dropEspecialistas;
     
         $newDate = Carbon::parse($datepicked)->format('Y-m-d');
@@ -83,6 +99,8 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
             }
         }
 
+       // return json_encode(["horasOcupadas"=>$horasOcupadas]);
+
         if(!empty($horarios_deshabilitados_esp)) {//fecha/hora deshabilitada por el especialista 
             foreach ($horarios_deshabilitados_esp as $deshabilitado_esp) {
                 $carb_inicio = Carbon::parse($deshabilitado_esp->fecha_inicio_deshabilitar)->format('Y-m-d');//fecha inicio deshabilitar
@@ -98,16 +116,12 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
             }
         }
 
-        //$horasOcupadas = json_encode($horasOcupadas);
-
         /*$users = DB::table('users')
                     ->whereBetween('votes', array(1, 100))->get(); */
 
-        
-        
-        $xD = /*$dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $newDate . ' ' .*/ $horasOcupadas;
+        //$xD = /*$dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $newDate . ' ' .*/ $horasOcupadas;
 
-    return json_encode(["xD"=>$xD]);
+    return json_encode(["horasOcupadas"=>$horasOcupadas]);
    // }
 }
 

@@ -62,11 +62,11 @@ $.each(datos, function()
 }); //fin ajax
 }//fin servicios 
 
-function especialistas(ID_Servicio){
+function especialistas(ID_Servicio, ID_Recinto){
             $('#dropEspecialistas').empty();
             $('#dropEspecialistas').append("<option>Cargando...<option>");
                 $.ajax({
-  url: '/especialistasCombo/' + ID_Servicio,
+  url: '/especialistasCombo/' + ID_Servicio + '/' + ID_Recinto,
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
@@ -109,8 +109,9 @@ $(document).ready(function() {
         $('#dropServicios').change(function() {
         ocultarHorario();
         var ID_Servicio = $('#dropServicios').val();
-        if(ID_Servicio != 'defecto'){
-        especialistas(ID_Servicio);   
+        var ID_Recinto = $('#dropRecintos').val();
+        if(ID_Servicio != 'defecto' && ID_Recinto != 'defecto'){
+        especialistas(ID_Servicio, ID_Recinto);   
         }else{
         limpiarDrop("dropEspecialistas", "Especialista")
         }
@@ -139,6 +140,7 @@ function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
                 var datepicked = new Date(dateTime);
                 datepicked = datepicked.toISOString();
+                //alert(datepicked);
                 //alert("Fecha elegida: " + datepicked);
                 var dropRecintos = $('#dropRecintos').val();           
                 //alert(dropRecintos);
@@ -156,7 +158,9 @@ function revisarDisponibilidad() {
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-        cargarFechasDisponibles(datos.xD);
+    alert(datos + " jajaja");
+    alert(datos.horasOcupadas);
+        cargarFechasDisponibles(datos.horasOcupadas);
 }, error:function() {
      alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
      " con el Servicio de Salud");   
@@ -377,6 +381,8 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 <script>
     function cargarFechasDisponibles(horas) {
         limpiarCitas();
+        alert("/"+horas+"/");
+        if(horas != undefined && horas !== "") {
         horas.forEach(function(entry) {
             entry = entry.replace(/\:/g, '');
             if(entry.charAt(0) == "0") {
@@ -387,6 +393,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
     document.getElementById(entry).style.backgroundColor = "#656161";
     
 });
+}
 mostarHorario();
 }
 

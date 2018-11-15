@@ -86,7 +86,7 @@ Route::get('paciente', function () {
 /*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
-})->middleware('auth');
+})->middleware('auth');*/
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
@@ -137,7 +137,7 @@ Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mai
 //Rutas prueba ajax
 Route::get('/recintosCombo', 'AjaxController@combobox');
 Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
-Route::get('/especialistasCombo/{ID_Servicio}', 'AjaxController@comboEspecialistas');
+Route::get('/especialistasCombo/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistas');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
 //fin rutas de ajax
 

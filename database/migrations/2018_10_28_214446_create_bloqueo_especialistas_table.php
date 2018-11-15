@@ -14,8 +14,12 @@ class CreateBloqueoespecialistasTable extends Migration {
 	{
 		Schema::create('bloqueo_especialistas', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_especialista');
-            $table->integer('id_dia_bloqueo_especialistas');
+			$table->integer('id_especialista')->unsigned();
+			$table->foreign('id_especialista')->references('id')->on('especialistas')->onDelete('cascade');
+			
+			$table->integer('id_dia_bloqueo_especialistas')->unsigned();
+			$table->foreign('id_dia_bloqueo_especialistas')->references('id')->on('dia_bloqueo_especialistas')->onDelete('cascade');
+
             $table->date('fecha_inicio_bloqueo_especialista');
             $table->date('fecha_fin_bloqueo_especialista');
             $table->time('hora_inicio_bloqueo_especialista');

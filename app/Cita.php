@@ -10,7 +10,7 @@ class Cita extends Model
   protected $table = 'citas';
 
     public $timestamps=false;
-    protected $fillable = ['estado_cita_id', 'paciente_id', 'servicio_id', 'fecha_cita'];
+    protected $fillable = ['estado_cita_id', 'paciente_id', 'servicio_id', 'especialista_id', 'recinto_id', 'fecha_cita'];
 
     public function Author(){
       return $this->belongsTo('App\User','author_id');

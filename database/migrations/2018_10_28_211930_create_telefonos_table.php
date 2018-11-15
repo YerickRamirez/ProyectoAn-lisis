@@ -14,7 +14,8 @@ class CreateTelefonosTable extends Migration {
 	{
 		Schema::create('telefonos', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('paciente_id');
+			$table->integer('paciente_id')->unsigned();
+			$table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
             $table->integer('telefono');
             $table->boolean('active_flag');
         });

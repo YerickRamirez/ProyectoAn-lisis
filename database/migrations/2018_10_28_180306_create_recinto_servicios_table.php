@@ -13,8 +13,11 @@ class CreateRecintoServiciosTable extends Migration {
 	public function up()
 	{
 		Schema::create('recinto_servicios', function(Blueprint $table) {
-			$table->integer('servicio_id');
-			$table->integer('recinto_id');
+			$table->integer('servicio_id')->unsigned();
+			$table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
+
+			$table->integer('recinto_id')->unsigned();
+			$table->foreign('recinto_id')->references('id')->on('recintos')->onDelete('cascade');
             $table->boolean('active_flag');
         });
 

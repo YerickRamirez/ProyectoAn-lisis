@@ -14,7 +14,9 @@ class CreateHorariosadministrativosTable extends Migration {
 	{
 		Schema::create('horarios_administrativos', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_especialista');
+			$table->integer('id_especialista')->unsigned();
+			$table->foreign('id_especialista')->references('id')->on('especialistas')->onDelete('cascade');
+
             $table->string('dia_administrativo', 30);
             $table->string('horario_administrativo', 45);
             $table->boolean('active_flag');

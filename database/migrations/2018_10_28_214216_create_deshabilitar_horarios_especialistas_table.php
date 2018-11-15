@@ -14,7 +14,9 @@ class CreateDeshabilitarhorariosespecialistasTable extends Migration {
 	{
 		Schema::create('deshabilitar_horarios_especialistas', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_especialista');
+			$table->integer('id_especialista')->unsigned();
+			$table->foreign('id_especialista')->references('id')->on('especialistas')->onDelete('cascade');
+
             $table->date('fecha_inicio_deshabilitar');
             $table->date('fecha_fin_deshabilitar');
             $table->time('hora_inicio_deshabilitar');

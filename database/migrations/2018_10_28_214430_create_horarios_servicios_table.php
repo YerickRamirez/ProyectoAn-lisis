@@ -13,11 +13,20 @@ class CreateHorariosserviciosTable extends Migration {
 	public function up()
 	{
 		Schema::create('horarios_servicios', function(Blueprint $table) {
+			
             $table->increments('id');
-			$table->integer('id_dia');
-			$table->integer('id_recinto');
-            $table->integer('id_servicio');
-            $table->integer('id_especialista');
+			$table->integer('id_dia')->unsigned();
+			$table->foreign('id_dia')->references('id')->on('dia_horario_servicios')->onDelete('cascade');
+
+			$table->integer('id_recinto')->unsigned();
+			$table->foreign('id_recinto')->references('id')->on('recintos')->onDelete('cascade');
+
+			$table->integer('id_servicio')->unsigned();
+			$table->foreign('id_servicio')->references('id')->on('servicios')->onDelete('cascade');
+
+			$table->integer('id_especialista')->unsigned();
+			$table->foreign('id_especialista')->references('id')->on('especialistas')->onDelete('cascade');
+
             $table->date('fecha_inicio_servicio');
             $table->date('fecha_fin_servicio');
             $table->time('hora_inicio_servicio');

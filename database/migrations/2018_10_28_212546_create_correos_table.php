@@ -14,7 +14,8 @@ class CreateCorreosTable extends Migration {
 	{
 		Schema::create('correos', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('paciente_id');
+			$table->integer('paciente_id')->unsigned();
+			$table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
             $table->string('correo', 45);
             $table->integer('prioridad');
             $table->boolean('active_flag');
