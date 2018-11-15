@@ -44,20 +44,20 @@ Route::get('/',function () {
 
 Route::get('admin', function () {
     return view('Admin/index') ;
-})->middleware('auth.basic');
+});//->middleware('auth.basic');
 
 Route::get('cuentas', function () {
     return view('Admin/configurarCuentas') ;
-})->middleware('auth.basic');
+});//->middleware('auth.basic');
 
 Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
-})->middleware('auth.basic');
+});//->middleware('auth.basic');
 
 
 Route::get('recintos', function () {
     return view('recintos/index');
-})->name('recintosA');
+});//->name('recintosA');
 
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
@@ -81,7 +81,7 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 
 Route::get('paciente', function () {
     return view('Paciente/index') ;
-})->middleware('auth');
+});//->middleware('auth');
 
 /*
 Route::get('citas', function () {
@@ -90,11 +90,11 @@ Route::get('citas', function () {
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
-})->middleware('auth');
+});//->middleware('auth');
 
 Route::get('informacion', function () {
     return view('Paciente/informacion') ;
-})->middleware('auth');
+});//->middleware('auth');
 
 Route::get('datepicker', function () {
     return view('Paciente/datepicker');

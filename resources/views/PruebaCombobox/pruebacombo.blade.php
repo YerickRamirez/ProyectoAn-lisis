@@ -140,7 +140,7 @@ function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
                 var datepicked = new Date(dateTime);
                 datepicked = datepicked.toISOString();
-                //alert(datepicked);
+                alert(datepicked);
                 //alert("Fecha elegida: " + datepicked);
                 var dropRecintos = $('#dropRecintos').val();           
                 //alert(dropRecintos);

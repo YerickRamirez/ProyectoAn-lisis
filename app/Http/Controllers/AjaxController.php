@@ -52,10 +52,10 @@ public function comboServicios($ID_Recinto, Request $request){
 
 public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
     /*$query=trim($request->get('searchText'));*/
-
+    return ["especialistas"=> Servicio::findOrFail($ID_Servicio)->especialistas];
     $especialistas_servicio = Servicio::findOrFail($ID_Servicio)->where('active_flag', '=', 1)->first()
     ->especialistas->where('active_flag', '=', 1);
-    
+    return ["especialistas"=> $especialistas_servicio];
 
     $especialistas_return = array();
     foreach ($especialistas_servicio as $especialista) {
@@ -70,9 +70,9 @@ public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
             foreach ($horario_servicio_esp as $horario) {
                 
                 if(!empty($horario)) {
-                    if($horario->id_recinto == $ID_Recinto) {
+                   // if($horario->id_recinto == $ID_Recinto) {
                     array_push($especialistas_return,  $especialista);
-                    }
+                    //}
                 }
             }
         }
@@ -95,11 +95,12 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
 
         if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {
-                array_push($horasOcupadas,  Carbon::parse($fechaCita->fecha_cita)->format('H:i'));
+                $cualquiera=  Carbon::parse($fechaCita->fecha_cita)->format('H:i');
+                array_push($horasOcupadas, $cualquiera);
             }
         }
 
-       // return json_encode(["horasOcupadas"=>$horasOcupadas]);
+        return json_encode(["horasOcupadas"=>$horasOcupadas]);
 
         if(!empty($horarios_deshabilitados_esp)) {//fecha/hora deshabilitada por el especialista 
             foreach ($horarios_deshabilitados_esp as $deshabilitado_esp) {
