@@ -6,7 +6,6 @@
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
 
-
 <script>
 function recintos(){
         $('#dropRecintos').empty();
@@ -138,7 +137,9 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 <script>
 function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+        //var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
                 var datepicked = new Date(dateTime);
+                datepicked.setHours(datepicked.getHours() -6);
                 datepicked = datepicked.toISOString();
                 alert(datepicked);
                 //alert("Fecha elegida: " + datepicked);
