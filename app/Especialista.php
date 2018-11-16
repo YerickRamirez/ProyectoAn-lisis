@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Especialista extends Model
 {
-    protected $fillable = ['cedula_especialista', 'nombre_usuario', 'nombre', 'primer_apellido_especialista', 'segundo_apellido_especialista', 'estado'];
+    protected $fillable = ['cedula_especialista', /*'nombre_usuario', */'nombre', 'primer_apellido_especialista', 'segundo_apellido_especialista', 'active_flag'];
     public $timestamps=false;
 
     protected $table='especialistas';

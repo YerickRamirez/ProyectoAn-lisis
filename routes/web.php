@@ -114,6 +114,7 @@ Route::post('/test/save', ['as' => 'save-date',
                             }]);
                             
 // Rutas de la tabla especialista
+/*
 Route::get('especialistas', 'EspecialistaController@index');
 Route::get('especialistas/{cedula}/editarEspecialista', 'EspecialistaController@editarEspecialista');
 Route::get('especialistas/{cedula}/eliminarEspecialista', 'EspecialistaController@eliminarEspecialista');
@@ -121,7 +122,9 @@ Route::post('especialistas/{cedula}/actualizarEspecialista', 'EspecialistaContro
 Route::view('especialistas/viewAnnadir', 'Especialista.annadirEspecialista');
 Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregarEspecialista');
 //Fin rutas tabla especialista
+*/
 
+Route::resource('especialistas', 'EspecialistaController');
 
 //Rutas tabla recinto
 Route::resource('recintos', 'RecintoController');
@@ -194,3 +197,15 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rutas horarios servicios////////////////////////////////////////
+Route::get('horarios', function () {
+    return view('Admin/configurarHorarios') ;
+})->name('Admin.horarios');
+
+Route::get('horarios_servicios', function () {
+    return view('horarios_servicios/index') ;
+})->name('horarios_servicios.index');
+
+Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'AjaxController@horarioServicios');
+Route::get('/annadirHorarioServicio/{dia}/{recinto}/{servicio}/{especialista}/{manana}/{tarde}', 'Horarios_servicioController@store');

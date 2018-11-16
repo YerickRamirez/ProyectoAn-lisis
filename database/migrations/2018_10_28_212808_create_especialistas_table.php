@@ -15,8 +15,8 @@ class CreateEspecialistasTable extends Migration {
 		Schema::create('especialistas', function(Blueprint $table) {
             $table->increments('id');
             $table->string('cedula_especialista', 30)->unique();
-			$table->integer('id_cuenta')->unsigned();
-			$table->foreign('id_cuenta')->references('id')->on('cuentas')->onDelete('cascade');
+			//$table->integer('id_cuenta')->unsigned();
+			//$table->foreign('id_cuenta')->references('id')->on('cuentas')->onDelete('cascade');
             $table->string('nombre', 50);
             $table->string('primer_apellido_especialista', 45);
             $table->string('segundo_apellido_especialista', 45);

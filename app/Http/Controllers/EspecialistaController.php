@@ -2,137 +2,184 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests;
+use App\User;
+use Auth;
 
-use App\EspecialistaModel;
-
-use Illuminate\Support\Facades\Redirect;
-
-use DB;
-
-use Flash;
-
-use Illuminate\Support\Facades\Crypt;
-
+use App\Especialista;
+use Illuminate\Http\Request;
+use \Session;
 
 class EspecialistaController extends Controller
 {
-    public function __construct() {
+	/**
+	 * Variable to model
+	 *
+	 * @var especialista
+	 */
+	protected $model;
 
-    }
-
-    /*public function show()
+	/**
+	 * Create instance of controller with Model
+	 *
+	 * @return void
+	 */
+	public function __construct(Especialista $model)
 	{
-		return view('Especialista.annadirEspecialista');
-	}*/ 
+		$this->model = $model;
+	}
 
-    public function index(Request $request){
-		if ($request) {
-			/*$query=trim($request->get('searchText'));*/
-            
-            
-		$especialistas = EspecialistaModel::where('estado', 1)->orderBy('primer_apellido_especialista', 'desc')->get();
-        
-        return view('Especialista.mostrarEspecialistas', ["especialistas"=>$especialistas]);
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$especialistas = Especialista::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		$active = Especialista::where('active_flag', 1);
+		return view('especialistas.index', compact('especialistas', 'active'));
+	}
 
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return view('especialistas.create');
+	}
 
-       // $especialistas = EspecialistaModel::where('estado', 1)->orderBy('primer_apellido_especialista', 'desc')->get();
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function store(Request $request, User $user)
+	{
+		$especialista = new Especialista();
 
-       // $especialistas_data = array();
-        //foreach ($especialistas as $especialista) {
-         //   array_push($especialistas_data,  $especialista->bloqueo_horario);
-        //}
-        
-       // return  ["especialistas"=>$especialistas_data];
+		$especialista->cedula_especialista = $request->input("cedula_especialista");
+		$especialista->nombre = $request->input("nombre");
+		$especialista->primer_apellido_especialista = $request->input("primer_apellido_especialista");
+		$especialista->segundo_apellido_especialista = $request->input("segundo_apellido_especialista");
+		$especialista->active_flag = 1;
 
-		}
-    }
+		$this->validate($request, [
+					 'cedula_especialista' => 'required',
+					 'nombre' => 'required',
+					 'primer_apellido_especialista' => 'required',
+					 'segundo_apellido_especialista' => 'required'
+			 ]);
 
-    public function agregarEspecialista(Request $request)
-    {
-        $especialista = new EspecialistaModel();
+		$especialista->save();
 
-        $especialista->Cédula = $request->cedula;
+		Session::flash('message_type', 'success');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', "The Especialista \"<a href='especialistas/$especialista->slug'>" . $especialista->nombre . "</a>\" was Created.");
 
-        $especialista->Nombre = $request->nombre;
+		return redirect()->route('especialistas.index');
+	}
 
-        $especialista->Primer_Apellido = $request->primer_apellido;
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show(Especialista $especialista)
+	{
+		//$especialista = $this->model->findOrFail($id);
 
-        $especialista->Segundo_Apellido = $request->segundo_apellido;
-        
-        $especialista->save();
+		return view('especialistas.show', compact('especialista'));
+	}
 
-        Flash::success("Especialista " . $especialista->Nombre . " guardado satisfactoriamente");
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit(Especialista $especialista)
+	{
+		//$especialista = $this->model->findOrFail($id);
 
-        return redirect('especialistas');
-    }
+		return view('especialistas.edit', compact('especialista'));
+	}
 
-    public function eliminarEspecialista($cedulaEspecialista)
-    {
-        /*$placaDecrypted = Crypt::decrypt($placa);*/
-        $especialista= EspecialistaModel::find($cedulaEspecialista);
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function update(Request $request, Especialista $especialista, User $user)
+	{
 
-        if($especialista == null) {
-                Flash::error("Error, no se ha encontrado al especialista con la cédula: " + $cedulaEspecialista);
-                return redirect('especialistas');
-            } else {
+		$especialista->cedula_especialista = $request->input("cedula_especialista");
+		$especialista->nombre = $request->input("nombre");
+		$especialista->primer_apellido_especialista = $request->input("primer_apellido_especialista");
+		$especialista->segundo_apellido_especialista = $request->input("segundo_apellido_especialista");
+		$especialista->active_flag = 1;
 
-		//$especialista->estado= estado_deshabilitado;
-        //$especialista->update();
+		$this->validate($request, [
+					 'cedula_especialista' => 'required',
+					 'nombre' => 'required',
+					 'primer_apellido_especialista' => 'required',
+					 'segundo_apellido_especialista' => 'required'
+			 ]);
 
-        Flash::error('Especialista eliminado satisfactoriamente.');
+		$especialista->save();
 
-        return redirect('especialistas');    
-    }
-    }
+		Session::flash('message_type', 'blue');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', "The Especialista \"<a href='especialistas/$especialista->slug'>" . $especialista->name . "</a>\" was Updated.");
 
-    public function editarEspecialista($cedulaEspecialista){
-        /*$placa = Crypt::decrypt($placaParam);*/
-        $especialista = EspecialistaModel::find($cedulaEspecialista);
+		return redirect()->route('especialistas.index');
+	}
 
-        if($especialista == null) {
-            Flash::error("Error, no se ha encontrado al especialista con la cédula: " . $cedulaEspecialista);
-            return redirect('especialistas');    
-        } else {
-            return view('Especialista.editarEspecialista',["especialistaEditar"=>$especialista, "cedEspecialista"=>$cedulaEspecialista]);
-        }
-}
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy(Especialista $especialista)
+	{
+		$especialista->active_flag = 0;
+		$especialista->save();
 
-public function actualizarEspecialista($cedula, Request $request){
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'El Especialista ' . $especialista->nombre . ' fue activado.');
 
-    $especialista= EspecialistaModel::find($cedula);
+		return redirect()->route('especialistas.index');
+	}
 
-        if($especialista == null) {
-            Flash::error("Error, no se ha encontrado al especialista con la cédula: " + $cedula);
-            return redirect('especialistas');    
-        } else {
+	/**
+	 * Re-Activate the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function reactivate(Especialista $especialista)
+	{
+		$especialista->active_flag = 1;
+		$especialista->save();
 
-    $especialista->Nombre=$request->get('nombre');
-    $especialista->Primer_Apellido=$request->get('primer_apellido');
-    $especialista->Segundo_Apellido=$request->get('segundo_apellido');
+		Session::flash('message_type', 'success');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'El Especialista ' . $especialista->nombre . ' fue reactivado.');
 
-    $especialista->update();
-
-    Flash::success('Especialista actualizado satisfactoriamente.');
-
-    return redirect('especialistas');    
-}
-}
-
-//public function combobox(Request $request){
-   // if ($request) {
-        /*$query=trim($request->get('searchText'));*/
-     //   $conditionForSelected = "";
-        
-     //   $recintos=DB::table('recinto')->orderBy('Nombre','desc')->paginate(5);
-       // if ($recintos == null) {
-       //     Flash::message("No hay recintos para mostrar");
-       // }
-       // return view('PruebaCombobox.pruebacombo', ["recintos"=>$recintos, "conditionForSelected"=>$conditionForSelected]);
-   // }
-//}
-
+		return redirect()->route('especialistas.index');
+	}
 }

@@ -1,60 +1,80 @@
-@extends('layout')
+@extends ('masterRoot')
+@section ('contenido_Admin')
 
-@section('header')
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Horarios_servicio
-            <a class="btn btn-success pull-right" href="{{ route('horarios_servicios.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
+<div class="panel panel-primary class border-panel " >
+    <div class="panel-heading border-panel bg-color-panel">
+        <p class="center" style="font-size: 3vh;">Configuración de horarios</p>
     </div>
-@endsection
+    <div class="panel-body">
+    <section class="">
+        <div class="panel-heading">
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control" onChange="revisarHorario()"></select></div>
 
-@section('content')
-    <div class="row">
-        <div class="col-md-12">
-            @if($horarios_servicios->count())
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th>Chema=id</th> <th>Id_dia</th> <th>Id_servicio</th> <th>Id_especialista</th> <th>Fecha_inicio_servicio</th> <th>Fecha_fin_servicio</th> <th>Hora_inicio_servicio</th> <th>Hora_fin_servicio</th>
-                            <th class="text-right">OPTIONS</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach($horarios_servicios as $horarios_servicio)
+        <?php
+            $semana = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes");
+            $id = 1;
+        ?>
+        <p id="info" style="display:none; text-align:center; font-size: 2.5vh;">Horarios</p>
+        <div class="panel-heading">
+            <div class="table-responsive" id="ocultar-tabla" style="display: none;">
+            
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-condensed table-hover">
+                        <thead>
+                            <th class="text-center">Día</th>
+                            <th class="text-center">Mañana</th>
+                            <th class="text-center">Tarde</th>                        
+                        </thead>
+                        @foreach($semana as $dia)
+                        <tbody>
                             <tr>
-                                <td class="text-center"><strong>{{$horarios_servicio->id}}</strong></td>
-
-                                <td>{{$horarios_servicio->chema=id}}</td> <td>{{$horarios_servicio->id_dia}}</td> <td>{{$horarios_servicio->id_servicio}}</td> <td>{{$horarios_servicio->id_especialista}}</td> <td>{{$horarios_servicio->fecha_inicio_servicio}}</td> <td>{{$horarios_servicio->fecha_fin_servicio}}</td> <td>{{$horarios_servicio->hora_inicio_servicio}}</td> <td>{{$horarios_servicio->hora_fin_servicio}}</td>
-                                
-                                <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('horarios_servicios.show', $horarios_servicio->id) }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i> View
-                                    </a>
-                                    
-                                    <a class="btn btn-xs btn-warning" href="{{ route('horarios_servicios.edit', $horarios_servicio->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Edit
-                                    </a>
-
-                                    <form action="{{ route('horarios_servicios.destroy', $horarios_servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="DELETE">
-
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-                                    </form>
-                                </td>
+                                <td class="text-center">{{$dia}}</td>
+                                <td class="text-center"><input type="checkbox" id="{{$id}}" autocomplete="off"></td>
+                                <?php $id = $id +1;?>
+                                <td class="text-center"><input type="checkbox" id="{{$id}}"autocomplete="off"></td>        
+                                <?php $id = $id +1;?>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
-                {!! $horarios_servicios->render() !!}
-            @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
-            @endif
-
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-primary center" onClick="guardarHorario()">Guardar cambios</button>
+                <a class="btn btn-link pull-right" href="{{ route('Admin.horarios') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
+            </div>
         </div>
-    </div>
+           
+        <script>
+        function guardarHorario() {
+            var recinto = $('#dropRecintos').val();
+            var servicio = $('#dropServicios').val();
+            var especialista = $('#dropEspecialistas').val();
+            var cuenta = 1;
+            var manana = 0;
+            var tarde = 0;
+            if(document.getElementById("3").checked) { manana = 1;} else { manana = 0;}
+            if(document.getElementById("4").checked) { tarde = 1;} else { tarde = 0;}
+            window.location.replace("/annadirHorarioServicio/" + 2 + '/' + recinto + 
+            '/' + servicio + '/' + especialista + '/' + manana + '/' + tarde);
+            /*
+            for (var dia = 1; dia < 6; dia++) {
+                if(document.getElementById(cuenta).checked) { manana = 1;} else { manana = 0;}
+                cuenta =  cuenta + 1;
+                if(document.getElementById(cuenta).checked) { tarde = 1;} else { tarde = 0;}
 
-@endsection
+                var text = dia + " " + recinto + " " + servicio + " " + especialista
+                + " " + manana + " " + tarde;
+                alert(text);
+                cuenta =  cuenta + 1;
+                window.location.replace("/annadirHorarioServicio/" + dia + '/' + recinto + 
+            '/' + servicio + '/' + especialista + '/' + manana + '/' + tarde);
+            }  */
+        }
+        
+        </script>
+        </section>
+    </div>
+    </div>
+</div>
+ @endsection
