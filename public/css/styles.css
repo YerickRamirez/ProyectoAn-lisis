@@ -234,7 +234,7 @@ div.logo-ucr2 {
 
 
 .right-aling-glyphicon-i {
-  margin-left:54px;
+  margin-left:64px;
 }
 
 .right-citas {
@@ -253,14 +253,18 @@ div.logo-ucr2 {
   margin-left:42px;
 }
 .right-aling-glyphicon-se {
-  margin-left:33px;
+  margin-left:43px;
 }
 
 .right-aling-glyphicon-s {
   margin-left:62px;
 }
 .right-aling-glyphicon{
-  margin-left:35px;
+  margin-left:45px;
+}
+
+.right-aling-glyphicon-e{
+  margin-left:15px;
 }
 
 .right-pacientes {
