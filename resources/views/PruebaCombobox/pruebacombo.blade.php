@@ -389,7 +389,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
             if(entry.charAt(0) == "0") {
                 entry = entry.replace("0", "")
             }
-            //alert(entry);
+            alert(entry);
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
     

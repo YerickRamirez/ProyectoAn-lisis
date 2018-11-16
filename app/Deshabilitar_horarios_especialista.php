@@ -9,6 +9,7 @@ class Deshabilitar_horarios_especialista extends Model
 
   protected $table = 'deshabilitar_horarios_especialistas';
   public $timestamps=false;
+  protected $dates = ['fecha_inicio_deshabilitar, fecha_fin_deshabilitar'];
   protected $fillable = ['id_especialista', 'fecha_inicio_deshabilitar', 'fecha_fin_deshabilitar', 'hora_inicio_deshabilitar', 'hora_fin_deshabilitar'];
 
     public function Author(){
