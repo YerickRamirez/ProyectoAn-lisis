@@ -73,6 +73,9 @@
 		    		<li>
 		      			<a class="border" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
+					<li>
+		      			<a class="border" href="{{ route('especialistas.index') }}">Especialistas<span class="glyphicon glyphicon-education right-aling-glyphicon"></a>
+		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('Admin.horarios') }}">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
 		    		</li>

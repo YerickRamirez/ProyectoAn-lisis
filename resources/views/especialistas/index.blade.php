@@ -1,60 +1,66 @@
-@extends('layout')
+@extends('masterRoot')
+@section('contenido_Admin')
 
-@section('header')
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Especialista
-            <a class="btn btn-success pull-right" href="{{ route('especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
+<div class="panel panel-primary">
+     <div class="panel-heading">
+        <p style="text-align: center; font-size: 3vh;">Configuración Especialistas</p>
     </div>
-@endsection
-
-@section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <br/>
+    <div class="panel-body">
+            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialistas.create') }}"> Crear</a>
+    </div>
+    
+<div class="page-header clearfix">
+    <div class="panel-heading">
+    <div class="">
+        <div class="">
             @if($especialistas->count())
-                <table class="table table-condensed table-striped">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-condensed table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
-                            <th>Chema=id</th> <th>Cedula_especialista</th> <th>Nombre_usuario</th> <th>Nombre</th> <th>Primer_apellido_especialista</th> <th>Segundo_apellido_especialista</th> <th>Estado</th>
-                            <th class="text-right">OPTIONS</th>
+                            <th class="text-center">Cédula</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Primer Apellido</th>
+                            <th class="text-center">Segundo Apellido</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($especialistas as $especialista)
                             <tr>
-                                <td class="text-center"><strong>{{$especialista->id}}</strong></td>
 
-                                <td>{{$especialista->chema=id}}</td> <td>{{$especialista->cedula_especialista}}</td> <td>{{$especialista->nombre_usuario}}</td> <td>{{$especialista->nombre}}</td> <td>{{$especialista->primer_apellido_especialista}}</td> <td>{{$especialista->segundo_apellido_especialista}}</td> <td>{{$especialista->estado}}</td>
+                                <td class="text-center">{{$especialista->cedula_especialista}}</td>
+                                <td class="text-center">{{$especialista->nombre}}</td> 
+                                <td class="text-center">{{$especialista->primer_apellido_especialista}}</td> 
+                                <td class="text-center">{{$especialista->segundo_apellido_especialista}}</td>
                                 
-                                <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('especialistas.show', $especialista->id) }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i> View
-                                    </a>
+                                <td class="text-center">
                                     
-                                    <a class="btn btn-xs btn-warning" href="{{ route('especialistas.edit', $especialista->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Edit
+                                    <a class="btn btn-warning" href="{{ route('especialistas.edit', $especialista->id) }}">
+                                        <i class="glyphicon glyphicon-edit"></i> Editar
                                     </a>
 
                                     <form action="{{ route('especialistas.destroy', $especialista->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </div>
                 {!! $especialistas->render() !!}
             @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
+                <h3 class="text-center alert alert-info">Vacío</h3>
             @endif
 
         </div>
     </div>
+    </div> 
 
 @endsection
