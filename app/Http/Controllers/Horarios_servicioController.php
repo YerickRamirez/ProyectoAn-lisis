@@ -63,13 +63,18 @@ class Horarios_servicioController extends Controller
 	{
 		$horarios_servicio = new Horarios_servicio();
 		
-		$horarios_servicio->id_dia = $request->dia;
-		$horarios_servicio->id_recinto = $request->recinto;
-		$horarios_servicio->id_servicio = $request->servicio;
-		$horarios_servicio->id_especialista = $request->especialista;
-		$horarios_servicio->disponibilidad_manana = $request->manana;
-		$horarios_servicio->disponibilidad_tarde = $request->tarde;
-		$horarios_servicio->active_flag = 1;
+		//for ($i = 1; $i < 6; $i ++ ){
+			$horarios_servicio->id_dia = $request->dia;
+			$horarios_servicio->id_recinto = $request->recinto;
+			$horarios_servicio->id_servicio = $request->servicio;
+			$horarios_servicio->id_especialista = $request->especialista;
+			$horarios_servicio->disponibilidad_manana = $request->manana;
+			$horarios_servicio->disponibilidad_tarde = $request->tarde;
+			$horarios_servicio->active_flag = 1;
+			//$horarios_servicio->save();
+		//}
+		
+		
 
 		//$horarios_servicio->author_id = $request->user()->id;
 
@@ -78,7 +83,7 @@ class Horarios_servicioController extends Controller
 					 'description' => 'required'
 			 ]);*/
 
-		$horarios_servicio->save();
+			 $horarios_servicio->save();
 
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
