@@ -208,4 +208,4 @@ Route::get('horarios_servicios', function () {
 })->name('horarios_servicios.index');
 
 Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'AjaxController@horarioServicios');
-Route::get('/annadirHorarioServicio/{dia}/{recinto}/{servicio}/{especialista}/{manana}/{tarde}', 'Horarios_servicioController@store');
+Route::get('/annadirHorarioServicio/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorarios');

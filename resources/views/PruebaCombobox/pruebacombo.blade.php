@@ -57,7 +57,6 @@ $.each(datos, function()
 }) 
 
 }, error:function() {
-    alert("a");
         $('#dropServicios').empty();
         $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");   
         alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
