@@ -192,11 +192,31 @@ class Horarios_servicioController extends Controller
 	{
 		$horarios_servicio_param = json_decode($array_horario_servicio);
 
+		//este return muestra todo el objeto que viene de parámetro
+		//return $horarios_servicio_param;
+		
+		//este return por ejemplo trae para el Lunes (osea [0]) el id_dia 
+		//return $horarios_servicio_param[0]->id_dia;
+
+		//si quiere ver todo un objeto específico del array tiene dos opciones
+		// hacerle json_encode(array[0]);
+		//hacerle var_dump(array[0]);
+
+		//La idea es entonces sacarle el id día, el id especialista, el  id servicio y el de recinto
+		//y (puede que haya que considerar active_flag) a cada uno de los 5 objetos de array, y buscar si existe en la BD (CREO que se puede
+		//hacer con un if(!empty($objeto)) )
+		//En caso de que el objeto exista, lo actualiza
+		//En caso de que no, lo inserta.
+
+		//Como consejo, cada que agregue un where() a cada consulta, devuelvalo y haga pruebas
+		//teniendo varias tuplas de diferentes especialistas (tanto con active_flag 0 y como active_flag 1)
+		//con eso se asegura de que la consulta va bien, a veces uno la concatena mal 
+		//o termina pidiendo solo una condición (por ejemplo CREO que si el último where es por ejemplo 
+		// active flag, 1, el mae le va a traer los activos, obviando todos los where de especialistas
+		//, recintos etc.). 
+
 		//$horarioServicio = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista', $especialista)
     //->where('id_servicio', $servicio);
-		
-		//este return por ejemplo trae para el Lunea el id_dia 
-		//return $horarios_servicio_param[0]->id_dia;
 		$horarios_servicio = new Horarios_servicio();
 		
 		$horarios_servicio->id_dia = $request->dia;
