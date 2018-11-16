@@ -62,11 +62,11 @@ class Horarios_servicioController extends Controller
 	public function store(Request $request, User $user)
 	{
 		$horarios_servicio = new Horarios_servicio();
-
+		
+		$horarios_servicio->id_dia = $request->dia;
 		$horarios_servicio->id_recinto = $request->recinto;
 		$horarios_servicio->id_servicio = $request->servicio;
 		$horarios_servicio->id_especialista = $request->especialista;
-		$horarios_servicio->id_dia = $request->especialista;
 		$horarios_servicio->disponibilidad_manana = $request->manana;
 		$horarios_servicio->disponibilidad_tarde = $request->tarde;
 		$horarios_servicio->active_flag = 1;
