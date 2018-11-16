@@ -36,11 +36,11 @@ function mostarHorario() {
 
 function ocultarHorario() {
 	var x = document.getElementById("ocultar-tabla");
-	var y = document.getElementById("info");
+	//var y = document.getElementById("info");
 	
 	//var button = document.getElementById("mostar-tabla");
 	x.style.display = "none";
-	y.style.display = "none";
+	//y.style.display = "none";
 }
 
 

@@ -44,16 +44,20 @@ function servicios(ID_Recinto){
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
+    alert("ah bueno");
+    alert(datos);
 $('#dropServicios').empty();
 $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");   
 $.each(datos, function()
 {
+    
         $.each(this, function(){
         $('#dropServicios').append('<option value="' + this.id + '">' + this.nombre + '</option>');
         }) 
 }) 
 
 }, error:function() {
+    alert("a");
         $('#dropServicios').empty();
         $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");   
         alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
