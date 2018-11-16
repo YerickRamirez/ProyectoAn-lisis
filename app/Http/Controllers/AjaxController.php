@@ -15,6 +15,8 @@ use App\Servicio;
 
 use App\Cita;
 
+use App\Horarios_servicio;
+
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Redirect;
@@ -192,4 +194,26 @@ private function llenarArrayhoras($array, $horaInicio, $horaFin) {
 
     }*/
 }
+
+
+
+public function horarioServicios($recinto, $servicio, $especialista, Request $request){
+    $horarioServicio = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista', $especialista)
+    ->where('id_servicio', $servicio)->get();//citas en la fecha elegida
+    
+    $horasOcupadas = array();
+
+    if(!empty($horarioServicio)) {//citas existentes de la fecha elegidas
+        foreach ($horarioServicio as $horario) {
+            array_push($horasOcupadas,  $horario);
+        }
+    }
+
+    $xD = $horasOcupadas;
+    
+    return json_encode(["horario"=>$xD]);
+}
+
+
+
 }

@@ -8,6 +8,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/menus.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">

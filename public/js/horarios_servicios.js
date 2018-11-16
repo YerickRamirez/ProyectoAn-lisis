@@ -113,13 +113,60 @@ $(document).ready(function() {
             }
         )
 
-        $('#datetimepicker5').click(function() {
-            ocultarHorario();
-            }
-        )
+       
 })
 
 function limpiarDrop(nombreDrop, nombreTexto) {
    $('#' + nombreDrop).empty();
    $('#' + nombreDrop).append("<option value='defecto'>Seleccione " + nombreTexto+ "</option>");   
 }
+
+
+function revisarHorario() {
+        var recinto = $('#dropRecintos').val();
+        var servicio = $('#dropServicios').val();
+        var especialista = $('#dropEspecialistas').val();
+
+        var recintoSeleccionado = document.getElementById("dropRecintos");
+        var recintoTxt = recintoSeleccionado.options[recintoSeleccionado.selectedIndex].text;
+        var servicioSeleccionado = document.getElementById("dropServicios");
+        var servicioTxt = servicioSeleccionado.options[servicioSeleccionado.selectedIndex].text;
+        var especialistaSeleccionado = document.getElementById("dropEspecialistas");
+        var especialistaTxt = especialistaSeleccionado.options[especialistaSeleccionado.selectedIndex].text;
+
+        $.ajax({url: '/verificarHorarioServicio/' + recinto + "/" + servicio + "/" + especialista, type: 'GET', dataType: "json",
+        success:function(datos){ 
+            //$hola = JSON.stringify(datos);
+            //alert($hola + " jajaja");
+            cargarCheckBox(datos);
+            var y = document.getElementById("info");
+            var tabla = document.getElementById("ocultar-tabla");
+            
+            y.innerHTML = "Horario para el servicio " + servicioTxt + " en el recinto de " + recintoTxt + "";
+            if (tabla.style.display === "none") {
+                        y.style.display ="block";
+                tabla.style.display = "block";
+            }
+
+        }, error:function() {
+        alert("Ha habido un error verificando la existencia de horarios. Si este persiste comuníquese" +
+        " con el Servicio de Salud");   
+        },
+        timeout: 15000
+        });      
+    }
+
+    function cargarCheckBox(datos) {
+        var cuenta = 1;
+        $.each(datos, function() {
+            $.each(this, function(){
+                var checkbox = document.getElementById(cuenta);
+                checkbox.checked=this.disponibilidad_manana; 
+                cuenta = cuenta + 1;
+                var checkbox = document.getElementById(cuenta);
+                checkbox.checked=this.disponibilidad_tarde;
+                cuenta = cuenta + 1;
+            }) 
+
+        });
+    }

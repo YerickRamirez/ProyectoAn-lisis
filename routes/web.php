@@ -204,4 +204,5 @@ Route::get('horarios_servicios', function () {
     return view('horarios_servicios/index') ;
 })->name('horarios_servicios.index');
 
-Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'AjaxController@datosHorariosServicios');
+Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'AjaxController@horarioServicios');
+Route::get('/annadirHorarioServicio/{dia}/{recinto}/{servicio}/{especialista}/{manana}/{tarde}', 'Horarios_servicioController@store');

@@ -36,9 +36,11 @@ function mostarHorario() {
 
 function ocultarHorario() {
 	var x = document.getElementById("ocultar-tabla");
-	var y = document.getElementById("mostar-tabla");
+	var y = document.getElementById("info");
+	
 	//var button = document.getElementById("mostar-tabla");
-    x.style.display = "none";
+	x.style.display = "none";
+	y.style.display = "none";
 }
 
 
@@ -83,5 +85,16 @@ $(window).resize(function() {
 		});
 
 	});
+
+	function mostarHorarioServicio() {
+		var x = document.getElementById("ocultar-tabla");
+		var y = document.getElementById("mostar-tabla");
+		//var button = document.getElementById("mostar-tabla");
+		
+		if (x.style.display === "none") {
+			//y.style.display ="none";
+			x.style.display = "block";
+		}
+	}
 
 	

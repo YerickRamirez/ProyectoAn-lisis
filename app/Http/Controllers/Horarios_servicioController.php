@@ -63,16 +63,20 @@ class Horarios_servicioController extends Controller
 	{
 		$horarios_servicio = new Horarios_servicio();
 
-		$horarios_servicio->name = ucfirst($request->input("name"));
-		$horarios_servicio->slug = str_slug($request->input("name"), "-");
-		$horarios_servicio->description = ucfirst($request->input("description"));
+		$horarios_servicio->id_recinto = $request->recinto;
+		$horarios_servicio->id_servicio = $request->servicio;
+		$horarios_servicio->id_especialista = $request->especialista;
+		$horarios_servicio->id_dia = $request->especialista;
+		$horarios_servicio->disponibilidad_manana = $request->manana;
+		$horarios_servicio->disponibilidad_tarde = $request->tarde;
 		$horarios_servicio->active_flag = 1;
-		$horarios_servicio->author_id = $request->user()->id;
 
-		$this->validate($request, [
+		//$horarios_servicio->author_id = $request->user()->id;
+
+		/*$this->validate($request, [
 					 'name' => 'required|max:255|unique:horarios_servicios',
 					 'description' => 'required'
-			 ]);
+			 ]);*/
 
 		$horarios_servicio->save();
 
