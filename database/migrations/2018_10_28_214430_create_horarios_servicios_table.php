@@ -27,8 +27,8 @@ class CreateHorariosserviciosTable extends Migration {
 			$table->integer('id_especialista')->unsigned();
 			$table->foreign('id_especialista')->references('id')->on('especialistas')->onDelete('cascade');
 
-			$table->integer('disponibilidad_manana')->unsigned();
-			$table->integer('disponibilidad_tarde')->unsigned();
+			$table->integer('disponibilidad_manana');
+			$table->integer('disponibilidad_tarde');
             $table->boolean('active_flag');
         });
 

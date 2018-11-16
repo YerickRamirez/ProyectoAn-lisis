@@ -76,7 +76,13 @@ public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
                 
                 if(!empty($horario)) {
                    if($horario->id_recinto == $ID_Recinto) {
-                    array_push($especialistas_return,  $especialista);
+                    if (isset($especialistas_return[$especialista->id])) {//verifica si el objeto existe en array
+                        // object exists in array; do something
+                    } else {
+                        $especialistas_return[$especialista->id] = $especialista;
+                        //esto inserta en el array pero con llave única
+                    }
+                    
                     }
                 }
             }
