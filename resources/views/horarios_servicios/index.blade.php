@@ -55,9 +55,7 @@
             var tarde = 0;
             if(document.getElementById("3").checked) { manana = 1;} else { manana = 0;}
             if(document.getElementById("4").checked) { tarde = 1;} else { tarde = 0;}
-            window.location.replace("/annadirHorarioServicio/" + 2 + '/' + recinto + 
-            '/' + servicio + '/' + especialista + '/' + manana + '/' + tarde);
-            /*
+            
             for (var dia = 1; dia < 6; dia++) {
                 if(document.getElementById(cuenta).checked) { manana = 1;} else { manana = 0;}
                 cuenta =  cuenta + 1;
@@ -69,7 +67,7 @@
                 cuenta =  cuenta + 1;
                 window.location.replace("/annadirHorarioServicio/" + dia + '/' + recinto + 
             '/' + servicio + '/' + especialista + '/' + manana + '/' + tarde);
-            }  */
+            }  
         }
         
         </script>
