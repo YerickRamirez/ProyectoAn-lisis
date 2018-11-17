@@ -190,52 +190,42 @@ class Horarios_servicioController extends Controller
 
 	public function annadirActualizarHorarios(Request $request, User $user, $array_horario_servicio)
 	{
+		
 		$horarios_servicio_param = json_decode($array_horario_servicio);
+		$hola = "Hola";
+		for ($i = 0; $i < 5; $i ++ ){
+			$horarios_servicio = new Horarios_servicio();
+			$dia = $horarios_servicio_param[$i]->id_dia;
+			$recinto = $horarios_servicio_param[$i]->id_recinto;
+			$servicio = $horarios_servicio_param[$i]->id_servicio;
+			$especialista = $horarios_servicio_param[$i]->id_especialista;
+			$manana = $horarios_servicio_param[$i]->disponibilidad_manana;
+			$tarde = $horarios_servicio_param[$i]->disponibilidad_tarde;
 
-		//este return muestra todo el objeto que viene de parámetro
-		//return $horarios_servicio_param;
+			$horarioServicios = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista', $especialista)
+			->where('id_servicio', $servicio)->where('id_dia', $dia)->where('active_flag', 1)->get();
+			//return $horarioServicios;
+
+			if ($horarioServicios->isEmpty()) {
+				$horarios_servicio->id_dia = $dia;
+				$horarios_servicio->id_recinto = $recinto;
+				$horarios_servicio->id_servicio = $servicio;
+				$horarios_servicio->id_especialista = $especialista;
+				$horarios_servicio->disponibilidad_manana = $manana;
+				$horarios_servicio->disponibilidad_tarde = $tarde;
+				$horarios_servicio->active_flag = 1;
+				$horarios_servicio->save();
+			} else {
+				$id = $horarioServicios[0]->id;
+				$actualizado = Horarios_servicio::find($id);
+				$actualizado->disponibilidad_manana = $manana;
+				$actualizado->disponibilidad_tarde = $tarde;
+				$actualizado->save();
+
+			}
+			
+		}
 		
-		//este return por ejemplo trae para el Lunes (osea [0]) el id_dia 
-		//return $horarios_servicio_param[0]->id_dia;
-
-		//si quiere ver todo un objeto específico del array tiene dos opciones
-		// hacerle json_encode(array[0]);
-		//hacerle var_dump(array[0]);
-
-		//La idea es entonces sacarle el id día, el id especialista, el  id servicio y el de recinto
-		//y (puede que haya que considerar active_flag) a cada uno de los 5 objetos de array, y buscar si existe en la BD (CREO que se puede
-		//hacer con un if(!empty($objeto)) )
-		//En caso de que el objeto exista, lo actualiza
-		//En caso de que no, lo inserta.
-
-		//Como consejo, cada que agregue un where() a cada consulta, devuelvalo y haga pruebas
-		//teniendo varias tuplas de diferentes especialistas (tanto con active_flag 0 y como active_flag 1)
-		//con eso se asegura de que la consulta va bien, a veces uno la concatena mal 
-		//o termina pidiendo solo una condición (por ejemplo CREO que si el último where es por ejemplo 
-		// active flag, 1, el mae le va a traer los activos, obviando todos los where de especialistas
-		//, recintos etc.). 
-
-		//$horarioServicio = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista', $especialista)
-    //->where('id_servicio', $servicio);
-		$horarios_servicio = new Horarios_servicio();
-		
-		$horarios_servicio->id_dia = $request->dia;
-		$horarios_servicio->id_recinto = $request->recinto;
-		$horarios_servicio->id_servicio = $request->servicio;
-		$horarios_servicio->id_especialista = $request->especialista;
-		$horarios_servicio->disponibilidad_manana = $request->manana;
-		$horarios_servicio->disponibilidad_tarde = $request->tarde;
-		$horarios_servicio->active_flag = 1;
-
-		//$horarios_servicio->author_id = $request->user()->id;
-
-		/*$this->validate($request, [
-					 'name' => 'required|max:255|unique:horarios_servicios',
-					 'description' => 'required'
-			 ]);*/
-
-		$horarios_servicio->save();
-
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');

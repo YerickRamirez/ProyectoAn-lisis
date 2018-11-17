@@ -126,7 +126,7 @@ class RecintoController extends Controller
 
 
 		/*$recinto->name = ucfirst($request->input("name"));
-    	$recinto->slug = str_slug($request->input("name"), "-");*/
+		$recinto->slug = str_slug($request->input("name"), "-");*/
 		$recinto->descripcion = ucfirst($request->input("descripcion"));
 		$recinto->active_flag = 1;//change to reflect current status or changed status
 		/*$recinto->author_id = $request->user()->id;*/

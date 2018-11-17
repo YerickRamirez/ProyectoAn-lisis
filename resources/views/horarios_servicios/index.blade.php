@@ -53,8 +53,6 @@
             var cuenta = 1;
             var manana = 0;
             var tarde = 0;
-            if(document.getElementById("3").checked) { manana = 1;} else { manana = 0;}
-            if(document.getElementById("4").checked) { tarde = 1;} else { tarde = 0;}
             
             array_horario_servicio = [];
             for (var dia = 1; dia < 6; dia++) {
@@ -68,7 +66,7 @@
                 array_horario_servicio.push(horario_servicio);
                 cuenta =  cuenta + 1;
             }
-            alert(array_horario_servicio); 
+            //alert(array_horario_servicio); 
 /*
             $.ajax({
         type: "POST",
