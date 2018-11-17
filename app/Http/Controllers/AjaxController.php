@@ -54,6 +54,26 @@ public function comboServicios($ID_Recinto, Request $request){
     return ["servicios"=>$servicios];
 }
 
+public function comboEspecialistasSinHorario($ID_Servicio, $ID_Recinto, Request $request){
+
+    $especialistas_servicio = Servicio::where('active_flag', 1)->where('id', $ID_Servicio)->firstOrFail()
+    ->especialistas;/*->where('servicios.active_flag', 1)->get();/*->where('id', $ID_Servicio)->
+    firstOrFail()->especialistas;/*->where('active_flag', '=', 1);//->first()*/
+
+    //return $especialistas_servicio_recinto;
+    $especialistas_return = array();
+    foreach ($especialistas_servicio as $especialista) {
+       
+                    if (isset($especialistas_return[$especialista->id])) {//verifica si el objeto existe en array
+                        // object exists in array; do something
+                    } else {
+                        $especialistas_return[$especialista->id] = $especialista;
+                        //esto inserta en el array pero con llave única
+                    }
+            }
+    return ["especialistas"=> $especialistas_return];
+}
+
 public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
 
     // return ["especialistas"=> Servicio::findOrFail($ID_Servicio)->especialistas->where('active_flag', '=', 1)];

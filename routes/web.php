@@ -141,6 +141,7 @@ Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mai
 Route::get('/recintosCombo', 'AjaxController@combobox');
 Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
 Route::get('/especialistasCombo/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistas');
+Route::get('/especialistasComboSinHorario/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistasSinHorario');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
 //fin rutas de ajax
 

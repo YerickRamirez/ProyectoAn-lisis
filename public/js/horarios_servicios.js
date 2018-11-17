@@ -57,7 +57,7 @@ function especialistas(ID_Servicio, ID_Recinto){
             $('#dropEspecialistas').empty();
             $('#dropEspecialistas').append("<option>Cargando...<option>");
                 $.ajax({
-  url: '/especialistasCombo/' + ID_Servicio + '/' + ID_Recinto,
+  url: '/especialistasComboSinHorario/' + ID_Servicio + '/' + ID_Recinto,
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
@@ -157,6 +157,7 @@ function revisarHorario() {
     }
 
     function cargarCheckBox(datos) {
+            limpiarCheckBox();
         var cuenta = 1;
         $.each(datos, function() {
             $.each(this, function(){
@@ -169,4 +170,12 @@ function revisarHorario() {
             }) 
 
         });
+    }
+
+    function limpiarCheckBox() {
+        for (i = 0; i <= 10; i++) {
+                if(document.getElementById(i) != undefined && document.getElementById(i) != null){
+                        document.getElementById(i).checked = 0;
+                }
+            }
     }
