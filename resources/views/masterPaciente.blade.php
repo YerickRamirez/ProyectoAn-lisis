@@ -102,11 +102,11 @@
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="#">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+	    <a class="border-a" href="#">Inicio<span class="glyphicon glyphicon-home right-inicio"></span></a>
 		<a class="border-a" href="#">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="#">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
-      	<a href="{{ url('/logout') }}" class="border-a hide-button-exit" >Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+      	<a href="{{ url('/logout') }}" class="border-a hide-button-exit" >Salir<span class="glyphicon glyphicon-log-out right-salir"></a>
       </div>
     </div>
 
@@ -114,16 +114,16 @@
 		<div class="content w3-container">
 			@yield('contenido_Paciente')
 			<div class="row">
-			<div >
+				<div >
 					@include('flash::message')
-		    </div>
-	</div>
+		    	</div>
+			</div>
 		</div>
 	</div>
 	
-	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+	<!--<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">-->
     <footer class="main-footer">
-  	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
+  	<div class="text-center main-footer"><strong>2018 </strong>
     	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
