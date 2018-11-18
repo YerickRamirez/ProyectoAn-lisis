@@ -129,7 +129,20 @@ Route::resource('especialistas', 'EspecialistaController');
 //Route::get('vinculoRecinto', 'Recinto_servicioController@index');
 
 Route::resource('recinto_servicios', 'Recinto_servicioController');
-Route::get('eliminarVinculo/{servicio}/{recinto}', ['as'=>'eliminarVinculo1','uses'=>'Recinto_servicioController@eliminar']);
+Route::get('eliminarVinculo/{servicio}/{recinto}', 
+['as'=>'eliminarVinculo1','uses'=>'Recinto_servicioController@eliminar']);
+
+
+Route::resource('especialista_servicios', 'Especialista_servicioController');
+
+Route::get('eliminarVinculoEspecialista/{servicio}/{recinto}/{especialista}',
+ ['as'=>'eliminarVinculoEspecialista1','uses'=>'Especialista_servicioController@eliminar']);
+
+ Route::get('/vincularEspecialista/{servicio}/{recinto}/{especialista}', 
+ 'Especialista_servicioController@store');
+
+ Route::get('cargarEspecialistas', 'AjaxController@cargarEspecialistas');
+ 
 
 //Rutas tabla recinto
 Route::resource('recintos', 'RecintoController');

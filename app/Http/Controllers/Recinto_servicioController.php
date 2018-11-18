@@ -14,6 +14,7 @@ use App\Servicio;
 use Illuminate\Http\Request;
 use \Session;
 
+use Flash;
 use DB;
 
 class Recinto_servicioController extends Controller
@@ -70,17 +71,23 @@ class Recinto_servicioController extends Controller
 	 */
 	public function store(Request $request, User $user, $servicio, $recinto)
 	{
-		$recinto_servicio = new Recinto_servicio();
+		
+		$sentencia = Recinto_servicio::
+		where('active_flag', 1)
+		->where('servicio_id', $servicio)
+		->where('recinto_id', $recinto)->get();
 
-		$recinto_servicio->servicio_id = $servicio;
-		$recinto_servicio->recinto_id = $recinto;
-		$recinto_servicio->active_flag = 1;
-		$recinto_servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Recinto_servicio \"<a href='recinto_servicios/$recinto_servicio->slug'>" . $recinto_servicio->name . "</a>\" was Created.");
+		if ($sentencia->count())
+            {
+                Flash::error("Ya existe ese servicio vinculado al recinto seleccionado");
+            }
+            else{
+                $recinto_servicio = new Recinto_servicio();
+				$recinto_servicio->servicio_id = $servicio;
+				$recinto_servicio->recinto_id = $recinto;
+				$recinto_servicio->active_flag = 1;
+				$recinto_servicio->save();
+		}
 
 		return redirect()->route('recinto_servicios.index');
 	}

@@ -1,9 +1,4 @@
 @extends('masterRoot')
-
-@section('encabezado')
-    
-@endsection
-
 @section('contenido_Admin')
 <div class="panel panel-primary">
      <div class="panel-heading">
@@ -13,6 +8,9 @@
     <div class="panel-body">
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('servicio.create') }}">Crear</a> <span>
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('recinto_servicios.index') }}">Vincular Servicio</a>
+            </span>
+            <span>
+                <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialista_servicios.index') }}">Vincular Especialista</a>
             </span>
     </div>
 

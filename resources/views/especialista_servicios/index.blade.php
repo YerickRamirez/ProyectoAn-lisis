@@ -1,60 +1,65 @@
-@extends('layout')
+@extends('masterRoot')
+@section('contenido_Admin')
 
-@section('header')
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Especialista_servicio
-            <a class="btn btn-success pull-right" href="{{ route('especialista_servicios.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
+<script src="{{asset('js/Servicio_Especialista.js')}}"></script>
+<div class="panel panel-primary">
+     <div class="panel-heading">
+        <p style="text-align: center; font-size: 3vh;">Vincular Especialista a Servicio</p>
     </div>
-@endsection
+    <br/>
+    <div class="panel-body">
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
+        <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
+         <span>
+        <div>
+            <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Crear</a>
+        </div>
+    </div>
 
-@section('content')
-    <div class="row">
-        <div class="col-md-12">
-            @if($especialista_servicios->count())
-                <table class="table table-condensed table-striped">
+
+<div>
+    <div class="panel-heading">
+    <div class="">
+        <div class="">
+            @if($vinculos->count())
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered table-condensed table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
-                            <th>Chema=id_servicio</th> <th>Id_especialista</th>
-                            <th class="text-right">OPTIONS</th>
+                            <th class="text-center">Servicio</th> 
+                            <th class="text-center">Recinto</th>
+                            <th class="text-center">Especialista</th>
+                            <th class="text-center">Opciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($especialista_servicios as $especialista_servicio)
+                        @foreach($vinculos as $especialista_servicio)
                             <tr>
-                                <td class="text-center"><strong>{{$especialista_servicio->id}}</strong></td>
-
-                                <td>{{$especialista_servicio->chema=id_servicio}}</td> <td>{{$especialista_servicio->id_especialista}}</td>
                                 
-                                <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('especialista_servicios.show', $especialista_servicio->id) }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i> View
-                                    </a>
-                                    
-                                    <a class="btn btn-xs btn-warning" href="{{ route('especialista_servicios.edit', $especialista_servicio->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Edit
-                                    </a>
+                                <td class="text-center">{{$especialista_servicio->Servicio}}</td>
+                                <td class="text-center">{{$especialista_servicio->Recinto}}</td>
+                                 <td class="text-center">{{$especialista_servicio->nombreEspecialista}} {{$especialista_servicio->apellido1}} {{$especialista_servicio->apellido2}}</td>
+                                
+                                <td class="text-center">
 
-                                    <form action="{{ route('especialista_servicios.destroy', $especialista_servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="DELETE">
+                                    <form action="{{ route('eliminarVinculoEspecialista1', ['servicio'=>$especialista_servicio->id_servicio, 
+                                    'recinto'=>$especialista_servicio->id_recinto, 'especialista'=>$especialista_servicio->id_especialista]) }}" 
+                                    style="display: inline;" onsubmit="return confirm('¿Desea eliminarlo?');">
 
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {!! $especialista_servicios->render() !!}
             @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
+                <h3 class="text-center alert alert-info">No hay elementos para mostrar</h3>
             @endif
 
         </div>
     </div>
-
+    </div>
 @endsection

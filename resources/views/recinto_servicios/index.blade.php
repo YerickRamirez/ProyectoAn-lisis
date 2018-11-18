@@ -12,7 +12,7 @@
         <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Crear</a> <span>
     </div>
 
-    <div class="page-header clearfix">
+    <div>
     <div class="panel-heading">
     <div class="">
         <div class="">
@@ -49,11 +49,11 @@
                 </table>
                 
             @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
+                <h3 class="text-center alert alert-info">No hay elementos que mostrar</h3>
             @endif
 
         </div>
     </div>
-    </div>
+</div>
 
 @endsection
