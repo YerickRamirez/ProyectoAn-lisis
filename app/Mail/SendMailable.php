@@ -36,7 +36,7 @@ class SendMailable extends Mailable
     {
         return $this->view('Correos/citaReservada')
                 ->from('no-reply@nuestrodominio.com.ar')
-                ->subject('Verificación cita');
+                ->subject('Verificación cita médica');
 
     }
 }

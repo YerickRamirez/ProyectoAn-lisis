@@ -39,7 +39,7 @@ class AjaxController extends Controller {
         /*$query=trim($request->get('searchText'));*/
 
         $recintos=DB::table('recintos')->where('active_flag', '=', 1)->orderBy('descripcion','desc')->get();
-        if ($recintos == null || empty($recintos)) {
+        if ($recintos == null || $recintos->isEmpty()) {
             Flash::message("No hay recintos para mostrar");
         }
         return json_encode(["recintos"=>$recintos]);
@@ -62,6 +62,26 @@ public function cargarServicios(Request $request){
     return ["servicios"=>$servicios];
 }
 
+public function comboEspecialistasSinHorario($ID_Servicio, $ID_Recinto, Request $request){
+
+    $especialistas_servicio = Servicio::where('active_flag', 1)->where('id', $ID_Servicio)->firstOrFail()
+    ->especialistas;/*->where('servicios.active_flag', 1)->get();/*->where('id', $ID_Servicio)->
+    firstOrFail()->especialistas;/*->where('active_flag', '=', 1);//->first()*/
+
+    //return $especialistas_servicio_recinto;
+    $especialistas_return = array();
+    foreach ($especialistas_servicio as $especialista) {
+       
+                    if (isset($especialistas_return[$especialista->id])) {//verifica si el objeto existe en array
+                        // object exists in array; do something
+                    } else {
+                        $especialistas_return[$especialista->id] = $especialista;
+                        //esto inserta en el array pero con llave única
+                    }
+            }
+    return ["especialistas"=> $especialistas_return];
+}
+
 public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
 
     // return ["especialistas"=> Servicio::findOrFail($ID_Servicio)->especialistas->where('active_flag', '=', 1)];
@@ -78,7 +98,7 @@ public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
         
         //return ["especialistas"=> $horario_servicio_esp];
 
-        if(!empty($horario_servicio_esp)) {
+        if(!$horario_servicio_esp->isEmpty()) {
 
             foreach ($horario_servicio_esp as $horario) {
                 
@@ -145,7 +165,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
 
         $horasOcupadas = array();
 
-        if(!empty($fechaCitas)) {//citas existentes de la fecha elegidas
+        if(!$fechaCitas->isEmpty()) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {
                 $cualquiera=  Carbon::parse($fechaCita->fecha_cita)->format('H:i');
                 array_push($horasOcupadas, $cualquiera);
@@ -154,7 +174,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
 
         //return json_encode(["horasOcupadas"=>$horasOcupadas]);
 
-        if(!empty($horarios_deshabilitados_esp)) {//fecha/hora deshabilitada por el especialista reuniones etc
+        if(!$horarios_deshabilitados_esp->isEmpty()) {//fecha/hora deshabilitada por el especialista reuniones etc
             foreach ($horarios_deshabilitados_esp as $deshabilitado_esp) {
                 
                 $fechaInicioCarbon = Carbon::createFromFormat('Y-m-d', Carbon::parse($deshabilitado_esp->fecha_inicio_deshabilitar)
@@ -178,7 +198,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         }// fin revisar horario_deshabilitado por reuniones
 
 
-        if(!empty($horarios_bloqueados_esp)) {//fecha/hora deshabilitada por el especialista por miércoles administrativo etc
+        if(!$horarios_bloqueados_esp->isEmpty()) {//fecha/hora deshabilitada por el especialista por miércoles administrativo etc
 
             foreach ($horarios_bloqueados_esp as $bloqueado_esp) {
                 
@@ -331,7 +351,7 @@ public function horarioServicios($recinto, $servicio, $especialista, Request $re
     
     $horasOcupadas = array();
 
-    if(!empty($horarioServicio)) {//citas existentes de la fecha elegidas
+    if(!$horarioServicio->isEmpty()) {//citas existentes de la fecha elegidas
         foreach ($horarioServicio as $horario) {
             array_push($horasOcupadas,  $horario);
         }

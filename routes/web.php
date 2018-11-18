@@ -148,6 +148,7 @@ Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
 Route::get('/serviciosCombo', 'AjaxController@cargarServicios');
 Route::get('/vincular/{servicio}/{recinto}', 'Recinto_servicioController@store');
 Route::get('/especialistasCombo/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistas');
+Route::get('/especialistasComboSinHorario/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistasSinHorario');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
 //fin rutas de ajax
 

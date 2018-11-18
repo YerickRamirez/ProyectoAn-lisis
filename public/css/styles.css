@@ -237,16 +237,24 @@ div.logo-ucr2 {
   margin-left:64px;
 }
 
+.right-inicio {
+  margin-left:68px;
+}
+
 .right-citas {
-  margin-left:55px;
+  margin-left:70px;
 }
 
 .right-perfil {
-  margin-left:55px;
+  margin-left:70px;
 }
 
 .right-info {
-  margin-left:12px;
+  margin-left:28px;
+}
+
+.right-salir {
+  margin-left: 78px;
 }
 
 .right-hora {
@@ -257,7 +265,7 @@ div.logo-ucr2 {
 }
 
 .right-aling-glyphicon-s {
-  margin-left:62px;
+  margin-left:72px;
 }
 .right-aling-glyphicon{
   margin-left:45px;
