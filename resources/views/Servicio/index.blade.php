@@ -11,7 +11,9 @@
     </div>
     <br/>
     <div class="panel-body">
-            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('servicio.create') }}">Crear</a>
+            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('servicio.create') }}">Crear</a> <span>
+            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('recinto_servicios.index') }}">Vincular Servicio</a>
+            </span>
     </div>
 
 <div class="page-header clearfix">

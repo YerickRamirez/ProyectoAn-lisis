@@ -1,6 +1,6 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
-
+<script src="{{asset('js/horarios_servicios.js')}}"></script>
 <div class="panel panel-primary class border-panel " >
     <div class="panel-heading border-panel bg-color-panel">
         <p class="center" style="font-size: 3vh;">Configuración de horarios</p>
