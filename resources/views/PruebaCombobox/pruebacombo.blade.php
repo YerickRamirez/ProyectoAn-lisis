@@ -44,8 +44,6 @@ function servicios(ID_Recinto){
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-    alert("ah bueno");
-    alert(datos);
 $('#dropServicios').empty();
 $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");   
 $.each(datos, function()
@@ -144,7 +142,7 @@ function revisarDisponibilidad() {
                 var datepicked = new Date(dateTime);
                 datepicked.setHours(datepicked.getHours() -6);
                 datepicked = datepicked.toISOString();
-                alert(datepicked);
+                //alert(datepicked);
                 //alert("Fecha elegida: " + datepicked);
                 var dropRecintos = $('#dropRecintos').val();           
                 //alert(dropRecintos);
@@ -162,8 +160,8 @@ function revisarDisponibilidad() {
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-    alert(datos + " jajaja");
-    alert(datos.horasOcupadas);
+    //alert(datos + " jajaja");
+    //alert(datos.horasOcupadas);
         cargarFechasDisponibles(datos.horasOcupadas);
 }, error:function() {
      alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
@@ -392,7 +390,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
             if(entry.charAt(0) == "0") {
                 entry = entry.replace("0", "")
             }
-            alert(entry);
+            //alert(entry);
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
     

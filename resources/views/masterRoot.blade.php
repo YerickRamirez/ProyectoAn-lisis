@@ -137,7 +137,6 @@
 	</footer>
 
 	<script src="{{asset('js/menus_dinamicos.js')}}"></script>
-	<script src="{{asset('js/horarios_servicios.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
