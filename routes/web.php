@@ -126,6 +126,11 @@ Route::post('especialistas/agregarEspecialista', 'EspecialistaController@agregar
 
 Route::resource('especialistas', 'EspecialistaController');
 
+//Route::get('vinculoRecinto', 'Recinto_servicioController@index');
+
+Route::resource('recinto_servicios', 'Recinto_servicioController');
+Route::get('eliminarVinculo/{servicio}/{recinto}', ['as'=>'eliminarVinculo1','uses'=>'Recinto_servicioController@eliminar']);
+
 //Rutas tabla recinto
 Route::resource('recintos', 'RecintoController');
 //Fin rutas recinto
@@ -140,6 +145,8 @@ Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mai
 //Rutas prueba ajax
 Route::get('/recintosCombo', 'AjaxController@combobox');
 Route::get('/serviciosCombo/{ID_Recinto}', 'AjaxController@comboServicios');
+Route::get('/serviciosCombo', 'AjaxController@cargarServicios');
+Route::get('/vincular/{servicio}/{recinto}', 'Recinto_servicioController@store');
 Route::get('/especialistasCombo/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistas');
 Route::get('/especialistasComboSinHorario/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistasSinHorario');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');

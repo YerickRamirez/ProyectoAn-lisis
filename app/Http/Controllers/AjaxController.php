@@ -54,6 +54,14 @@ public function comboServicios($ID_Recinto, Request $request){
     return ["servicios"=>$servicios];
 }
 
+public function cargarServicios(Request $request){
+    /*$query=trim($request->get('searchText'));*/
+
+    $servicios= Servicio::where('active_flag', 1)->get();
+
+    return ["servicios"=>$servicios];
+}
+
 public function comboEspecialistasSinHorario($ID_Servicio, $ID_Recinto, Request $request){
 
     $especialistas_servicio = Servicio::where('active_flag', 1)->where('id', $ID_Servicio)->firstOrFail()
