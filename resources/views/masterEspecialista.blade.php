@@ -45,7 +45,7 @@
 
 			<ul class="nav navbar-nav navbar-right hide-button" >
 				 <li>
-                    <a href="#" class="dropdown-toggle logout-button"style="color:white" data-toggle="dropdown">
+                    <a href="{{ url('/logout') }}" class="dropdown-toggle logout-button"style="color:white" data-toggle="dropdown">
                          <strong>Salir&nbsp</strong><span class="glyphicon glyphicon-log-out" style="color:white"></span> 
                     </a>  
                 </li>
@@ -70,7 +70,7 @@
 		      			<a class="border" href="">Horario<span class="glyphicon glyphicon glyphicon-time right-hora"></a>
 		    		</li>
 		    		<li class="hide-button-side">
-		      			<a class="border" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
 		    		<li>	
       					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
@@ -97,7 +97,7 @@
 		<a class="border-a" href="#">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="#">Horario<span class="glyphicon glyphicon-time right-hora"></a>
-      	<a class="border-a hide-button-exit" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+      	<a class="border-a hide-button-exit" href="{{ url('/logout') }}" Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
 <!--	@if (Route::has('login'))
