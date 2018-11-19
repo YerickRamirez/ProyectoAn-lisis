@@ -19,6 +19,7 @@ use App\Cita;
 
 use App\Dia_bloqueo_especialista;
 use App\Horarios_servicio;
+use App\Recinto_servicio;
 
 use Carbon\Carbon;
 
@@ -50,8 +51,9 @@ class AjaxController extends Controller {
 public function comboServicios($ID_Recinto, Request $request){
     /*$query=trim($request->get('searchText'));*/
 
-    $servicios= Recinto::where('active_flag', 1)->where('id', $ID_Recinto)->
-    firstOrFail()->servicios->where('active_flag', '=', 1);
+    $servicios= Recinto_servicio::where('recinto_id', $ID_Recinto)
+    ->where('recinto_servicios.active_flag', 1)
+    ->join('servicios', 'recinto_servicios.servicio_id', '=', 'servicios.id')->get();
 
     return ["servicios"=>$servicios];
 }
