@@ -103,7 +103,7 @@
 
       <div id="myNavbar">
 	    <a class="border-a" href="#">Inicio<span class="glyphicon glyphicon-home right-inicio"></span></a>
-		<a class="border-a" href="#">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
+		<a class="border-a" href="citas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="#">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
       	<a href="{{ url('/logout') }}" class="border-a hide-button-exit" >Salir<span class="glyphicon glyphicon-log-out right-salir"></a>

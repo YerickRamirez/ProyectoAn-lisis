@@ -39,7 +39,8 @@ class CitaController extends Controller
 	 */
 	public function index()
 	{
-		$citas = Cita::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		$citas = Cita::where('active_flag', 1)
+		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);
 		return view('citas.index', compact('citas', 'active'));
 	}
