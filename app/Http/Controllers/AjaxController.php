@@ -11,6 +11,8 @@ use App\EspecialistaModel;
 
 use App\Recinto;
 
+use App\Especialista;
+
 use App\Servicio;
 
 use App\Cita;
@@ -52,6 +54,13 @@ public function comboServicios($ID_Recinto, Request $request){
     firstOrFail()->servicios->where('active_flag', '=', 1);
 
     return ["servicios"=>$servicios];
+}
+
+public function cargarEspecialistas(Request $request){
+    /*$query=trim($request->get('searchText'));*/
+    $especialistas= Especialista::where('active_flag', 1)->get();
+
+    return ["especialistas"=>$especialistas];
 }
 
 public function cargarServicios(Request $request){

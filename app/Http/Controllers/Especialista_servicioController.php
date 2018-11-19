@@ -11,6 +11,8 @@ use Auth;
 use App\Especialista_servicio;
 use Illuminate\Http\Request;
 use \Session;
+use DB;
+use Flash;
 
 class Especialista_servicioController extends Controller
 {
@@ -38,9 +40,25 @@ class Especialista_servicioController extends Controller
 	 */
 	public function index()
 	{
-		$especialista_servicios = Especialista_servicio::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		$active = Especialista_servicio::where('active_flag', 1);
-		return view('especialista_servicios.index', compact('especialista_servicios', 'active'));
+		$vinculos = DB::table('especialista_servicios')
+			->join('servicios', 'especialista_servicios.id_servicio', '=', 'servicios.id')
+			->where('servicios.active_flag', 1)
+			->where('especialista_servicios.active_flag', 1)
+			->join('recintos', 'especialista_servicios.id_recinto', '=', 'recintos.id')
+			->where('recintos.active_flag', 1)
+			->join('especialistas', 'especialista_servicios.id_especialista', '=', 'especialistas.id')
+			->where('especialistas.active_flag', 1)
+			->select('especialista_servicios.id_servicio', 
+			'especialista_servicios.id_recinto', 
+			'especialista_servicios.id_especialista',
+			'recintos.descripcion as Recinto' ,
+			'servicios.nombre as Servicio',
+			'especialistas.nombre as nombreEspecialista', 
+			'especialistas.primer_apellido_especialista as apellido1', 
+			'especialistas.segundo_apellido_especialista as apellido2')
+			->orderBy('id_recinto', 'asc')->get();
+			
+		return view('especialista_servicios.index', compact('vinculos'));
 	}
 
 	/**
@@ -59,28 +77,27 @@ class Especialista_servicioController extends Controller
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function store(Request $request, User $user)
+	public function store(Request $request, User $user, $servicio, $recinto, $especialista)
 	{
-		$especialista_servicio = new Especialista_servicio();
 
-		$especialista_servicio->name = ucfirst($request->input("name"));
-		$especialista_servicio->slug = str_slug($request->input("name"), "-");
-		$especialista_servicio->description = ucfirst($request->input("description"));
-		$especialista_servicio->active_flag = 1;
-		$especialista_servicio->author_id = $request->user()->id;
+		$sentencia = Especialista_servicio::
+		where('active_flag', 1)
+		->where('id_servicio', $servicio)
+		->where('id_recinto', $recinto)
+		->where('id_especialista', $especialista)->get();
 
-		$this->validate($request, [
-					 'name' => 'required|max:255|unique:especialista_servicios',
-					 'description' => 'required'
-			 ]);
-
-		$especialista_servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Especialista_servicio \"<a href='especialista_servicios/$especialista_servicio->slug'>" . $especialista_servicio->name . "</a>\" was Created.");
-
+		if ($sentencia->count())
+            {
+                Flash::error("Ya existe ese servicio vinculado al recinto seleccionado");
+            }
+            else{
+                $especialista_servicio = new Especialista_servicio();
+				$especialista_servicio->id_servicio = $servicio;
+				$especialista_servicio->id_recinto = $recinto;
+				$especialista_servicio->id_especialista = $especialista;
+				$especialista_servicio->active_flag = 1;
+				$especialista_servicio->save();
+		}
 		return redirect()->route('especialista_servicios.index');
 	}
 
@@ -141,41 +158,15 @@ class Especialista_servicioController extends Controller
 		return redirect()->route('especialista_servicios.index');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy(Especialista_servicio $especialista_servicio)
+
+	public function eliminar($servicio, $recinto, $especialista)
 	{
-		$especialista_servicio->active_flag = 0;
-		$especialista_servicio->save();
-
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Especialista_servicio ' . $especialista_servicio->name . ' was De-Activated.');
-
-		return redirect()->route('especialista_servicios.index');
-	}
-
-	/**
-	 * Re-Activate the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function reactivate(Especialista_servicio $especialista_servicio)
-	{
-		$especialista_servicio->active_flag = 1;
-		$especialista_servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Especialista_servicio ' . $especialista_servicio->name . ' was Re-Activated.');
-
+		$vinculos = $users = Especialista_servicio::
+		where('active_flag', 1)
+		->where('id_servicio', $servicio)
+		->where('id_recinto', $recinto)
+		->where('id_especialista', $especialista)->update(['active_flag'=>0]);
+		
 		return redirect()->route('especialista_servicios.index');
 	}
 }
