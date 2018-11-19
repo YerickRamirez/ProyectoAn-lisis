@@ -67,7 +67,7 @@
 					-->
 					<li class="dropdown logout-button">
                                 
-					<a href="{{ url('/logout') }}"> <!--logout </a>-->
+					<a href="{{ url('/logout') }}"> 
                          <strong>Salir&nbsp</strong><span class="glyphicon glyphicon-log-out" style="color:white"></span> 
                     </a>  
 					
@@ -118,7 +118,7 @@
       	<a class="border-a" href="prueba">Perfil</a>
       	<a class="border-a" href="prueba">Citas</a>
       	<a class="border-a" href="prueba">Especialistas</a>
-      	<a class="border-a hide-button-exit" href="#item3">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+      	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
 

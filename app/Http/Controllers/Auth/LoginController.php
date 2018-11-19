@@ -12,22 +12,43 @@ class LoginController extends Controller
     public function login(){
         $credentials = $this->validate(request(),[
             'email' => 'email|required|string',
-            'password' => 'required|string'//,
+            'password' => 'required|string'
         ]);
+
+     //  $credentials = $this->validate()->check($_POST,array(
+       // 'email' => 'email|required|string',
+       // 'password' => 'required|string'//,
+    //));
 
         if(Auth::attempt($credentials)){
 //            if(auth()->user()->tipo() => 'paciente'){
-            if(Auth::attempt(['tipo'=> 'paciente'])){
+          //  if(Auth::attempt(['tipo'=> 'paciente'])){
           // return view('Paciente.index');
           //$user = Auth::user();
         //  $tipo = Auth::tipo();
          // return $tipo;
-                return redirect('especialistas');
+            //    return redirect('especialistas');
                // return redirect('paciente');
+          //  } else{
+            $dato = Auth::user()->tipo;
+            if($dato == 'paciente') {
+                return redirect('masterPaciente');
+        //        return $dato;
             } else{
-                return redirect('paciente');
-               // return redirect('especialistas');
+                if($dato == 'asistente'){
+                return redirect('masterAdmin');
+                } else{
+                    if($dato == 'especialista'){
+                return redirect('masterEspecialista');
+                    } else{
+                return redirect('masterRoot');
+                    }
+                }
+               // return $dato;
             }
+
+               // return redirect('especialistas');
+          //  }
         } else {
         return back()->withErrors(['email' => trans('auth.failed')]);        
     }
