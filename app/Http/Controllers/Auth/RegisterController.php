@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'Paciente/index';
 
     /**
      * Create a new controller instance.
@@ -64,7 +64,7 @@ class RegisterController extends Controller
       
        Mail::to($email)->send(new SendMailable($name));
        Auth::logout();
-       return view('auth/login');
+       return view('Paciente/index');
     }
     /**
      * Create a new user instance after a valid registration.
