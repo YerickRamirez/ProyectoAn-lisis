@@ -383,7 +383,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 <script>
     function cargarFechasDisponibles(horas) {
         limpiarCitas();
-        alert("/"+horas+"/");
+        //alert("/"+horas+"/");
         if(horas != undefined && horas !== "") {
         horas.forEach(function(entry) {
             entry = entry.replace(/\:/g, '');
