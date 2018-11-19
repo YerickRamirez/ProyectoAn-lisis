@@ -159,7 +159,10 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
                     abort(404, 'Día de la semana no válido. La oficina ofrece citas de Lunes a Viernes');
                 }
 
-        $fechaCitas = Cita::whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())->get();//citas en la fecha elegida
+        $fechaCitas = Cita::whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())->where('servicio_id' , $dropServicios)
+        ->where('especialista_id', $dropEspecialistas)->where('recinto_id', $dropRecintos)->where('estado_cita_id', '!=', 0)
+        ->get();//citas en la fecha elegida
+
         //return $fechaCitas;
         //para comparara en whereDate() se le manda el atributo de BD y un string.
 
@@ -168,6 +171,11 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         //rango de fechas. Cosas como reuniones
 
         $horarios_bloqueados_esp = EspecialistaModel::findOrFail($dropEspecialistas)->bloqueo_horario->where('active_flag', 1);
+
+        $horarios_servicios_especialista = Horarios_servicio::where('id_especialista', $dropEspecialistas)->where('id_servicio', $dropServicios)
+        ->where('id_recinto', $dropRecintos)->where('active_flag', 1)->get();
+
+        return $horarios_servicios_especialista;
         //rango de fechas bloqueando un día en específico, como los miércoles en la mañana.
 
         //return $horarios_bloqueados_esp;
