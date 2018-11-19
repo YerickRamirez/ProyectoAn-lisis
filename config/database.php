@@ -53,6 +53,18 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+/*
+        'remotemysql' => [
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'zadmin_agenda',
+            'username'  => 'agenda',
+            'password'  => 'tu4ege6u4',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],*/
 
         'pgsql' => [
             'driver' => 'pgsql',
