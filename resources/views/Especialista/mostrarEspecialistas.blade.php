@@ -24,14 +24,14 @@
                         <th class="center">Opciones</th>
 				    </thead>
 
-                <script>
+                    <script>
                     function confirmarEliminar(cedula) {
                     if (confirm("¿Está seguro que desea eliminar al especilista con cédula " + String(cedula) + " ?")) {
                         window.location.replace("/especialistas/" + cedula + "/eliminarEspecialista");
                     }
                     return false;
                     }
-                </script>
+                    </script>
                 @foreach ($especialistas as $especialista)
 				<tr>
 					<td class="center">{{ $especialista->cedula_especialista}}</td>

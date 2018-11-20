@@ -1,7 +1,7 @@
 @extends('layout')
 @section('header')
     <div class="page-header">
-        <h1>Cita / Show #{{$cita->id}}</h1>
+        <h1>Citasssss / Show #{{$cita->id}}</h1>
     </div>
 @endsection
 

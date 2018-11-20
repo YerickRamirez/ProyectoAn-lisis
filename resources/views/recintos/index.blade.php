@@ -15,7 +15,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div id="myDIV" style="display: none;">
                     <div class="row col-md-3" id="agregar">
-                        <input placeholder="Nombre" class="nombre margin-lft form-control" name = "descripcion" type="text" id="nombre_recinto" pattern="[a-zA-Z ]{2,48}" title="No se permiten números en este campo"> 
+                        <input placeholder="Nombre" class="nombre margin-lft form-control" name = "descripcion" type="text" id="nombre_recinto" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]{2,48}" title="No se permiten números en este campo"> 
                     </div>
                     <button  class = 'margin-button btn btn-success mobile' type ='submit'><i class="glyphicon glyphicon-plus"></i> Crear</button>
                 </div>

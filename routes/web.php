@@ -228,3 +228,31 @@ Route::get('horarios_servicios', function () {
 
 Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'AjaxController@horarioServicios');
 Route::get('/annadirHorarioServicio/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorarios');
+
+
+
+Route::get('horarios_servicios_asistente.index', function () {
+    return view('horarios_servicios_asistente.index') ;
+})->name('horarios_serv_asis.index');
+
+
+Route::get('horarios_servicios_asistente', function () {
+    return view('asistente.configurarHorarios') ;
+})->name('Asistente.horarios');
+
+Route::get('asistente.crearCita', function () {
+    return view('asistente.crearCita') ;
+})->name('Asistente.crearCita');
+
+//Route::get('asistente', function () {
+    //return view('asistente.index') ;
+//})->name('asistente');
+
+Route::get('asistente.configuracionCuentas', function () {
+    return view('asistente.configuracionCuentas') ;
+})->name('asistente.confCuentas');
+
+Route::get('/hola', 'AjaxController@cargarCitas');
+
+Route::get('asistente', 'CitaControllerAsistente@index');
+//Route::resource('asistente', 'CitaControllerAsistente');

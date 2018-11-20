@@ -1,3 +1,4 @@
+
 @extends('masterPaciente')
 @section('contenido_Paciente')
 <div class="panel panel-primary">
