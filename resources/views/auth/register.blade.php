@@ -37,6 +37,35 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('lastName2') ? ' has-error' : '' }}">
+                            <label for="lastName2" class="col-md-4 control-label">Segundo Apellido</label>
+
+                            <div class="col-md-6">
+                                <input id="lastName2" type="text" class="form-control" name="lastName2" value="{{ old('lastName2') }}" required autofocus>
+
+                                @if ($errors->has('lastName2'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('lastName2') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
+                            <label for="cedula" class="col-md-4 control-label">Cédula</label>
+
+                            <div class="col-md-6">
+                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+
+                                @if ($errors->has('cedula'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cedula') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

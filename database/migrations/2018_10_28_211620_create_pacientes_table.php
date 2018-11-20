@@ -19,7 +19,8 @@ class CreatePacientesTable extends Migration {
             $table->string('cedula_paciente', 30)->unique();
             $table->string('nombre', 60);
             $table->string('primer_apellido_paciente', 45);
-            $table->string('segundo_apellido_paciente', 45);
+			$table->string('segundo_apellido_paciente', 45);
+			$table->string('correo')->unique();
             $table->boolean('active_flag');
         });
 

@@ -381,6 +381,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Bloqueo_especialistumController' => __DIR__ . '/../..' . '/app/Http/Controllers/Bloqueo_especialistumController.php',
         'App\\Http\\Controllers\\CitaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CitaController.php',
+        'App\\Http\\Controllers\\CitaControllerAsistente' => __DIR__ . '/../..' . '/app/Http/Controllers/CitaControllerAsistente.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CorreoCitaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoCitaController.php',
         'App\\Http\\Controllers\\CorreoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoController.php',

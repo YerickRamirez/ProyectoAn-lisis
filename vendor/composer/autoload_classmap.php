@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Bloqueo_especialistumController' => $baseDir . '/app/Http/Controllers/Bloqueo_especialistumController.php',
     'App\\Http\\Controllers\\CitaController' => $baseDir . '/app/Http/Controllers/CitaController.php',
+    'App\\Http\\Controllers\\CitaControllerAsistente' => $baseDir . '/app/Http/Controllers/CitaControllerAsistente.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CorreoCitaController' => $baseDir . '/app/Http/Controllers/CorreoCitaController.php',
     'App\\Http\\Controllers\\CorreoController' => $baseDir . '/app/Http/Controllers/CorreoController.php',

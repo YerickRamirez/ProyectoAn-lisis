@@ -79,7 +79,7 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 //Rutas Paciente
 //---------------------------------------
 
-Route::get('paciente', 'PacientePrueba@index');//->middleware('auth');
+Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//->middleware('auth');
 
 /*
 Route::get('citas', function () {
