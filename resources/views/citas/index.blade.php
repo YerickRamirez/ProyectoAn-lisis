@@ -1,11 +1,4 @@
-@extends('layout')
 
-@section('header')
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Citassss
-            <a class="btn btn-success pull-right" href="{{ route('citas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
 @extends('masterPaciente')
 @section('contenido_Paciente')
 <div class="panel panel-primary">
