@@ -1,5 +1,5 @@
-@extends ('masterRoot')
-@section ('contenido_Admin')
+@extends ('masterPaciente')
+@section ('contenido_Paciente')
 
 
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>

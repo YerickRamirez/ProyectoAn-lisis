@@ -39,7 +39,8 @@ class CitaController extends Controller
 	 */
 	public function index()
 	{
-		$citas = Cita::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		$citas = Cita::where('active_flag', 1)
+		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);
 		return view('citas.index', compact('citas', 'active'));
 	}
@@ -67,6 +68,8 @@ class CitaController extends Controller
 		$cita->estado_cita_id = 1;
 		$cita->paciente_id = 1;
 		$cita->servicio_id = $request->dropServicios;
+		$cita->especialista_id = $request->dropEspecialistas;
+		$cita->recinto_id = $request->dropRecintos;
 		$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
 		$minutosCita = substr($request->horaCita, -2);
 		$horaCita = $request->horaCita[0];
