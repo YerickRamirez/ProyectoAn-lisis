@@ -12,14 +12,14 @@ class CreateCuentasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('cuentas', function(Blueprint $table) {
+		/*Schema::create('cuentas', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_usuario', 40)->unique();
             $table->string('contrasenna', 40);
             $table->string('tipo', 20);
             $table->boolean('active_flag');
         });
-
+		*/
 	}
 
 	/**
@@ -29,7 +29,7 @@ class CreateCuentasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('cuentas');
+		//Schema::drop('cuentas');
 	}
 
 }

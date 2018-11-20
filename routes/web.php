@@ -79,9 +79,7 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 //Rutas Paciente
 //---------------------------------------
 
-Route::get('paciente', function () {
-    return view('Paciente/index') ;
-});//->middleware('auth');
+Route::get('paciente', 'PacientePrueba@index');//->middleware('auth');
 
 /*
 Route::get('citas', function () {

@@ -30,7 +30,7 @@ class LoginController extends Controller
             //    return redirect('especialistas');
                // return redirect('paciente');
           //  } else{
-            $dato = Auth::user()->tipo;
+            $dato = strtolower(Auth::user()->tipo);
             if($dato == 'paciente') {
                 return redirect('masterPaciente');
         //        return $dato;

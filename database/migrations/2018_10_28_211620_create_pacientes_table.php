@@ -14,8 +14,8 @@ class CreatePacientesTable extends Migration {
 	{
 		Schema::create('pacientes', function(Blueprint $table) {
             $table->increments('id');
-			$table->integer('id_cuenta')->unsigned();
-			$table->foreign('id_cuenta')->references('id')->on('cuentas')->onDelete('cascade');
+			$table->integer('id_user')->unsigned();
+			$table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->string('cedula_paciente', 30)->unique();
             $table->string('nombre', 60);
             $table->string('primer_apellido_paciente', 45);
