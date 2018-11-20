@@ -371,6 +371,16 @@ public function horarioServicios($recinto, $servicio, $especialista, Request $re
     return json_encode(["horario"=>$xD]);
 }
 
+public function cargarCitas() {
+
+    $citas=DB::table('citas')->where('active_flag', '=', 1)->orderBy('fecha_cita','desc')->get();
+    if ($citas == null || $citas->isEmpty()) {
+        Flash::message("No hay citas para mostrar");
+    }
+    //return $citas;
+    return json_encode(["citas"=>$citas]);
+}
+
 
 
 }
