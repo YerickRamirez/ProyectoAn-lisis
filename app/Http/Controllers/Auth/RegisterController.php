@@ -74,7 +74,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
        Mail::to($data['email'])->send(new Confirmacion($data['name']));
         $tipo = 'paciente';
 
