@@ -256,5 +256,5 @@ Route::get('asistente.configuracionCuentas', function () {
 
 Route::get('/hola', 'AjaxController@cargarCitas');
 
-Route::get('asistente', 'CitaControllerAsistente@index');
-//Route::resource('asistente', 'CitaControllerAsistente');
+Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
+Route::resource('asistente', 'CitaControllerAsistente');

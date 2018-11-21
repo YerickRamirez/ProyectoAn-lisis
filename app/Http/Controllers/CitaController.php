@@ -163,6 +163,7 @@ class CitaController extends Controller
 	 */
 	public function destroy(Cita $cita)
 	{
+		//return $cita;
 		$cita->active_flag = 0;
 		$cita->save();
 
@@ -170,7 +171,6 @@ class CitaController extends Controller
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
-
 		return redirect()->route('citas.index');
 	}
 

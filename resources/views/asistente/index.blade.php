@@ -35,11 +35,12 @@
                                 <td class="text-center">{{$cita->fecha_cita}} </td>
                                 <td class="text-center"><a class="btn btn-warning" href="">
                                     Posponer</a>
-                                    <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita?');">
+                                    <form style="display:inline" action="{{route('destroyCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-danger"> Cancelar</button>
-                                    </form> </td>
+                                    </form> 
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
