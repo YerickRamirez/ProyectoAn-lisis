@@ -1,14 +1,6 @@
-@extends('layout')
+@extends('masterPaciente')
 
-@section('header')
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Paciente
-            <a class="btn btn-success pull-right" href="{{ route('pacientes.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
-    </div>
-@endsection
-
+@section('contenidoPaciente')
 @section('content')
     <div class="row">
         <div class="col-md-12">

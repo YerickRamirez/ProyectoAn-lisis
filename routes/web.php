@@ -80,7 +80,7 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 //---------------------------------------
 
 Route::get('paciente', function () {
-    return view('Paciente/index') ;
+    return redirect()->route('citas.index');
 });//->middleware('auth');
 
 /*
