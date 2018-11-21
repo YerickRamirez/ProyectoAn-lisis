@@ -53,6 +53,11 @@ Route::get('cuentas', function () {
     return view('Admin/configurarCuentas') ;
 });//->middleware('auth.basic');
 
+Route::get('crearCuentas', function () {
+    return view('cuentas/create') ;
+});//->middleware('auth.basic');
+
+
 Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
 });//->middleware('auth.basic');
@@ -62,6 +67,7 @@ Route::get('recintos', function () {
     return view('recintos/index');
 });//->name('recintosA');
 
+Route::get('cuentas/create', function(){return view('cuentas/create');}) ->name('Prueba.adn');
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
@@ -189,10 +195,6 @@ Route::get('ajax',function(){
 
 
 
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -208,18 +210,6 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -271,7 +261,8 @@ Route::get('reservarCita',function(){
     return view('asistente.crearCita');
  });
 
-
+Route::get('crearCuenta', 'CuentaController@store');
+ 
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
 Route::get('logoutUsuarioRecienRegistrado', 'AjaxController@logoutMensajeRegistro');
