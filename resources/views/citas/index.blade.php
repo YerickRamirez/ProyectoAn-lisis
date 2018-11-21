@@ -42,7 +42,7 @@
                                 <td class="text-center">
                                     
 
-                                    <form action="{{ route('citas.destroy', $cita->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                    <form action="{{ route('citas.destroy', $cita->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea cancelar su cita?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 

@@ -185,7 +185,8 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         "15:20", "15:40", "16:00", "16:20", "16:40");
 
         $fechaCitas = Cita::whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())->where('servicio_id' , $dropServicios)
-        ->where('especialista_id', $dropEspecialistas)->where('recinto_id', $dropRecintos)->where('estado_cita_id', '!=', 0)
+        ->where('especialista_id', $dropEspecialistas)->where('recinto_id', $dropRecintos)->where('estado_cita_id', '!=', 3)
+        ->where('estado_cita_id', '!=', 4)
         ->get();//citas en la fecha elegida
 
         //return $fechaCitas;
