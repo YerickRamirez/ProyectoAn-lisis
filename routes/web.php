@@ -174,6 +174,7 @@ Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{
 //Ruta citas
 Route::resource('citas', 'CitaController');
 Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
+Route::get('/annadirCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@store');
 //
 
 Route::get('combobox',function(){
@@ -238,11 +239,10 @@ Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'Aja
 Route::get('/annadirHorarioServicio/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorarios');
 
 
-
+/**Rutas Asistente index, configurar horarios, reservar y reprogramar citas  */
 Route::get('horarios_servicios_asistente.index', function () {
     return view('horarios_servicios_asistente.index') ;
 })->name('horarios_serv_asis.index');
-
 
 Route::get('horarios_servicios_asistente', function () {
     return view('asistente.configurarHorarios') ;
@@ -252,9 +252,6 @@ Route::get('asistente.crearCita', function () {
     return view('asistente.crearCita') ;
 })->name('Asistente.crearCita');
 
-//Route::get('asistente', function () {
-    //return view('asistente.index') ;
-//})->name('asistente');
 
 Route::get('asistente.configuracionCuentas', function () {
     return view('asistente.configuracionCuentas') ;
@@ -262,15 +259,17 @@ Route::get('asistente.configuracionCuentas', function () {
 
 Route::get('/hola', 'AjaxController@cargarCitas');
 
+
 Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
+Route::delete('reprogramarCitAsistente{cita}', 'CitaControllerAsistente@reprogramar')->name('reprogramarCitAsistente');
 Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
-//Route::resource('asistente', 'CitaControllerAsistente');
-
+Route::get('asistente', 'CitaControllerAsistente@index')->name('asistente.index');
+Route::get('/reprogramarCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@reprogramarCita');
 Route::get('reservarCita',function(){
     return view('asistente.crearCita');
  });
-
+///////////////////Fin rutas asistente//////////////////////////////////////////// 
 
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
 Route::get('logoutUsuario', 'Auth\LoginController@logout');
