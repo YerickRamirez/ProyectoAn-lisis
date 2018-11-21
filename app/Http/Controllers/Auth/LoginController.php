@@ -31,27 +31,20 @@ class LoginController extends Controller
     //));
 
         if(Auth::attempt($credentials)){
-//            if(auth()->user()->tipo() => 'paciente'){
-          //  if(Auth::attempt(['tipo'=> 'paciente'])){
-          // return view('Paciente.index');
-          //$user = Auth::user();
-        //  $tipo = Auth::tipo();
-         // return $tipo;
-            //    return redirect('especialistas');
-               // return redirect('paciente');
-          //  } else{
+
+              if(Auth::user()->active_flag == 1) {
             $tipo = Auth::user()->tipo;
             if($tipo == 4) {
-                return redirect('masterPaciente');
+                return redirect('paciente');
             } else{
                 if($tipo == 3){
-                return redirect('masterAdmin');
+                return redirect('asistente');
                 } else{
                     if($tipo == 2){
-                return redirect('masterEspecialista');
+                return redirect('especialistas');
                     } else{
                         if($tipo == 1){
-                return redirect('masterRoot');
+                return redirect('admin');
                     }
                 }
                 }
@@ -60,6 +53,10 @@ class LoginController extends Controller
 
                // return redirect('especialistas');
           //  }
+          } else {
+            return back()->withErrors(['password' => 'Su cuenta está desactivada. Contacte con el 
+            Servicio de Salud para verificar el procedimiento de activación']);        
+        }
         } else {
         return back()->withErrors(['email' => trans('auth.failed')]);        
     }
@@ -105,6 +102,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
     public function logout () {
         //logout user
         auth()->logout();

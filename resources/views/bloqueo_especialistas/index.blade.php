@@ -1,23 +1,24 @@
-@extends('layout')
+@extends('masterAdmin')
 
-@section('header')
+@section('contenido')
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
     <div class="page-header clearfix">
         <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Bloqueo_especialistum
+            <i class="glyphicon glyphicon-align-justify"></i> Bloqueo Especialistas
             <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
         </h1>
     </div>
-@endsection
 
-@section('content')
     <div class="row">
         <div class="col-md-12">
             @if($bloqueo_especialistas->count())
-                <table class="table table-condensed table-striped">
+                <table class="table table-condensed table-striped" id='tablaBloqueos'>
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
-                            <th>Chema=id</th> <th>Id_especialista(10)</th> <th>Id_dia_bloqueo_especialistas(10)</th> <th>Fecha_inicio_bloqueo_especialista</th> <th>Fecha_fin_bloqueo_especialista</th> <th>Hora_inicio_bloqueo_especialista</th> <th>Hora_fin_bloqueo_especialista</th>
+                            <th>id_especialista</th> <th>Dia bloqueado</th> <th>Fecha inicio bloqueo</th> <th>Fecha fin bloqueo</th> <th>Hora inicio bloqueo</th> <th>Hora fin bloqueo</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
@@ -25,9 +26,8 @@
                     <tbody>
                         @foreach($bloqueo_especialistas as $bloqueo_especialistum)
                             <tr>
-                                <td class="text-center"><strong>{{$bloqueo_especialistum->id}}</strong></td>
 
-                                <td>{{$bloqueo_especialistum->chema=id}}</td> <td>{{$bloqueo_especialistum->id_especialista(10)}}</td> <td>{{$bloqueo_especialistum->id_dia_bloqueo_especialistas(10)}}</td> <td>{{$bloqueo_especialistum->fecha_inicio_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->fecha_fin_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->hora_inicio_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->hora_fin_bloqueo_especialista}}</td>
+                                 <td>{{$bloqueo_especialistum->id_especialista}}</td> <td>{{$bloqueo_especialistum->id_dia_bloqueo_especialistas}}</td> <td>{{$bloqueo_especialistum->fecha_inicio_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->fecha_fin_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->hora_inicio_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->hora_fin_bloqueo_especialista}}</td>
                                 
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('bloqueo_especialistas.show', $bloqueo_especialistum->id) }}">
@@ -51,10 +51,26 @@
                 </table>
                 {!! $bloqueo_especialistas->render() !!}
             @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
+                <h3 class="text-center alert alert-info">Sin información para mostrar</h3>
             @endif
 
         </div>
     </div>
+
+    <script>
+        $('#tablaBloqueos').DataTable(
+             {
+     
+            "language": {
+     
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+     
+        } ,
+         stateSave: true,
+         "ordering": false,
+     
+            
+            } );
+        </script>
 
 @endsection

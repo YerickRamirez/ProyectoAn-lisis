@@ -266,5 +266,10 @@ Route::get('asistente', 'CitaControllerAsistente@index');
 //Route::resource('asistente', 'CitaControllerAsistente');
 
 
+Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
-Route::get('logoutUsuario', 'Auth\LoginController@logout');
+Route::get('logoutUsuarioRecienRegistrado', 'AjaxController@logoutMensajeRegistro');
+
+Route::get('/algo', function() {
+    return view('algo');
+});
