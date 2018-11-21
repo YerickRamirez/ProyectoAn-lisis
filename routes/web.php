@@ -34,6 +34,9 @@ Route::get('prueba', function () {
 */
 
 Route::get('/',function () {
+    if(Auth::check()) {
+        auth()->logout();
+    }
     return view('auth/login');
 });//->middleware('auth.basic');
 
@@ -257,6 +260,8 @@ Route::get('asistente.configuracionCuentas', function () {
 
 Route::get('/hola', 'AjaxController@cargarCitas');
 
+Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
+Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
 //Route::resource('asistente', 'CitaControllerAsistente');
 
