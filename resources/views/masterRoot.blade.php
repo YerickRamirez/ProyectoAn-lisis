@@ -58,7 +58,8 @@
 
 			<ul class="nav navbar-nav navbar-right hide-button" >
 				 <li>
-                    <a href="{{ url('/logout') }}" class="dropdown-toggle logout-button"style="color:white" data-toggle="dropdown">
+				 <!--data-toggle="dropdown"-->
+                    <a href="{{ url('/logout') }}" class="dropdown-toggle logout-button"style="color:white" >
                          <strong>Salir&nbsp</strong><span class="glyphicon glyphicon-log-out" style="color:white"></span> 
                     </a>  
                 </li>

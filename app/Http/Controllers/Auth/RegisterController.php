@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Mail\Confirmacion;
 use Mail;
 use App\Paciente;
+use App\Cuentas_activa;
 
 
 
@@ -32,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'logoutUsuario';
+    protected $redirectTo = 'logoutUsuarioRecienRegistrado';
 
     /**
      * Create a new controller instance.
@@ -64,7 +65,7 @@ class RegisterController extends Controller
     {
        Mail::to($email)->send(new SendMailable($name));
        Auth::logout();
-       return view('');
+      // return view('');
     }
     /**
      * Create a new user instance after a valid registration.
@@ -74,9 +75,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
        Mail::to($data['email'])->send(new Confirmacion($data['name']));
         $tipo = 'paciente';
+
+
+        $active_flag = Cuentas_activa::orderBy('id')->first()->cuentas_activas;
 
         $user = User::create([
             'name' => $data['name'],
@@ -84,7 +87,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'tipo' => 4,//tipo 4 = Paciente
-            'active_flag' => 1,
+            'active_flag' => $active_flag,
         ]);
 
         Paciente::create([
@@ -94,8 +97,9 @@ class RegisterController extends Controller
             'primer_apellido_paciente' => $data['lastName'],
             'segundo_apellido_paciente' => $data['lastName2'],
             'correo' => $data['email'],
-            'active_flag' => 1,
+            'active_flag' => $active_flag,
         ]);
+        
         
         return $user;
     }

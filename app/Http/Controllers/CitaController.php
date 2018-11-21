@@ -13,6 +13,7 @@ use App\Cita;
 use Illuminate\Http\Request;
 use \Session;
 use Carbon\Carbon;
+use App\Paciente;
 
 class CitaController extends Controller
 {
@@ -43,9 +44,24 @@ class CitaController extends Controller
 		/*$citas = Cita::where('active_flag', 1)
 		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);*/
+
+		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
+		$paciente_id = $paciente->first()->id;
+
+		$fechaInicioDia = Carbon::createFromFormat('Y-m-d', Carbon::parse(Carbon::now())
+				->format('Y-m-d'), 'America/Costa_Rica')->startOfDay()->format('Y-m-d H:i');
+		
+		$fechaFinDia = Carbon::createFromFormat('Y-m-d', Carbon::parse(Carbon::now())
+		->format('Y-m-d'), 'America/Costa_Rica')->endOfDay()->format('Y-m-d H:i');
+				
+		//return $fechaInicioCarbon;
+
 		$citas = DB::table('citas')
 		->join('estado_citas', 'citas.estado_cita_id', 'estado_citas.id')
-		->where('citas.active_flag', 1)
+		->where('citas.estado_cita_id', '!=', 3)
+		->where('citas.estado_cita_id', '!=', 4)
+		->where('pacientes.id', $paciente_id)
+		->whereDate('citas.fecha_cita', '>=', $fechaInicioDia)
 		->where('estado_citas.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', 'pacientes.id')
 		->where('pacientes.active_flag', 1)
@@ -95,7 +111,9 @@ class CitaController extends Controller
 		$cita = new Cita();
 
 		$cita->estado_cita_id = 1;
-		$cita->paciente_id = 1;
+		//return "a";
+		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
+		$cita->paciente_id = $paciente->first()->id;
 		$cita->servicio_id = $request->dropServicios;
 		$cita->especialista_id = $request->dropEspecialistas;
 		$cita->recinto_id = $request->dropRecintos;
@@ -193,7 +211,7 @@ class CitaController extends Controller
 	public function destroy(Cita $cita)
 	{
 		//return $cita;
-		$cita->active_flag = 0;
+		$cita->estado_cita_id = 3;
 		$cita->save();
 
 		Session::flash('message_type', 'negative');

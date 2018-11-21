@@ -19,17 +19,29 @@
 	
 </div> <div class="form-group">
 	<label for="cedula_especialista-field">Cedula</label>
-	<input class="form-control" type="text" name="cedula_especialista" id="cedula_especialista-field" value="" />
-</div> <div class="form-group">
-	<label for="nombre-field">Nombre</label>
-	<input class="form-control" type="text" name="nombre" id="nombre-field" value="" />
-</div> <div class="form-group">
-	<label for="primer_apellido_especialista-field">Primer Apellido</label>
-	<input class="form-control" type="text" name="primer_apellido_especialista" id="primer_apellido_especialista-field" value="" />
-</div> <div class="form-group">
-	<label for="segundo_apellido_especialista-field">Segundo Apellido</label>
-	<input class="form-control" type="text" name="segundo_apellido_especialista" id="segundo_apellido_especialista-field" value="" />
+	<input class="form-control" type="text" name="cedula_especialista" placeholder="Ingrese su cedula" id="cedula_especialista-field" value="" />
 </div>
+ <div class="form-group">
+	<label for="nombre-field">Nombre</label>
+	<input class="form-control" type="text" name="nombre" placeholder="Ingrese su nombre" id="nombre-field" value="" />
+</div> 
+<div class="form-group">
+	<label for="primer_apellido_especialista-field">Primer Apellido</label>
+	<input class="form-control" type="text" name="primer_apellido_especialista" placeholder="Primer Apellido" id="primer_apellido_especialista-field" value="" />
+</div> 
+<div class="form-group">
+	<label for="segundo_apellido_especialista-field">Segundo Apellido</label>
+	<input class="form-control" type="text" name="segundo_apellido_especialista" placeholder="Segundo Apellido" id="segundo_apellido_especialista-field" value="" />
+</div>
+<div class="form-group">
+	<label for="email">Email</label>
+	<input class="form-control" type="text" name="email" placeholder="Ingrese su email" id="email-field" value="" />
+</div>
+<div class="form-group">
+	<label for="password">contraseña</label>
+	<input class="form-control" type="text" name="password" placeholder="Ingrese su contrasenna(6 caracter minimo)" id="password-field" value="" />
+</div>
+
 
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Guardar</button>
