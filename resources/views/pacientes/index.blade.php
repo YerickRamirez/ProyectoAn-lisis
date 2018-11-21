@@ -1,5 +1,4 @@
 @extends('masterPaciente')
-
 @section('contenidoPaciente')
 @section('content')
     <div class="row">

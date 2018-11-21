@@ -79,13 +79,10 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 //Rutas Paciente
 //---------------------------------------
 
-<<<<<<< HEAD
 Route::get('paciente', function () {
     return redirect()->route('citas.index');
 });//->middleware('auth');
-=======
 Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//->middleware('auth');
->>>>>>> ca5c11a52aa84fcb9dc2ebd9efb03b5d7d548f03
 
 /*
 Route::get('citas', function () {
