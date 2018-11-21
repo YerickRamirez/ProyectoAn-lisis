@@ -20,7 +20,7 @@
 	--chema=id--
 </div> <div class="form-group">
 	<label for="descripcion_estado_cita-field">Descripcion_estado_cita</label>
-	<input class="form-control" type="text" name="descripcion_estado_cita" id="descripcion_estado_cita-field" value="" />
+	<input class="form-control" type="text" name="descripcion_estado_cita" placeholder="Ingrese el estado de la cita" id="descripcion_estado_cita-field" value="" />
 </div>
 
                 <div class="well well-sm">
