@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use \Session;
 use Carbon\Carbon;
 
+
 class CitaControllerAsistente extends Controller
 {
 	/**
@@ -49,15 +50,22 @@ class CitaControllerAsistente extends Controller
 
 
 		$citas = $cita = DB::table('citas')
-		->join('correos', 'citas.paciente_id', '=', 'correos.paciente_id')
-		->where('citas.active_flag', 1)
-		->where('correos.active_flag', 1)
+		
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
 		->where('citas.active_flag', 1)
 		->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 		->where('citas.active_flag', 1)
-		->where('pacientes.active_flag', 1)->get();
+		->where('pacientes.active_flag', 1)
+		->select('citas.id as id_cita',
+			'citas.fecha_cita', 
+			'pacientes.id',
+			'pacientes.nombre',
+			'pacientes.primer_apellido_paciente',
+			'pacientes.segundo_apellido_paciente',
+			'pacientes.cedula_paciente',       
+			'telefonos.telefono',
+			'pacientes.correo' )->get();
 		return view('asistente.index', compact('citas', 'active')
 	);
 
@@ -82,7 +90,7 @@ class CitaControllerAsistente extends Controller
 	public function store(Request $request, User $user)
 	{
 		$cita = new Cita();
-
+		
 		$cita->estado_cita_id = 1;
 		$cita->paciente_id = 1;
 		$cita->servicio_id = $request->dropServicios;
@@ -179,6 +187,8 @@ class CitaControllerAsistente extends Controller
 	 */
 	public function destroy(Cita $cita)
 	{
+
+		//return $cita;
 		$cita->active_flag = 0;
 		$cita->save();
 
@@ -186,8 +196,8 @@ class CitaControllerAsistente extends Controller
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
-
-		return redirect()->route('citas.index');
+		//return "hola";
+		return redirect()->route('asistente.index');
 	}
 
 	/**

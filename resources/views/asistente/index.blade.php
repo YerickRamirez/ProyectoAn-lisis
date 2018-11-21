@@ -10,8 +10,13 @@
     <section class="">
 
     <div class="panel-heading">
-        <div class="">
-        <div class="">
+        <div class="margin-dwn btn">
+    <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('reservarCita') }}">Reservar cita</a> <span>
+        </div>
+<br>    
+    <div class="margin-up">
+    <br> 
+        <div class="margin-up">
             @if($citas->count())
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
@@ -33,13 +38,13 @@
                                 <td class="text-center">{{$cita->telefono}}</td>
                                 <td class="text-center">{{$cita->correo}}</td>
                                 <td class="text-center">{{$cita->fecha_cita}} </td>
-                                <td class="text-center"><a class="btn btn-warning" href="">
-                                    Posponer</a>
-                                    <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita?');">
+                                <td class="text-center"><a class="btn btn-warning" href="">Reprogramar</a>
+                                    <form style="display:inline" action="{{route('destroyCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-danger"> Cancelar</button>
-                                    </form> </td>
+                                    </form> 
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

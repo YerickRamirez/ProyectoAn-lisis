@@ -46,7 +46,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a id="menu-toggle" href="#" class="navbar-toggle" onclick="menu-toggle">
+				<a id="menu-toggle" href="/" class="navbar-toggle" onclick="menu-toggle">
 				<span class="sr-only">Toggle navigation</span>
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
@@ -69,16 +69,10 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border" href="paciente">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
-		    		</li>
-		    		<li>
-		      			<a class="border" href="citas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
+		      			<a class="border" href="citas">Inicio<span class="glyphicon glyphicon-calendar right-citas"></a>
 		    		</li>
 		    		<li>
 		      			<a class="border" href="perfil">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
-		    		</li>
-		    		<li>
-		      			<a class="border" href="informacion">Información<span class="glyphicon glyphicon-list-alt right-info"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a href="{{ url('/logout') }}" class="border" >Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>

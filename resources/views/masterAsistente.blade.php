@@ -72,7 +72,7 @@
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
 		    		<li>	
-      					<div class="logo-ucr2"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
+      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
       				</li>    			
 		  		</ul>
 			</div>
@@ -91,7 +91,7 @@
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+	    <a class="border-a" href="{{ url('asistente') }}">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		<a class="border-a" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('Asistente.crearCita') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>	
 		<a class="border-a" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
