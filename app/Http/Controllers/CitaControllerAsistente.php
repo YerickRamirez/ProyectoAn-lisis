@@ -50,9 +50,7 @@ class CitaControllerAsistente extends Controller
 
 
 		$citas = $cita = DB::table('citas')
-		->join('correos', 'citas.paciente_id', '=', 'correos.paciente_id')
-		->where('citas.active_flag', 1)
-		->where('correos.active_flag', 1)
+		
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
 		->where('citas.active_flag', 1)
 		->where('telefonos.active_flag', 1)
@@ -67,7 +65,7 @@ class CitaControllerAsistente extends Controller
 			'pacientes.segundo_apellido_paciente',
 			'pacientes.cedula_paciente',       
 			'telefonos.telefono',
-			'correos.correo' )->get();
+			'pacientes.correo' )->get();
 		return view('asistente.index', compact('citas', 'active')
 	);
 

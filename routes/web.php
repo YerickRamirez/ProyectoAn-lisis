@@ -158,6 +158,8 @@ Route::resource('recintos', 'RecintoController');
 
 Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mail');
 
+Route::get('sendCancelacion/email/{email}/{name}/{fecha}', 'CancelacionCitaController@mail');
+
 
 //Rutas prueba ajax
 Route::get('/recintosCombo', 'AjaxController@combobox');
@@ -264,6 +266,10 @@ Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->n
 Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
 //Route::resource('asistente', 'CitaControllerAsistente');
+
+Route::get('reservarCita',function(){
+    return view('asistente.crearCita');
+ });
 
 
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran

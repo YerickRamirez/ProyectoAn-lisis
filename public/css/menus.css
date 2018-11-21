@@ -20,6 +20,10 @@ margin-left: 15px;
 margin-bottom: 10px;
 }
 
+button.margin-dwn {
+	margin-top: 20px !important;
+	}
+
 
 @media screen and (max-width: 982px) {
 button.margin-button-agregar {
