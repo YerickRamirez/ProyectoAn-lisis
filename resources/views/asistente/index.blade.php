@@ -38,8 +38,13 @@
                                 <td class="text-center">{{$cita->telefono}}</td>
                                 <td class="text-center">{{$cita->correo}}</td>
                                 <td class="text-center">{{$cita->fecha_cita}} </td>
-                                <td class="text-center"><a class="btn btn-warning" href="">Reprogramar</a>
-                                    <form style="display:inline" action="{{route('destroyCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita?');">
+                                <td>
+                                    <form style="display:inline" action="{{route('reprogramarCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea reprogramar la cita de {{$cita->nombre}} {{$cita->primer_apellido_paciente}}?');">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-warning"> Reprogramar</button>
+                                    </form> 
+                                    <form style="display:inline" action="{{route('destroyCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita de {{$cita->nombre}} {{$cita->primer_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-danger"> Cancelar</button>
