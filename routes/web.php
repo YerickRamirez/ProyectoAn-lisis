@@ -80,8 +80,9 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 //---------------------------------------
 
 Route::get('paciente', function () {
-    return view('Paciente/index') ;
+    return redirect()->route('citas.index');
 });//->middleware('auth');
+Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//->middleware('auth');
 
 /*
 Route::get('citas', function () {
@@ -258,3 +259,9 @@ Route::get('/hola', 'AjaxController@cargarCitas');
 
 Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
 Route::resource('asistente', 'CitaControllerAsistente');
+Route::get('asistente', 'CitaControllerAsistente@index');
+//Route::resource('asistente', 'CitaControllerAsistente');
+
+
+//Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
+Route::get('logoutUsuario', 'Auth\LoginController@logout');

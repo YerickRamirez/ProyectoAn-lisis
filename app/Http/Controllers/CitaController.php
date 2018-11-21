@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use DB;
 use Auth;
 
 use App\Cita;
@@ -39,10 +40,38 @@ class CitaController extends Controller
 	 */
 	public function index()
 	{
-		$citas = Cita::where('active_flag', 1)
+		/*$citas = Cita::where('active_flag', 1)
 		->orderBy('id', 'desc')->paginate(10);
-		$active = Cita::where('active_flag', 1);
-		return view('citas.index', compact('citas', 'active'));
+		$active = Cita::where('active_flag', 1);*/
+		$citas = DB::table('citas')
+		->join('estado_citas', 'citas.estado_cita_id', 'estado_citas.id')
+		->where('citas.active_flag', 1)
+		->where('estado_citas.active_flag', 1)
+		->join('pacientes', 'citas.paciente_id', 'pacientes.id')
+		->where('pacientes.active_flag', 1)
+		->where('citas.active_flag', 1)
+		->join('servicios', 'citas.servicio_id', 'servicios.id')
+		->where('servicios.active_flag', 1)
+		->where('citas.active_flag', 1)
+		->join('especialistas', 'citas.especialista_id', 'especialistas.id')
+		->where('especialistas.active_flag', 1)
+		->where('citas.active_flag', 1)
+		->join('recintos', 'citas.recinto_id', 'recintos.id')
+		->where('recintos.active_flag', 1)
+		->where('citas.active_flag', 1)
+		->select('citas.fecha_cita', 'citas.id', 
+		'especialistas.nombre as nombreEspecialista', 
+		'especialistas.primer_apellido_especialista as apellidoE1',
+		'especialistas.segundo_apellido_especialista as apellidoE2',
+		'servicios.nombre as servicio',
+		'recintos.descripcion as recinto',
+		'estado_citas.descripcion_estado_cita as estadoCita',
+		'pacientes.nombre as nombrePaciente',
+		'pacientes.primer_apellido_paciente as apellidoP1',
+		'pacientes.segundo_apellido_paciente as apellidoP2')
+		->orderBy('fecha_cita', 'asc')->get();
+
+		return view('citas.index', compact('citas'));
 	}
 
 	/**

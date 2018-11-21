@@ -12,6 +12,7 @@ class CreateCorreosTable extends Migration {
 	 */
 	public function up()
 	{
+		/*
 		Schema::create('correos', function(Blueprint $table) {
             $table->increments('id');
 			$table->integer('paciente_id')->unsigned();
@@ -20,7 +21,7 @@ class CreateCorreosTable extends Migration {
             $table->integer('prioridad');
             $table->boolean('active_flag');
         });
-
+*/
 	}
 
 	/**
@@ -30,7 +31,7 @@ class CreateCorreosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('correos');
+		//Schema::drop('correos');
 	}
 
 }
