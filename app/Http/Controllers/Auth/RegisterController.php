@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'logoutUsuario';
 
     /**
      * Create a new controller instance.
@@ -83,7 +83,8 @@ class RegisterController extends Controller
             'lastName' => $data['lastName']. ' ' .  $data['lastName2'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'tipo' => 3,
+            'tipo' => 4,//tipo 4 = Paciente
+            'active_flag' => 1,
         ]);
 
         Paciente::create([

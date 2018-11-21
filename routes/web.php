@@ -256,3 +256,7 @@ Route::get('/hola', 'AjaxController@cargarCitas');
 
 Route::get('asistente', 'CitaControllerAsistente@index');
 //Route::resource('asistente', 'CitaControllerAsistente');
+
+
+//Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
+Route::get('logoutUsuario', 'Auth\LoginController@logout');
