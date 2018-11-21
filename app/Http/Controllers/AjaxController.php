@@ -140,6 +140,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
       
 
         $diaElegido = $fechaElegidaCarbon->dayOfWeek;
+        $diaElegido2 = $fechaElegidaCarbon->dayOfWeek;
 
                 switch ($diaElegido) {
                     case 1:
@@ -161,7 +162,17 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
                     abort(404, 'Día de la semana no válido. La oficina ofrece citas de Lunes a Viernes');
                 }
 
-        $fechaCitas = Cita::whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())->get();//citas en la fecha elegida
+
+        $horas_manana = array("8:00", "8:20", "8:40", "9:00", "9:20", "9:40", "10:00", 
+        "10:20", "10:40", "11:00", "11:20", "11:40");
+
+        $horas_tarde = array("13:00", "13:20", "13:40", "14:00", "14:20", "14:40", "15:00", 
+        "15:20", "15:40", "16:00", "16:20", "16:40");
+
+        $fechaCitas = Cita::whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())->where('servicio_id' , $dropServicios)
+        ->where('especialista_id', $dropEspecialistas)->where('recinto_id', $dropRecintos)->where('estado_cita_id', '!=', 0)
+        ->get();//citas en la fecha elegida
+
         //return $fechaCitas;
         //para comparara en whereDate() se le manda el atributo de BD y un string.
 
@@ -170,6 +181,10 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         //rango de fechas. Cosas como reuniones
 
         $horarios_bloqueados_esp = EspecialistaModel::findOrFail($dropEspecialistas)->bloqueo_horario->where('active_flag', 1);
+
+        $horarios_servicios_especialista = Horarios_servicio::where('id_especialista', $dropEspecialistas)->where('id_servicio', $dropServicios)
+        ->where('id_recinto', $dropRecintos)->where('active_flag', 1)->get();
+
         //rango de fechas bloqueando un día en específico, como los miércoles en la mañana.
 
         //return $horarios_bloqueados_esp;
@@ -182,6 +197,9 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
                 array_push($horasOcupadas, $cualquiera);
             }
         }
+
+
+        //return $horasOcupadas;
 
         //return json_encode(["horasOcupadas"=>$horasOcupadas]);
 
@@ -208,6 +226,25 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
             }
         }// fin revisar horario_deshabilitado por reuniones
 
+        if(!$horarios_servicios_especialista->isEmpty()) {//citas existentes de la fecha elegidas
+            foreach ($horarios_servicios_especialista as $horarios_servicio) {
+                if($horarios_servicio->disponibilidad_manana == 0) {
+                    foreach ($horas_manana as $hora) {
+                        if($diaElegido2 == $horarios_servicio->id_dia) {
+                            array_push($horasOcupadas, $hora);
+                        }
+                    }
+                }
+                if($horarios_servicio->disponibilidad_tarde == 0) {
+                    foreach ($horas_tarde as $hora) {
+                        if($diaElegido2 == $horarios_servicio->id_dia) {
+                            array_push($horasOcupadas, $hora);
+                        }
+                    }
+                }
+                
+            }
+        }
 
         if(!$horarios_bloqueados_esp->isEmpty()) {//fecha/hora deshabilitada por el especialista por miércoles administrativo etc
 
@@ -228,7 +265,11 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
 
                 $fechaFinCarbon = Carbon::createFromFormat('Y-m-d', Carbon::parse($bloqueado_esp->fecha_fin_bloqueo_especialista)
                 ->format('Y-m-d'), 'America/Costa_Rica')->endOfDay();
+
+                //return $fechaInicioCarbon . ' ' .$fechaFinCarbon;
                 
+                    //return json_encode($fechaElegidaCarbon->greaterThanOrEqualTo($fechaFinCarbon));
+
                 if($fechaElegidaCarbon->greaterThanOrEqualTo($fechaInicioCarbon) && $fechaElegidaCarbon->lessThanOrEqualTo($fechaFinCarbon)) {
                     $hora_inicio_deshabilitar = $this->arreglarHora(substr($bloqueado_esp->hora_inicio_bloqueo_especialista, 0, 5));
                     $hora_fin_deshabilitar = $this->arreglarHora(substr($bloqueado_esp->hora_fin_bloqueo_especialista, 0, 5));
@@ -241,13 +282,8 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
                 }
                 }
             }
-            return json_encode(["horasOcupadas"=>$horasOcupadas]);
+            //return json_encode(["horasOcupadas"=>$horasOcupadas]);
         }// fin revisar horario_deshabilitado por reuniones
-
-        /*$users = DB::table('users')
-                    ->whereBetween('votes', array(1, 100))->get(); */
-
-        //$xD = /*$dropRecintos . ' ' . $dropServicios . ' ' . $dropEspecialistas . ' ' . $newDate . ' ' .*/ $horasOcupadas;
 
     return json_encode(["horasOcupadas"=>$horasOcupadas]);
    // }

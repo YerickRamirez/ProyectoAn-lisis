@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserTipoMigration extends Migration
+class TipoUsuario extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class UserTipoMigration extends Migration
      */
     public function up()
     {
-        // Creo un campo apellidos "last_name"
-    Schema::table('users', function($table){
-        $table->string('tipo',50);
-      });
+        Schema::create('tipo_usuario', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('descripcion_tipo', 50);
+            $table->boolean('active_flag');
+        });
     }
 
     /**
@@ -26,9 +27,6 @@ class UserTipoMigration extends Migration
      */
     public function down()
     {
-         // Elimino el campo last_name
-    Schema::table('users', function ($table) {
-        $table->dropColumn('tipo');
-    });
+        //
     }
 }

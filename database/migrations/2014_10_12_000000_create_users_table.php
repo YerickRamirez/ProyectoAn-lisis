@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('tipo')->unsigned();
+            $table->foreign('tipo')->references('id')->on('tipo_usuario')->onDelete('cascade');
+            $table->boolean('active_flag');
             $table->rememberToken();
             $table->timestamps();
         });
