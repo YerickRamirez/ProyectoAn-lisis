@@ -39,7 +39,7 @@
 </div>
 <div class="form-group">
 	<label for="password">contraseña</label>
-	<input class="form-control" type="text" name="password" placerholder="Ingrese su contrasenna(6 caracter min)" id="password-field" value="" />
+	<input class="form-control" type="text" name="password" placeholder="Ingrese su contrasenna(6 caracter minimo)" id="password-field" value="" />
 </div>
 
 
