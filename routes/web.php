@@ -90,7 +90,7 @@ Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//-
 /*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
-})->middleware('auth');*/
+})->middleware('auth');
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
@@ -99,7 +99,7 @@ Route::get('perfil', function () {
 Route::get('informacion', function () {
     return view('Paciente/informacion') ;
 });//->middleware('auth');
-
+*/
 Route::get('datepicker', function () {
     return view('Paciente/datepicker');
 });
