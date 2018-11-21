@@ -48,10 +48,9 @@ class CitaControllerAsistente extends Controller
 		//$active = Cita::where('active_flag', 1);
 		$citas = $cita = DB::table('citas')
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
-		->where('citas.active_flag', 1)
+		->where('citas.estado_cita_id', '!=',3)
 		->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
-		->where('citas.active_flag', 1)
 		->where('pacientes.active_flag', 1)
 		->select('citas.id as id_cita',
 			'citas.fecha_cita', 
@@ -217,7 +216,7 @@ class CitaControllerAsistente extends Controller
 	{
 
 		$cita->name = ucfirst($request->input("name"));
-    $cita->slug = str_slug($request->input("name"), "-");
+    	$cita->slug = str_slug($request->input("name"), "-");
 		$cita->description = ucfirst($request->input("description"));
 		$cita->active_flag = 1;//change to reflect current status or changed status
 		$cita->author_id = $request->user()->id;
@@ -247,7 +246,8 @@ class CitaControllerAsistente extends Controller
 	{
 
 		//return $cita;
-		$cita->active_flag = 0;
+		//$cita->active_flag = 0;
+		$cita->estado_cita_id = 3;
 		$cita->save();
 
 		Session::flash('message_type', 'negative');
