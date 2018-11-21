@@ -34,6 +34,9 @@ Route::get('prueba', function () {
 */
 
 Route::get('/',function () {
+    if(Auth::check()) {
+        auth()->logout();
+    }
     return view('auth/login');
 });//->middleware('auth.basic');
 
