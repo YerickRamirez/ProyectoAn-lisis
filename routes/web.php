@@ -259,14 +259,11 @@ Route::get('/reprogramarCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/
 Route::get('reservarCita',function(){
     return view('asistente.crearCita');
  });
-<<<<<<< HEAD
 
 Route::get('crearCuenta', 'CuentaController@store');
  
-=======
 ///////////////////Fin rutas asistente//////////////////////////////////////////// 
 
->>>>>>> f95cfc6e1de0b57bc3b8af2a4e9814574108712e
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
 Route::get('logoutUsuarioRecienRegistrado', 'AjaxController@logoutMensajeRegistro');
