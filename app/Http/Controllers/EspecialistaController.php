@@ -63,6 +63,17 @@ class EspecialistaController extends Controller
 	{
 		$especialista = new Especialista();
 
+
+		$user = User::create([
+            'name' => $request->input("nombre"),
+            'lastName' => $request->input("primer_apellido_especialista"). ' ' .$request->input("segundo_apellido_especialista"),
+            'email' => $request->input("email"),
+            'password' => bcrypt( $request->input("password")),
+            'tipo' => 2,
+            'active_flag' => 1,
+        ]);
+
+		$especialista->id_user = $user->id;
 		$especialista->cedula_especialista = $request->input("cedula_especialista");
 		$especialista->nombre = $request->input("nombre");
 		$especialista->primer_apellido_especialista = $request->input("primer_apellido_especialista");
@@ -75,6 +86,7 @@ class EspecialistaController extends Controller
 					 'primer_apellido_especialista' => 'required',
 					 'segundo_apellido_especialista' => 'required'
 			 ]);
+
 
 		$especialista->save();
 

@@ -90,7 +90,7 @@ Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//-
 /*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
-})->middleware('auth');*/
+})->middleware('auth');
 
 Route::get('perfil', function () {
     return view('Paciente/perfil') ;
@@ -99,7 +99,7 @@ Route::get('perfil', function () {
 Route::get('informacion', function () {
     return view('Paciente/informacion') ;
 });//->middleware('auth');
-
+*/
 Route::get('datepicker', function () {
     return view('Paciente/datepicker');
 });
@@ -157,6 +157,8 @@ Route::resource('recintos', 'RecintoController');
 //Route::get('send/email/{email}/{name}/{fecha}', 'correoCitaController@mail');
 
 Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mail');
+
+Route::get('sendCancelacion/email/{email}/{name}/{fecha}', 'CancelacionCitaController@mail');
 
 
 //Rutas prueba ajax
@@ -264,6 +266,10 @@ Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->n
 Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
 //Route::resource('asistente', 'CitaControllerAsistente');
+
+Route::get('reservarCita',function(){
+    return view('asistente.crearCita');
+ });
 
 
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');

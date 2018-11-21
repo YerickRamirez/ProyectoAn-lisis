@@ -11,7 +11,8 @@ class Especialista extends Model
 
     public $timestamps=false;
 
-    protected $fillable = ['cedula_especialista', 'nombre', 'primer_apellido_especialista', 'segundo_apellido_especialista', 'estado'];
+    protected $fillable = ['id_user','cedula_especialista', 'nombre', 'primer_apellido_especialista', 'segundo_apellido_especialista', 'estado'];
+   // protected $fillable = ['cedula_especialista', 'nombre', 'primer_apellido_especialista', 'segundo_apellido_especialista', 'estado'];
 
     public function bloqueo_horario()
     {
