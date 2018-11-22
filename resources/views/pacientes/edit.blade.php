@@ -1,47 +1,36 @@
-@extends('layout')
+@extends('masterPaciente')
 
-@section('header')
-    <div class="page-header">
-        <h1><i class="glyphicon glyphicon-edit"></i> Paciente / Edit #{{$paciente->id}}</h1>
-    </div>
-@endsection
 
-@section('content')
-    @include('error')
-
+@section('contenido_Paciente')
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ route('pacientes.update', $paciente->id) }}" method="POST">
+            <form action="{{ route('pacientes.update', $variable->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
-	<label for="chema=id-field">Chema=id</label>
-	--chema=id--
-</div> <div class="form-group">
-	<label for="nombre_usuario-field">Nombre_usuario</label>
-	<input class="form-control" type="text" name="nombre_usuario" id="nombre_usuario-field" value="{{ old('nombre_usuario', $paciente->nombre_usuario ) }}" />
-</div> <div class="form-group">
-	<label for="cedula_paciente-field">Cedula_paciente</label>
-	<input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $paciente->cedula_paciente ) }}" />
+ <div class="form-group">
+	<label for="cedula_paciente-field">Cedula</label>
+	<input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $variable->cedula_paciente ) }}" />
 </div> <div class="form-group">
 	<label for="nombre-field">Nombre</label>
-	<input class="form-control" type="text" name="nombre" id="nombre-field" value="{{ old('nombre', $paciente->nombre ) }}" />
+	<input class="form-control" type="text" name="nombre" id="nombre-field" value="{{ old('nombre', $variable->nombre ) }}" />
 </div> <div class="form-group">
-	<label for="primer_apellido_paciente(45)-field">Primer_apellido_paciente(45)</label>
-	--primer_apellido_paciente(45)--
+	<label for="primer_apellido_paciente(45)-field">Primer Apellido</label>
+	<label for="nombre-field">Nombre</label>
+	<input class="form-control" type="text" name="primer_apellido_paciente" id="primer_apellido_paciente-field" value="{{ old('primer_apellido_paciente', $variable->primer_apellido_paciente ) }}" />
 </div> <div class="form-group">
-	<label for="segundo_apellido_paciente(45)-field">Segundo_apellido_paciente(45)</label>
-	--segundo_apellido_paciente(45)--
+	<label for="segundo_apellido_paciente(45)-field">Segundo Apellido</label>
+	<input class="form-control" type="text" name="segundo_apellido_paciente" id="segundo_apellido_paciente-field" value="{{ old('segundo_apellido_paciente', $variable->segundo_apellido_paciente ) }}" />
 </div> <div class="form-group">
-	<label for="estado-field">Estado</label>
-	--estado--
+	<label for="correo-field">Correo</label>
+	<input class="form-control" type="text" name="correo" id="correo-field" value="{{ old('correo', $variable->correo ) }}" />
 </div>
-
+                <a href="{{ url('cambioContrasenna')}}">Cambiar Contraseña</a>
                 <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <a class="btn btn-link pull-right" href="{{ route('pacientes.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
+                    <button type="submit" class="btn btn-primary">Actualizar Datos</button>
+                    <a class="btn btn-link pull-right" href="{{ url('paciente') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
                 </div>
             </form>
 

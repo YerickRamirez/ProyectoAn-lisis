@@ -8,7 +8,13 @@
                     <thead>
                         <tr>
                             <th class="text-center">#</th>
-                            <th>Chema=id</th> <th>Nombre_usuario</th> <th>Cedula_paciente</th> <th>Nombre</th> <th>Primer_apellido_paciente(45)</th> <th>Segundo_apellido_paciente(45)</th> <th>Estado</th>
+                            <th>Chema=id</th> 
+                            <th>Nombre_usuario</th> 
+                            <th>Cedula_paciente</th> 
+                            <th>Nombre</th> 
+                            <th>Primer_apellido_paciente(45)</th> 
+                            <th>Segundo_apellido_paciente(45)</th> 
+                            <th>Estado</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
@@ -18,7 +24,13 @@
                             <tr>
                                 <td class="text-center"><strong>{{$paciente->id}}</strong></td>
 
-                                <td>{{$paciente->chema=id}}</td> <td>{{$paciente->nombre_usuario}}</td> <td>{{$paciente->cedula_paciente}}</td> <td>{{$paciente->nombre}}</td> <td>{{$paciente->primer_apellido_paciente(45)}}</td> <td>{{$paciente->segundo_apellido_paciente(45)}}</td> <td>{{$paciente->estado}}</td>
+                                
+                                <td>{{$paciente->nombre_usuario}}</td> 
+                                <td>{{$paciente->cedula_paciente}}</td>
+                                <td>{{$paciente->nombre}}</td> 
+                                <td>{{$paciente->primer_apellido_paciente(45)}}</td> 
+                                <td>{{$paciente->segundo_apellido_paciente(45)}}</td> 
+                                <td>{{$paciente->estado}}</td>
                                 
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('pacientes.show', $paciente->id) }}">

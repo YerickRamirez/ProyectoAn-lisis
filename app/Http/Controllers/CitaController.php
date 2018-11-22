@@ -44,6 +44,9 @@ class CitaController extends Controller
 		/*$citas = Cita::where('active_flag', 1)
 		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);*/
+		if(!Auth::check()) {
+			abort(404, 'COMILLAS JOPUTAS');
+		}
 
 		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
 		$paciente_id = $paciente->first()->id;
