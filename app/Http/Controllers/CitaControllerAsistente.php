@@ -54,7 +54,8 @@ class CitaControllerAsistente extends Controller
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 		->where('pacientes.active_flag', 1)
 		->select('citas.id as id_cita',
-			'citas.fecha_cita', 
+			'citas.fecha_cita',
+			'citas.estado_cita_id', 
 			'pacientes.id',
 			'pacientes.nombre',
 			'pacientes.primer_apellido_paciente',
@@ -178,6 +179,20 @@ class CitaControllerAsistente extends Controller
 			$cita->active_flag = 0;
 			$cita->save();
 			return view('asistente.reprogramarCita', compact('cedula'));
+			}
+
+			public function confirmar(Cita $cita)
+			{
+				$cita->estado_cita_id = 1;
+				$cita->save();
+		
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
+				//return "hola";
+				return redirect()->route('asistente.index');
+		
 			}
 
 	/**

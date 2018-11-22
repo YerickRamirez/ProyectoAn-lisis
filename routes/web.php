@@ -266,6 +266,7 @@ Route::get('/hola', 'AjaxController@cargarCitas');
 
 Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
 Route::delete('reprogramarCitAsistente{cita}', 'CitaControllerAsistente@reprogramar')->name('reprogramarCitAsistente');
+Route::delete('confirmarCitAsistente{cita}', 'CitaControllerAsistente@confirmar')->name('confirmarCitAsistente');
 Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
 Route::get('asistente', 'CitaControllerAsistente@index')->name('asistente.index');

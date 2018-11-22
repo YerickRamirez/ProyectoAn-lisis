@@ -39,16 +39,29 @@
                                 <td class="text-center">{{$cita->correo}}</td>
                                 <td class="text-center">{{$cita->fecha_cita}} </td>
                                 <td>
+                                @if( $cita->estado_cita_id == 1)
+                                
+                                        <button id="confirmado" type="submit" class="btn btn-primary" style="background-color:grey" disabled> Confirmada</button>
+                                    
+                                    @else
+                                    <form style="display:inline" action="{{route('confirmarCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea confirmar la cita de {{$cita->nombre}} {{$cita->primer_apellido_paciente}}?');">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button id="confirmado" type="submit" class="btn  btn-primary">&nbspConfirmar &nbsp</button>
+                                    </form>
+                                    @endif   
+                                    
                                     <form style="display:inline" action="{{route('reprogramarCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea reprogramar la cita de {{$cita->nombre}} {{$cita->primer_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-warning"> Reprogramar</button>
+                                        <button type="submit" class="btn btn-info"> Reprogramar</button>
                                     </form> 
                                     <form style="display:inline" action="{{route('destroyCitAsistente', $cita->id_cita)}}" method="POST" style="display: inline;" onsubmit="return confirm('Desea cancelar la cita de {{$cita->nombre}} {{$cita->primer_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-danger"> Cancelar</button>
                                     </form> 
+                                   
                                 </td>
                             </tr>
                         @endforeach
@@ -61,6 +74,7 @@
             @endif
 
             </div>
+
         </div>
         </div> 
 	</section>
