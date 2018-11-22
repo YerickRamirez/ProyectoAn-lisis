@@ -279,3 +279,6 @@ Route::get('logoutUsuarioRecienRegistrado', 'AjaxController@logoutMensajeRegistr
 Route::get('/algo', function() {
     return view('algo');
 });
+
+//sirve para llenar los drops de los días bloqueados (asist, especialista, root)
+Route::get('dropDiasBloqueo', 'AjaxController@dropDiasBloqueo');
