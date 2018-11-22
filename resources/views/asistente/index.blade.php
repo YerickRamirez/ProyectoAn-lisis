@@ -38,7 +38,7 @@
                                 <td class="text-center">{{$cita->telefono}}</td>
                                 <td class="text-center">{{$cita->correo}}</td>
                                 <td class="text-center">{{$cita->fecha_cita}} </td>
-                                <td>
+                                <td class="text-center">
                                 @if( $cita->estado_cita_id == 1)
                                 
                                         <button id="confirmado" type="submit" class="btn btn-primary" style="background-color:grey" disabled> Confirmada</button>
