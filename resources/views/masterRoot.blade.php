@@ -85,7 +85,10 @@
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('recintos.index') }}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
-		    		</li>
+					</li>
+					<li>
+						<a class="border" href="{{ url('contrasennaAdmin') }}">Cambiar Contraseña<span class="glyphicon glyphicon-asterisk right-aling-glyphicon"></a>
+				  	</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
@@ -114,7 +117,8 @@
 		<a class="border-a" href="{{ route('Admin.horarios') }}">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('servicio.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		<a class="border-a" href="{{ route('recintos.index') }}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
-      	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+		<a class="border-a" href="{{ url('contrasennaAdmin') }}">Cambiar Contraseña<span class="glyphicon glyphicon-asterisk right-aling-glyphicon"></a>
+		<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
 
