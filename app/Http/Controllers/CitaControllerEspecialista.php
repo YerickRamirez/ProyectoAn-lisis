@@ -18,7 +18,7 @@ use \Session;
 use Carbon\Carbon;
 
 
-class CitaControllerAsistente extends Controller
+class CitaControllerEspecialista extends Controller
 {
 	/**
 	 * Variable to model
@@ -42,10 +42,11 @@ class CitaControllerAsistente extends Controller
 	 *
 	 * @return Response
 	 */
-
-	 /**ESTE VA A MOSTRAR LAS CITAS DEL DIA ACTUAL EN EL MODULO ASISTENTE*/
+	/**ESTE VA A MOSTRAR LAS CITAS DEL DIA ACTUAL EN EL MODULO ESPECIALISTA*/
 	public function index()
 	{
+		//$citas = Cita::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		//$active = Cita::where('active_flag', 1);
 		$citas = $cita = DB::table('citas')
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
 		->where('citas.active_flag', '!=',0)
@@ -65,9 +66,11 @@ class CitaControllerAsistente extends Controller
 			'pacientes.correo' )
 			->orderBy('fecha_cita', 'asc')->get();
 			//return $citas;
-		return view('asistente.index', compact('citas', 'active'));
+		return view('Especialista.index', compact('citas', 'active'));
 
 	}
+
+	/*CREO QUE EL ESPECIALISTA NO OCUPA ESTO
 
 	/**
 	 * Show the form for creating a new resource.
@@ -128,7 +131,7 @@ class CitaControllerAsistente extends Controller
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "La cita fue añadida exitosamente");
 
-		return redirect()->route('asistente.index');
+		return redirect()->route('Especialista.index');
 		}
 
 		public function reprogramarCita(Request $request, User $user)
@@ -167,7 +170,7 @@ class CitaControllerAsistente extends Controller
 			Session::flash('message_header', 'Success');
 			Session::flash('message', "La cita fue añadida exitosamente");
 
-			return redirect()->route('asistente.index');
+			return redirect()->route('Especialista.index');
 			}
 
 			public function reprogramar(Cita $cita)
@@ -178,7 +181,7 @@ class CitaControllerAsistente extends Controller
 			$cedula = $citas->first()->cedula_paciente;
 			$cita->active_flag = 0;
 			$cita->save();
-			return view('asistente.reprogramarCita', compact('cedula'));
+			return view('Especialista.reprogramarCitaEspecialista', compact('cedula'));
 			}
 
 			public function confirmar(Cita $cita)
@@ -191,7 +194,7 @@ class CitaControllerAsistente extends Controller
 				Session::flash('message_header', 'Success');
 				Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
 				//return "hola";
-				return redirect()->route('asistente.index');
+				return redirect()->route('Especialista.index');
 		
 			}
 
@@ -271,7 +274,7 @@ class CitaControllerAsistente extends Controller
 		Session::flash('message_header', 'Success');
 		Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
 		//return "hola";
-		return redirect()->route('asistente.index');
+		return redirect()->route('Especialista.index');
 	}
 
 	/**
