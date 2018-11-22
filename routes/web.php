@@ -106,6 +106,14 @@ Route::get('paciente', function () {
 });//->middleware('auth');
 Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//->middleware('auth');
 
+
+/*CAMBIO DE CONTRASENNA ROOT */
+Route::get('contrasennaAdmin', function() {
+    return view('Admin/cambiarContrasenna');
+});
+Route::resource('cambiarContrasennaAdmin', 'ContrasennaRootController');
+/*FIN CAMBIO DE CONTRASENNA ROOT */
+
 /*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
