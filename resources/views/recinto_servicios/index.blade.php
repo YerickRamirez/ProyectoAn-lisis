@@ -1,15 +1,15 @@
 @extends('masterRoot')
 @section('contenido_Admin')
 <script src="{{asset('js/Servicios_Recintos.js')}}"></script>
-<div class="panel panel-primary">
-     <div class="panel-heading">
+<div class="panel panel-primary border-panel border-panel">
+     <div class="panel-heading bg-color-panel bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Vincular Servicio a Recinto</p>
     </div>
     <br/>
     <div class="panel-body">
             <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
         <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
-        <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Crear</a> <span>
+        <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Vincular</a> <span>
     </div>
 
     <div>
@@ -53,7 +53,10 @@
             @endif
 
         </div>
+        <a class="btn btn-link pull-right" href="{{ route('servicio.index') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
     </div>
+</div>
+</div>
 </div>
 
 @endsection

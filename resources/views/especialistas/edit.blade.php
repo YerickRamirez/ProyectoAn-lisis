@@ -8,9 +8,14 @@
 
 @section('contenido_Admin')
     @include('error')
-
+    <div class="panel panel-primary border-panel">
+     <div class="panel-heading bg-color-panel">
+        <p style="text-align: center; font-size: 3vh;">Editar Especialista</p>
+    </div>
+    <br/>
+    <div class="panel-body">
     <div class="row">
-        <div class="col-md-12">
+    <div class="col-md-6 col-md-offset-3">
 
             <form action="{{ route('especialistas.update', $especialista->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
@@ -39,5 +44,7 @@
             </form>
 
         </div>
+    </div>
+    </div>
     </div>
 @endsection

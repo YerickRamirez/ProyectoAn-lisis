@@ -1,12 +1,12 @@
 @extends('masterRoot')
 @section('contenido_Admin')
-<div class="panel panel-primary">
-     <div class="panel-heading">
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel ">
         <p style="text-align: center; font-size: 3vh;">Configuración Servicio</p>
     </div>
     <br/>
     <div class="panel-body">
-            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('servicio.create') }}">Crear</a> <span>
+            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('servicio.create') }}">Agregar Servicio</a> <span>
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('recinto_servicios.index') }}">Vincular Servicio</a>
             </span>
             <span>
@@ -14,7 +14,7 @@
             </span>
     </div>
 
-<div class="page-header clearfix">
+<div class="">
     <div class="panel-heading">
     <div class="">
         <div class="">
@@ -44,7 +44,7 @@
                                         <i class="glyphicon glyphicon-edit"></i> Editar
                                     </a>
 
-                                    <form action="{{ route('servicio.destroy', $servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                    <form action="{{ route('servicio.destroy', $servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea eliminar el servicio {{$servicio->nombre}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
@@ -64,5 +64,5 @@
         </div>
     </div>
     </div>
-
+</div>
 @endsection

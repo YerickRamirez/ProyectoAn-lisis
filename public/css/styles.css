@@ -187,7 +187,7 @@ div.logo-ucr2 {
 
 .main-footer {
   width: 100%;
-  position: fixed;
+  position: relative;
   bottom: 0 !important;
 
   background-color: #DEDEE3;
@@ -208,6 +208,14 @@ div.logo-ucr2 {
     display: none;
   }
 }
+
+@media screen and (max-height:600px) {
+  div.logo-ucr-asistente {
+    display: none;
+  }
+}
+
+
 
 @media screen and (min-width: 700px) {
   div.tittle {
@@ -289,6 +297,12 @@ div.logo-ucr2 {
 
 .right-aling-glyphicon-m{
   margin-left:103px;
+}
+
+.logo-ucr-asistente {
+  position: fixed;
+  margin-left: 45px;
+  bottom:200px;
 }
 
 .logo-ucr {
@@ -449,7 +463,12 @@ div.logo-ucr2 {
 }
 
 
-
+@media screen and (min-width: 400px) {
+  footer.main-footer {
+    position: fixed;
+    bottom: 0 !important;
+  }
+}
 
 
 

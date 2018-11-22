@@ -1,7 +1,7 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
-<div class="panel panel-primary">
-    <div class="panel-heading">
+<div class="panel panel-primary border-panel">
+    <div class="panel-heading bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Editar Recinto</p>
     </div>
     <div class="panel-body">
@@ -9,7 +9,7 @@
         <div class="content-c w3-container">    
             <div class=" center">
   
-               <div class="col-md-4 col-md-offset-4">
+               <div class="col-md-6 col-md-offset-3">
                 
                     <form action="{{ route('recintos.update', $recinto->id) }}" method="POST">
                         <input type="hidden" name="_method" value="PUT">
