@@ -59,7 +59,7 @@ class LoginController extends Controller
             Servicio de Salud para verificar el procedimiento de activación']);        
         }
         } else {
-        return back()->withErrors(['email' => trans('auth.failed')]);        
+        return back()->withErrors(['email' => trans('Correo electrónico o contraseña incorrectos.')]);        
     }
     }
 
