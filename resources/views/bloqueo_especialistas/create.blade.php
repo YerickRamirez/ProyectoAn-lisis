@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
-<div class="panel panel-primary">
-        <div class="panel-heading">
-           <p style="text-align: center; font-size: 3vh;">Configuración de recintos</p>
+<div class="panel panel-primary border-panel">
+        <div class="panel-heading bg-color-panel">
+           <p style="text-align: center; font-size: 3vh;">Bloquear horario</p>
        </div>
        <div class="panel-body">
 <script>
@@ -139,17 +139,17 @@ timeout: 15000
 
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
-<div class="container">
 
-        <div class="row">
+    <div style="text-align: center">
+        <div class="row" style="text-align: center">
                 
-                <div style="margin-bottom: 15px;" class="col-sm-3">
-                        <h4>Día<h4> 
+                <div style="margin-bottom: 15px;" class="col-sm-3 col-sm-offset-1">
+                        <h4 style="text-align: center;">Día<h4> 
                     <select id="dropDiasBloqueo" class="form-control"></select>
                 </div>
 
             <div class='col-sm-3'>
-                    <h4>Fecha Inicio<h4>
+                    <h4 style="text-align: center;">Fecha Inicio<h4>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepickerInicio'>
                         <input type='text' class="form-control" onchange="prueba()" />
@@ -161,7 +161,7 @@ timeout: 15000
             </div>
 
             <div class='col-sm-3'>
-                    <h4>Fecha Fin<h4>
+                    <h4 style="text-align: center;">Fecha Fin<h4>
             <div class='input-group date' id='datetimepickerFin'>
                 <input type='text' class="form-control" onchange="prueba()" />
                 <span class="input-group-addon">
@@ -197,27 +197,25 @@ timeout: 15000
             </script>
         </div>
         <div class="row">
-                <div class='col-sm-3'>
-                    <h4>Especialista<h4> 
-                    <select id="dropEspecialistas" class="form-control"></select>
-                </div>
-                <div class='col-sm-3'>
-                 <h4>Hora Inicio<h4>
-        <input class="timepicker" id="timeInicio">
-    </div>
-    <div class='col-sm-3 offset-sm-2'>
-            <h4>Hora Fin<h4>
-   <input class="timepicker" id="timeFin">
-</div>
-    </div>
-    
-    <div class="row">
-        <br>
-            <div class='col-sm-3 offset-sm-2'>
-    <button style="text-align:center"    class = 'margin-button-agregar btn btn-success mobile' 
-    onclick="insertarBloqueoEsp()">Agregar bloqueo</button>
+            <div class="col-sm-3 col-sm-offset-1"style="text-align: center;">
+                <h4 style="text-align: center;">Especialista<h4> 
+                <select id="dropEspecialistas" class="form-control"></select>
             </div>
-    </div>
+            <div class='col-sm-3'>
+                 <h4 style="text-align: center;">Hora Inicio<h4>
+                <input style="margin-left: 22px; margin-top: 5px;"class="timepicker" id="timeInicio">
+            </div>
+            <div class='col-sm-3 offset-sm-2'>
+                <h4 style="text-align: center;">Hora Fin<h4>
+                <input style="margin-left: 17px; margin-top: 5px;" class="timepicker" id="timeFin">
+            </div>
+        </div>
+    
+    
+        <br>
+            <button  class = 'btn btn-success mobile bloquear' 
+            onclick="insertarBloqueoEsp()" >Agregar bloqueo</button>
+    
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->
     
@@ -288,5 +286,7 @@ timeout: 15000
         }
     }
     </script>
-</div></div>
+</div>
+</div>
+</div>
 @endsection
