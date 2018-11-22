@@ -34,6 +34,33 @@ $.each(datos, function()
 });
 }
 
+function especialistas(){
+            $('#dropEspecialistas').empty();
+            $('#dropEspecialistas').append("<option>Cargando...<option>");
+                $.ajax({
+  url: '/cargarEspecialistas/',
+  type: 'GET',
+  dataType: "json",
+  success:function(datos){ 
+$('#dropEspecialistas').empty();
+$('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+$.each(datos, function()
+{
+        $.each(this, function(){
+        $('#dropEspecialistas').append('<option value="' + this.id + '">' + this.nombre + " "  + this.primer_apellido_especialista + 
+        " " +  this.segundo_apellido_especialista + '</option>');
+        }) 
+
+})
+
+}, error:function() {
+        $('#dropEspecialistas').empty();
+        $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+        alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
+}
+}); //fin ajax
+}//fin especialistas 
+
 $(document).ready(function() {
 
 
@@ -51,6 +78,7 @@ $('.timepicker').timepicker({
 });
 
     dropDiasBloqueo();
+    especialistas();
         
 })
 
@@ -62,43 +90,51 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 </script>
 
 <script>
-function revisarDisponibilidad() {
-    var x = $('#timeInicio').val();
-    alert(x);}
-    /*
-        var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
-        //var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
-                var datepicked = new Date(dateTime);
-                datepicked.setHours(datepicked.getHours() -6);
-                datepicked = datepicked.toISOString();
-                //alert(datepicked);
-                //alert("Fecha elegida: " + datepicked);
-                var dropRecintos = $('#dropRecintos').val();           
-                //alert(dropRecintos);
-                var dropServicios = $('#dropServicios').val();           
-                //alert(dropServicios);
-                var dropEspecialistas = $('#dropEspecialistas').val();           
-                //alert(dropEspecialistas);
-                if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
-                 dropEspecialistas == 'defecto') {
+function insertarBloqueoEsp() {
+
+    var dropDiasBloqueo = $('#dropDiasBloqueo').val(); 
+    var dropEspecialistas = $('#dropEspecialistas').val(); 
+
+    var horaInicio = $('#timeInicio').val();
+    var horaFin = $('#timeFin').val();
+    horaInicio = arreglarHora(horaInicio);
+    horaFin = arreglarHora(horaFin);
+    //alert("Inicio: " + horaInicio + " Fin: " + horaFin);
+    
+
+    
+        var dateTimeInicio = $('#datetimepickerInicio').data("DateTimePicker").date();
+                var datepickedInicio = new Date(dateTimeInicio);
+                datepickedInicio.setHours(datepickedInicio.getHours() -6);
+                datepickedInicio = datepickedInicio.toISOString();
+                //alert(datepickedInicio);
+        
+        var dateTimeFin = $('#datetimepickerFin').data("DateTimePicker").date();
+                var datepickedFin = new Date(dateTimeFin);
+                datepickedFin.setHours(datepickedFin.getHours() -6);
+                datepickedFin = datepickedFin.toISOString();
+                //alert(datepickedFin);
+                
+                if (dropDiasBloqueo == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
+                alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  + horaFin);
                 $.ajax({
-  url: '/verificarCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas + '/' 
-  + datepicked,
+  url: '/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  + horaFin,
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
-    //alert(datos + " jajaja");
-    //alert(datos.horasOcupadas);
-        cargarFechasDisponibles(datos.horasOcupadas);
+      //alert(datos.a)
+    window.location.replace("/bloqueo_especialistas");
 }, error:function() {
-     alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
-     " con el Servicio de Salud");   
+     alert("Ha habido un error añadiendo el bloqueo para el especialista");   
 },
 timeout: 15000
 }); 
-}}*/
+}
+}//fin método
 </script>
 
 
@@ -162,6 +198,8 @@ timeout: 15000
         </div>
         <div class="row">
                 <div class='col-sm-3'>
+                    <h4>Especialista<h4> 
+                    <select id="dropEspecialistas" class="form-control"></select>
                 </div>
                 <div class='col-sm-3'>
                  <h4>Hora Inicio<h4>
@@ -169,14 +207,15 @@ timeout: 15000
     </div>
     <div class='col-sm-3 offset-sm-2'>
             <h4>Hora Fin<h4>
-   <input class="timepicker" id="timeInicio">
+   <input class="timepicker" id="timeFin">
 </div>
     </div>
     
     <div class="row">
+        <br>
             <div class='col-sm-3 offset-sm-2'>
     <button style="text-align:center"    class = 'margin-button-agregar btn btn-success mobile' 
-    onclick="revisarDisponibilidad()">Agregar bloqueo</button>
+    onclick="insertarBloqueoEsp()">Agregar bloqueo</button>
             </div>
     </div>
 
@@ -184,6 +223,44 @@ timeout: 15000
     
 
 <script>
+    function arreglarHora(hora) {
+        var horaReturn = "";
+        if(hora.includes("AM")) {
+            horaReturn = hora.slice(0, -3);
+            return horaReturn + ":00";
+        }//if AM end
+        if(hora.includes("PM")) {
+            horaReturn = hora.slice(0, -3);
+            if(horaReturn.includes("12")) {
+            return horaReturn + ":00";
+            } else {
+            switch (horaReturn.charAt(0)) {
+                case "1":
+                    horaReturn = "13"+ horaReturn.substr(1) + ":00";
+                    return horaReturn;
+                    break;
+                case "2":
+                    horaReturn = "14"+ horaReturn.substr(1) + ":00";
+                    return horaReturn;
+                    break;
+                case "3":
+                    horaReturn = "15"+ horaReturn.substr(1) + ":00";
+                    return horaReturn;
+                    break;
+                case "4":
+                    horaReturn = "16"+ horaReturn.substr(1) + ":00";
+                    return horaReturn;
+                    break;
+                case "5":
+                    horaReturn = "17"+ horaReturn.substr(1) + ":00";
+                    return horaReturn;
+                    break;
+                default:
+                    text = "Va a explotar, hora mala";
+            }//fin switch
+            }//fin else
+        }//if PM end
+    }//fin arreglar hora
         function confirmarCita(hora , minutos) {
             var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);

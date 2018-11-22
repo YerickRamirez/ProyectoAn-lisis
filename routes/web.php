@@ -151,6 +151,7 @@ Route::get('eliminarVinculoEspecialista/{servicio}/{recinto}/{especialista}',
  Route::get('/vincularEspecialista/{servicio}/{recinto}/{especialista}', 
  'Especialista_servicioController@store');
 
+ //sirve para traer todos los especialistas (bloqueo_esp root, master, asist)
  Route::get('cargarEspecialistas', 'AjaxController@cargarEspecialistas');
  
 
@@ -264,7 +265,7 @@ Route::get('crearCuenta', 'CuentaController@store');
  
 ///////////////////Fin rutas asistente//////////////////////////////////////////// 
 
-Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
+
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran
 Route::get('logoutUsuarioRecienRegistrado', 'AjaxController@logoutMensajeRegistro');
 
@@ -274,3 +275,12 @@ Route::get('/algo', function() {
 
 //sirve para llenar los drops de los días bloqueados (asist, especialista, root)
 Route::get('dropDiasBloqueo', 'AjaxController@dropDiasBloqueo');
+
+//resource de bloqueoEspecialistas
+Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
+
+
+//lleva los datos para insertar un bloqueo de un especialista (asist, especialista, root)
+Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Bloqueo_especialistumController@guardarBloqueoEsp');
+
+Route::get('redirigirBloqueoEspIndex', 'Bloqueo_especialistumController@redirigirBloqueoEspIndex');

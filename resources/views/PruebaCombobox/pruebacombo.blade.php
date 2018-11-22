@@ -351,14 +351,15 @@ timeout: 15000
         function confirmarCita(hora , minutos) {
             var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);
+            datepicked.setHours(datepicked.getHours() -6);
             datepicked = datepicked.toLocaleDateString();
-               // alert("Fecha elegida: " + datepicked);
                minutos = String(minutos);
                if(minutos == "0") {
                    minutos = "00";
                }
         if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked + "?")) {
             var datepicked = new Date(dateTime);
+            datepicked.setHours(datepicked.getHours() -6);
                 datepicked = datepicked.toISOString();
                 var dropRecintos = $('#dropRecintos').val();           
                 var dropServicios = $('#dropServicios').val();           
