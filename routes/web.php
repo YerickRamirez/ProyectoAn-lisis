@@ -87,7 +87,20 @@ Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.
 //---------------------------------------
 //Rutas Paciente
 //---------------------------------------
+//Para acceder a metodos del controlador Paciente
+Route::resource('pacientes', 'PacienteController');
 
+//Pestanna para cambiar contrasenna
+Route::get('cambioContrasenna', function () {
+    return view('pacientes/cambiarContrasenna');
+});
+//Controlador para contrasennas de pacientes
+Route::resource('contrasennas', 'cambiarContrasennaController');
+
+//Para acceder a la pagina de editar generada por el scaffold
+Route::get('perfilPaciente', 'PacienteController@edit');
+
+//Para dirigir a la pagina principal de pacientes sin tener que poner citas en la url
 Route::get('paciente', function () {
     return redirect()->route('citas.index');
 });//->middleware('auth');

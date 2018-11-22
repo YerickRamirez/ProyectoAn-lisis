@@ -15,7 +15,7 @@
             <form action="{{ route('pacientes.store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <div class="form-group">
+                <!--div class="form-group">
 	<label for="chema=id-field">Chema=id</label>
 	--chema=id--
 </div> <div class="form-group">
@@ -36,7 +36,7 @@
 </div> <div class="form-group">
 	<label for="estado-field">Estado</label>
 	--estado--
-</div>
+</div-->
 
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Create</button>

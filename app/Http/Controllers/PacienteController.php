@@ -105,11 +105,9 @@ class PacienteController extends Controller
 	 */
 	public function edit(Paciente $paciente)
 	{
-		//$paciente = $this->model->findOrFail($id);
-
-		return view('pacientes.edit', compact('paciente'));
+		$variable = Paciente::where('id_user', Auth::user()->id)->first();
+		return view('pacientes.edit', compact('variable'));
 	}
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -119,26 +117,23 @@ class PacienteController extends Controller
 	 */
 	public function update(Request $request, Paciente $paciente, User $user)
 	{
-
-		$paciente->name = ucfirst($request->input("name"));
-    $paciente->slug = str_slug($request->input("name"), "-");
-		$paciente->description = ucfirst($request->input("description"));
+		$paciente->cedula_paciente = $request->input("cedula_paciente");
+		$paciente->nombre = $request->input("nombre");
+		$paciente->primer_apellido_paciente = $request->input("primer_apellido_paciente");
+		$paciente->segundo_apellido_paciente = $request->input("segundo_apellido_paciente");
+		$paciente->correo = $request->input("correo");
 		$paciente->active_flag = 1;//change to reflect current status or changed status
-		$paciente->author_id = $request->user()->id;
-
-		$this->validate($request, [
-					 'name' => 'required|max:255|unique:pacientes,name,' . $paciente->id,
-					 'description' => 'required'
-			 ]);
-
+		
+		$correoNuevo = $request->input("correo");
+		$user = User::where('id', $paciente->id_user)->update(array('email'=>$correoNuevo));
+		//$user->save();
 		$paciente->save();
 
 		Session::flash('message_type', 'blue');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Paciente \"<a href='pacientes/$paciente->slug'>" . $paciente->name . "</a>\" was Updated.");
-
-		return redirect()->route('pacientes.index');
+		
+		return redirect()->route('citas.index');
 	}
 
 	/**
