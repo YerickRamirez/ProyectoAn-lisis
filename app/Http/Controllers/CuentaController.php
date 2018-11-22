@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Auth;
+use App\Paciente;
+use App\Cuentas_activa;
+use App\Especialista;
 
 use App\Cuenta;
 use Illuminate\Http\Request;
@@ -62,16 +65,41 @@ class CuentaController extends Controller
 	public function store(Request $request, User $user)
 	{
 		$cuenta = new Cuenta();
+		$user = new User();
+		$especialista = new Especialista();
 
-		$cuenta->name = ucfirst($request->input("name"));
-		$cuenta->slug = str_slug($request->input("name"), "-");
-		$cuenta->description = ucfirst($request->input("description"));
-		$cuenta->active_flag = 1;
-		$cuenta->author_id = $request->user()->id;
+		$especialista->id_user = $user->id;
+		$especialista->cedula_especialista = $request->input("cedula");
+		$especialista->nombre = $request->input("name");
+		$especialista->primer_apellido_especialista = $request->input("last_name");
+		$especialista->segundo_apellido_especialista = $request->input("last_name2");
+		$especialista->active_flag = 1;
+
+		$checked=Input::has('tipo');
+		$checkValue=Input::get('tipo');
+
+		$checked2=Input::has('flag');
+		$checkValue2=Input::get('flag');
+		$user = User::create([
+            'name' => $request->input("nombre"),
+            'lastName' => $request->input("last_name"). ' ' .$request->input("last_name2"),
+            'email' => $request->input("email"),
+            'password' => bcrypt( $request->input("password")),
+            'tipo' => 2,
+            'active_flag' => 1,
+		]);
+		 return $checked;
+		//$cuenta->name = ucfirst($request->input("name"));
+		//$cuenta->name = ucfirst($request->input("name"));
+		//$cuenta->name = ucfirst($request->input("name"));
+		//$cuenta->slug = str_slug($request->input("name"), "-");
+		//$cuenta->description = ucfirst($request->input("description"));
+		//$cuenta->active_flag = 1;
+		//$cuenta->author_id = $request->user()->id;
 
 		$this->validate($request, [
-					 'name' => 'required|max:255|unique:cuentas',
-					 'description' => 'required'
+					 'name' => 'required|max:255|unique:cuentas'//,
+					// 'description' => 'required'
 			 ]);
 
 		$cuenta->save();

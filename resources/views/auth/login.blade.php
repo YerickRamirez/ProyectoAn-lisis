@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Inicio de Sesión</div>
+            <div class="panel panel-primary border-panel" >
+                <div class="panel-heading bg-color-panel">Inicio de Sesión</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-8 col-md-offset-3">
                                 <button type="submit" class="btn btn-primary">
                                     Iniciar Sesión
                                 </button>
@@ -60,6 +60,10 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="" style="text-align:center">
+                            <img src="https://revistas.ucr.ac.cr/favicon.ico" style="height:150px; widght:150px">
+                        </div>
+                        
                         @if(session()->has('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}

@@ -11,7 +11,7 @@ class Bloqueo_especialistum extends Model
 
     public $timestamps=false;
 
-    protected $fillable = ['id_especialista', 'id_dia_bloqueo_especialistas', 'fecha_inicio_bloqueo_especialista', 'fecha_fin_bloqueo_especialista', 'hora_inicio_bloqueo_especialista', 'hora_fin_bloqueo_especialista'];
+    protected $fillable = ['id_dia_bloqueo_especialistas', 'id_especialista',  'fecha_inicio_bloqueo_especialista', 'fecha_fin_bloqueo_especialista', 'hora_inicio_bloqueo_especialista', 'hora_fin_bloqueo_especialista', 'active_flag'];
 
     public function Author(){
       return $this->belongsTo('App\User','author_id');

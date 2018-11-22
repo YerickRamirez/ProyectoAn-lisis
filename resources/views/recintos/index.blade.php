@@ -1,12 +1,12 @@
 @extends ('masterRoot')
 @section ('contenido_Admin')
 @include('error')
-<div class="panel panel-primary">
-     <div class="panel-heading">
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Configuración de recintos</p>
     </div>
     <div class="panel-body">
-    <section class="">
+        <section class="">
         <div class="content-c w3-container mobile">
         <div>
             <button id="mybutton" class = ' margin-button-agregar btn btn-success mobile' onclick="myFunction()">Nuevo Recinto</button>
@@ -68,8 +68,8 @@
         </div>
         </div>
     </div> 
-</div> 
-</section>
+    </div> 
+    </section>
     </div>
 </div>
         

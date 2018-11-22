@@ -60,7 +60,7 @@
 				 <li>
 				 <!--data-toggle="dropdown"-->
                     <a href="{{ url('/logout') }}" class="dropdown-toggle logout-button"style="color:white" >
-                         <strong>Salir&nbsp</strong><span class="glyphicon glyphicon-log-out" style="color:white"></span> 
+                         Salir&nbsp<span class="glyphicon glyphicon-log-out" style="color:white"></span> 
                     </a>  
                 </li>
         	</ul>

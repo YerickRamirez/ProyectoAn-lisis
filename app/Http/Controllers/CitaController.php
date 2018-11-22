@@ -121,6 +121,7 @@ class CitaController extends Controller
 		$cita->especialista_id = $request->dropEspecialistas;
 		$cita->recinto_id = $request->dropRecintos;
 		$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+		//return $fechaCita;
 		$minutosCita = substr($request->horaCita, -2);
 		$horaCita = $request->horaCita[0];
 		if($horaCita == "9" || $horaCita == "8") {

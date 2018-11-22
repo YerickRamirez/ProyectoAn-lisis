@@ -2,8 +2,8 @@
 @section('contenido_Admin')
 
 <script src="{{asset('js/Servicio_Especialista.js')}}"></script>
-<div class="panel panel-primary">
-     <div class="panel-heading">
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Vincular Especialista a Servicio</p>
     </div>
     <br/>
@@ -13,7 +13,7 @@
         <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
          <span>
         <div>
-            <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Crear</a>
+            <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Vincular</a>
         </div>
     </div>
 
@@ -60,6 +60,9 @@
             @endif
 
         </div>
+        <a class="btn btn-link pull-right" href="{{ route('servicio.index') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
+    </div>
+    </div>
     </div>
     </div>
 @endsection

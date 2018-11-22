@@ -40,18 +40,22 @@ class AjaxController extends Controller {
    }
 
    public function logoutMensajeRegistro () {
-    //logout user
-    
+    //logout user y mandar mensaje bonito :3
     auth()->logout();
-   // App::after(function ($request, $response) {
-     //   $response->headers->set("Cache-Control","no-cache,no-store, must-revalidate");
-       // $response->headers->set("Pragma", "no-cache"); //HTTP 1.0
-        //$response->headers->set("Expires"," Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-    //});
-    // redirect to homepage
-
     return redirect('login')->with('success', 'Su cuenta ha sido creada exitosamente');
 }
+
+
+public function dropDiasBloqueo(){
+    /*$query=trim($request->get('searchText'));*/
+
+    $dias=Dia_bloqueo_especialista::where('active_flag', 1)->orderBy('id','asc')->get();
+
+    return json_encode(["dias"=>$dias]);
+}
+
+
+
 
    public function combobox(){
         /*$query=trim($request->get('searchText'));*/
@@ -184,9 +188,8 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         $horas_tarde = array("13:00", "13:20", "13:40", "14:00", "14:20", "14:40", "15:00", 
         "15:20", "15:40", "16:00", "16:20", "16:40");
 
-        $fechaCitas = Cita::whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())->where('servicio_id' , $dropServicios)
-        ->where('especialista_id', $dropEspecialistas)->where('recinto_id', $dropRecintos)->where('estado_cita_id', '!=', 3)
-        ->where('estado_cita_id', '!=', 4)
+        $fechaCitas = Cita::where('estado_cita_id', '!=', 3)->where('estado_cita_id', '!=', 4)->where('servicio_id' , $dropServicios)
+        ->where('especialista_id', $dropEspecialistas)->where('recinto_id', $dropRecintos)->whereDate('fecha_cita', $fechaElegidaCarbon->toDateString())
         ->get();//citas en la fecha elegida
 
         //return $fechaCitas;
