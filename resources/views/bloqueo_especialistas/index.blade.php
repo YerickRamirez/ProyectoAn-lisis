@@ -1,13 +1,13 @@
-@extends('masterAdmin')
+@extends('masterRoot')
 
-@section('contenido')
+@section('contenido_Admin')
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
     <div class="page-header clearfix">
         <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Bloqueo Especialistas
+            Bloqueo Especialistas
             <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
         </h1>
     </div>
@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th>id_especialista</th> <th>Dia bloqueado</th> <th>Fecha inicio bloqueo</th> <th>Fecha fin bloqueo</th> <th>Hora inicio bloqueo</th> <th>Hora fin bloqueo</th>
-                            <th class="text-right">OPTIONS</th>
+                            <th class="text-right"></th>
                         </tr>
                     </thead>
 
@@ -30,19 +30,15 @@
                                  <td>{{$bloqueo_especialistum->id_especialista}}</td> <td>{{$bloqueo_especialistum->id_dia_bloqueo_especialistas}}</td> <td>{{$bloqueo_especialistum->fecha_inicio_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->fecha_fin_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->hora_inicio_bloqueo_especialista}}</td> <td>{{$bloqueo_especialistum->hora_fin_bloqueo_especialista}}</td>
                                 
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('bloqueo_especialistas.show', $bloqueo_especialistum->id) }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i> View
-                                    </a>
-                                    
-                                    <a class="btn btn-xs btn-warning" href="{{ route('bloqueo_especialistas.edit', $bloqueo_especialistum->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Edit
+                                    <a class="btn btn btn-warning" href="{{ route('bloqueo_especialistas.edit', $bloqueo_especialistum->id) }}">
+                                        <i class="glyphicon glyphicon-edit"></i> Editar
                                     </a>
 
-                                    <form action="{{ route('bloqueo_especialistas.destroy', $bloqueo_especialistum->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                    <form action="{{ route('bloqueo_especialistas.destroy', $bloqueo_especialistum->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Eliminar?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
