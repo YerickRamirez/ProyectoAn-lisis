@@ -48,6 +48,7 @@ class CitaControllerAsistente extends Controller
 		//$active = Cita::where('active_flag', 1);
 		$citas = $cita = DB::table('citas')
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+		->where('citas.active_flag', '!=',0)
 		->where('citas.estado_cita_id', '!=',3)
 		->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
@@ -246,7 +247,7 @@ class CitaControllerAsistente extends Controller
 	{
 
 		//return $cita;
-		//$cita->active_flag = 0;
+		$cita->active_flag = 0;
 		$cita->estado_cita_id = 3;
 		$cita->save();
 

@@ -158,7 +158,7 @@ function revisarDisponibilidad() {
                 var dropEspecialistas = $('#dropEspecialistas').val();           
                 //alert(dropEspecialistas);
                 if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
-                 dropEspecialistas == 'defecto') {
+                 dropEspecialistas == 'defecto' || cedula.length == 0) {
                         alert("Elija una opción válida en todos los campos");
                } else {
                 $.ajax({
@@ -263,6 +263,7 @@ timeout: 15000
         function confirmarCita(hora , minutos) {
             var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);
+            datepicked.setHours(datepicked.getHours() -6);
             datepicked = datepicked.toLocaleDateString();
                // alert("Fecha elegida: " + datepicked);
                minutos = String(minutos);
@@ -271,13 +272,14 @@ timeout: 15000
                }
         if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked + "?")) {
             var datepicked = new Date(dateTime);
+            datepicked.setHours(datepicked.getHours() -6);
                 datepicked = datepicked.toISOString();
                 var cedula = $('#cedula').val(); 
                 var dropRecintos = $('#dropRecintos').val();           
                 var dropServicios = $('#dropServicios').val();           
                 var dropEspecialistas = $('#dropEspecialistas').val();           
                 if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
-                 dropEspecialistas == 'defecto') {
+                 dropEspecialistas == 'defecto' || cedula.length == 0) {
                         alert("Elija una opción válida en todos los campos");
                } else {
             horaCita = String(hora) + minutos;

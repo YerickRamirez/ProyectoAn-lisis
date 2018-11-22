@@ -1,8 +1,8 @@
 @extends('masterRoot')
 @section('contenido_Admin')
 
-<div class="panel panel-primary">
-     <div class="panel-heading">
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Configuración Especialistas</p>
     </div>
     <br/>
@@ -10,7 +10,7 @@
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialistas.create') }}"> Crear</a>
     </div>
     
-<div class="page-header clearfix">
+<div class="">
     <div class="panel-heading">
     <div class="">
         <div class="">
@@ -42,7 +42,7 @@
                                         <i class="glyphicon glyphicon-edit"></i> Editar
                                     </a>
 
-                                    <form action="{{ route('especialistas.destroy', $especialista->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                    <form action="{{ route('especialistas.destroy', $especialista->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea eliminar al especialista {{$especialista->nombre}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
@@ -62,5 +62,6 @@
         </div>
     </div>
     </div> 
+    </div>
 
 @endsection

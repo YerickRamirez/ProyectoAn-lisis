@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -9,28 +10,29 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Servicio de Salud</title>
-
+    <link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/menuPrincipal.css')}}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style=" background-color: #276091">
+<body class="a" style="background-color:#F4F4F4;">
+    <div id="app" class="contenido">
+        <nav class="navbar navbar-default navbar-static-top bg-color-panel" >
             <div class="container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed color" style="color:#FFFFFF" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
                         <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar color" ></span>
+                        <span class="icon-bar color"></span>
+                        <span class="icon-bar color"></span>
                     </button>
 
                     <!-- Branding Image -->
-                    <a style="color: #FFFFFF " class="navbar-brand" href="{{ url('/') }}">
+                    <div class="navbar-brand serif tittle">
                     Servicio de Salud
-                    </a>
+                    </div>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -73,8 +75,15 @@
 
         @yield('content')
     </div>
-
+  
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+<footer class="main-footer">
+  	<div class="text-center main-footer"><strong>©2018 </strong>
+    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+  	</div>
+	</footer>
 </html>
+
+
