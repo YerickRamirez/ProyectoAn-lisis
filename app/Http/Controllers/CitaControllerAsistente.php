@@ -46,16 +46,11 @@ class CitaControllerAsistente extends Controller
 	{
 		//$citas = Cita::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
 		//$active = Cita::where('active_flag', 1);
-		
-
-
 		$citas = $cita = DB::table('citas')
-		
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
-		->where('citas.active_flag', 1)
+		->where('citas.estado_cita_id', '!=',3)
 		->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
-		->where('citas.active_flag', 1)
 		->where('pacientes.active_flag', 1)
 		->select('citas.id as id_cita',
 			'citas.fecha_cita', 
@@ -65,9 +60,10 @@ class CitaControllerAsistente extends Controller
 			'pacientes.segundo_apellido_paciente',
 			'pacientes.cedula_paciente',       
 			'telefonos.telefono',
-			'pacientes.correo' )->get();
-		return view('asistente.index', compact('citas', 'active')
-	);
+			'pacientes.correo' )
+			->orderBy('fecha_cita', 'asc')->get();
+			//return $citas;
+		return view('asistente.index', compact('citas', 'active'));
 
 	}
 
@@ -89,38 +85,99 @@ class CitaControllerAsistente extends Controller
 	 */
 	public function store(Request $request, User $user)
 	{
-		$cita = new Cita();
 		
-		$cita->estado_cita_id = 1;
-		$cita->paciente_id = 1;
-		$cita->servicio_id = $request->dropServicios;
-		$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
-		$minutosCita = substr($request->horaCita, -2);
-		$horaCita = $request->horaCita[0];
-		if($horaCita == "9" || $horaCita == "8") {
-			$horaCita = "0" . $horaCita . ':' . $minutosCita;
+		$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
+		->select('id')->get();
+		if($paciente->isEmpty()) {
+			//abort(404,'No existe ningún paciente registrado con la cédula indicada');
+			return "Holi wakamoli";
 		} else {
-			$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+			$id = $paciente->first()->id;
+			$cita = new Cita();
+			
+			$cita->estado_cita_id = 1;
+			$cita->paciente_id = $id;
+			$cita->servicio_id = $request->dropServicios;
+			$cita->especialista_id = $request->dropEspecialistas;
+			$cita->recinto_id = $request->dropRecintos;
+			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+			$minutosCita = substr($request->horaCita, -2);
+			$horaCita = $request->horaCita[0];
+			if($horaCita == "9" || $horaCita == "8") {
+				$horaCita = "0" . $horaCita . ':' . $minutosCita;
+			} else {
+				$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+			}
+			$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
+			$cita->active_flag = 1;
+			//$cita->author_id = $request->user()->id;
+	
+			/*$this->validate($request, [
+						 'name' => 'required|max:255|unique:citas',
+						 'description' => 'required'
+				 ]);*/
+	
+			$cita->save();
 		}
-		//return json_encode(["xD"=>$fechaCita . ' - ' . $horaCita]);
-		$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
-		$cita->active_flag = 1;
-		//$cita->author_id = $request->user()->id;
 
-		/*$this->validate($request, [
-					 'name' => 'required|max:255|unique:citas',
-					 'description' => 'required'
-			 ]);*/
-
-		$cita->save();
 
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "La cita fue añadida exitosamente");
 
-		return redirect()->route('citas.index');
+		return redirect()->route('asistente.index');
 		}
+
+		public function reprogramarCita(Request $request, User $user)
+		{
+			$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
+			->select('id')->get();
+			if($paciente->isEmpty()) {
+				//abort(404,'No existe ningún paciente registrado con la cédula indicada');
+				return "Holi wakamoli";
+			} else {
+				$id = $paciente->first()->id;
+				$cita = new Cita();
+			
+				$cita->estado_cita_id = 4;
+				$cita->paciente_id = $id;
+				$cita->servicio_id = $request->dropServicios;
+				$cita->especialista_id = $request->dropEspecialistas;
+				$cita->recinto_id = $request->dropRecintos;
+				$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+				$minutosCita = substr($request->horaCita, -2);
+				$horaCita = $request->horaCita[0];
+				if($horaCita == "9" || $horaCita == "8") {
+					$horaCita = "0" . $horaCita . ':' . $minutosCita;
+				} else {
+					$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+				}
+				$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
+				$cita->active_flag = 1;
+
+				$cita->save();
+			}
+
+
+			Session::flash('message_type', 'success');
+			Session::flash('message_icon', 'checkmark');
+			Session::flash('message_header', 'Success');
+			Session::flash('message', "La cita fue añadida exitosamente");
+
+			return redirect()->route('asistente.index');
+			}
+
+			public function reprogramar(Cita $cita)
+			{
+			$citas = DB::table('citas')
+			->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+			->select('pacientes.cedula_paciente')->get();	
+			$cedula = $citas->first()->cedula_paciente;
+			$cita->active_flag = 0;
+			$cita->save();
+			return view('asistente.reprogramarCita', compact('cedula'));
+			}
 
 	/**
 	 * Display the specified resource.
@@ -159,7 +216,7 @@ class CitaControllerAsistente extends Controller
 	{
 
 		$cita->name = ucfirst($request->input("name"));
-    $cita->slug = str_slug($request->input("name"), "-");
+    	$cita->slug = str_slug($request->input("name"), "-");
 		$cita->description = ucfirst($request->input("description"));
 		$cita->active_flag = 1;//change to reflect current status or changed status
 		$cita->author_id = $request->user()->id;
@@ -189,7 +246,8 @@ class CitaControllerAsistente extends Controller
 	{
 
 		//return $cita;
-		$cita->active_flag = 0;
+		//$cita->active_flag = 0;
+		$cita->estado_cita_id = 3;
 		$cita->save();
 
 		Session::flash('message_type', 'negative');

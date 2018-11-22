@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Inicio de Sesión</div>
+            <div class="panel panel-primary" style="border-color: #717373 !important;">
+                <div class="panel-heading" style="font-size: 2.5vh; background-color: #276091 !important;">Inicio de Sesión</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">

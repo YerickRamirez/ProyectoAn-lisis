@@ -53,6 +53,11 @@ Route::get('cuentas', function () {
     return view('Admin/configurarCuentas') ;
 });//->middleware('auth.basic');
 
+Route::get('crearCuentas', function () {
+    return view('cuentas/create') ;
+});//->middleware('auth.basic');
+
+
 Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
 });//->middleware('auth.basic');
@@ -62,6 +67,7 @@ Route::get('recintos', function () {
     return view('recintos/index');
 });//->name('recintosA');
 
+Route::get('cuentas/create', function(){return view('cuentas/create');}) ->name('Prueba.adn');
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
@@ -174,6 +180,7 @@ Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{
 //Ruta citas
 Route::resource('citas', 'CitaController');
 Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
+Route::get('/annadirCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@store');
 //
 
 Route::get('combobox',function(){
@@ -188,10 +195,6 @@ Route::get('ajax',function(){
 //Fin rutas pruebas combobox autorefresh
 
 
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -208,18 +211,6 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -238,11 +229,10 @@ Route::get('/verificarHorarioServicio/{recinto}/{servicio}/{especialista}', 'Aja
 Route::get('/annadirHorarioServicio/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorarios');
 
 
-
+/**Rutas Asistente index, configurar horarios, reservar y reprogramar citas  */
 Route::get('horarios_servicios_asistente.index', function () {
     return view('horarios_servicios_asistente.index') ;
 })->name('horarios_serv_asis.index');
-
 
 Route::get('horarios_servicios_asistente', function () {
     return view('asistente.configurarHorarios') ;
@@ -252,9 +242,6 @@ Route::get('asistente.crearCita', function () {
     return view('asistente.crearCita') ;
 })->name('Asistente.crearCita');
 
-//Route::get('asistente', function () {
-    //return view('asistente.index') ;
-//})->name('asistente');
 
 Route::get('asistente.configuracionCuentas', function () {
     return view('asistente.configuracionCuentas') ;
@@ -262,15 +249,20 @@ Route::get('asistente.configuracionCuentas', function () {
 
 Route::get('/hola', 'AjaxController@cargarCitas');
 
+
 Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
+Route::delete('reprogramarCitAsistente{cita}', 'CitaControllerAsistente@reprogramar')->name('reprogramarCitAsistente');
 Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
-//Route::resource('asistente', 'CitaControllerAsistente');
-
+Route::get('asistente', 'CitaControllerAsistente@index')->name('asistente.index');
+Route::get('/reprogramarCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@reprogramarCita');
 Route::get('reservarCita',function(){
     return view('asistente.crearCita');
  });
 
+Route::get('crearCuenta', 'CuentaController@store');
+ 
+///////////////////Fin rutas asistente//////////////////////////////////////////// 
 
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 //Se usa para desloggear un usuario. Yo (Seney) lo uso para desloggear apenas se registran

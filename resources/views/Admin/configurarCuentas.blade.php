@@ -9,7 +9,8 @@
 <div class="w4-container">
 <form action="">
   <input type="radio" name="gender" value="male"> Registrar Paciente<br>
-  <input type="radio" name="gender" value="female"> Registrar Especialista <br>
+  
+  <a  href="{{ url('cuentas/create') }} " >Registrar </a>  <br>
   <input type="radio" name="gender" value="other"> Crear cuenta <br>
   <input type="radio" name="gender" value="other"> Modificar cuenta <br>
   <input type="radio" name="gender" value="other"> Eliminar cuenta <br>

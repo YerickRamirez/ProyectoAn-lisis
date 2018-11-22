@@ -10,7 +10,7 @@
     <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
     <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
     <div class="col-md-4">
-    <input  placeholder="Cédula paciente" class="nombre form-control" name="cedula" type="text" id="cedula" pattern="^[0-9]{9}" title="No se permiten letras en este campo"> 
+    <input  placeholder="Cédula paciente" class="nombre form-control" name="cedula" type="text" id="cedula" value="{{$cedula}}" readonly> 
 </div>
 
 <script>
@@ -281,7 +281,7 @@ timeout: 15000
                         alert("Elija una opción válida en todos los campos");
                } else {
             horaCita = String(hora) + minutos;
-            window.location.replace("/annadirCitaAsistente/" + horaCita + '/' + dropRecintos + 
+            window.location.replace("/reprogramarCitaAsistente/" + horaCita + '/' + dropRecintos + 
             '/' + dropServicios + '/' + dropEspecialistas + '/' + datepicked + '/' + cedula);
         }
         return false;

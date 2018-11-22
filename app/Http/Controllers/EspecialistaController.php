@@ -63,7 +63,6 @@ class EspecialistaController extends Controller
 	{
 		$especialista = new Especialista();
 
-
 		$user = User::create([
             'name' => $request->input("nombre"),
             'lastName' => $request->input("primer_apellido_especialista"). ' ' .$request->input("segundo_apellido_especialista"),
