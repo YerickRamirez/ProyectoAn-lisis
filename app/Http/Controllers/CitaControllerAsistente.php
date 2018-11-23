@@ -69,6 +69,93 @@ class CitaControllerAsistente extends Controller
 
 	}
 
+	//DEVUELVE SOLICITADAS Y CONFIRMADAS para el especialista loggeado el día actual!
+	public function citaRecintoEstadoHoy($ID_Recinto, $estado)
+	{
+
+		if($estado == "5") {
+			$citas = $this->citasReservadas_ConfirmadasHoy($ID_Recinto);
+		} else {
+
+		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
+		$fechaFinCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->endOfDay();
+
+		$citas = $cita = DB::table('citas')->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
+		->whereDate('fecha_cita', '<=', $fechaFinCarbon)
+		->where('recintos.id', $ID_Recinto)
+		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
+		->where('recintos.active_flag', '!=',0)
+		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+		->where('citas.active_flag', '!=',0)
+		->where('citas.estado_cita_id', $estado)
+		->where('telefonos.active_flag', 1)
+		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+		->where('pacientes.active_flag', 1)
+		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
+		->where('especialistas.active_flag', 1)
+		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
+		->where('servicios.active_flag', 1)
+		->select('citas.id as id_cita',
+			'citas.fecha_cita',
+			'citas.estado_cita_id', 
+			'pacientes.id',
+			'pacientes.nombre',
+			'pacientes.primer_apellido_paciente',
+			'pacientes.segundo_apellido_paciente',
+			'pacientes.cedula_paciente',       
+			'telefonos.telefono',
+			'pacientes.correo',
+			'recintos.descripcion',
+			'especialistas.nombre as nombreEsp',
+			'especialistas.primer_apellido_especialista as apellidoEsp',
+			'especialistas.segundo_apellido_especialista as apellido2Esp',
+			'servicios.nombre as nombreServ')
+			->orderBy('fecha_cita', 'asc')->get();
+			//return $citas;
+		}
+		return json_encode(["citas"=>$citas]);
+
+	}
+
+	private function citasReservadas_ConfirmadasHoy($ID_Recinto) {
+		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
+		$fechaFinCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->endOfDay();
+
+		$citas = $cita = DB::table('citas')->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
+		->whereDate('fecha_cita', '<=', $fechaFinCarbon)
+		->where('recintos.id', $ID_Recinto)
+		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
+		->where('recintos.active_flag', '!=',0)
+		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+		->where('citas.active_flag', '!=',0)
+		->where('citas.estado_cita_id', '!=',3)
+		->where('citas.estado_cita_id', '!=',4)
+		->where('telefonos.active_flag', 1)
+		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+		->where('pacientes.active_flag', 1)
+		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
+		->where('especialistas.active_flag', 1)
+		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
+		->where('servicios.active_flag', 1)
+		->select('citas.id as id_cita',
+			'citas.fecha_cita',
+			'citas.estado_cita_id', 
+			'pacientes.id',
+			'pacientes.nombre',
+			'pacientes.primer_apellido_paciente',
+			'pacientes.segundo_apellido_paciente',
+			'pacientes.cedula_paciente',       
+			'telefonos.telefono',
+			'pacientes.correo',
+			'recintos.descripcion',
+			'especialistas.nombre as nombreEsp',
+			'especialistas.primer_apellido_especialista as apellidoEsp',
+			'especialistas.segundo_apellido_especialista as apellido2Esp',
+			'servicios.nombre as nombreServ')
+			->orderBy('fecha_cita', 'asc')->get();
+			return $citas;
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

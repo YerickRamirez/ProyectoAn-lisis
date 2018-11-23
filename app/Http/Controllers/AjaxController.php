@@ -15,6 +15,8 @@ use App\Especialista;
 
 use App\Servicio;
 
+use App\Estado_cita;
+
 use App\Cita;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,6 +68,17 @@ public function dropDiasBloqueo(){
         }
         return json_encode(["recintos"=>$recintos]);
 }
+
+public function estadosCitas(){
+    /*$query=trim($request->get('searchText'));*/
+
+    $estado_citas=DB::table('estado_citas')->where('active_flag', '=', 1)->orderBy('id','asc')->get();
+    /*if ($recintos == null || $recintos->isEmpty()) {
+        Flash::message("No hay recintos para mostrar");
+    }*/
+    return json_encode(["estado_citas"=>$estado_citas]);
+}
+
 
 public function comboServicios($ID_Recinto, Request $request){
     /*$query=trim($request->get('searchText'));*/

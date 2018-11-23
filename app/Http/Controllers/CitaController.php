@@ -45,7 +45,7 @@ class CitaController extends Controller
 		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);*/
 		if(!Auth::check()) {
-			abort(404, 'COMILLAS JOPUTAS');
+			abort(404, 'ERROR DE AUTENTICACIÓN. INICIE SESIÓN DE NUEVO');
 		}
 
 		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
