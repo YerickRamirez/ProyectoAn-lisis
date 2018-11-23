@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Especialista;
 use Auth;
 use Carbon\Carbon;
 
@@ -39,8 +40,6 @@ class Bloqueo_especialistumController extends Controller
 	 */
 	public function index()
 	{
-		//$bloqueo_especialistas = Bloqueo_especialistum::where('active_flag', 1)->orderBy('id', 'desc')->get();
-
 		$bloqueo_especialistas = DB::table('bloqueo_especialistas')
 			->join('especialistas', 'bloqueo_especialistas.id_especialista', '=', 'especialistas.id')
 			->where('especialistas.active_flag', 1)
@@ -50,24 +49,26 @@ class Bloqueo_especialistumController extends Controller
 			->select('especialistas.*', 'dia_bloqueo_especialistas.dia', 
 			'bloqueo_especialistas.*','bloqueo_especialistas.id as id' )
 			->get();
-			/*->join('especialistas', 'especialista_servicios.id_especialista', '=', 'especialistas.id')
-			->where('especialistas.active_flag', 1)
-			->select('especialista_servicios.id_servicio', 
-			'especialista_servicios.id_recinto', 
-			'especialista_servicios.id_especialista',
-			'recintos.descripcion as Recinto' ,
-			'servicios.nombre as Servicio',
-			'especialistas.nombre as nombreEspecialista', 
-			'especialistas.primer_apellido_especialista as apellido1', 
-			'especialistas.segundo_apellido_especialista as apellido2')
-			->orderBy('id_recinto', 'asc')->get();*/
 
-			//return $bloqueo_especialistas;
 		$tipo_usuario = Auth::user()->tipo;
 		if($tipo_usuario == 1) {
 		return view('bloqueo_especialistas.index', compact('bloqueo_especialistas'));
 		}
 		if($tipo_usuario == 2) {
+
+			$especialistaLoggeado = Especialista::where('id_user', Auth::user()->id)->first();
+			//return $especialistaLoggeado->id;
+			$bloqueo_especialistas = DB::table('bloqueo_especialistas')
+			->join('especialistas', 'bloqueo_especialistas.id_especialista', '=', 'especialistas.id')
+			->where('especialistas.id', $especialistaLoggeado->id)
+			->where('especialistas.active_flag', 1)
+			->where('bloqueo_especialistas.active_flag', 1)
+			->join('dia_bloqueo_especialistas', 'bloqueo_especialistas.id_dia_bloqueo_especialistas', '=', 'dia_bloqueo_especialistas.id')
+			->where('dia_bloqueo_especialistas.active_flag', 1)
+			->select('especialistas.*', 'dia_bloqueo_especialistas.dia', 
+			'bloqueo_especialistas.*','bloqueo_especialistas.id as id' )
+			->get();
+
 			return view('bloqueo_especialistas_especialista.index', compact('bloqueo_especialistas'));
 		}
 		if($tipo_usuario == 3) {
