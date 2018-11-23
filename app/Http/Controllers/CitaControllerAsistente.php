@@ -137,7 +137,7 @@ class CitaControllerAsistente extends Controller
 			->select('id')->get();
 			if($paciente->isEmpty()) {
 				//abort(404,'No existe ningún paciente registrado con la cédula indicada');
-				return "Holi wakamoli";
+				return "No existe la paciente con la cédula ingresada";
 			} else {
 				$id = $paciente->first()->id;
 				$cita = new Cita();

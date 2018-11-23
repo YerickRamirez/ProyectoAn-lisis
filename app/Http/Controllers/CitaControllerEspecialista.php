@@ -263,7 +263,6 @@ class CitaControllerEspecialista extends Controller
 	 */
 	public function destroy(Cita $cita)
 	{
-
 		//return $cita;
 		$cita->active_flag = 0;
 		$cita->estado_cita_id = 3;

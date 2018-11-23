@@ -310,11 +310,25 @@ Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{date
 
 Route::get('redirigirBloqueoEspIndex', 'Bloqueo_especialistumController@redirigirBloqueoEspIndex');
 
-//Rutas del usuario Especialista
+//Rutas del usuario Especialista///////////////////////////////////////////////////////////////////////
+//Index
 Route::get('Especialista.index', 'CitaControllerEspecialista@index')->name('Especialista.index');
 Route::get('Especialista', 'CitaControllerEspecialista@index');
+
+//Para cancelar cita
 Route::delete('destroyCitEspecialista{cita}', 'CitaControllerEspecialista@destroy')->name('destroyCitEspecialista');
+
+//Para reprogramar cita
 Route::delete('reprogramarCitEspecialista{cita}', 'CitaControllerEspecialista@reprogramar')->name('reprogramarCitEspecialista');
-Route::delete('confirmarCitEspecialista{cita}', 'CitaControllerEspecialista@confirmar')->name('confirmarCitEspecialista');
 Route::get('/reprogramarCitEspecialista/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerEspecialista@reprogramarCita');
 
+//Para confirmar cita
+Route::delete('confirmarCitEspecialista{cita}', 'CitaControllerEspecialista@confirmar')->name('confirmarCitEspecialista');
+
+//Para configurar horarios
+Route::get('Especialista.configurarHorarios', function () {
+    return view('Especialista.configurarHorarios') ;
+})->name('Especilista.horarios');
+
+Route::get('/verificarHorarioServicioEspecialista/{recinto}/{servicio}', 'AjaxController@horarioServiciosEspecialista');
+Route::get('/annadirHorarioServicioEspecialista/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorariosEspecialista');
