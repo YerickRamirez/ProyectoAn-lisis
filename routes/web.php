@@ -332,6 +332,9 @@ Route::get('Especialista.configurarHorarios', function () {
 Route::get('/verificarHorarioServicioEspecialista/{recinto}/{servicio}', 'AjaxController@horarioServiciosEspecialista');
 Route::get('/annadirHorarioServicioEspecialista/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorariosEspecialista');
 
+
+Route::resource('cuentas', 'CuentaController');
+//Route::get('cuentas', 'CuentaController@index')->name('cuentas.index');
 //Confirmar una cita de la lista mostrada al espec/asist conforme el id (especialista, asist)
 Route::get('/confirmarCitaAjax/{id_cita}', 'CitaControllerEspecialista@confirmarCitaAjax');
 
