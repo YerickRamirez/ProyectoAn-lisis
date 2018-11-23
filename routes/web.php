@@ -368,6 +368,15 @@ Route::get('/redirCitasHistEsp',function() {
     return view('Especialista.citasTotales');
 });
 
+//ver citas de un recinto y un estado para el día actual (asist)
+Route::get('citasAsistRecintoEstadoHoy/{ID_Recinto}/{estado}', 'CitaControllerAsistente@citaRecintoEstadoHoy');
+
+//trae los estados de la tabla Estados_Cita (asist)
+Route::get('/traerEstadosCitas', 'AjaxController@estadosCitas');
+
+
+
+
 
 
 
