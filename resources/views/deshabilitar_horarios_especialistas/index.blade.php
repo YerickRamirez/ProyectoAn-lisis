@@ -1,15 +1,17 @@
-@extends('layout')
+@extends('masterRoot')
 
-@section('header')
+@section('contenido_Admin')
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
     <div class="page-header clearfix">
         <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Deshabilitar_horarios_especialista
-            <a class="btn btn-success pull-right" href="{{ route('deshabilitar_horarios_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            Deshabilitar Especialistas
+            <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
         </h1>
     </div>
-@endsection
 
-@section('content')
     <div class="row">
         <div class="col-md-12">
             @if($deshabilitar_horarios_especialistas->count())
