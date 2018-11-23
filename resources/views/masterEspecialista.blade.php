@@ -7,6 +7,7 @@
 	<link href="https://revistas.ucr.ac.cr/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
@@ -56,19 +57,14 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border" href="paciente">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+		      			<a class="border" href="{{ url('Especialista') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 					</li>
-					<li>
-		      			<a class="border" href="citas">Pacientes<span class="glyphicon glyphicon-th-list right-pacientes"></a>
+		    		
+		    		<li>
+		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="citas">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
-		    		</li>
-		    		<li>
-		      			<a class="border" href="perfil">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
-		    		</li>
-		    		<li>
-		      			<a class="border" href="">Horario<span class="glyphicon glyphicon glyphicon-time right-hora"></a>
+		      			<a class="border" href="">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
@@ -93,9 +89,7 @@
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="#">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
-		<a class="border-a" href="#">Pacientes<span class="glyphicon glyphicon-th-list right-pacientes"></a>
-		<a class="border-a" href="#">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
+	    <a class="border-a" href="{{ url('Especialista') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="#">Horario<span class="glyphicon glyphicon-time right-hora"></a>
       	<a class="border-a hide-button-exit" href="{{ url('/logout') }}" Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>

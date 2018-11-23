@@ -42,7 +42,7 @@ class LoginController extends Controller
                 return redirect('asistente');
                 } else{
                     if($tipo == 2){
-                return redirect('especialistas');
+                return redirect('Especialista');
                     } else{
                         if($tipo == 1){
                 return redirect('admin');
@@ -59,7 +59,7 @@ class LoginController extends Controller
             Servicio de Salud para verificar el procedimiento de activación']);        
         }
         } else {
-        return back()->withErrors(['email' => trans('auth.failed')]);        
+        return back()->withErrors(['email' => trans('Correo electrónico o contraseña incorrectos.')]);        
     }
     }
 

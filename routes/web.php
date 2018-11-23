@@ -110,6 +110,14 @@ Route::get('paciente', function () {
 });//->middleware('auth');
 Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//->middleware('auth');
 
+
+/*CAMBIO DE CONTRASENNA ROOT */
+Route::get('contrasennaAdmin', function() {
+    return view('Admin/cambiarContrasenna');
+});
+Route::resource('cambiarContrasennaAdmin', 'ContrasennaRootController');
+/*FIN CAMBIO DE CONTRASENNA ROOT */
+
 /*
 Route::get('citas', function () {
     return view('Paciente/citas') ;
@@ -270,6 +278,7 @@ Route::get('/hola', 'AjaxController@cargarCitas');
 
 Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
 Route::delete('reprogramarCitAsistente{cita}', 'CitaControllerAsistente@reprogramar')->name('reprogramarCitAsistente');
+Route::delete('confirmarCitAsistente{cita}', 'CitaControllerAsistente@confirmar')->name('confirmarCitAsistente');
 Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
 Route::get('asistente', 'CitaControllerAsistente@index')->name('asistente.index');
@@ -300,3 +309,12 @@ Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Bloqueo_especialistumController@guardarBloqueoEsp');
 
 Route::get('redirigirBloqueoEspIndex', 'Bloqueo_especialistumController@redirigirBloqueoEspIndex');
+
+//Rutas del usuario Especialista
+Route::get('Especialista.index', 'CitaControllerEspecialista@index')->name('Especialista.index');
+Route::get('Especialista', 'CitaControllerEspecialista@index');
+Route::delete('destroyCitEspecialista{cita}', 'CitaControllerEspecialista@destroy')->name('destroyCitEspecialista');
+Route::delete('reprogramarCitEspecialista{cita}', 'CitaControllerEspecialista@reprogramar')->name('reprogramarCitEspecialista');
+Route::delete('confirmarCitEspecialista{cita}', 'CitaControllerEspecialista@confirmar')->name('confirmarCitEspecialista');
+Route::get('/reprogramarCitEspecialista/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerEspecialista@reprogramarCita');
+

@@ -56,14 +56,12 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border" href="{{ url('asistente') }}">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+		      			<a class="border" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
-					<li> 
-		      			<a class="border" href="{{ route('Asistente.crearCita') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
-		    		</li>
+					
 		    		<li>
 		      			<a class="border" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
 		    		</li>
@@ -91,9 +89,8 @@
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="{{ url('asistente') }}">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
+	    <a class="border-a" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 		<a class="border-a" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
-		<a class="border-a" href="{{ route('Asistente.crearCita') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>	
 		<a class="border-a" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
       	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
