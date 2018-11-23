@@ -1,26 +1,38 @@
-@extends('layout')
-
-@section('header')
-    <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> Cuenta / Create </h1>
+@extends ('masterRoot')
+@section ('contenido_Admin')
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel">
+        <p style="text-align: center; font-size: 3vh;">Crear Cuenta</p>
     </div>
-@endsection
-
-@section('content')
-    @include('error')
+    <div class="panel-body">
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1 ">
 
             <form class="form-horizontal" action='{{ url("crearCuenta") }}' method='POST'>
             {{ csrf_field() }}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <label for="name" ><strong>Tipo de usuario</strong></label> 
+                        <div class="radio">
+                        <label><input type="radio" name="tipo" value="1" checked>Root</label>
+                        
+                        
+                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="2">Especialista</label>
+                      
+                        
+                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="3">Asistente</label>
+                        
+                        
+                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="4">Paciente</label>
+                      </div>
+                        <br>
+                        
+                        
+	                    <!--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">-->
+                            <div class="row">
+                            <div class="col-md-3">
 
-	                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Nombre</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <label for="name" >Nombre</label> <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -28,12 +40,13 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        <br>
-                        <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
-                            <label for="lastName" class="col-md-4 control-label">Primer Apellido</label>
+                        <!--</div>-->
+                        
+                        <!--<div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">-->
+                            
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="lastName" class="">Primer Apellido</label>
                                 <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus>
 
                                 @if ($errors->has('lastName'))
@@ -42,12 +55,12 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        <br>
-                        <div class="form-group{{ $errors->has('lastName2') ? ' has-error' : '' }}">
-                            <label for="lastName2" class="col-md-4 control-label">Segundo Apellido</label>
-
-                            <div class="col-md-6">
+                        <!--</div>-->
+                        
+                        <!--<div class="form-group{{ $errors->has('lastName2') ? ' has-error' : '' }}">-->
+                            
+                            <div class="col-md-3">
+                                <label for="lastName2" class="">Segundo Apellido</label>
                                 <input id="lastName2" type="text" class="form-control" name="lastName2" value="{{ old('lastName2') }}" required autofocus>
 
                                 @if ($errors->has('lastName2'))
@@ -56,12 +69,9 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        <br>
-                        <div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
-                            <label for="cedula" class="col-md-4 control-label">Cédula</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+                                 <label for="cedula" class="control-label">Cédula</label>
                                 <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
 
                                 @if ($errors->has('cedula'))
@@ -71,11 +81,17 @@
                                 @endif
                             </div>
                         </div>
-                        <br>
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Correo Electrónico</label>
+                        <!--</div>-->
+                        <!--<div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">-->
+                           
 
-                            <div class="col-md-6">
+                        <!--</div>-->
+                        <!--<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">-->
+                            <br>
+                            <div class="row">
+                            
+                            <div class="col-md-4">
+                                <label for="email" class="control-label">Correo Electrónico</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
@@ -84,11 +100,12 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        <br>
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
-                            <div class="col-md-6">
+                        <!--</div>-->
+            
+                        <!--<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">-->
+                            
+                            <div class="col-md-4">
+                                <label for="password" class="control-label">Contraseña</label>
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -97,38 +114,23 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        
-                        <br>
+                        <!--</div>-->
+   
                         <div aling="center"class="form">
                         <div class="form-horizontal">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
+                           
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                 <label for="password-confirm" class=" control-label">Confirmar Contraseña</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
                         </div>
-                        <br>
-                        <br>
+                    </div>
                         <div class="div">
-                        <div aling="center" class="panel">
-                        <div class="radio">
-                        <label><input type="radio" name="tipo" value="1" checked>Root</label>
-                        </div>
-                        <div class="radio">
-                        <label><input type="radio" name="tipo" value="2">Especialista</label>
-                        </div>
-                        <div class="radio">
-                        <label><input type="radio" name="tipo" value="3">Asistente</label>
-                        </div> 
-                        <div class="radio">
-                        <label><input type="radio" name="tipo" value="4">Paciente</label>
-                        </div> 
-                        </div>
-
                         <br>
                         <div class="panel">
+                            <label for="name" ><strong>Estado Cuenta</strong></label> 
                         <div class="radio">
                         <label><input type="radio" name="flag" value="1" checked>Activado</label>
                         </div>
@@ -139,11 +141,13 @@
                         </div>
 
                 <div class="well well-sm">
-                <button class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Cambiar datos</button>
-                    <a class="btn btn-link pull-right"><i class="glyphicon glyphicon-backward"></i> Back</a>
+                <button class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Guardar</button>
+                    <a href="{{ route('cuentas.index') }}" class="btn btn-link pull-right"><i class="glyphicon glyphicon-backward"></i> Regresar</a>
                 </div>
             </form>
 
         </div>
     </div>
+</div>
+</div>
 @endsection

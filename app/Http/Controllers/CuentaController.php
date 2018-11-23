@@ -10,6 +10,7 @@ use Auth;
 use App\Paciente;
 use App\Cuentas_activa;
 use App\Especialista;
+Use DB;
 
 use Illuminate\Support\Facades\Input;
 use App\Cuenta;
@@ -42,8 +43,9 @@ class CuentaController extends Controller
 	 */
 	public function index()
 	{
-		//$cuentas = Cuenta::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		//$active = Cuenta::where('active_flag', 1);
+	
+		$cuentas = User::where('active_flag', 1)->orderBy('id', 'asc')->paginate(10);
+		$active = User::where('active_flag', 1);
 		return view('cuentas.index', compact('cuentas', 'active'));
 	}
 
@@ -118,7 +120,7 @@ class CuentaController extends Controller
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
 
-		return redirect()->route('Prueba.adn');
+		return redirect()->route('cuentas.index');
 	}
 
 	/**
