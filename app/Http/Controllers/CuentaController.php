@@ -11,6 +11,7 @@ use App\Paciente;
 use App\Cuentas_activa;
 use App\Especialista;
 Use DB;
+use App\Telefono;
 
 use Illuminate\Support\Facades\Input;
 use App\Cuenta;
@@ -67,13 +68,23 @@ class CuentaController extends Controller
 	 */
 	public function store(Request $request, User $user)
 	{
+
+		$telefono = $request->input("telefono");
+		$checked=Input::has('tipo');
+		$checkValue=Input::get('tipo');
+
+		$checked2=Input::has('flag');
+		$checkValue2=Input::get('flag');
+		//return "aquíxD";
+		if($telefono == "" || strlen($telefono) < 4) {
+			if($checkValue == 4) {
+				return back()->withErrors(['telefono' => trans('El paciente debe tener un teléfono válido')]);
+			} else {
+		
 		$cuenta = new Cuenta();
 		$user = new User();
 		$especialista = new Especialista();
 		$paciente = new Paciente();
-
-		$checked=Input::has('tipo');
-		$checkValue=Input::get('tipo');
 
 		$user = User::create([
             'name' => $request->input("name"),
@@ -83,10 +94,43 @@ class CuentaController extends Controller
             'tipo' => $checkValue,
             'active_flag' => 1,
 		]);
-
 		
-		$checked2=Input::has('flag');
-		$checkValue2=Input::get('flag');
+		$this->validate($request, [
+					 'name' => 'required|max:255|'//,
+					
+			 ]);
+
+		if($checkValue == 2) {
+		$especialista->id_user = $user->id;
+		$especialista->cedula_especialista = $request->input("cedula");
+		$especialista->nombre = $request->input("name");
+		$especialista->primer_apellido_especialista = $user->email;
+		$especialista->segundo_apellido_especialista = $request->input("lastName2");
+		$especialista->active_flag = 1;
+
+		$especialista->save();
+		}
+
+		Session::flash('message_type', 'success');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+
+		return redirect()->route('cuentas.index');
+		}// fin else, si no hay teléfono pero NO es paciente.
+		} else {		
+		$cuenta = new Cuenta();
+		$user = new User();
+		$especialista = new Especialista();
+		$paciente = new Paciente();
+
+		$user = User::create([
+            'name' => $request->input("name"),
+            'lastName' => $request->input("lastName"). ' ' .$request->input("lastName2"),
+            'email' => $request->input("email"),
+            'password' => bcrypt( $request->input("password")),
+            'tipo' => $checkValue,
+            'active_flag' => 1,
+		]);
 		
 		$this->validate($request, [
 					 'name' => 'required|max:255|'//,
@@ -104,6 +148,7 @@ class CuentaController extends Controller
 		$especialista->save();
 		} else {
 			if($checkValue == 4) {
+				////////////////////////////////////////
 				$paciente->id_user = $user->id;
 				$paciente->cedula_paciente = $request->input("cedula");
 				$paciente->nombre = $request->input("name");
@@ -113,6 +158,12 @@ class CuentaController extends Controller
 				$paciente->active_flag = 1;//change to reflect current status or changed status
 		
 				$paciente->save();
+
+				$telefonoModel = new Telefono();
+				$telefonoModel->paciente_id = $paciente->id;
+				$telefonoModel->telefono = $telefono;
+				$telefonoModel->save();
+
 			}
 		}
 
@@ -121,6 +172,7 @@ class CuentaController extends Controller
 		Session::flash('message_header', 'Success');
 
 		return redirect()->route('cuentas.index');
+	}
 	}
 
 	/**

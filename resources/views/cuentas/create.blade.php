@@ -125,6 +125,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <br>
+                        <div class="col-md-4">
+                            <label for="telefono" class=" control-label">Telefono</label>
+                           <input id="telefono" type="number" class="form-control" name="telefono">
+                           @if ($errors->has('telefono'))
+                           <span class="help-block">
+                               <strong>{{ $errors->first('telefono') }}</strong>
+                           </span>
+                       @endif
+                        </div>
                         </div>
                     </div>
                         <div class="div">
