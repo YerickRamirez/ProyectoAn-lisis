@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cuenta extends Model
 {
 
-  protected $table = 'cuentas';
+  protected $table = 'especialistas';
   public $timestamps=false;
   protected $fillable = ['nombre_usuario', 'contrasenna', 'tipo', 'verificado', 'codigo_verificacion', 'estado_cuenta'];
 
