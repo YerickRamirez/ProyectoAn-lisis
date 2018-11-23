@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Auth;
+use DB;
 
 use App\Horarios_servicio;
 use Illuminate\Http\Request;
@@ -187,6 +188,7 @@ class Horarios_servicioController extends Controller
 
 		return redirect()->route('horarios_servicios.index');
 	}
+	
 
 	public function annadirActualizarHorarios(Request $request, User $user, $array_horario_servicio)
 	{
@@ -232,5 +234,55 @@ class Horarios_servicioController extends Controller
 		Session::flash('message', "The Horarios_servicio \"<a href='horarios_servicios/$horarios_servicio->slug'>" . $horarios_servicio->name . "</a>\" was Created.");
 
 		return redirect()->route('horarios_servicios.index');
+	}
+
+	public function annadirActualizarHorariosEspecialista(Request $request, User $user, $array_horario_servicio)
+	{
+		$name = Auth::user()->id;
+		
+    	$especialista = DB::table('especialistas')->where('id_user', $name)
+        ->select('id')->get();
+		$idS = $especialista->first()->id;
+		
+		$horarios_servicio_param = json_decode($array_horario_servicio);
+		for ($i = 0; $i < 5; $i ++ ){
+			$horarios_servicio = new Horarios_servicio();
+			$dia = $horarios_servicio_param[$i]->id_dia;
+			$recinto = $horarios_servicio_param[$i]->id_recinto;
+			$servicio = $horarios_servicio_param[$i]->id_servicio;
+			$especialista = $idS;
+			$manana = $horarios_servicio_param[$i]->disponibilidad_manana;
+			$tarde = $horarios_servicio_param[$i]->disponibilidad_tarde;
+
+			$horarioServicios = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista', $especialista)
+			->where('id_servicio', $servicio)->where('id_dia', $dia)->where('active_flag', 1)->get();
+			//return $horarioServicios;
+
+			if ($horarioServicios->isEmpty()) {
+				$horarios_servicio->id_dia = $dia;
+				$horarios_servicio->id_recinto = $recinto;
+				$horarios_servicio->id_servicio = $servicio;
+				$horarios_servicio->id_especialista = $especialista;
+				$horarios_servicio->disponibilidad_manana = $manana;
+				$horarios_servicio->disponibilidad_tarde = $tarde;
+				$horarios_servicio->active_flag = 1;
+				$horarios_servicio->save();
+			} else {
+				$id = $horarioServicios[0]->id;
+				$actualizado = Horarios_servicio::find($id);
+				$actualizado->disponibilidad_manana = $manana;
+				$actualizado->disponibilidad_tarde = $tarde;
+				$actualizado->save();
+
+			}
+			
+		}
+		
+		Session::flash('message_type', 'success');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', "The Horarios_servicio \"<a href='horarios_servicios/$horarios_servicio->slug'>" . $horarios_servicio->name . "</a>\" was Created.");
+
+		return redirect()->route('Especilista.horarios');
 	}
 }

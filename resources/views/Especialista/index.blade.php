@@ -5,7 +5,7 @@
 <div class="panel panel-primary class border-panel " >
 
      <div class="panel-heading border-panel bg-color-panel">
-        <p class="center" style="font-size: 3vh;">Lista de citas para el día </p>
+        <p class="center" style="font-size: 3vh;">Lista de citas</p>
     </div>
     <div class="panel-body">
     <section class="">

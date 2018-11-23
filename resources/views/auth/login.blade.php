@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="" style="text-align:center">
-                            <img src="https://revistas.ucr.ac.cr/favicon.ico" style="height:150px; widght:150px">
+                            <img src="{{asset('Imagenes/logo-login.ico')}}" style="height:150px; widght:150px">
                         </div>
                         
                         @if(session()->has('success'))

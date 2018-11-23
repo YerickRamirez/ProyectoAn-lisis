@@ -428,6 +428,28 @@ public function horarioServicios($recinto, $servicio, $especialista, Request $re
     return json_encode(["horario"=>$xD]);
 }
 
+public function horarioServiciosEspecialista($recinto, $servicio, Request $request){
+    $name = Auth::user()->id;
+    	$especialista = DB::table('especialistas')->where('id_user', $name)
+            ->select('id')->get();
+		$id = $especialista->first()->id;
+
+    $horarioServicio = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista',  $id)
+    ->where('id_servicio', $servicio)->get();//citas en la fecha elegida
+    
+    $horasOcupadas = array();
+
+    if(!$horarioServicio->isEmpty()) {//citas existentes de la fecha elegidas
+        foreach ($horarioServicio as $horario) {
+            array_push($horasOcupadas,  $horario);
+        }
+    }
+
+    $xD = $horasOcupadas;
+    
+    return json_encode(["horario"=>$xD]);
+}
+
 public function cargarCitas() {
 
     $citas=DB::table('citas')->where('active_flag', '=', 1)->orderBy('fecha_cita','desc')->get();

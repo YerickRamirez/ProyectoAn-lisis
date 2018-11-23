@@ -64,7 +64,7 @@
 		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
+		      			<a class="border" href="{{ route('Especilista.horarios') }}">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
@@ -124,7 +124,7 @@
 	
 	<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
     <footer class="main-footer">
-  	<div class="text-center main-footer"><strong>©2018 Copyright:</strong>
+  	<div class="text-center main-footer"><strong>©2018</strong>
     	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
