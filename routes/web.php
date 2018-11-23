@@ -68,6 +68,10 @@ Route::get('recintos', function () {
 });//->name('recintosA');
 
 Route::get('cuentas/create', function(){return view('cuentas/create');}) ->name('Prueba.adn');
+//Route::get('cuentas/create', 'CuentaController@store') ->name('store.adn');
+Route::post('crearCuenta', 'CuentaController@store');
+
+
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
@@ -274,7 +278,6 @@ Route::get('reservarCita',function(){
     return view('asistente.crearCita');
  });
 
-Route::get('crearCuenta', 'CuentaController@store');
  
 ///////////////////Fin rutas asistente//////////////////////////////////////////// 
 

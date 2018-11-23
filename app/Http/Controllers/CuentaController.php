@@ -11,6 +11,7 @@ use App\Paciente;
 use App\Cuentas_activa;
 use App\Especialista;
 
+use Illuminate\Support\Facades\Input;
 use App\Cuenta;
 use Illuminate\Http\Request;
 use \Session;
@@ -29,7 +30,7 @@ class CuentaController extends Controller
 	 *
 	 * @return void
 	 */
-	public function __construct(Cuenta $model)
+	public function __construct(Especialista $model)
 	{
 		$this->model = $model;
 	}
@@ -41,8 +42,8 @@ class CuentaController extends Controller
 	 */
 	public function index()
 	{
-		$cuentas = Cuenta::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		$active = Cuenta::where('active_flag', 1);
+		//$cuentas = Cuenta::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		//$active = Cuenta::where('active_flag', 1);
 		return view('cuentas.index', compact('cuentas', 'active'));
 	}
 
@@ -67,49 +68,57 @@ class CuentaController extends Controller
 		$cuenta = new Cuenta();
 		$user = new User();
 		$especialista = new Especialista();
-
-		$especialista->id_user = $user->id;
-		$especialista->cedula_especialista = $request->input("cedula");
-		$especialista->nombre = $request->input("name");
-		$especialista->primer_apellido_especialista = $request->input("last_name");
-		$especialista->segundo_apellido_especialista = $request->input("last_name2");
-		$especialista->active_flag = 1;
+		$paciente = new Paciente();
 
 		$checked=Input::has('tipo');
 		$checkValue=Input::get('tipo');
 
-		$checked2=Input::has('flag');
-		$checkValue2=Input::get('flag');
 		$user = User::create([
-            'name' => $request->input("nombre"),
-            'lastName' => $request->input("last_name"). ' ' .$request->input("last_name2"),
+            'name' => $request->input("name"),
+            'lastName' => $request->input("lastName"). ' ' .$request->input("lastName2"),
             'email' => $request->input("email"),
             'password' => bcrypt( $request->input("password")),
-            'tipo' => 2,
+            'tipo' => $checkValue,
             'active_flag' => 1,
 		]);
-		 return $checked;
-		//$cuenta->name = ucfirst($request->input("name"));
-		//$cuenta->name = ucfirst($request->input("name"));
-		//$cuenta->name = ucfirst($request->input("name"));
-		//$cuenta->slug = str_slug($request->input("name"), "-");
-		//$cuenta->description = ucfirst($request->input("description"));
-		//$cuenta->active_flag = 1;
-		//$cuenta->author_id = $request->user()->id;
 
+		
+		$checked2=Input::has('flag');
+		$checkValue2=Input::get('flag');
+		
 		$this->validate($request, [
-					 'name' => 'required|max:255|unique:cuentas'//,
-					// 'description' => 'required'
+					 'name' => 'required|max:255|'//,
+					
 			 ]);
 
-		$cuenta->save();
+		if($checkValue == 2) {
+		$especialista->id_user = $user->id;
+		$especialista->cedula_especialista = $request->input("cedula");
+		$especialista->nombre = $request->input("name");
+		$especialista->primer_apellido_especialista = $user->email;
+		$especialista->segundo_apellido_especialista = $request->input("lastName2");
+		$especialista->active_flag = 1;
+
+		$especialista->save();
+		} else {
+			if($checkValue == 4) {
+				$paciente->id_user = $user->id;
+				$paciente->cedula_paciente = $request->input("cedula");
+				$paciente->nombre = $request->input("name");
+				$paciente->primer_apellido_paciente = $request->input("lastName");
+				$paciente->segundo_apellido_paciente = $request->input("lastName2");
+				$paciente->correo = $user->email;
+				$paciente->active_flag = 1;//change to reflect current status or changed status
+		
+				$paciente->save();
+			}
+		}
 
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Cuenta \"<a href='cuentas/$cuenta->slug'>" . $cuenta->name . "</a>\" was Created.");
 
-		return redirect()->route('cuentas.index');
+		return redirect()->route('Prueba.adn');
 	}
 
 	/**
@@ -120,7 +129,6 @@ class CuentaController extends Controller
 	 */
 	public function show(Cuenta $cuenta)
 	{
-		//$cuenta = $this->model->findOrFail($id);
 
 		return view('cuentas.show', compact('cuenta'));
 	}
@@ -147,25 +155,25 @@ class CuentaController extends Controller
 	 */
 	public function update(Request $request, Cuenta $cuenta, User $user)
 	{
+		/** 
+		*$cuenta->name = ucfirst($request->input("name"));
+   * $cuenta->slug = str_slug($request->input("name"), "-");
+	*	$cuenta->description = ucfirst($request->input("description"));
+		*$cuenta->active_flag = 1;//change to reflect current status or changed status
+		*$cuenta->author_id = $request->user()->id;
 
-		$cuenta->name = ucfirst($request->input("name"));
-    $cuenta->slug = str_slug($request->input("name"), "-");
-		$cuenta->description = ucfirst($request->input("description"));
-		$cuenta->active_flag = 1;//change to reflect current status or changed status
-		$cuenta->author_id = $request->user()->id;
+		*$this->validate($request, [
+		*			 'name' => 'required|max:255|unique:cuentas,name,' . $cuenta->id//,
+		*			// 'description' => 'required'
+		*	 ]);
 
-		$this->validate($request, [
-					 'name' => 'required|max:255|unique:cuentas,name,' . $cuenta->id,
-					 'description' => 'required'
-			 ]);
+		*$cuenta->save();
 
-		$cuenta->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Cuenta \"<a href='cuentas/$cuenta->slug'>" . $cuenta->name . "</a>\" was Updated.");
-
+		*Session::flash('message_type', 'blue');
+		*Session::flash('message_icon', 'checkmark');
+		*Session::flash('message_header', 'Success');
+		*Session::flash('message', "The Cuenta \"<a href='cuentas/$cuenta->slug'>" . $cuenta->name . "</a>\" was Updated.");
+				*/
 		return redirect()->route('cuentas.index');
 	}
 
@@ -183,7 +191,7 @@ class CuentaController extends Controller
 		Session::flash('message_type', 'negative');
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cuenta ' . $cuenta->name . ' was De-Activated.');
+		//Session::flash('message', 'The Cuenta ' . $cuenta->name . ' was De-Activated.');
 
 		return redirect()->route('cuentas.index');
 	}
