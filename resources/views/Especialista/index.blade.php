@@ -6,20 +6,20 @@
 
     
      <div class="panel-heading border-panel bg-color-panel">
-        <p class="center" style="font-size: 3vh;">Lista de citas del día de hoy</p>
+     <p class="center" style="font-size: 3vh;">Lista de citas del día de hoy para {{Auth::user()->name . ' ' . Auth::user()->lastName}}</p>
     </div>
     <div class="panel-body">
             <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
     <section class="">
     <div class="panel-heading">
         <div class="margin-dwn btn">
-    <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('reservarCita') }}">Boton que dice Seney</a> <span>
+    <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoy') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
+            <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistEsp') }}">Ver histórico citas</a> <span>
         </div>
 <br>    
     <div class="margin-up">
     <br> 
         <div class="margin-up">
-            @if($citas->count())
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
                     <thead>
@@ -28,6 +28,7 @@
                         <th class="text-center">Teléfono</th>
                         <!--<th class="text-center">Correo</th>-->  
                         <th class="text-center">Especialista</th> 
+                        <th class="text-center">Servicio</th>
                         <th class="text-center">Recinto</th> 
                         <th class="text-center">Fecha/Hora</th> 
                         <th class="text-center">Estado</th>                          
@@ -38,11 +39,6 @@
                     </tbody>
                 </table>
             </div>
-                
-            @else
-                <h3 class="text-center alert alert-info">No hay nada para mostrar</h3>
-            @endif
-
             </div>
 
         </div>
@@ -95,7 +91,7 @@ $('#tablita').DataTable(
 function ajaxCitasRecinto(ID_Recinto){
         
             $.ajax({
-          url: '/citasDeRecinto/' + ID_Recinto,
+          url: '/citasRecintoParaEspLoggeado/' + ID_Recinto,
           type: 'GET',
           dataType: "json",
           success:function(datos){ 
@@ -123,6 +119,7 @@ function ajaxCitasRecinto(ID_Recinto){
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
                 this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
+                this.nombreServ,
                 this.descripcion,
                 this.fecha_cita,
                 btnConfirmarText + ' ' + btnReprogramarText + ' ' + btnCancelarText

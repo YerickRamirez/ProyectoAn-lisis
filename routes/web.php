@@ -304,10 +304,6 @@ Route::get('dropDiasBloqueo', 'AjaxController@dropDiasBloqueo');
 //resource de bloqueoEspecialistas
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 
-//resource de bloqueoEspecialistas
-Route::get('citasDeRecinto/{ID_Recinto}', 'CitaControllerEspecialista@citaRecintoDia');
-
-
 //lleva los datos para insertar un bloqueo de un especialista (asist, especialista, root)
 Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Bloqueo_especialistumController@guardarBloqueoEsp');
 
@@ -344,3 +340,31 @@ Route::get('/reprogramarCitaAjax/{id_cita}', 'CitaControllerEspecialista@reprogr
 
 //cancelar una cita de la lista mostrada al espec/asist conforme el id (especialista, asist)
 Route::get('/cancelarCitaAjax/{id_cita}', 'CitaControllerEspecialista@cancelarCitaAjax');
+
+//ver citas del especialista loggeado en un recinto para hoy
+Route::get('citasRecintoParaEspLoggeado/{ID_Recinto}', 'CitaControllerEspecialista@citaRecintoDia');
+
+//ver citas del especialista loggeado en un recintode hoy en adelante
+Route::get('citasRecintoParaEspLoggeadoFuturas/{ID_Recinto}', 'CitaControllerEspecialista@citaRecintoAPartirHoy');
+
+//Carga TODAS las citas (histórico) confirmadas/reservadas del esp loggeado (esp)
+Route::get('/citasRecintoParaEspLoggeadoHistActivas/{id_recinto}', 'CitaControllerEspecialista@historicoCitasActivasRecinto');
+
+//Lleva al especialista a la página para ver citas de hoy en adelante (según recinto)
+Route::get('/redirCitasAPartirHoy',function() {
+    return view('Especialista.citasFuturas');
+});
+
+//Lleva al especialista a la página para ver citas de hoy en adelante (según recinto)
+Route::get('/redirCitasHoyEsp',function() {
+    return view('Especialista.index');
+});
+
+//Lleva al especialista a la página para ver citas activas históricas (según recinto)
+Route::get('/redirCitasHistEsp',function() {
+    return view('Especialista.citasTotales');
+});
+
+
+
+
