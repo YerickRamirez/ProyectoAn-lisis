@@ -304,6 +304,9 @@ Route::get('dropDiasBloqueo', 'AjaxController@dropDiasBloqueo');
 //resource de bloqueoEspecialistas
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 
+//resource de bloqueoEspecialistas
+Route::get('citasDeRecinto/{ID_Recinto}', 'CitaControllerEspecialista@citaRecintoDia');
+
 
 //lleva los datos para insertar un bloqueo de un especialista (asist, especialista, root)
 Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Bloqueo_especialistumController@guardarBloqueoEsp');
@@ -323,7 +326,7 @@ Route::delete('reprogramarCitEspecialista{cita}', 'CitaControllerEspecialista@re
 Route::get('/reprogramarCitEspecialista/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerEspecialista@reprogramarCita');
 
 //Para confirmar cita
-Route::delete('confirmarCitEspecialista{cita}', 'CitaControllerEspecialista@confirmar')->name('confirmarCitEspecialista');
+Route::delete('confirmarCitEspecialista/{cita}', 'CitaControllerEspecialista@confirmar')->name('confirmarCitEspecialista');
 
 //Para configurar horarios
 Route::get('Especialista.configurarHorarios', function () {
@@ -332,3 +335,12 @@ Route::get('Especialista.configurarHorarios', function () {
 
 Route::get('/verificarHorarioServicioEspecialista/{recinto}/{servicio}', 'AjaxController@horarioServiciosEspecialista');
 Route::get('/annadirHorarioServicioEspecialista/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorariosEspecialista');
+
+//Confirmar una cita de la lista mostrada al espec/asist conforme el id (especialista, asist)
+Route::get('/confirmarCitaAjax/{id_cita}', 'CitaControllerEspecialista@confirmarCitaAjax');
+
+//reprogramar una cita de la lista mostrada al espec/asist conforme el id (especialista, asist)
+Route::get('/reprogramarCitaAjax/{id_cita}', 'CitaControllerEspecialista@reprogramarCitaAjax');
+
+//cancelar una cita de la lista mostrada al espec/asist conforme el id (especialista, asist)
+Route::get('/cancelarCitaAjax/{id_cita}', 'CitaControllerEspecialista@cancelarCitaAjax');
