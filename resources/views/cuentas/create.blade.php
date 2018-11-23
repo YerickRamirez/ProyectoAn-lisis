@@ -13,6 +13,7 @@
         <div class="col-md-12">
 
             <form class="form-horizontal" action='{{ url("crearCuenta") }}' method='POST'>
+            {{ csrf_field() }}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 	                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

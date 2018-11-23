@@ -42,7 +42,7 @@ class LoginController extends Controller
                 return redirect('asistente');
                 } else{
                     if($tipo == 2){
-                return redirect('especialistas');
+                return redirect('Especialista');
                     } else{
                         if($tipo == 1){
                 return redirect('admin');

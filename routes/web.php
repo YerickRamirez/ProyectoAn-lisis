@@ -68,6 +68,10 @@ Route::get('recintos', function () {
 });//->name('recintosA');
 
 Route::get('cuentas/create', function(){return view('cuentas/create');}) ->name('Prueba.adn');
+//Route::get('cuentas/create', 'CuentaController@store') ->name('store.adn');
+Route::post('crearCuenta', 'CuentaController@store');
+
+
 
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
 
@@ -105,6 +109,14 @@ Route::get('paciente', function () {
     return redirect()->route('citas.index');
 });//->middleware('auth');
 Route::get('insertarUserPaciente', 'PacientePrueba@insertarUsuarioPaciente');//->middleware('auth');
+
+
+/*CAMBIO DE CONTRASENNA ROOT */
+Route::get('contrasennaAdmin', function() {
+    return view('Admin/cambiarContrasenna');
+});
+Route::resource('cambiarContrasennaAdmin', 'ContrasennaRootController');
+/*FIN CAMBIO DE CONTRASENNA ROOT */
 
 /*
 Route::get('citas', function () {
@@ -275,7 +287,6 @@ Route::get('reservarCita',function(){
     return view('asistente.crearCita');
  });
 
-Route::get('crearCuenta', 'CuentaController@store');
  
 ///////////////////Fin rutas asistente//////////////////////////////////////////// 
 
@@ -298,3 +309,12 @@ Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
 Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Bloqueo_especialistumController@guardarBloqueoEsp');
 
 Route::get('redirigirBloqueoEspIndex', 'Bloqueo_especialistumController@redirigirBloqueoEspIndex');
+
+//Rutas del usuario Especialista
+Route::get('Especialista.index', 'CitaControllerEspecialista@index')->name('Especialista.index');
+Route::get('Especialista', 'CitaControllerEspecialista@index');
+Route::delete('destroyCitEspecialista{cita}', 'CitaControllerEspecialista@destroy')->name('destroyCitEspecialista');
+Route::delete('reprogramarCitEspecialista{cita}', 'CitaControllerEspecialista@reprogramar')->name('reprogramarCitEspecialista');
+Route::delete('confirmarCitEspecialista{cita}', 'CitaControllerEspecialista@confirmar')->name('confirmarCitEspecialista');
+Route::get('/reprogramarCitEspecialista/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerEspecialista@reprogramarCita');
+
