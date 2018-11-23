@@ -8,7 +8,7 @@
     <div class="panel-body">
         <section class="">
         <div class="content-c w3-container mobile">
-        <div>
+            <div>
             <button id="mybutton" class = ' margin-button-agregar btn btn-success mobile' onclick="myFunction()">Nuevo Recinto</button>
 
             <form action="{{ route('recintos.store') }}" method="POST">

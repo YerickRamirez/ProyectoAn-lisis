@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link href="https://revistas.ucr.ac.cr/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	
+	<link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
@@ -69,13 +69,13 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border" href="{{ url('citas')}}">Inicio<span class="glyphicon glyphicon-calendar right-citas"></a>
+		      			<a class="border" href="{{ url('citas')}}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ url('perfilPaciente')}}">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 					</li>
 					<li>
-		      			<a class="border" href="{{ url('cambioContrasenna')}}">Contraseña<span class="glyphicon glyphicon-asterisk right-perfil"></a>
+		      			<a class="border" href="{{ url('cambioContrasenna')}}">Contraseña<span class="glyphicon glyphicon-lock right-aling-lock"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a href="{{ url('/logout') }}" class="border" >Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>

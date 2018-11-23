@@ -1,23 +1,22 @@
 
 @extends('masterPaciente')
 @section('contenido_Paciente')
-<div class="panel panel-primary">
-     <div class="panel-heading">
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Citas</p>
     </div>
     <div class="panel-body">
-    <section class="">
+        <section class="">
         <div class="content-c w3-container mobile">
-        <div>
-            <a class="margin-button-agregar btn btn-success mobile" href="{{ url('combobox') }}">Crear</a> <span>
+            <div>
+             <a class="margin-button-agregar btn btn-success mobile" href="{{ url('combobox') }}">Crear</a> <span>
         </div>
     </div>
 
-
-    <div>
+    <div class="panel-heading">
         <div class="">
         <div class="">
-            @if($citas->count())
+           @if($citas->count())
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr> 
@@ -58,6 +57,10 @@
             @endif
 
         </div>
+        </div>
+    </div> 
+    </div> 
+    </section>
     </div>
 </div>
 

@@ -2,15 +2,14 @@
 @section('contenido_Admin')
     @include('error')
 
-<div class="panel panel-primary">
-     <div class="panel-heading">
-        <p style="text-align: center; font-size: 3vh;">Configuración Especialistas</p>
+<div class="panel panel-primary border-panel">
+    <div class="panel-heading bg-color-panel">
+        <p style="text-align: center; font-size: 3vh;">Agregar Especialistas</p>
     </div>
 
-<div class="page-header">
-    <div class="panel-heading">
-    <div class="">
-        <div class="">
+<div class="panel-body">
+   
+        <div class="col-md-6 col-md-offset-3">
 
             <form action="{{ route('especialistas.store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
