@@ -375,7 +375,8 @@ Route::get('citasAsistRecintoEstadoHoy/{ID_Recinto}/{estado}', 'CitaControllerAs
 Route::get('/traerEstadosCitas', 'AjaxController@estadosCitas');
 
 //Elimina cuentas de los usuarios
-Route::delete('destroyCuentaEspecialista{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
+//Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
+Route::delete('destroyCuentas{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
 
 
 

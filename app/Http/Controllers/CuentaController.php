@@ -238,9 +238,11 @@ class CuentaController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy(Cuenta $cuenta)
+	public function destroy(User $cuenta)
 	{	
-		return $cuenta;
+		return "hola";
+		$hola = $request->input("cuenta");
+		return $hola;
 		$cuenta->active_flag = 0;
 		$cuenta->save();
 
