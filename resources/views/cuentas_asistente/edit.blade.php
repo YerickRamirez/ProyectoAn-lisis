@@ -1,6 +1,6 @@
-@extends('masterRoot')
+@extends('masterAsistente')
 
-@section('contenido_Admin')
+@section('contenido_Asistente')
 <div class="panel panel-primary border-panel">
         <div class="panel-heading  bg-color-panel">
            <p style="text-align: center; font-size: 3vh;">Editar cuenta de {{$cuenta->name . ' ' . $cuenta->lastName}}</p>

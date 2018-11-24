@@ -13,6 +13,8 @@ use App\Especialista;
 Use DB;
 use Illuminate\Support\Facades\Validator;
 use App\Telefono;
+use App\Mail\Confirmacion;
+use Mail;
 
 use Illuminate\Support\Facades\Input;
 use App\Cuenta;
@@ -46,9 +48,15 @@ class CuentaController extends Controller
 	public function index()
 	{
 	
-		$cuentas = User::where('active_flag', 1)->orderBy('id', 'asc')->get();
+		$cuentas = User::orderBy('id', 'asc')->get();
 		$active = User::where('active_flag', 1);
-		return view('cuentas.index', compact('cuentas', 'active'));
+		if(Auth::user()->tipo == 1) {
+			return view('cuentas.index', compact('cuentas', 'active'));
+		} 
+		
+		if(Auth::user()->tipo == 3) {
+				return view('cuentas_asistente.index', compact('cuentas', 'active'));
+		} 
 	}
 
 	/**
@@ -58,7 +66,13 @@ class CuentaController extends Controller
 	 */
 	public function create()
 	{
-		return view('cuentas.create');
+		if(Auth::user()->tipo == 1) {
+			return view('cuentas.create');
+		} 
+		
+		if(Auth::user()->tipo == 3) {
+				return view('cuentas_asistente.create');
+		} 
 	}
 
 	protected function validator(array $data)
@@ -129,6 +143,8 @@ class CuentaController extends Controller
             'active_flag' => $checkValue2,
 		]);
 
+		Mail::to($request->input("email"))->send(new Confirmacion($request->input("name")));
+
 		if($checkValue == 2) {
 		$especialista->id_user = $user->id;
 		$especialista->cedula_especialista = $request->input("cedula");
@@ -140,11 +156,12 @@ class CuentaController extends Controller
 		$especialista->save();
 		}
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-
+		if(Auth::user()->tipo == 1) {
 		return redirect()->route('cuentas.index');
+		} 
+		if(Auth::user()->tipo == 3) {
+			return redirect()->route('cuentas_asistente.index');
+		} 
 		}// fin else, si no hay teléfono pero NO es paciente.
 		} else {		
 		$cuenta = new Cuenta();
@@ -161,6 +178,8 @@ class CuentaController extends Controller
             'active_flag' => $checkValue2,
 		]);
 		
+		Mail::to($request->input("email"))->send(new Confirmacion($request->input("name")));
+
 		if($checkValue == 2) {
 		$especialista->id_user = $user->id;
 		$especialista->cedula_especialista = $request->input("cedula");
@@ -192,11 +211,12 @@ class CuentaController extends Controller
 			}
 		}
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-
-		return redirect()->route('cuentas.index');
+		if(Auth::user()->tipo == 1) {
+			return redirect()->route('cuentas.index');
+			} 
+			if(Auth::user()->tipo == 3) {
+				return redirect()->route('cuentas_asistente.index');
+			} 
 	}
 	}
 
@@ -209,7 +229,12 @@ class CuentaController extends Controller
 	public function show(Cuenta $cuenta)
 	{
 
-		return view('cuentas.show', compact('cuenta'));
+		if(Auth::user()->tipo == 1) {
+			return view('cuentas.show', compact('cuenta'));
+			} 
+			if(Auth::user()->tipo == 3) {
+				return view('cuentas_asistente.show', compact('cuenta'));
+			} 
 	}
 
 	/**
@@ -218,11 +243,16 @@ class CuentaController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit(Cuenta $cuenta)
+	public function edit(User $cuenta)
 	{
 		//$cuenta = $this->model->findOrFail($id);
 
-		return view('cuentas.edit', compact('cuenta'));
+		if(Auth::user()->tipo == 1) {
+			return view('cuentas.edit', compact('cuenta'));
+			} 
+			if(Auth::user()->tipo == 3) {
+				return view('cuentas_asistente.edit', compact('cuenta'));
+			} 
 	}
 
 	/**
@@ -232,28 +262,76 @@ class CuentaController extends Controller
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function update(Request $request, Cuenta $cuenta, User $user)
+	public function update(Request $request, User $cuenta)
 	{
-		/** 
-		*$cuenta->name = ucfirst($request->input("name"));
-   * $cuenta->slug = str_slug($request->input("name"), "-");
-	*	$cuenta->description = ucfirst($request->input("description"));
-		*$cuenta->active_flag = 1;//change to reflect current status or changed status
-		*$cuenta->author_id = $request->user()->id;
+		
+		//return $cuenta;
+		$rrr = $request->input('password');
+        $conf = $request->input("password-confirm");
+        if (strlen($rrr)<6) {
+            return back()->withErrors(['password' => 'Debe tener más de 6 caracteres']);
+        }
+        if ($rrr != $conf) {
+            return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
+		}
+		
+		if($request->email != $cuenta->email){//quiere cambiar de correo
+			$usuarioConCorreo = User::where('email', $request->email)->get();
+			if(!$usuarioConCorreo->isEmpty()) {//en caso de que exista una cuenta con el nuevo correo
+				return back()->withErrors(['email' => trans('Ya existe una cuenta con el correo dado')]);
+		    } else {//cambia correo pero sí es nuevo
 
-		*$this->validate($request, [
-		*			 'name' => 'required|max:255|unique:cuentas,name,' . $cuenta->id//,
-		*			// 'description' => 'required'
-		*	 ]);
 
-		*$cuenta->save();
+			$cuenta->name = $request->name;
+			$cuenta->lastName = $request->lastName . ' ' . $request->lastName2;
+			$cuenta->password = bcrypt($request->password);
+			$cuenta->email = $request->email;
 
-		*Session::flash('message_type', 'blue');
-		*Session::flash('message_icon', 'checkmark');
-		*Session::flash('message_header', 'Success');
-		*Session::flash('message', "The Cuenta \"<a href='cuentas/$cuenta->slug'>" . $cuenta->name . "</a>\" was Updated.");
-				*/
+			if($cuenta->tipo == 4) {
+				$paciente = Paciente::where('id_user', $cuenta->id)->first();
+				$paciente->nombre = $request->name;
+				$paciente->primer_apellido_paciente = $request->lastName;
+				$paciente->segundo_apellido_paciente = $request->lastName2;
+				$paciente->correo = $request->email;
+				$paciente->save();
+			} else if($cuenta->tipo == 2) {
+				$especialista = Especialista::where('id_user',$cuenta->id)->first();
+				$especialista->nombre = $request->name;
+				$especialista->primer_apellido_especialista = $request->lastName;
+				$especialista->segundo_apellido_especialista = $request->lastName2;
+				$especialista->save();
+			}
+				$cuenta->save();
+		}//fin correo nuevo
+		} else {//mismo correo
+			$cuenta->name = $request->name;
+			$cuenta->lastName = $request->lastName . ' ' . $request->lastName2;
+			$cuenta->password = bcrypt($request->password);
+			//$cuenta->email = $request->email;
+
+			if($cuenta->tipo == 4) {
+				$paciente = Paciente::where('id_user', $cuenta->id)->first();
+				$paciente->nombre = $request->name;
+				$paciente->primer_apellido_paciente = $request->lastName;
+				$paciente->segundo_apellido_paciente = $request->lastName2;
+				//$paciente->correo = $request->email;
+				$paciente->save();
+			} else if($cuenta->tipo == 2) {
+				$especialista = Especialista::where('id_user',$cuenta->id)->first();
+				$especialista->nombre = $request->name;
+				$especialista->primer_apellido_especialista = $request->lastName;
+				$especialista->segundo_apellido_especialista = $request->lastName2;
+				$especialista->save();
+			}
+			$cuenta->save();
+		}
+		if(Auth::user()->tipo == 1) {
 		return redirect()->route('cuentas.index');
+		} 
+		if(Auth::user()->tipo == 3) {
+			return redirect()->route('cuentas_asistente.index');
+		} 
+
 	}
 
 	/**
@@ -262,20 +340,30 @@ class CuentaController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy(User $cuenta)
+	public function destroy(User $cuenta, Request $request)
 	{	
-		return "hola";
-		$hola = $request->input("cuenta");
-		return $hola;
+		//return "hola";
+		$cuenta = $request->cuenta;
+		//return $cuenta;
 		$cuenta->active_flag = 0;
+
+		if($cuenta->tipo == 4) {
+			$paciente = Paciente::where('id_user',$cuenta->id)->first();
+			$paciente->active_flag = 0;
+			$paciente->save();
+		} else if($cuenta->tipo == 2) {
+			$especialista = Especialista::where('id_user',$cuenta->id)->first();
+			$especialista->active_flag = 0;
+			$especialista->save();
+		}
 		$cuenta->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		//Session::flash('message', 'The Cuenta ' . $cuenta->name . ' was De-Activated.');
-
-		return redirect()->route('cuentas.index');
+		if(Auth::user()->tipo == 1) {
+			return redirect()->route('cuentas.index');
+			} 
+			if(Auth::user()->tipo == 3) {
+				return redirect()->route('cuentas_asistente.index');
+			} 
 	}
 
 	/**
@@ -284,16 +372,29 @@ class CuentaController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function reactivate(Cuenta $cuenta)
-	{
+	public function reactivate(User $cuenta, Request $request)
+	{	
+		//return "hola";
+		$cuenta = $request->cuenta;
+		//return $cuenta;
 		$cuenta->active_flag = 1;
+
+		if($cuenta->tipo == 4) {
+			$paciente = Paciente::where('id_user',$cuenta->id)->first();
+			$paciente->active_flag = 1;
+			$paciente->save();
+		} else if($cuenta->tipo == 2) {
+			$especialista = Especialista::where('id_user',$cuenta->id)->first();
+			$especialista->active_flag = 1;
+			$especialista->save();
+		}
 		$cuenta->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cuenta ' . $cuenta->name . ' was Re-Activated.');
-
+		if(Auth::user()->tipo == 1) {
 		return redirect()->route('cuentas.index');
+		} 
+		if(Auth::user()->tipo == 3) {
+			return redirect()->route('cuentas_asistente.index');
+		} 
 	}
 }

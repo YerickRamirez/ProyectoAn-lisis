@@ -62,7 +62,8 @@
 		    		
 		    		<li>
 		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
-		    		</li>
+					</li>
+					
 		    		<li>
 		      			<a class="border" href="{{ route('Especilista.horarios') }}">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
 		    		</li>

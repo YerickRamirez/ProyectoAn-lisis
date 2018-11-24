@@ -332,8 +332,12 @@ Route::get('Especialista.configurarHorarios', function () {
 Route::get('/verificarHorarioServicioEspecialista/{recinto}/{servicio}', 'AjaxController@horarioServiciosEspecialista');
 Route::get('/annadirHorarioServicioEspecialista/{array_horario_servicio}', 'Horarios_servicioController@annadirActualizarHorariosEspecialista');
 
-
+//Resource de cuentas para root
 Route::resource('cuentas', 'CuentaController');
+
+//resource de cuentas para asistente
+Route::resource('cuentas_asistente', 'CuentaController');
+
 //Route::get('cuentas', 'CuentaController@index')->name('cuentas.index');
 //Confirmar una cita de la lista mostrada al espec/asist conforme el id (especialista, asist)
 Route::get('/confirmarCitaAjax/{id_cita}', 'CitaControllerEspecialista@confirmarCitaAjax');
@@ -376,7 +380,8 @@ Route::get('/traerEstadosCitas', 'AjaxController@estadosCitas');
 
 //Elimina cuentas de los usuarios
 //Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
-Route::delete('destroyCuentas{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
+Route::get('destroyCuentas/{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
+Route::get('reactivarCuentas/{cuenta}', 'CuentaController@reactivate')->name('reactivarCuentas');
 
 
 

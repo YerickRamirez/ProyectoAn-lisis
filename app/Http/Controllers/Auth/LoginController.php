@@ -10,14 +10,14 @@ use App;
 class LoginController extends Controller
 {
 
-
+/*
     public function revisarInicio() {
         if(Auth::check()) {
             $this->logout();
           //  $this->auth->logout();
         }
         return view('auth/login');
-    }
+    }*/
 
     public function login(){
 
