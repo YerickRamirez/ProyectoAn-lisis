@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Auth;
+use DB;
 
 use App\Paciente;
 use Illuminate\Http\Request;
@@ -38,8 +39,15 @@ class PacienteController extends Controller
 	 */
 	public function index()
 	{
-		$pacientes = Paciente::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		$active = Paciente::where('active_flag', 1);
+		$pacientes = $paciente = DB::table('pacientes')
+		->join('telefonos', 'pacientes.id', '=', 'telefonos.paciente_id')
+		->where('pacientes.active_flag', 1)
+		->where('telefonos.active_flag', 1)
+		->orderBy('pacientes.id', 'asc')->get();
+
+
+		/*$pacientes = Paciente::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
+		$active = Paciente::where('active_flag', 1);*/
 		return view('pacientes.index', compact('pacientes', 'active'));
 	}
 
@@ -144,6 +152,7 @@ class PacienteController extends Controller
 	 */
 	public function destroy(Paciente $paciente)
 	{
+		return $paciente->id;
 		$paciente->active_flag = 0;
 		$paciente->save();
 

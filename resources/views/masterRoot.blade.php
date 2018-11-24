@@ -73,6 +73,9 @@
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('cuentas.index') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+					</li>
+					<li>
+		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon"></a>
 		    		</li>
 					<li>
 		      			<a class="border" href="{{ route('especialistas.index') }}">Especialistas<span class="glyphicon glyphicon-education right-aling-glyphicon-e"></a>
