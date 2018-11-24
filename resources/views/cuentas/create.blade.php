@@ -70,7 +70,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3{{ $errors->has('cedula') ? ' has-error' : '' }}">
                                  <label for="cedula" class="control-label">Cédula</label>
                                 <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
 
@@ -90,7 +90,7 @@
                             <br>
                             <div class="row">
                             
-                            <div class="col-md-3">
+                            <div class="col-md-3{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="control-label">Correo Electrónico</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-3">
+                        <div class="col-md-3{{ $errors->has('telefono') ? ' has-error' : '' }}">
                             <label for="telefono" class=" control-label">Telefono</label>
                            <input id="telefono" type="number" class="form-control" name="telefono">
                            @if ($errors->has('telefono'))

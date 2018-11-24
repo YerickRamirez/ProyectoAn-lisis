@@ -111,8 +111,8 @@ class CitaController extends Controller
 	 */
 	public function store(Request $request, User $user)
 	{
-		$cita = new Cita();
 
+		$cita = new Cita();
 		$cita->estado_cita_id = 1;
 		//return "a";
 		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
@@ -139,15 +139,45 @@ class CitaController extends Controller
 					 'description' => 'required'
 			 ]);*/
 
-		$cita->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
+		$revisarCitas = $this->existenciaCitas($request);
+		if($revisarCitas == "true") {//Revisa si alguien le ganó el espacio
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', "La cita fue añadida exitosamente");
-
+		Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
+		return redirect('asistente.crearCita');
+		} else {
+		$cita->save();
 		return redirect()->route('citas.index');
 		}
+
+	}
+
+	
+	private function existenciaCitas(Request $request) {
+		$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+		$minutosCita = substr($request->horaCita, -2);
+		$horaCita = $request->horaCita[0];
+		if($horaCita == "9" || $horaCita == "8") {
+			$horaCita = "0" . $horaCita . ':' . $minutosCita;
+		} else {
+			$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+		}
+		$fecha_cita = $fechaCita . ' ' . $horaCita . ':' . '00';
+		//return $fecha_cita;
+		$citas = Cita::where('fecha_cita',  $fecha_cita)
+		->where('active_flag', 1)
+		->where('estado_cita_id', '!=', 3)
+		->where('estado_cita_id', '!=', 4)
+		->where('especialista_id', $request->dropEspecialistas)
+		->get();
+
+		if(!$citas->isEmpty()) {//
+            return "true";
+        } else {
+			return "false";
+		}
+	}
 
 	/**
 	 * Display the specified resource.

@@ -226,8 +226,12 @@ class CitaControllerEspecialista extends Controller
 		$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
 		->select('id')->get();
 		if($paciente->isEmpty()) {
-			//abort(404,'No existe ningún paciente registrado con la cédula indicada');
-			return "Holi wakamoli";
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'No existen pacientes con la cédula digitada');
+				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO EL PACIENTE CON ESA CÉDULA NO EXISTE//////////////////////////////////////////////////////////////////////////////////////////////
+				 //return redirect('reservarCita');//no sé si esta ruta está bien
 		} else {
 			$id = $paciente->first()->id;
 			$cita = new Cita();
@@ -254,16 +258,45 @@ class CitaControllerEspecialista extends Controller
 						 'description' => 'required'
 				 ]);*/
 	
-			$cita->save();
+				 $revisarCitas = $this->existenciaCitas($request);
+				 if($revisarCitas == "true") {//Revisa si alguien le ganó el espacio
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
+				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
+				 //return redirect('reservarCita');//no sé si esta ruta está bien
+				 } else {
+				 $cita->save();
+				 return redirect()->route('Especialista.index');
+				 }
+		}
+		
 		}
 
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "La cita fue añadida exitosamente");
-
-		return redirect()->route('Especialista.index');
+		private function existenciaCitas(Request $request) {
+			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+			$minutosCita = substr($request->horaCita, -2);
+			$horaCita = $request->horaCita[0];
+			if($horaCita == "9" || $horaCita == "8") {
+				$horaCita = "0" . $horaCita . ':' . $minutosCita;
+			} else {
+				$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+			}
+			$fecha_cita = $fechaCita . ' ' . $horaCita . ':' . '00';
+			//return $fecha_cita;
+			$citas = Cita::where('fecha_cita',  $fecha_cita)
+			->where('active_flag', 1)
+			->where('estado_cita_id', '!=', 3)
+			->where('estado_cita_id', '!=', 4)
+			->where('especialista_id', $request->dropEspecialistas)
+			->get();
+	
+			if(!$citas->isEmpty()) {//
+				return "true";
+			} else {
+				return "false";
+			}
 		}
 
 		public function reprogramarCita(Request $request, User $user)
@@ -271,9 +304,13 @@ class CitaControllerEspecialista extends Controller
 			$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
 			->select('id')->get();
 			if($paciente->isEmpty()) {
-				//abort(404,'No existe ningún paciente registrado con la cédula indicada');
-				return "Holi wakamoli";
-			} else {
+				Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'No existen pacientes con la cédula digitada');
+	////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO EL PACIENTE CON ESA CÉDULA NO EXISTE//////////////////////////////////////////////////////////////////////////////////////////////
+				 //return redirect('reservarCita');//no sé si esta ruta está bien			
+				} else {
 				$id = $paciente->first()->id;
 				$cita = new Cita();
 			
@@ -293,17 +330,20 @@ class CitaControllerEspecialista extends Controller
 				$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
 				$cita->active_flag = 1;
 
-				$cita->save();
-			}
-
-
-			Session::flash('message_type', 'success');
-			Session::flash('message_icon', 'checkmark');
-			Session::flash('message_header', 'Success');
-			Session::flash('message', "La cita fue añadida exitosamente");
-
-			return redirect()->route('Especialista.index');
-			}
+				$revisarCitas = $this->existenciaCitas($request);
+				 if($revisarCitas == "true") {//Revisa si alguien le ganó el espacio
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
+				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
+				 //return redirect('reservarCita');//no sé si esta ruta está bien
+				 } else {
+				 $cita->save();
+				 return redirect()->route('Especialista.index');
+				}
+				}
+		}
 
 			public function reprogramar(Cita $cita)
 			{

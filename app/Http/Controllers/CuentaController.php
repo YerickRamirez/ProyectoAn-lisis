@@ -11,6 +11,7 @@ use App\Paciente;
 use App\Cuentas_activa;
 use App\Especialista;
 Use DB;
+use Illuminate\Support\Facades\Validator;
 use App\Telefono;
 
 use Illuminate\Support\Facades\Input;
@@ -60,6 +61,13 @@ class CuentaController extends Controller
 		return view('cuentas.create');
 	}
 
+	protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+    }
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -68,13 +76,39 @@ class CuentaController extends Controller
 	 */
 	public function store(Request $request, User $user)
 	{
-
+		$this->validator($request->all())->validate();
+		
 		$telefono = $request->input("telefono");
 		$checked=Input::has('tipo');
 		$checkValue=Input::get('tipo');
 
 		$checked2=Input::has('flag');
 		$checkValue2=Input::get('flag');
+		//return $checkValue2 . '';
+
+        $rrr = $request->input('password');
+        $conf = $request->input("password_confirmation");
+        if (strlen($rrr)<6) {
+            return back()->withErrors(['password' => 'Debe tener más de 6 caracteres']);
+        }
+        if ($rrr != $conf) {
+            return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
+		}
+		
+		if($checkValue == 4) {//si es paciente, revisar si ya existe esa cédula
+			$pacienteExistente = Paciente::where('cedula_paciente', $request->cedula)->get();
+			if(!$pacienteExistente->isEmpty()) {
+				return back()->withErrors(['cedula' => trans('Ya existe un paciente con la cédula indicada')]);
+		    }
+		}
+
+		if($checkValue == 2) {//si es especialista revisar que si ya existe uno con esa cédula
+			$especialistaExistente = Especialista::where('cedula_especialista', $request->cedula)->get();
+			if(!$especialistaExistente->isEmpty()) {
+				return back()->withErrors(['cedula' => trans('Ya existe un especialista con la cédula indicada')]);
+		    }
+		}
+
 		//return "aquíxD";
 		if($telefono == "" || strlen($telefono) < 4) {
 			if($checkValue == 4) {
@@ -90,15 +124,10 @@ class CuentaController extends Controller
             'name' => $request->input("name"),
             'lastName' => $request->input("lastName"). ' ' .$request->input("lastName2"),
             'email' => $request->input("email"),
-            'password' => bcrypt( $request->input("password")),
+            'password' => bcrypt($request->input("password")),
             'tipo' => $checkValue,
-            'active_flag' => 1,
+            'active_flag' => $checkValue2,
 		]);
-		
-		$this->validate($request, [
-					 'name' => 'required|max:255|'//,
-					
-			 ]);
 
 		if($checkValue == 2) {
 		$especialista->id_user = $user->id;
@@ -106,7 +135,7 @@ class CuentaController extends Controller
 		$especialista->nombre = $request->input("name");
 		$especialista->primer_apellido_especialista = $user->email;
 		$especialista->segundo_apellido_especialista = $request->input("lastName2");
-		$especialista->active_flag = 1;
+		$especialista->active_flag = $checkValue2;
 
 		$especialista->save();
 		}
@@ -129,21 +158,16 @@ class CuentaController extends Controller
             'email' => $request->input("email"),
             'password' => bcrypt( $request->input("password")),
             'tipo' => $checkValue,
-            'active_flag' => 1,
+            'active_flag' => $checkValue2,
 		]);
 		
-		$this->validate($request, [
-					 'name' => 'required|max:255|'//,
-					
-			 ]);
-
 		if($checkValue == 2) {
 		$especialista->id_user = $user->id;
 		$especialista->cedula_especialista = $request->input("cedula");
 		$especialista->nombre = $request->input("name");
 		$especialista->primer_apellido_especialista = $user->email;
 		$especialista->segundo_apellido_especialista = $request->input("lastName2");
-		$especialista->active_flag = 1;
+		$especialista->active_flag = $checkValue2;
 
 		$especialista->save();
 		} else {
@@ -155,7 +179,7 @@ class CuentaController extends Controller
 				$paciente->primer_apellido_paciente = $request->input("lastName");
 				$paciente->segundo_apellido_paciente = $request->input("lastName2");
 				$paciente->correo = $user->email;
-				$paciente->active_flag = 1;//change to reflect current status or changed status
+				$paciente->active_flag = $checkValue2;//change to reflect current status or changed status
 		
 				$paciente->save();
 
