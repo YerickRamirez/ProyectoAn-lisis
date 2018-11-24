@@ -102,7 +102,7 @@
       <div id="myNavbar">
 		<a class="border-a" href="{{ url('citas')}}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		<a class="border-a" href="{{ url('perfilPaciente')}}">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
-		<a class="border-a" href="{{ url('cambioContrasenna')}}">Contraseña<span class="glyphicon glyphicon-asterisk right-info"></a>
+		<a class="border-a" href="{{ url('cambioContrasenna')}}">Contraseña<span class="glyphicon glyphicon-lock right-aling-lock"></a>
       	<a href="{{ url('/logout') }}" class="border-a hide-button-exit" >Salir<span class="glyphicon glyphicon-log-out right-salir"></a>
       </div>
     </div>

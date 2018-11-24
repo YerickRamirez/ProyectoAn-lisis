@@ -31,7 +31,7 @@
 
                     <!-- Branding Image -->
                     <div class="navbar-brand serif tittle">
-                    Servicio de Salud
+                    Servicio de Salud Sede Occidente
                     </div>
                 </div>
 

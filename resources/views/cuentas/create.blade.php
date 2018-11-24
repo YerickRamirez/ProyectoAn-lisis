@@ -90,7 +90,7 @@
                             <br>
                             <div class="row">
                             
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="email" class="control-label">Correo Electrónico</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
@@ -104,7 +104,7 @@
             
                         <!--<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">-->
                             
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="password" class="control-label">Contraseña</label>
                                 <input id="password" type="password" class="form-control" name="password" required>
 
@@ -120,13 +120,13 @@
                         <div class="form-horizontal">
                            
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                  <label for="password-confirm" class=" control-label">Confirmar Contraseña</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-                        <br>
-                        <div class="col-md-4">
+                        
+                        <div class="col-md-3">
                             <label for="telefono" class=" control-label">Telefono</label>
                            <input id="telefono" type="number" class="form-control" name="telefono">
                            @if ($errors->has('telefono'))

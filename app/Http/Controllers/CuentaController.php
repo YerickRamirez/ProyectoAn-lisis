@@ -45,7 +45,7 @@ class CuentaController extends Controller
 	public function index()
 	{
 	
-		$cuentas = User::where('active_flag', 1)->orderBy('id', 'asc')->paginate(10);
+		$cuentas = User::where('active_flag', 1)->orderBy('id', 'asc')->get();
 		$active = User::where('active_flag', 1);
 		return view('cuentas.index', compact('cuentas', 'active'));
 	}
@@ -161,6 +161,7 @@ class CuentaController extends Controller
 
 				$telefonoModel = new Telefono();
 				$telefonoModel->paciente_id = $paciente->id;
+				$telefonoModel->active_flag = 1;
 				$telefonoModel->telefono = $telefono;
 				$telefonoModel->save();
 
@@ -238,7 +239,8 @@ class CuentaController extends Controller
 	 * @return Response
 	 */
 	public function destroy(Cuenta $cuenta)
-	{
+	{	
+		return $cuenta;
 		$cuenta->active_flag = 0;
 		$cuenta->save();
 

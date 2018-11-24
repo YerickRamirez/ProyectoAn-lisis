@@ -59,7 +59,7 @@
                                 <td class="text-center"> 
                                  <a class="btn btn-warning" href="">
                                     <i class="glyphicon glyphicon-edit"></i> Editar</a>
-                                    <form style="display:inline" action="" method="POST" style="display: inline;" onsubmit="return confirm('Desea eliminar el recinto?');">
+                                    <form style="display:inline" action="{{ route('destroyCuentas', $cuenta->id) }}" method="DELETE" style="display: inline;" onsubmit="return confirm('Desea eliminar el la cuenta de {{$nombre}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>

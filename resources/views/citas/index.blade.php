@@ -9,7 +9,7 @@
         <section class="">
         <div class="content-c w3-container mobile">
             <div>
-             <a class="margin-button-agregar btn btn-success mobile" href="{{ url('combobox') }}">Crear</a> <span>
+             <a class="margin-button-agregar btn btn-success mobile" href="{{ url('combobox') }}" style="margin-left:15px;">Reservar</a> <span>
         </div>
     </div>
 
@@ -17,7 +17,8 @@
         <div class="">
         <div class="">
            @if($citas->count())
-                <table class="table table-condensed table-striped">
+           <div class="table-responsive">
+                <table class="table table-striped table-bordered table-condensed table-hover">
                     <thead>
                         <tr> 
                             <th class="text-center">Estado Cita</th>
@@ -52,6 +53,7 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
             @else
                 <h3 class="text-center alert alert-info">No hay citas pendientes</h3>
             @endif

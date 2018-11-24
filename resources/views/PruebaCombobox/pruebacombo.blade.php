@@ -1,7 +1,11 @@
 @extends ('masterPaciente')
 @section ('contenido_Paciente')
 
-
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel">
+        <p style="text-align: center; font-size: 3vh;">Reservar cita</p>
+    </div>
+    <div class="panel-body">
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
 <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
@@ -298,8 +302,9 @@ timeout: 15000
         </div>
     </div>
     
-    <button id="mostar-tabla"  class = 'margin-button-agregar btn btn-success mobile' 
+    <button id="mostar-tabla"  style="margin-left:15px;"class = 'margin-button-agregar btn btn-success mobile' 
     onclick="revisarDisponibilidad()">Mostrar horario</button>
+    <p style="display:none; margin-top:15px; text-align:center; font-size: 3vh;" id="Fecha">Hola</p>
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->
     
@@ -394,6 +399,15 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
             //alert(entry);
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
+    var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+    var datepicked = new Date(dateTime);
+    datepicked.setHours(datepicked.getHours() -6);
+    datepicked = datepicked.toLocaleDateString();
+
+    var y = document.getElementById("Fecha");
+    y.innerHTML = "Fecha seleccionada: " + datepicked;
+    y.style.display ="block";
+
     
 });
 }
@@ -413,5 +427,6 @@ function limpiarCitas() {
 </script>
 </div>
 </div>
-
+</div>
+</div>
 @endsection

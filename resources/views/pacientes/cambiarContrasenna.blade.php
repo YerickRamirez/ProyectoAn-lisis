@@ -1,9 +1,13 @@
 @extends('masterPaciente')
-
-
 @section('contenido_Paciente')
+
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel">
+        <p style="text-align: center; font-size: 3vh;">Cambiar Contraseña</p>
+    </div>
+    <div class="panel-body">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
 
             <form action="{{ route('contrasennas.update', Auth::user()->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
@@ -29,5 +33,8 @@
             </form>
 
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 @endsection

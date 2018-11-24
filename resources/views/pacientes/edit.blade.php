@@ -2,8 +2,13 @@
 
 
 @section('contenido_Paciente')
+<div class="panel panel-primary border-panel">
+     <div class="panel-heading  bg-color-panel">
+        <p style="text-align: center; font-size: 3vh;">Actualizar datos</p>
+    </div>
+    <div class="panel-body">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
 
             <form action="{{ route('pacientes.update', $variable->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
@@ -11,7 +16,7 @@
 
                 <div class="form-group">
  <div class="form-group">
-	<label for="cedula_paciente-field">Cedula</label>
+	<label for="cedula_paciente-field">Cédula</label>
 	<input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $variable->cedula_paciente ) }}" />
 </div> <div class="form-group">
 	<label for="nombre-field">Nombre</label>
@@ -36,4 +41,8 @@
 
         </div>
     </div>
+    </div>
+    </div>
+    </div>
+    
 @endsection

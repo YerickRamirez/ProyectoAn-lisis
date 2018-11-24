@@ -9,7 +9,7 @@ class Telefono extends Model
 
   protected $table='telefonos';
   public $timestamps=false;
-  protected $fillable = ['paciente_id', 'telefono'];
+  protected $fillable = ['paciente_id', 'telefono', 'active_flag'];
 
     public function Author(){
       return $this->belongsTo('App\User','author_id');

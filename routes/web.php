@@ -374,8 +374,8 @@ Route::get('citasAsistRecintoEstadoHoy/{ID_Recinto}/{estado}', 'CitaControllerAs
 //trae los estados de la tabla Estados_Cita (asist)
 Route::get('/traerEstadosCitas', 'AjaxController@estadosCitas');
 
-
-
+//Elimina cuentas de los usuarios
+Route::delete('destroyCuentaEspecialista{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
 
 
 
