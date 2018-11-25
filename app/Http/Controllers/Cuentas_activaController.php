@@ -38,9 +38,8 @@ class Cuentas_activaController extends Controller
 	 */
 	public function index()
 	{
-		$cuentas_activas = Cuentas_activa::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		$active = Cuentas_activa::where('active_flag', 1);
-		return view('cuentas_activas.index', compact('cuentas_activas', 'active'));
+		$cuentas_activas = Cuentas_activa::orderBy('id', 'desc');
+		return view('cuentas_activas.index', compact('cuentas_activas'));
 	}
 
 	/**
@@ -149,13 +148,12 @@ class Cuentas_activaController extends Controller
 	 */
 	public function destroy(Cuentas_activa $cuentas_activa)
 	{
-		$cuentas_activa->cuentas_activas = 0;
-		$cuentas_activa->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cuentas_activa ' . $cuentas_activa->name . ' was De-Activated.');
+		$activar = array("1", "0");
+		//return $cuentas_activa;
+		//return $cuentas_activa->cuentas_activas = $activar[$cuentas_activa->cuentas_activas];
+		$cuentas_activa->cuentas_activas = $activar[$cuentas_activa->cuentas_activas];
+		$cuentas_activa->save();
 
 		return redirect()->route('cuentas.index');
 	}

@@ -38,7 +38,7 @@
                                         <i class="glyphicon glyphicon-edit"></i> Edit
                                     </a>
 
-                                    <form action="{{ route('cuentas_activas.destroy', $cuentas_activa->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete? Are you sure?');">
+                                    <form action="{{ route('cuentas_activas.destroy', $cuentas_activa->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Eliminar?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
@@ -49,7 +49,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {!! $cuentas_activas->render() !!}
             @else
                 <h3 class="text-center alert alert-info">Empty!</h3>
             @endif

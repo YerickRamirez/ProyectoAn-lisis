@@ -14,14 +14,18 @@
             <a  class="btn btn-success"href="{{ route('cuentas.create') }} " style="margin-left: 15px;">Registrar </a>
 
             @if($opcion->cuentas_activas == 0)
-             <form action="" method="DELETE"> 
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button  style="margin-left: 15px; margin-top: 10px;" class = 'btn btn-primary mobile'  type ='submit'>Cuentas Activas</button>
+             <form action="{{ route('cuentas_activas.destroy', $opcion->id) }}" method="POST"> 
+                {{ csrf_field() }}
+              <input type="hidden" name="_method" value="DELETE">
+                    <button  style="margin-left: 15px; margin-top: 10px;" class = 'btn btn-success mobile'  type ='submit'><span class="glyphicon glyphicon-ok"></span>
+                        Cuentas Activas</button>
             </form>
             @else
-            <form action="" method="DELETE">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button  style="margin-left: 15px; margin-top: 10px;" class = 'btn btn-danger mobile'  type ='submit'>Cuentas Desactivas</button>
+            <form action="{{ route('cuentas_activas.destroy', $opcion->id) }}" method="POST"> 
+                {{ csrf_field() }}
+              <input type="hidden" name="_method" value="DELETE">
+                    <button  style="margin-left: 15px; margin-top: 10px;" class = 'btn btn-danger mobile'  type ='submit'><span class="glyphicon glyphicon-remove"></span>
+                        Cuentas Desactivadas</button>
             </form>
             @endif
             

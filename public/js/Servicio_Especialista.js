@@ -65,7 +65,7 @@ function extraerEspecialistas() {
                         $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");
                         $.each(datos, function () {
                                 $.each(this, function () {
-                                        $('#dropEspecialistas').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+                                        $('#dropEspecialistas').append('<option value="' + this.id + '">' + this.nombre + ' ' + this.primer_apellido_especialista + ' ' + this.segundo_apellido_especialista + '</option>');
                                 })
                         })
 
