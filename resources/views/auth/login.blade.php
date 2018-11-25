@@ -41,16 +41,6 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordar
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <div class=""  style="text-align: center;">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Iniciar Sesión

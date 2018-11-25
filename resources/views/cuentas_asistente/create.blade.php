@@ -1,5 +1,5 @@
-@extends ('masterRoot')
-@section ('contenido_Admin')
+@extends ('masterAsistente')
+@section ('contenido_Asistente')
 <div class="panel panel-primary border-panel">
      <div class="panel-heading  bg-color-panel">
         <p style="text-align: center; font-size: 3vh;">Crear Cuenta</p>

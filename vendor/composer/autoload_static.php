@@ -385,6 +385,7 @@ class ComposerStaticInita172e800a884391b3c3827cfd688d7ab
         'App\\Http\\Controllers\\CitaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CitaController.php',
         'App\\Http\\Controllers\\CitaControllerAsistente' => __DIR__ . '/../..' . '/app/Http/Controllers/CitaControllerAsistente.php',
         'App\\Http\\Controllers\\CitaControllerEspecialista' => __DIR__ . '/../..' . '/app/Http/Controllers/CitaControllerEspecialista.php',
+        'App\\Http\\Controllers\\ContrasennaRootController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContrasennaRootController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CorreoCitaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoCitaController.php',
         'App\\Http\\Controllers\\CorreoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoController.php',

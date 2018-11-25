@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Servicio de Salud</title>
+	<title>Servicio de Salud Sede de Occidente</title>
 
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 	</script>
@@ -51,7 +51,7 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" > Servicio de Salud</div>
+				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" >Servicio de Salud Sede de Occidente</div>
 
 			</div>
 
@@ -110,7 +110,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="prueba">Servicio de Salud</a>
+            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="prueba">Servicio de Salud Sede de Occidente</a>
       </div>
 
       <div id="myNavbar">

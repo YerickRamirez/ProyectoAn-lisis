@@ -304,6 +304,15 @@ timeout: 15000
     
     <button id="mostar-tabla"  style="margin-left:15px;"class = 'margin-button-agregar btn btn-success mobile' 
     onclick="revisarDisponibilidad()">Mostrar horario</button>
+    <br><br>
+    @if(session('message'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{@session('message')}}
+    </div>
+    @endif
     <p style="display:none; margin-top:15px; text-align:center; font-size: 3vh;" id="Fecha">Hola</p>
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->

@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Controllers\\CitaController' => $baseDir . '/app/Http/Controllers/CitaController.php',
     'App\\Http\\Controllers\\CitaControllerAsistente' => $baseDir . '/app/Http/Controllers/CitaControllerAsistente.php',
     'App\\Http\\Controllers\\CitaControllerEspecialista' => $baseDir . '/app/Http/Controllers/CitaControllerEspecialista.php',
+    'App\\Http\\Controllers\\ContrasennaRootController' => $baseDir . '/app/Http/Controllers/ContrasennaRootController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CorreoCitaController' => $baseDir . '/app/Http/Controllers/CorreoCitaController.php',
     'App\\Http\\Controllers\\CorreoController' => $baseDir . '/app/Http/Controllers/CorreoController.php',

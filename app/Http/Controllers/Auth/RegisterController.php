@@ -6,8 +6,11 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use App\Mail\Confirmacion;
 use Mail;
+use App\Telefono;
+use Illuminate\Auth\Events\Registered;
 use App\Paciente;
 use App\Cuentas_activa;
 
@@ -73,14 +76,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+   /* protected function create(array $data)
     {
-       Mail::to($data['email'])->send(new Confirmacion($data['name']));
-        $tipo = 'paciente';
+       
 
-
-        $active_flag = Cuentas_activa::orderBy('id')->first()->cuentas_activas;
-
+        $pacienteExistente = Paciente::where('cedula_paciente', $data['cedula'])->get();
+        $user = null;
+        
+        if(!$pacienteExistente->isEmpty()) {
+             return back()->withErrors(['email' => trans('Correo electrónico o contraseña incorrectos.')]);
+        } else {
+        
         $user = User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName']. ' ' .  $data['lastName2'],
@@ -102,5 +108,58 @@ class RegisterController extends Controller
         
         
         return $user;
+    }
+    }*/
+
+    public function register(Request $request) {
+        $this->validator($request->all())->validate();
+
+        $active_flag = Cuentas_activa::orderBy('id')->first()->cuentas_activas;
+
+        $paciente = Paciente::where('cedula_paciente', $request->cedula)->get();
+        //return $paciente;
+        if(!$paciente->isEmpty()) { // Existe un paciente con esa cédula
+            return back()->withErrors(['cedula' => trans('Ya existe un paciente con la cédula indicada')]);
+            return redirect('/register'); // ya hay un return arriba. :v
+        }
+
+        $telefono = $request->input("telefono");
+        if($telefono == "" || strlen($telefono) < 4) {
+			return back()->withErrors(['telefono' => trans('Digite un teléfono válido')]);
+            return redirect('/register'); //ya hay un return. :v
+        }
+    
+        $user = User::create([
+            'name' =>  $request->name,
+            'lastName' =>  $request->lastName. ' ' .   $request->lastName2,
+            'email' =>  $request->email,
+            'password' => bcrypt($request->password),
+            'tipo' => 4,//tipo 4 = Paciente
+            'active_flag' => $active_flag,
+        ]);
+
+        $paciente = Paciente::create([
+            'id_user' => $user->id,
+            'cedula_paciente' => $request->cedula,
+            'nombre' => $request->name,
+            'primer_apellido_paciente' => $request->lastName,
+            'segundo_apellido_paciente' => $request->lastName2,
+            'correo' => $request->email,
+            'active_flag' => $active_flag,
+        ]);
+
+                $telefonoModel = new Telefono();
+				$telefonoModel->paciente_id = $paciente->id;
+				$telefonoModel->active_flag = 1;
+				$telefonoModel->telefono = $telefono;
+                $telefonoModel->save();
+                
+        event(new Registered($user));
+    
+        $this->guard()->login($user);
+
+        Mail::to($request->email)->send(new Confirmacion($request->name));
+    
+        return redirect($this->redirectPath());
     }
 }

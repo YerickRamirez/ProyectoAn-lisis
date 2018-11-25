@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Asistente Servicio de Salud</title>
+	<title>Asistente Servicio de Salud Sede de Occidente</title>
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/menus.css')}}">
@@ -39,7 +39,7 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" >Servicio de Salud</div>
+				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" >Servicio de Salud Sede de Occidente</div>
 
 			</div>
 
@@ -63,6 +63,9 @@
 					</li>
 					<li>
 		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
+		      			</li>
+						  <li>
+						  <a class="border" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
 					
 		    		<li>
@@ -88,13 +91,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="admin">Servicio de Salud</a>
+            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="admin">Servicio de Salud Sede de Occidente</a>
       </div>
 
       <div id="myNavbar">
 	    <a class="border-a" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 		<a class="border-a" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
+		<a class="border-a" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
       	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
