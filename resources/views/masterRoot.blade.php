@@ -75,7 +75,7 @@
 		      			<a class="border" href="{{ route('cuentas.index') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 					</li>
 					<li>
-		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon"></a>
+		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		    		</li>
 					<li>
 		      			<a class="border" href="{{ route('especialistas.index') }}">Especialistas<span class="glyphicon glyphicon-education right-aling-glyphicon-e"></a>
@@ -117,10 +117,11 @@
       <div id="myNavbar">
 	    <a class="border-a" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		<a class="border-a" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="{{ route('Admin.horarios') }}">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('servicio.index') }}">Servicios<span class="glyphicon glyphicon-list-alt right-aling-glyphicon-se"></a>
 		<a class="border-a" href="{{ route('recintos.index') }}">Recintos<span class="glyphicon glyphicon-flag right-aling-glyphicon"></a>
-		<a class="border-a" href="{{ url('contrasennaAdmin') }}">Cambiar Contraseña<span class="glyphicon glyphicon-asterisk right-aling-glyphicon"></a>
+		<a class="border-a" href="{{ url('contrasennaAdmin') }}">Contraseña<span class="glyphicon glyphicon-lock right-aling-glyphicon-contra"></a>
 		<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>

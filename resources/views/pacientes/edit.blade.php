@@ -17,20 +17,24 @@
                 <div class="form-group">
  <div class="form-group">
 	<label for="cedula_paciente-field">Cédula</label>
-	<input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $variable->cedula_paciente ) }}" />
+	<input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $variable->cedula_paciente ) }}" required/>
 </div> <div class="form-group">
 	<label for="nombre-field">Nombre</label>
-	<input class="form-control" type="text" name="nombre" id="nombre-field" value="{{ old('nombre', $variable->nombre ) }}" />
+	<input class="form-control" type="text" name="nombre" id="nombre-field" value="{{ old('nombre', $variable->nombre ) }}" required/>
 </div> <div class="form-group">
 	<label for="primer_apellido_paciente(45)-field">Primer Apellido</label>
 	<label for="nombre-field">Nombre</label>
-	<input class="form-control" type="text" name="primer_apellido_paciente" id="primer_apellido_paciente-field" value="{{ old('primer_apellido_paciente', $variable->primer_apellido_paciente ) }}" />
+	<input class="form-control" type="text" name="primer_apellido_paciente" id="primer_apellido_paciente-field" value="{{ old('primer_apellido_paciente', $variable->primer_apellido_paciente ) }}" required />
 </div> <div class="form-group">
 	<label for="segundo_apellido_paciente(45)-field">Segundo Apellido</label>
-	<input class="form-control" type="text" name="segundo_apellido_paciente" id="segundo_apellido_paciente-field" value="{{ old('segundo_apellido_paciente', $variable->segundo_apellido_paciente ) }}" />
+	<input class="form-control" type="text" name="segundo_apellido_paciente" id="segundo_apellido_paciente-field" value="{{ old('segundo_apellido_paciente', $variable->segundo_apellido_paciente ) }}" required />
 </div> <div class="form-group">
 	<label for="correo-field">Correo</label>
-	<input class="form-control" type="text" name="correo" id="correo-field" value="{{ old('correo', $variable->correo ) }}" />
+	<input class="form-control" type="text" name="correo" id="correo-field" value="{{ old('correo', $variable->correo ) }}" required />
+</div>
+</div> <div class="form-group">
+	<label for="correo-field">Telefono</label>
+	<input class="form-control" type="text" name="telefono" id="telefono-field" value="{{ old('telefono', $variable->telefono ) }}" required pattern="^[0-9]{4,9}" title="No se permiten letras en este campo/ingresar de 4-9 digitos"/>
 </div>
                 <a href="{{ url('cambioContrasenna')}}">Cambiar Contraseña</a>
                 <div class="well well-sm">

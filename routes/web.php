@@ -374,6 +374,16 @@ Route::get('citasAsistRecintoEstadoHoy/{ID_Recinto}/{estado}', 'CitaControllerAs
 //trae los estados de la tabla Estados_Cita (asist)
 Route::get('/traerEstadosCitas', 'AjaxController@estadosCitas');
 
+//Para editar los pacientes desde el root
+Route::get('pacientes.editRoot/{paciente}', 'PacienteController@editRoot')->name('pacientes.editRoot');
+
+//Para hacer el update de los datos del paciente desde el root
+Route::put('pacientes.updateRoot/{paciente}', 'PacienteController@updateRoot')->name('pacientes.updateRoot');
+
+Route::get('asistente/verPacientes', 'PacienteController@index');
+
+Route::delete('pacientes.activar/{paciente}', 'PacienteController@activar')->name('pacientes.activar');
+
 //Elimina cuentas de los usuarios
 //Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
 Route::delete('destroyCuentas{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');

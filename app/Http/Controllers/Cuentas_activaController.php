@@ -63,16 +63,16 @@ class Cuentas_activaController extends Controller
 	{
 		$cuentas_activa = new Cuentas_activa();
 
-		$cuentas_activa->name = ucfirst($request->input("name"));
-		$cuentas_activa->slug = str_slug($request->input("name"), "-");
-		$cuentas_activa->description = ucfirst($request->input("description"));
+		//$cuentas_activa->name = ucfirst($request->input("name"));
+		//$cuentas_activa->slug = str_slug($request->input("name"), "-");
+		//$cuentas_activa->description = ucfirst($request->input("description"));
 		$cuentas_activa->active_flag = 1;
 		$cuentas_activa->author_id = $request->user()->id;
 
-		$this->validate($request, [
+		/*$this->validate($request, [
 					 'name' => 'required|max:255|unique:cuentas_activas',
 					 'description' => 'required'
-			 ]);
+			 ]);*/
 
 		$cuentas_activa->save();
 
