@@ -76,11 +76,6 @@ class Dia_horario_servicioController extends Controller
 
 		$dia_horario_servicio->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Dia_horario_servicio \"<a href='dia_horario_servicios/$dia_horario_servicio->slug'>" . $dia_horario_servicio->name . "</a>\" was Created.");
-
 		return redirect()->route('dia_horario_servicios.index');
 	}
 
@@ -133,10 +128,6 @@ class Dia_horario_servicioController extends Controller
 
 		$dia_horario_servicio->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Dia_horario_servicio \"<a href='dia_horario_servicios/$dia_horario_servicio->slug'>" . $dia_horario_servicio->name . "</a>\" was Updated.");
 
 		return redirect()->route('dia_horario_servicios.index');
 	}
@@ -152,11 +143,6 @@ class Dia_horario_servicioController extends Controller
 		$dia_horario_servicio->active_flag = 0;
 		$dia_horario_servicio->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Dia_horario_servicio ' . $dia_horario_servicio->name . ' was De-Activated.');
-
 		return redirect()->route('dia_horario_servicios.index');
 	}
 
@@ -170,12 +156,6 @@ class Dia_horario_servicioController extends Controller
 	{
 		$dia_horario_servicio->active_flag = 1;
 		$dia_horario_servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Dia_horario_servicio ' . $dia_horario_servicio->name . ' was Re-Activated.');
-
 		return redirect()->route('dia_horario_servicios.index');
 	}
 }

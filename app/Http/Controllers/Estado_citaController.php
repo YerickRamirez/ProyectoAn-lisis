@@ -76,11 +76,6 @@ class Estado_citaController extends Controller
 
 		$estado_cita->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Estado_cita \"<a href='estado_citas/$estado_cita->slug'>" . $estado_cita->name . "</a>\" was Created.");
-
 		return redirect()->route('estado_citas.index');
 	}
 
@@ -132,12 +127,6 @@ class Estado_citaController extends Controller
 			 ]);
 
 		$estado_cita->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Estado_cita \"<a href='estado_citas/$estado_cita->slug'>" . $estado_cita->name . "</a>\" was Updated.");
-
 		return redirect()->route('estado_citas.index');
 	}
 
@@ -151,11 +140,6 @@ class Estado_citaController extends Controller
 	{
 		$estado_cita->active_flag = 0;
 		$estado_cita->save();
-
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Estado_cita ' . $estado_cita->name . ' was De-Activated.');
 
 		return redirect()->route('estado_citas.index');
 	}

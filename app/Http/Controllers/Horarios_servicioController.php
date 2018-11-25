@@ -85,12 +85,6 @@ class Horarios_servicioController extends Controller
 			 ]);*/
 
 			 $horarios_servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Horarios_servicio \"<a href='horarios_servicios/$horarios_servicio->slug'>" . $horarios_servicio->name . "</a>\" was Created.");
-
 		return redirect()->route('horarios_servicios.index');
 	}
 
@@ -142,12 +136,6 @@ class Horarios_servicioController extends Controller
 			 ]);
 
 		$horarios_servicio->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Horarios_servicio \"<a href='horarios_servicios/$horarios_servicio->slug'>" . $horarios_servicio->name . "</a>\" was Updated.");
-
 		return redirect()->route('horarios_servicios.index');
 	}
 
@@ -161,12 +149,6 @@ class Horarios_servicioController extends Controller
 	{
 		$horarios_servicio->active_flag = 0;
 		$horarios_servicio->save();
-
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Horarios_servicio ' . $horarios_servicio->name . ' was De-Activated.');
-
 		return redirect()->route('horarios_servicios.index');
 	}
 
@@ -180,12 +162,6 @@ class Horarios_servicioController extends Controller
 	{
 		$horarios_servicio->active_flag = 1;
 		$horarios_servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Horarios_servicio ' . $horarios_servicio->name . ' was Re-Activated.');
-
 		return redirect()->route('horarios_servicios.index');
 	}
 	
@@ -227,12 +203,7 @@ class Horarios_servicioController extends Controller
 			}
 			
 		}
-		
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Horarios_servicio \"<a href='horarios_servicios/$horarios_servicio->slug'>" . $horarios_servicio->name . "</a>\" was Created.");
-
+	
 		return redirect()->route('horarios_servicios.index');
 	}
 
@@ -278,11 +249,6 @@ class Horarios_servicioController extends Controller
 			
 		}
 		
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Horarios_servicio \"<a href='horarios_servicios/$horarios_servicio->slug'>" . $horarios_servicio->name . "</a>\" was Created.");
-
 		return redirect()->route('Especilista.horarios');
 	}
 }

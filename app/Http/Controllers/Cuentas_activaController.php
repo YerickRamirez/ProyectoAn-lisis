@@ -75,11 +75,6 @@ class Cuentas_activaController extends Controller
 
 		$cuentas_activa->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Cuentas_activa \"<a href='cuentas_activas/$cuentas_activa->slug'>" . $cuentas_activa->name . "</a>\" was Created.");
-
 		return redirect()->route('cuentas_activas.index');
 	}
 
@@ -132,11 +127,6 @@ class Cuentas_activaController extends Controller
 
 		$cuentas_activa->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Cuentas_activa \"<a href='cuentas_activas/$cuentas_activa->slug'>" . $cuentas_activa->name . "</a>\" was Updated.");
-
 		return redirect()->route('cuentas_activas.index');
 	}
 
@@ -164,11 +154,6 @@ class Cuentas_activaController extends Controller
 		$cuentas_activa->cuentas_activas = 1;
 		$cuentas_activa->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cuentas_activa ' . $cuentas_activa->name . ' was De-Activated.');
-
 		return redirect()->route('cuentas.index');
 	}
 
@@ -183,12 +168,6 @@ class Cuentas_activaController extends Controller
 	{
 		$cuentas_activa->active_flag = 1;
 		$cuentas_activa->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cuentas_activa ' . $cuentas_activa->name . ' was Re-Activated.');
-
 		return redirect()->route('cuentas_activas.index');
 	}
 }

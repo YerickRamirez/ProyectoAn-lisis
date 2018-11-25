@@ -81,11 +81,6 @@ class RecintoController extends Controller
 
 		$recinto->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Recinto \"<a href='recintos/$recinto->slug'>" . $recinto->name . "</a>\" was Created.");
-
 		return redirect()->route('recintos.index');
 	}
 
@@ -138,11 +133,6 @@ class RecintoController extends Controller
 
 		$recinto->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Recinto \"<a href='recintos/$recinto->slug'>" . $recinto->descripcion . "</a>\" was Updated.");
-
 		return redirect()->route('recintos.index');
 	}
 
@@ -156,12 +146,6 @@ class RecintoController extends Controller
 	{
 		$recinto->active_flag = 0;
 		$recinto->save();
-
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Recinto ' . $recinto->name . ' was De-Activated.');
-
 		return redirect()->route('recintos.index');
 	}
 
@@ -175,11 +159,6 @@ class RecintoController extends Controller
 	{
 		$recinto->active_flag = 1;
 		$recinto->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Recinto ' . $recinto->name . ' was Re-Activated.');
 
 		return redirect()->route('recintos.index');
 	}

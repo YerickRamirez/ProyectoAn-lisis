@@ -110,11 +110,6 @@ class PacienteController extends Controller
 
 		$paciente->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Paciente \"<a href='pacientes/$paciente->slug'>" . $paciente->name . "</a>\" was Created.");
-
 		return redirect()->route('pacientes.index');
 	}
 
@@ -192,11 +187,6 @@ class PacienteController extends Controller
 		$user = User::where('id', $paciente->id_user)->update(array('email'=>$correoNuevo));
 		//$user->save();
 		$paciente->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		
 		return redirect()->route('citas.index');
 	}
 
@@ -228,10 +218,6 @@ class PacienteController extends Controller
 		//$user->save();
 		$paciente->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		
 		return redirect()->route('pacientes.index');
 	}
 
@@ -250,11 +236,6 @@ class PacienteController extends Controller
 		$paciente->save();
 		$cuenta->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Paciente ' . $paciente->name . ' was De-Activated.');
-
 		return redirect()->route('pacientes.index');
 	}
 
@@ -267,11 +248,6 @@ class PacienteController extends Controller
 		$paciente->active_flag = 1;
 		$paciente->save();
 		$cuenta->save();
-
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Paciente ' . $paciente->name . ' was De-Activated.');
 
 		return redirect()->route('pacientes.index');
 	}
@@ -286,11 +262,6 @@ class PacienteController extends Controller
 	{
 		$paciente->active_flag = 1;
 		$paciente->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Paciente ' . $paciente->name . ' was Re-Activated.');
 
 		return redirect()->route('pacientes.index');
 	}

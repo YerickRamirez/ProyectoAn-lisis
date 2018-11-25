@@ -35,12 +35,6 @@ class PacientePrueba extends Controller
 			 ]);
 
 		$paciente->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Paciente \"<a href='pacientes/$paciente->slug'>" . $paciente->name . "</a>\" was Created.");
-
 		return redirect()->route('pacientes.index');
 		Auth::logout();
         return redirect('/');
