@@ -149,7 +149,7 @@ class CuentaController extends Controller
 		$especialista->id_user = $user->id;
 		$especialista->cedula_especialista = $request->input("cedula");
 		$especialista->nombre = $request->input("name");
-		$especialista->primer_apellido_especialista = $user->email;
+		$especialista->primer_apellido_especialista = $request->input("lastName");
 		$especialista->segundo_apellido_especialista = $request->input("lastName2");
 		$especialista->active_flag = $checkValue2;
 
