@@ -1,38 +1,14 @@
-@extends ('masterEspecialista')
-@section ('contenido_Especialista')
+@extends ('masterAsistente')
+@section ('contenido_Asistente')
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
 <div class="panel panel-primary border-panel">
         <div class="panel-heading bg-color-panel">
-           <p style="text-align: center; font-size: 3vh;">Bloquear horario</p>
+           <p style="text-align: center; font-size: 3vh;">Deshabilitar Horario</p>
        </div>
        <div class="panel-body">
 <script>
-function dropDiasBloqueo(){
-        $('#dropDiasBloqueo').empty();
-        $('#dropDiasBloqueo').append("<option>Cargando...</option>");
-
-         $.ajax({
-  url: '/dropDiasBloqueo',
-  type: 'GET',
-  dataType: "json",
-  success:function(datos){ 
-$('#dropDiasBloqueo').empty();
-$('#dropDiasBloqueo').append("<option value='defecto'>----Seleccione Día----</option>");   
-$.each(datos, function()
-{
-        $.each(this, function(){//los datos del server vienen en una variable data
-        //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
-        $('#dropDiasBloqueo').append('<option value="' + this.id + '">' + this.dia + '</option>');
-        })        
-})
-
-}, error:function() {
-        alert("¡Ha habido un error! Elija correctamente el día.");
-}
-});
-}
 
 function especialistas(){
             $('#dropEspecialistas').empty();
@@ -76,10 +52,7 @@ $('.timepicker').timepicker({
     dropdown: true,
     scrollbar: true
 });
-
-    dropDiasBloqueo();
     especialistas();
-        
 })
 
 function limpiarDrop(nombreDrop, nombreTexto) {
@@ -90,9 +63,8 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 </script>
 
 <script>
-function insertarBloqueoEsp() {
+function insertarDeshabEsp() {
 
-    var dropDiasBloqueo = $('#dropDiasBloqueo').val(); 
     var dropEspecialistas = $('#dropEspecialistas').val(); 
 
     var horaInicio = $('#timeInicio').val();
@@ -115,19 +87,19 @@ function insertarBloqueoEsp() {
                 datepickedFin = datepickedFin.toISOString();
                 //alert(datepickedFin);
                 
-                if (dropDiasBloqueo == 'defecto') {
+                if (dropEspecialistas == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
-                alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+                alert('/crearDeshabEspecialista/' + dropEspecialistas + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
   + horaFin);
                 $.ajax({
-  url: '/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  url: '/crearDeshabEspecialista/' + dropEspecialistas + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
   + horaFin,
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
       //alert(datos.a)
-    window.location.replace("/bloqueo_especialistas");
+    window.location.replace("/deshab_especialistas");
 }, error:function() {
      alert("Ha habido un error añadiendo el bloqueo para el especialista");   
 },
@@ -143,10 +115,7 @@ timeout: 15000
     <div style="text-align: center">
         <div class="row" style="text-align: center">
                 
-                <div style="margin-bottom: 15px;" class="col-sm-3 col-sm-offset-1">
-                        <h4 style="text-align: center;">Día<h4> 
-                    <select id="dropDiasBloqueo" class="form-control"></select>
-                </div>
+              
 
             <div class='col-sm-3'>
                     <h4 style="text-align: center;">Fecha Inicio<h4>
@@ -197,7 +166,7 @@ timeout: 15000
             </script>
         </div>
         <div class="row">
-            <div class="col-sm-3 col-sm-offset-1"style="text-align: center;">
+            <div class="col-sm-3"style="text-align: center;">
                 <h4 style="text-align: center;">Especialista<h4> 
                 <select id="dropEspecialistas" class="form-control"></select>
             </div>
@@ -214,7 +183,7 @@ timeout: 15000
     
         <br>
             <button  class = 'btn btn-success mobile bloquear' 
-            onclick="insertarBloqueoEsp()" >Agregar bloqueo</button>
+            onclick="insertarDeshabEsp()" >Agregar bloqueo</button>
     
 
     <!-- /////////////////////////////////////////////////////////////////////////// -->

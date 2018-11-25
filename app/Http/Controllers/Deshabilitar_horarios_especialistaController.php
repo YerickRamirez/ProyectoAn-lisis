@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Auth;
-
+use DB;
+use Carbon\Carbon;
 use App\Deshabilitar_horarios_especialista;
 use Illuminate\Http\Request;
 use \Session;
+use App\Especialista;
 
 class Deshabilitar_horarios_especialistaController extends Controller
 {
@@ -38,9 +40,36 @@ class Deshabilitar_horarios_especialistaController extends Controller
 	 */
 	public function index()
 	{
-		$deshabilitar_horarios_especialistas = Deshabilitar_horarios_especialista::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		$active = Deshabilitar_horarios_especialista::where('active_flag', 1);
-		return view('deshabilitar_horarios_especialistas.index', compact('deshabilitar_horarios_especialistas', 'active'));
+		$deshabilitar_horarios_especialistas = DB::table('deshabilitar_horarios_especialistas')
+			->join('especialistas', 'deshabilitar_horarios_especialistas.id_especialista', '=', 'especialistas.id')
+			->where('especialistas.active_flag', 1)
+			->where('deshabilitar_horarios_especialistas.active_flag', 1)
+			->select('especialistas.*', 
+			'deshabilitar_horarios_especialistas.*','deshabilitar_horarios_especialistas.id as id' )
+			->get();
+
+		$tipo_usuario = Auth::user()->tipo;
+		if($tipo_usuario == 1) {
+		return view('deshabilitar_horarios_especialistas.index', compact('deshabilitar_horarios_especialistas'));
+		}
+		if($tipo_usuario == 2) {
+
+			$especialistaLoggeado = Especialista::where('id_user', Auth::user()->id)->first();
+			//return $especialistaLoggeado->id;
+			$deshabilitar_horarios_especialistas = DB::table('deshabilitar_horarios_especialistas')
+			->join('especialistas', 'deshabilitar_horarios_especialistas.id_especialista', '=', 'especialistas.id')
+			->where('especialistas.id', $especialistaLoggeado->id)
+			->where('especialistas.active_flag', 1)
+			->where('deshabilitar_horarios_especialistas.active_flag', 1)
+			->select('especialistas.*',
+			'deshabilitar_horarios_especialistas.*','deshabilitar_horarios_especialistas.id as id' )
+			->get();
+
+			return view('deshab_especial.index', compact('deshabilitar_horarios_especialistas'));
+		}
+		if($tipo_usuario == 3) {
+			return view('deshab_asist.index', compact('deshabilitar_horarios_especialistas'));
+		}
 	}
 
 	/**
@@ -50,7 +79,16 @@ class Deshabilitar_horarios_especialistaController extends Controller
 	 */
 	public function create()
 	{
-		return view('deshabilitar_horarios_especialistas.create');
+		$tipo_usuario = Auth::user()->tipo;
+		if($tipo_usuario == 1) {
+			return view('deshabilitar_horarios_especialistas.create');
+		}
+		if($tipo_usuario == 2) {
+			return view('deshab_especial.create');
+		}
+		if($tipo_usuario == 3) {
+			return view('deshab_asist.create');
+		}
 	}
 
 	/**
@@ -147,17 +185,35 @@ class Deshabilitar_horarios_especialistaController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy(Deshabilitar_horarios_especialista $deshabilitar_horarios_especialista)
+	public function destroy(Deshabilitar_horarios_especialista $deshabilitar_horarios_especialista, $id)
 	{
-		$deshabilitar_horarios_especialista->active_flag = 0;
-		$deshabilitar_horarios_especialista->save();
+		$deshab_esp = Deshabilitar_horarios_especialista::where('id', $id)->first();
+		$deshab_esp->active_flag = 0;
+		//return $bloqueo_especialistum;
+		$deshab_esp->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Deshabilitar_horarios_especialista ' . $deshabilitar_horarios_especialista->name . ' was De-Activated.');
+		return redirect()->action('Deshabilitar_horarios_especialistaController@index');
+	}
 
-		return redirect()->route('deshabilitar_horarios_especialistas.index');
+	public function guardarDeshabEsp(Request $request, $dropEspecialistas, $datepickedInicio,
+	$datepickedFin, $horaInicio, $horaFin)
+	{
+		//return json_encode(["a"=>$dropEspecialistas . $dropDiasBloqueo . $datepickedInicio. 
+		//$datepickedFin . $horaInicio . $horaFin]);
+		$deshab_esp = new Deshabilitar_horarios_especialista();
+
+		$deshab_esp->id_especialista = $dropEspecialistas;
+		$deshab_esp->fecha_inicio_deshabilitar = Carbon::parse($datepickedInicio)->format('Y-m-d');
+		$deshab_esp->fecha_fin_deshabilitar = Carbon::parse($datepickedFin)->format('Y-m-d');
+		$deshab_esp->hora_inicio_deshabilitar = $horaInicio;
+		$deshab_esp->hora_fin_deshabilitar = $horaFin;
+		$deshab_esp->active_flag = 1;
+
+		//return json_encode(["a"=>$bloqueo_especialistum]);
+
+		$deshab_esp->save();
+
+		return json_encode(["varInnecesaria"=>"ESTOESNECESARIOSINOELAJAXNOSIRVE:c"]);
 	}
 
 	/**

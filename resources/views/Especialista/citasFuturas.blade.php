@@ -13,7 +13,7 @@
     <section class="">
     <div class="panel-heading">
         <div class="margin-dwn btn">
-    <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasHoyEsp') }}">Ver citas del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
+            <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasHoyEsp') }}">Ver citas del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
             <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistEsp') }}">Ver histórico citas</a> <span>
         </div>
 <br>    

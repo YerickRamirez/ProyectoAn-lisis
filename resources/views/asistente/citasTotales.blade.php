@@ -6,7 +6,7 @@
 
     
      <div class="panel-heading border-panel bg-color-panel">
-     <p class="center" style="font-size: 3vh;">Lista de citas del día {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</p>
+     <p class="center" style="font-size: 3vh;">Histórico Citas</p>
     </div>
     <div class="panel-body">
             <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select> </div>
@@ -18,8 +18,8 @@
     <section class="">
     <div class="panel-heading">
         <div class="margin-dwn btn">
+    <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasHoyAsist') }}">Ver citas del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>    
     <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoyAsist') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
-            <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistAsist') }}">Ver histórico citas</a> <span>
         </div>
 <br>    
     <div class="margin-up">
@@ -97,7 +97,7 @@ $('#tablita').DataTable(
 function ajaxCitasRecintoEstado(ID_Recinto, estado){
         
             $.ajax({
-          url: '/citasAsistRecintoEstadoHoy/' + ID_Recinto + '/' + estado,
+          url: '/citasRecintoEstadoAsistHist/' + ID_Recinto + '/' + estado,
           type: 'GET',
           dataType: "json",
           success:function(datos){ 

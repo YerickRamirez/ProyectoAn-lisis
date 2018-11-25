@@ -7,7 +7,7 @@
     <div class="page-header clearfix">
         <h1>
             Bloqueo Especialistas
-            <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
         </h1>
     </div>
 

@@ -1,6 +1,6 @@
-@extends('masterRoot')
+@extends('masterAsistente')
 
-@section('contenido_Admin')
+@section('contenido_Asistente')
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
@@ -8,7 +8,7 @@
     <div class="page-header clearfix">
         <h1>
             Deshabilitar Especialistas
-            <a class="btn btn-success pull-right" href="{{ route('deshab_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            <a class="btn btn-success pull-right" href="{{ route('deshab_asist.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
         </h1>
     </div>
 

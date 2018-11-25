@@ -65,7 +65,7 @@
 					</li>
 					
 		    		<li>
-		      			<a class="border" href="{{ route('Especilista.horarios') }}">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
+		      			<a class="border" href="{{ route('Especialista.menuConfigHorarios') }}">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
 		    		</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>

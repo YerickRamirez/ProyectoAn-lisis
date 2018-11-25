@@ -17,8 +17,9 @@ use App\Servicio;
 
 use App\Estado_cita;
 
+use Auth;
+
 use App\Cita;
-use Illuminate\Support\Facades\Auth;
 
 use App\Dia_bloqueo_especialista;
 use App\Horarios_servicio;
@@ -94,6 +95,12 @@ public function cargarEspecialistas(Request $request){
     /*$query=trim($request->get('searchText'));*/
     $especialistas= Especialista::where('active_flag', 1)->get();
 
+    return ["especialistas"=>$especialistas];
+}
+
+public function cargarEspecialistaLoggeado(Request $request){
+    /*$query=trim($request->get('searchText'));*/
+    $especialistas= Especialista::where('active_flag', 1)->where('id_user', Auth::user()->id)->get();
     return ["especialistas"=>$especialistas];
 }
 

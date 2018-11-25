@@ -179,6 +179,8 @@ Route::get('eliminarVinculoEspecialista/{servicio}/{recinto}/{especialista}',
  //sirve para traer todos los especialistas (bloqueo_esp root, master, asist)
  Route::get('cargarEspecialistas', 'AjaxController@cargarEspecialistas');
  
+ //sirve para traer el especialista loggeado (esp)
+ Route::get('cargarEspecialistaLoggeado', 'AjaxController@cargarEspecialistaLoggeado');
 
 //Rutas tabla recinto
 Route::resource('recintos', 'RecintoController');
@@ -301,11 +303,34 @@ Route::get('/algo', function() {
 //sirve para llenar los drops de los días bloqueados (asist, especialista, root)
 Route::get('dropDiasBloqueo', 'AjaxController@dropDiasBloqueo');
 
-//resource de bloqueoEspecialistas
+//resource de bloqueoEspecialistas para root
 Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController');
+//resource de deshabilitarEspecialistas para root
+Route::resource('deshab_especialistas', 'Deshabilitar_horarios_especialistaController');
+
+//resource de bloqueoEspecialistas para asistentes
+Route::resource('bloqueo_especialistas_asist', 'Bloqueo_especialistumController');
+//resource de deshabilitarEspecialistas para asistente
+Route::resource('deshab_asist', 'Deshabilitar_horarios_especialistaController');
+
+//resource de bloqueoEspecialistas para especialistas
+Route::resource('bloqueo_especialistas_especial', 'Bloqueo_especialistumController');
+//resource de deshabilitarEspecialistas para especialistas
+Route::resource('deshab_especial', 'Deshabilitar_horarios_especialistaController');
+
+//para redireccion del especialista, (esp)
+Route::get('Especialista.menuConfigHorarios', function () {
+    return view('Especialista.menuConfigHorarios') ;
+})->name('Especialista.menuConfigHorarios');
+
 
 //lleva los datos para insertar un bloqueo de un especialista (asist, especialista, root)
 Route::get('crearBloqueoEspecialista/{dropEspecialistas}/{dropDiasBloqueo}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Bloqueo_especialistumController@guardarBloqueoEsp');
+
+////lleva los datos para insertar un deshabilitar de un especialista (asist, especialista, root)
+Route::get('crearDeshabEspecialista/{dropEspecialistas}/{datepickedInicio}/{datepickedFin}/{horaInicio}/{horaFin}', 'Deshabilitar_horarios_especialistaController@guardarDeshabEsp');
+
+
 
 Route::get('redirigirBloqueoEspIndex', 'Bloqueo_especialistumController@redirigirBloqueoEspIndex');
 
@@ -362,7 +387,7 @@ Route::get('/redirCitasAPartirHoy',function() {
     return view('Especialista.citasFuturas');
 });
 
-//Lleva al especialista a la página para ver citas de hoy en adelante (según recinto)
+//Lleva al especialista a la página para ver citas de hoy (según recinto)
 Route::get('/redirCitasHoyEsp',function() {
     return view('Especialista.index');
 });
@@ -372,11 +397,33 @@ Route::get('/redirCitasHistEsp',function() {
     return view('Especialista.citasTotales');
 });
 
+
+//Lleva al asistente a la página para ver citas de hoy en adelante (según recinto y estado)
+Route::get('/redirCitasAPartirHoyAsist',function() {
+    return view('asistente.citasFuturas');
+});
+
+//Lleva al asistente a la página para ver citas de hoy (según recinto y estado)
+Route::get('/redirCitasHoyAsist',function() {
+    return view('asistente.index');
+});
+
+//Lleva al asistente a la página para ver citas históricas (según recinto y estado)
+Route::get('/redirCitasHistAsist',function() {
+    return view('asistente.citasTotales');
+});
+
 //ver citas de un recinto y un estado para el día actual (asist)
 Route::get('citasAsistRecintoEstadoHoy/{ID_Recinto}/{estado}', 'CitaControllerAsistente@citaRecintoEstadoHoy');
 
 //trae los estados de la tabla Estados_Cita (asist)
 Route::get('/traerEstadosCitas', 'AjaxController@estadosCitas');
+
+//ver citas a partir de hoy según recinto y estado (asist)
+Route::get('citasRecintoEstadoAsistFuturas/{ID_Recinto}/{estado}', 'CitaControllerAsistente@citaRecintoEstadoAPartirHoy');
+
+//ver citas históricas según recinto y estado (asist)
+Route::get('citasRecintoEstadoAsistHist/{ID_Recinto}/{estado}', 'CitaControllerAsistente@citaRecintoEstadoHist');
 
 //Elimina cuentas de los usuarios
 //Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');

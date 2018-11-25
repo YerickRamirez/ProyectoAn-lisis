@@ -118,8 +118,8 @@ function insertarBloqueoEsp() {
                 if (dropDiasBloqueo == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
-                alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
-  + horaFin);
+                //alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  //+ horaFin);
                 $.ajax({
   url: '/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
   + horaFin,

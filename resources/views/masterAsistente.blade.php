@@ -61,7 +61,6 @@
 		    		<li>
 		      			<a class="border" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
-					
 		    		<li>
 		      			<a class="border" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
 		    		</li>

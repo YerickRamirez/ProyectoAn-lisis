@@ -1,5 +1,5 @@
-@extends ('masterRoot')
-@section ('contenido_Admin')
+@extends ('masterEspecialista')
+@section ('contenido_Especialista')
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
@@ -14,7 +14,7 @@ function especialistas(){
             $('#dropEspecialistas').empty();
             $('#dropEspecialistas').append("<option>Cargando...<option>");
                 $.ajax({
-  url: '/cargarEspecialistas/',
+  url: '/cargarEspecialistaLoggeado/',
   type: 'GET',
   dataType: "json",
   success:function(datos){ 

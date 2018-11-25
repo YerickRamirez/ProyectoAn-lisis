@@ -156,6 +156,171 @@ class CitaControllerAsistente extends Controller
 			return $citas;
 	}
 
+	/////////////////Acá comienza citas a partir del día de hoy///////////////////////////////
+
+	public function citaRecintoEstadoAPartirHoy($ID_Recinto, $estado)
+	{
+
+		if($estado == "5") {
+			$citas = $this->citasReservadas_ConfirmadasPartirHoy($ID_Recinto);
+		} else {
+
+		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
+
+		$citas = $cita = DB::table('citas')
+		->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
+		->where('recintos.id', $ID_Recinto)
+		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
+		->where('recintos.active_flag', '!=',0)
+		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+		->where('citas.active_flag', '!=',0)
+		->where('citas.estado_cita_id', $estado)
+		->where('telefonos.active_flag', 1)
+		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+		->where('pacientes.active_flag', 1)
+		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
+		->where('especialistas.active_flag', 1)
+		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
+		->where('servicios.active_flag', 1)
+		->select('citas.id as id_cita',
+			'citas.fecha_cita',
+			'citas.estado_cita_id', 
+			'pacientes.id',
+			'pacientes.nombre',
+			'pacientes.primer_apellido_paciente',
+			'pacientes.segundo_apellido_paciente',
+			'pacientes.cedula_paciente',       
+			'telefonos.telefono',
+			'pacientes.correo',
+			'recintos.descripcion',
+			'especialistas.nombre as nombreEsp',
+			'especialistas.primer_apellido_especialista as apellidoEsp',
+			'especialistas.segundo_apellido_especialista as apellido2Esp',
+			'servicios.nombre as nombreServ')
+			->orderBy('fecha_cita', 'asc')->get();
+			//return $citas;
+		}
+		return json_encode(["citas"=>$citas]);
+
+	}
+
+	private function citasReservadas_ConfirmadasPartirHoy($ID_Recinto) {
+		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
+
+		$citas = $cita = DB::table('citas')
+		->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
+		->where('recintos.id', $ID_Recinto)
+		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
+		->where('recintos.active_flag', '!=',0)
+		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+		->where('citas.active_flag', '!=',0)
+		->where('citas.estado_cita_id', '!=',3)
+		->where('citas.estado_cita_id', '!=',4)
+		->where('telefonos.active_flag', 1)
+		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+		->where('pacientes.active_flag', 1)
+		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
+		->where('especialistas.active_flag', 1)
+		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
+		->where('servicios.active_flag', 1)
+		->select('citas.id as id_cita',
+			'citas.fecha_cita',
+			'citas.estado_cita_id', 
+			'pacientes.id',
+			'pacientes.nombre',
+			'pacientes.primer_apellido_paciente',
+			'pacientes.segundo_apellido_paciente',
+			'pacientes.cedula_paciente',       
+			'telefonos.telefono',
+			'pacientes.correo',
+			'recintos.descripcion',
+			'especialistas.nombre as nombreEsp',
+			'especialistas.primer_apellido_especialista as apellidoEsp',
+			'especialistas.segundo_apellido_especialista as apellido2Esp',
+			'servicios.nombre as nombreServ')
+			->orderBy('fecha_cita', 'asc')->get();
+			return $citas;
+	}
+
+		/////////////////Acá comienza citas a históricas///////////////////////////////
+		public function citaRecintoEstadoHist($ID_Recinto, $estado)
+		{
+			if($estado == "5") {
+				$citas = $this->citasReservadas_ConfirmadasHist($ID_Recinto);
+			} else {
+	
+			$citas = $cita = DB::table('citas')
+			->where('recintos.id', $ID_Recinto)
+			->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
+			->where('recintos.active_flag', '!=',0)
+			->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+			->where('citas.active_flag', '!=',0)
+			->where('citas.estado_cita_id', $estado)
+			->where('telefonos.active_flag', 1)
+			->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+			->where('pacientes.active_flag', 1)
+			->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
+			->where('especialistas.active_flag', 1)
+			->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
+			->where('servicios.active_flag', 1)
+			->select('citas.id as id_cita',
+				'citas.fecha_cita',
+				'citas.estado_cita_id', 
+				'pacientes.id',
+				'pacientes.nombre',
+				'pacientes.primer_apellido_paciente',
+				'pacientes.segundo_apellido_paciente',
+				'pacientes.cedula_paciente',       
+				'telefonos.telefono',
+				'pacientes.correo',
+				'recintos.descripcion',
+				'especialistas.nombre as nombreEsp',
+				'especialistas.primer_apellido_especialista as apellidoEsp',
+				'especialistas.segundo_apellido_especialista as apellido2Esp',
+				'servicios.nombre as nombreServ')
+				->orderBy('fecha_cita', 'asc')->get();
+				//return $citas;
+			}
+			return json_encode(["citas"=>$citas]);
+	
+		}
+
+		private function citasReservadas_ConfirmadasHist($ID_Recinto) {
+	
+			$citas = $cita = DB::table('citas')
+			->where('recintos.id', $ID_Recinto)
+			->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
+			->where('recintos.active_flag', '!=',0)
+			->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
+			->where('citas.active_flag', '!=',0)
+			->where('citas.estado_cita_id', '!=',3)
+			->where('citas.estado_cita_id', '!=',4)
+			->where('telefonos.active_flag', 1)
+			->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+			->where('pacientes.active_flag', 1)
+			->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
+			->where('especialistas.active_flag', 1)
+			->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
+			->where('servicios.active_flag', 1)
+			->select('citas.id as id_cita',
+				'citas.fecha_cita',
+				'citas.estado_cita_id', 
+				'pacientes.id',
+				'pacientes.nombre',
+				'pacientes.primer_apellido_paciente',
+				'pacientes.segundo_apellido_paciente',
+				'pacientes.cedula_paciente',       
+				'telefonos.telefono',
+				'pacientes.correo',
+				'recintos.descripcion',
+				'especialistas.nombre as nombreEsp',
+				'especialistas.primer_apellido_especialista as apellidoEsp',
+				'especialistas.segundo_apellido_especialista as apellido2Esp',
+				'servicios.nombre as nombreServ')
+				->orderBy('fecha_cita', 'asc')->get();
+				return $citas;
+		}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

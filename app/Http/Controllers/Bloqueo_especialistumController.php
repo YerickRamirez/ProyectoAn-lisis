@@ -69,10 +69,10 @@ class Bloqueo_especialistumController extends Controller
 			'bloqueo_especialistas.*','bloqueo_especialistas.id as id' )
 			->get();
 
-			return view('bloqueo_especialistas_especialista.index', compact('bloqueo_especialistas'));
+			return view('bloqueo_especialistas_especial.index', compact('bloqueo_especialistas'));
 		}
 		if($tipo_usuario == 3) {
-			return view('bloqueo_especialistas_asistente.index', compact('bloqueo_especialistas'));
+			return view('bloqueo_especialistas_asist.index', compact('bloqueo_especialistas'));
 		}
 	}
 
@@ -83,7 +83,16 @@ class Bloqueo_especialistumController extends Controller
 	 */
 	public function create()
 	{
-		return view('bloqueo_especialistas.create');
+		$tipo_usuario = Auth::user()->tipo;
+		if($tipo_usuario == 1) {
+			return view('bloqueo_especialistas.create');
+		}
+		if($tipo_usuario == 2) {
+			return view('bloqueo_especialistas_especial.create');
+		}
+		if($tipo_usuario == 3) {
+			return view('bloqueo_especialistas_asist.create');
+		}
 	}
 
 	/**
@@ -114,8 +123,9 @@ class Bloqueo_especialistumController extends Controller
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "The Bloqueo_especialistum \"<a href='bloqueo_especialistas/$bloqueo_especialistum->slug'>" . $bloqueo_especialistum->name . "</a>\" was Created.");
 
-		return redirect()->route('bloqueo_especialistas.index');
-	}
+
+		return redirect()->action('Bloqueo_especialistumController@index');
+		}
 
 	public function guardarBloqueoEsp(Request $request, $dropEspecialistas, $dropDiasBloqueo, $datepickedInicio,
 	$datepickedFin, $horaInicio, $horaFin)
@@ -194,8 +204,8 @@ class Bloqueo_especialistumController extends Controller
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "The Bloqueo_especialistum \"<a href='bloqueo_especialistas/$bloqueo_especialistum->slug'>" . $bloqueo_especialistum->name . "</a>\" was Updated.");
 
-		return redirect()->route('bloqueo_especialistas.index');
-	}
+		return redirect()->action('Bloqueo_especialistumController@index');
+		}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -223,12 +233,5 @@ class Bloqueo_especialistumController extends Controller
 	{
 		$bloqueo_especialistum->active_flag = 1;
 		$bloqueo_especialistum->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Bloqueo_especialistum ' . $bloqueo_especialistum->name . ' was Re-Activated.');
-
-		return redirect()->route('bloqueo_especialistas.index');
-	}
+		return redirect()->action('Bloqueo_especialistumController@index');	}
 }
