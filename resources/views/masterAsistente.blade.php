@@ -59,7 +59,13 @@
 		      			<a class="border" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 		    		</li>
 		    		<li>
-		      			<a class="border" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		      			<a class="border" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+					</li>
+					<li>
+		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
+		      			</li>
+						  <li>
+						  <a class="border" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		    		</li>
 		    		<li>
 		      			<a class="border" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
@@ -89,6 +95,8 @@
 
       <div id="myNavbar">
 	    <a class="border-a" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
+		<a class="border-a" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
+		<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
       	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>

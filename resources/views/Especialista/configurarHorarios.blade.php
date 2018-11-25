@@ -49,7 +49,6 @@
            
         <script>
         function guardarHorario() {
-            alert("holi wakamoli");
             var recinto = $('#dropRecintos').val();
             var servicio = $('#dropServicios').val();
             var cuenta = 1;

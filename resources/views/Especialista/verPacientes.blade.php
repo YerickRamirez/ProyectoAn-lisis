@@ -1,5 +1,5 @@
-@extends ('masterRoot')
-@section ('contenido_Admin')
+@extends ('masterEspecialista')
+@section ('contenido_Especialista')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <div class="panel panel-primary border-panel">
@@ -53,7 +53,7 @@
                                         <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i> Desactivar</button>
                                     </form>
                                     @else
-                                    <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea activar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
+                                    <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-primary">&nbsp<i class="glyphicon glyphicon-check"></i>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>

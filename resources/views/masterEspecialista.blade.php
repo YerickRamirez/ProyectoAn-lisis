@@ -63,6 +63,9 @@
 		    		<li>
 		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 					</li>
+					<li>
+		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
+		    		</li>
 					
 		    		<li>
 		      			<a class="border" href="{{ route('Especialista.menuConfigHorarios') }}">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
@@ -92,8 +95,9 @@
       <div id="myNavbar">
 	    <a class="border-a" href="{{ url('Especialista') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
 		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
-		<a class="border-a" href="#">Horario<span class="glyphicon glyphicon-time right-hora"></a>
-      	<a class="border-a hide-button-exit" href="{{ url('/logout') }}" Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
+		<a class="border-a" href="#">Horario<span class="glyphicon glyphicon-time right-hora-e"></a>
+      	<a class="border-a hide-button-exit" href="{{ url('/logout') }}"> Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
 <!--	@if (Route::has('login'))

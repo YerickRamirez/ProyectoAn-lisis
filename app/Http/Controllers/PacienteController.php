@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Telefono;
 use Auth;
 use DB;
 
@@ -41,14 +42,39 @@ class PacienteController extends Controller
 	{
 		$pacientes = $paciente = DB::table('pacientes')
 		->join('telefonos', 'pacientes.id', '=', 'telefonos.paciente_id')
-		->where('pacientes.active_flag', 1)
-		->where('telefonos.active_flag', 1)
+		->select('pacientes.active_flag as active_flag',
+			'pacientes.nombre',
+			'pacientes.primer_apellido_paciente',
+			'pacientes.segundo_apellido_paciente',
+			'pacientes.correo',
+			'pacientes.cedula_paciente',
+			'pacientes.id',
+			'telefonos.telefono')
 		->orderBy('pacientes.id', 'asc')->get();
+		
+		$tipo = Auth::user()->tipo;
+		if($tipo == 4) {
+			return redirect('paciente');
+		} else{
+			if($tipo == 3){
+				return view('asistente.verPacientes', compact('pacientes', 'active'));
+			} else{
+				if($tipo == 2){
+					
+					return view('Especialista.verPacientes', compact('pacientes', 'active'));
+				} else{
+					if($tipo == 1){
+						return view('pacientes.index', compact('pacientes', 'active'));
+				}
+			}
+			}
+		}
 
+		
 
 		/*$pacientes = Paciente::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
 		$active = Paciente::where('active_flag', 1);*/
-		return view('pacientes.index', compact('pacientes', 'active'));
+		
 	}
 
 	/**
@@ -113,8 +139,34 @@ class PacienteController extends Controller
 	 */
 	public function edit(Paciente $paciente)
 	{
-		$variable = Paciente::where('id_user', Auth::user()->id)->first();
+		$variable = Paciente::where('id_user', Auth::user()->id)
+		->join('telefonos', 'pacientes.id', '=', 'telefonos.paciente_id')->first();
+
 		return view('pacientes.edit', compact('variable'));
+	}
+
+	public function editRoot(Paciente $paciente)
+	{
+		
+		$pacientes = $paciente = DB::table('pacientes')->where('pacientes.id', $paciente->id)
+		->join('telefonos', 'pacientes.id', '=', 'telefonos.paciente_id')->first();
+		$tipo = Auth::user()->tipo;
+		if($tipo == 4) {
+			return redirect('paciente');
+		} else{
+			if($tipo == 3){
+				return view('asistente.edit', compact('paciente'));
+			} else{
+				if($tipo == 2){
+					return view('Especialista.edit', compact('paciente'));
+				} else{
+					if($tipo == 1){
+						return view('Admin.editarDatosPaciente', compact('paciente'));
+				}
+			}
+			}
+		}
+		
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -132,6 +184,10 @@ class PacienteController extends Controller
 		$paciente->correo = $request->input("correo");
 		$paciente->active_flag = 1;//change to reflect current status or changed status
 		
+		$telefono = Telefono::where('paciente_id', '=', $paciente->id)->first();
+		$telefono->telefono = $request->input("telefono");
+		$telefono->save();
+
 		$correoNuevo = $request->input("correo");
 		$user = User::where('id', $paciente->id_user)->update(array('email'=>$correoNuevo));
 		//$user->save();
@@ -144,6 +200,41 @@ class PacienteController extends Controller
 		return redirect()->route('citas.index');
 	}
 
+	public function updateRoot(Request $request, Paciente $paciente, User $user)
+	{
+
+		$cuenta = User::where('id', '=', $paciente->id_user)->first();
+		$cuenta->name =$request->input("nombre");
+		$apellido = $request->input("primer_apellido_paciente") . " " . $request->input("segundo_apellido_paciente");
+		//return $apellido;
+		$cuenta->lastName = $apellido;
+		$cuenta->email =$request->input("correo");
+		$cuenta->save();
+		
+		$telefono = Telefono::where('paciente_id', '=', $paciente->id)->first();
+		$telefono->telefono = $request->input("telefono");
+		$telefono->save();
+
+		$paciente->cedula_paciente = $request->input("segundo_apellido_paciente");
+		$paciente->nombre = $request->input("nombre");
+		$paciente->primer_apellido_paciente = $request->input("primer_apellido_paciente");
+		$paciente->segundo_apellido_paciente = $request->input("segundo_apellido_paciente");
+		$paciente->correo = $request->input("correo");
+		//$paciente->te = $request->input("correo");
+		$paciente->active_flag = 1;//change to reflect current status or changed status
+		
+		$correoNuevo = $request->input("correo");
+		$user = User::where('id', $paciente->id_user)->update(array('email'=>$correoNuevo));
+		//$user->save();
+		$paciente->save();
+
+		Session::flash('message_type', 'blue');
+		Session::flash('message_icon', 'checkmark');
+		Session::flash('message_header', 'Success');
+		
+		return redirect()->route('pacientes.index');
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -151,10 +242,31 @@ class PacienteController extends Controller
 	 * @return Response
 	 */
 	public function destroy(Paciente $paciente)
-	{
-		return $paciente->id;
+	{	
+		//return $paciente->id_user;
+		$cuenta = User::where('id', '=', $paciente->id_user)->first();
+		$cuenta->active_flag = 0;
 		$paciente->active_flag = 0;
 		$paciente->save();
+		$cuenta->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'The Paciente ' . $paciente->name . ' was De-Activated.');
+
+		return redirect()->route('pacientes.index');
+	}
+
+	public function activar(Paciente $paciente)
+	{	
+		
+		//return $paciente->id_user;
+		$cuenta = User::where('id', '=', $paciente->id_user)->first();
+		$cuenta->active_flag = 1;
+		$paciente->active_flag = 1;
+		$paciente->save();
+		$cuenta->save();
 
 		Session::flash('message_type', 'negative');
 		Session::flash('message_icon', 'hide');

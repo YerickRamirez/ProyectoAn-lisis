@@ -424,6 +424,15 @@ Route::get('citasRecintoEstadoAsistFuturas/{ID_Recinto}/{estado}', 'CitaControll
 
 //ver citas históricas según recinto y estado (asist)
 Route::get('citasRecintoEstadoAsistHist/{ID_Recinto}/{estado}', 'CitaControllerAsistente@citaRecintoEstadoHist');
+//Para editar los pacientes desde el root
+Route::get('pacientes.editRoot/{paciente}', 'PacienteController@editRoot')->name('pacientes.editRoot');
+
+//Para hacer el update de los datos del paciente desde el root
+Route::put('pacientes.updateRoot/{paciente}', 'PacienteController@updateRoot')->name('pacientes.updateRoot');
+
+Route::get('asistente/verPacientes', 'PacienteController@index');
+
+Route::delete('pacientes.activar/{paciente}', 'PacienteController@activar')->name('pacientes.activar');
 
 //Elimina cuentas de los usuarios
 //Route::delete('destroyCitAsistente{cita}', 'CitaControllerAsistente@destroy')->name('destroyCitAsistente');
