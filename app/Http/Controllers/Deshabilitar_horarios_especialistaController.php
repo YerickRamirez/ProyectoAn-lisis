@@ -114,10 +114,6 @@ class Deshabilitar_horarios_especialistaController extends Controller
 
 		$deshabilitar_horarios_especialista->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Deshabilitar_horarios_especialista \"<a href='deshabilitar_horarios_especialistas/$deshabilitar_horarios_especialista->slug'>" . $deshabilitar_horarios_especialista->name . "</a>\" was Created.");
 
 		return redirect()->route('deshabilitar_horarios_especialistas.index');
 	}
@@ -171,10 +167,6 @@ class Deshabilitar_horarios_especialistaController extends Controller
 
 		$deshabilitar_horarios_especialista->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Deshabilitar_horarios_especialista \"<a href='deshabilitar_horarios_especialistas/$deshabilitar_horarios_especialista->slug'>" . $deshabilitar_horarios_especialista->name . "</a>\" was Updated.");
 
 		return redirect()->route('deshabilitar_horarios_especialistas.index');
 	}
@@ -226,11 +218,6 @@ class Deshabilitar_horarios_especialistaController extends Controller
 	{
 		$deshabilitar_horarios_especialista->active_flag = 1;
 		$deshabilitar_horarios_especialista->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Deshabilitar_horarios_especialista ' . $deshabilitar_horarios_especialista->name . ' was Re-Activated.');
 
 		return redirect()->route('deshabilitar_horarios_especialistas.index');
 	}

@@ -74,11 +74,6 @@ class ServicioController extends Controller
 
 		$servicio->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Servicio \"<a href='servicio/$servicio->slug'>" . $servicio->nombre . "</a>\" was Created.");
-
 		return redirect()->route('servicio.index');
 	}
 
@@ -146,12 +141,6 @@ class ServicioController extends Controller
 			'descripcion' => 'required'
 	]);
 		$servicio->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Servicio \"<a href='servicio/$servicio->slug'>" . $servicio->name . "</a>\" was Updated.");
-
 		return redirect()->route('servicio.index');
 	}
 
@@ -166,11 +155,6 @@ class ServicioController extends Controller
 		$servicio->active_flag = 0;
 		$servicio->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Servicio ' . $servicio->nombre . ' was De-Activated.');
-
 		return redirect()->route('servicio.index');
 	}
 
@@ -184,11 +168,6 @@ class ServicioController extends Controller
 	{
 		$servicio->active_flag = 1;
 		$servicio->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Servicio ' . $servicio->nombre . ' was Re-Activated.');
 
 		return redirect()->route('servicio.index');
 	}

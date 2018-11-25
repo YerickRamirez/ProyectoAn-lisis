@@ -76,11 +76,6 @@ class TelefonoController extends Controller
 
 		$telefono->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Telefono \"<a href='telefonos/$telefono->slug'>" . $telefono->name . "</a>\" was Created.");
-
 		return redirect()->route('telefonos.index');
 	}
 
@@ -133,11 +128,6 @@ class TelefonoController extends Controller
 
 		$telefono->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Telefono \"<a href='telefonos/$telefono->slug'>" . $telefono->name . "</a>\" was Updated.");
-
 		return redirect()->route('telefonos.index');
 	}
 
@@ -152,11 +142,6 @@ class TelefonoController extends Controller
 		$telefono->active_flag = 0;
 		$telefono->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Telefono ' . $telefono->name . ' was De-Activated.');
-
 		return redirect()->route('telefonos.index');
 	}
 
@@ -170,12 +155,6 @@ class TelefonoController extends Controller
 	{
 		$telefono->active_flag = 1;
 		$telefono->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Telefono ' . $telefono->name . ' was Re-Activated.');
-
 		return redirect()->route('telefonos.index');
 	}
 }

@@ -89,11 +89,6 @@ class EspecialistaController extends Controller
 
 		$especialista->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Especialista \"<a href='especialistas/$especialista->slug'>" . $especialista->nombre . "</a>\" was Created.");
-
 		return redirect()->route('especialistas.index');
 	}
 
@@ -147,12 +142,6 @@ class EspecialistaController extends Controller
 			 ]);
 
 		$especialista->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Especialista \"<a href='especialistas/$especialista->slug'>" . $especialista->name . "</a>\" was Updated.");
-
 		return redirect()->route('especialistas.index');
 	}
 
@@ -167,11 +156,6 @@ class EspecialistaController extends Controller
 		$especialista->active_flag = 0;
 		$especialista->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'El Especialista ' . $especialista->nombre . ' fue activado.');
-
 		return redirect()->route('especialistas.index');
 	}
 
@@ -185,11 +169,6 @@ class EspecialistaController extends Controller
 	{
 		$especialista->active_flag = 1;
 		$especialista->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'El Especialista ' . $especialista->nombre . ' fue reactivado.');
 
 		return redirect()->route('especialistas.index');
 	}

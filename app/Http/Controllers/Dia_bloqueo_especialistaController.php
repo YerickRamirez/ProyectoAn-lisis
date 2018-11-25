@@ -76,11 +76,6 @@ class Dia_bloqueo_especialistaController extends Controller
 
 		$dia_bloqueo_especialista->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Dia_bloqueo_especialista \"<a href='dia_bloqueo_especialistas/$dia_bloqueo_especialista->slug'>" . $dia_bloqueo_especialista->name . "</a>\" was Created.");
-
 		return redirect()->route('dia_bloqueo_especialistas.index');
 	}
 
@@ -133,11 +128,6 @@ class Dia_bloqueo_especialistaController extends Controller
 
 		$dia_bloqueo_especialista->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Dia_bloqueo_especialista \"<a href='dia_bloqueo_especialistas/$dia_bloqueo_especialista->slug'>" . $dia_bloqueo_especialista->name . "</a>\" was Updated.");
-
 		return redirect()->route('dia_bloqueo_especialistas.index');
 	}
 
@@ -152,10 +142,6 @@ class Dia_bloqueo_especialistaController extends Controller
 		$dia_bloqueo_especialista->active_flag = 0;
 		$dia_bloqueo_especialista->save();
 
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Dia_bloqueo_especialista ' . $dia_bloqueo_especialista->name . ' was De-Activated.');
 
 		return redirect()->route('dia_bloqueo_especialistas.index');
 	}
@@ -171,10 +157,6 @@ class Dia_bloqueo_especialistaController extends Controller
 		$dia_bloqueo_especialista->active_flag = 1;
 		$dia_bloqueo_especialista->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Dia_bloqueo_especialista ' . $dia_bloqueo_especialista->name . ' was Re-Activated.');
 
 		return redirect()->route('dia_bloqueo_especialistas.index');
 	}

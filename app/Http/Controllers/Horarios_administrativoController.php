@@ -76,11 +76,6 @@ class Horarios_administrativoController extends Controller
 
 		$horarios_administrativo->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Horarios_administrativo \"<a href='horarios_administrativos/$horarios_administrativo->slug'>" . $horarios_administrativo->name . "</a>\" was Created.");
-
 		return redirect()->route('horarios_administrativos.index');
 	}
 
@@ -132,12 +127,6 @@ class Horarios_administrativoController extends Controller
 			 ]);
 
 		$horarios_administrativo->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Horarios_administrativo \"<a href='horarios_administrativos/$horarios_administrativo->slug'>" . $horarios_administrativo->name . "</a>\" was Updated.");
-
 		return redirect()->route('horarios_administrativos.index');
 	}
 
@@ -151,12 +140,6 @@ class Horarios_administrativoController extends Controller
 	{
 		$horarios_administrativo->active_flag = 0;
 		$horarios_administrativo->save();
-
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Horarios_administrativo ' . $horarios_administrativo->name . ' was De-Activated.');
-
 		return redirect()->route('horarios_administrativos.index');
 	}
 
@@ -170,12 +153,6 @@ class Horarios_administrativoController extends Controller
 	{
 		$horarios_administrativo->active_flag = 1;
 		$horarios_administrativo->save();
-
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Horarios_administrativo ' . $horarios_administrativo->name . ' was Re-Activated.');
-
 		return redirect()->route('horarios_administrativos.index');
 	}
 }

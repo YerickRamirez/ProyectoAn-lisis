@@ -150,11 +150,6 @@ class Especialista_servicioController extends Controller
 
 		$especialista_servicio->save();
 
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Especialista_servicio \"<a href='especialista_servicios/$especialista_servicio->slug'>" . $especialista_servicio->name . "</a>\" was Updated.");
-
 		return redirect()->route('especialista_servicios.index');
 	}
 

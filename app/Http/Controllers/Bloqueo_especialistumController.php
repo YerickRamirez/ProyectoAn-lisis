@@ -118,12 +118,6 @@ class Bloqueo_especialistumController extends Controller
 
 		$bloqueo_especialistum->save();
 
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Bloqueo_especialistum \"<a href='bloqueo_especialistas/$bloqueo_especialistum->slug'>" . $bloqueo_especialistum->name . "</a>\" was Created.");
-
-
 		return redirect()->action('Bloqueo_especialistumController@index');
 		}
 
@@ -198,11 +192,6 @@ class Bloqueo_especialistumController extends Controller
 			 ]);
 
 		$bloqueo_especialistum->save();
-
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Bloqueo_especialistum \"<a href='bloqueo_especialistas/$bloqueo_especialistum->slug'>" . $bloqueo_especialistum->name . "</a>\" was Updated.");
 
 		return redirect()->action('Bloqueo_especialistumController@index');
 		}
