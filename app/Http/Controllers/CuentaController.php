@@ -50,8 +50,9 @@ class CuentaController extends Controller
 	
 		$cuentas = User::orderBy('id', 'asc')->get();
 		$active = User::where('active_flag', 1);
+		$opcion = Cuentas_activa::where('id', 1)->first();
 		if(Auth::user()->tipo == 1) {
-			return view('cuentas.index', compact('cuentas', 'active'));
+			return view('cuentas.index', compact('cuentas', 'active', 'opcion'));
 		} 
 		
 		if(Auth::user()->tipo == 3) {

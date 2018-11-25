@@ -149,7 +149,7 @@ class Cuentas_activaController extends Controller
 	 */
 	public function destroy(Cuentas_activa $cuentas_activa)
 	{
-		$cuentas_activa->active_flag = 0;
+		$cuentas_activa->cuentas_activas = 0;
 		$cuentas_activa->save();
 
 		Session::flash('message_type', 'negative');
@@ -157,8 +157,23 @@ class Cuentas_activaController extends Controller
 		Session::flash('message_header', 'Success');
 		Session::flash('message', 'The Cuentas_activa ' . $cuentas_activa->name . ' was De-Activated.');
 
-		return redirect()->route('cuentas_activas.index');
+		return redirect()->route('cuentas.index');
 	}
+
+	public function activar(Cuentas_activa $cuentas_activa)
+	{
+		
+		$cuentas_activa->cuentas_activas = 1;
+		$cuentas_activa->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'The Cuentas_activa ' . $cuentas_activa->name . ' was De-Activated.');
+
+		return redirect()->route('cuentas.index');
+	}
+
 
 	/**
 	 * Re-Activate the specified resource from storage.
