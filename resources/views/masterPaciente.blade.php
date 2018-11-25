@@ -96,7 +96,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="prueba">Servicio de Salud Sede de Occidente</a>
+            <a style=" height: 50px" class="border-a active hide-title tittle-mobile serif" href="prueba">Servicio de Salud Sede de Occidente</a>
       </div>
 
       <div id="myNavbar">
