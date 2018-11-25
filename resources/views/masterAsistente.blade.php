@@ -55,12 +55,26 @@
 			<div id="sidebar-wrapper" class="sidebar-toggle sidebar">
 				
 				<ul class="sidebar-nav">
-		    		<li>
+		    		<!--<li>
 		      			<a class="border" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
-		    		</li>
+		    		</li>-->
 		    		<!--<li>
 		      			<a class="border" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 					</li>-->
+
+					<li>
+                        <a class="accordion-toggle collapsed toggle-switch border" style="margin-left:0px;" data-toggle="collapse" href="#submenu-3">
+                            </i>
+                            <span class="">Citas</span>
+                            <b style="margin-left:72px;" class="caret"></b>
+                        </a>
+                        <ul style="list-style:none; margin:0 0 0 0; padding:0 0 0 0;" id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a class="border" href="{{ url('asistente') }}"><span><b class="caret-right"></b> Actuales&nbsp</span></a></li>
+							<li><a class="border" href="{{ url('redirCitasAPartirHoyAsist') }}"><span><b class="caret-right"></b> Futuras&nbsp&nbsp&nbsp</span></a></li>
+							<li><a class="border" href="{{ url('redirCitasHistAsist') }}"><span><b class="caret-right"></b> Histórico</span></a></li>
+                        </ul>
+                    </li>
+
 					<li>
 		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		      			</li>
@@ -90,12 +104,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-            <a style="height: 50px" class="border-a active hide-title tittle-mobile serif" href="admin">Servicio de Salud Sede de Occidente</a>
+            <a style="height: 50px" class="border-a active hide-title tittle-mobile serif" href="{{ url('asistente') }}">Servicio de Salud Sede de Occidente</a>
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
+	    <!--<a class="border-a" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>-->
 		<!--<a class="border-a" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>-->
+		<a class="border-a" href="{{ url('asistente') }}">Citas Actuales<span class="glyphicon glyphicon-calendar right-aling-calendar"></span></a>
+		<a class="border-a" href="{{ url('redirCitasAPartirHoyAsist') }}">Citas Futuras<span class="glyphicon glyphicon-list-alt right-aling-alt"></span></a>
+		<a class="border-a" href="{{ url('redirCitasHistAsist') }}"><span>Histórico de citas</span></a>
 		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>

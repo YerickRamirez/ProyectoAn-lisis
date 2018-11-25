@@ -17,11 +17,10 @@
             <br>
     <section class="">
     <div class="panel-heading">
-        <div class="margin-dwn btn">
+        <!--<div class="margin-dwn btn">
                 <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasHoyAsist') }}">Ver citas del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>    
                 <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistAsist') }}">Ver histórico citas</a> <span>
-        </div>
-<br>    
+        </div>-->    
     <div class="margin-up">
     <br> 
         <div class="margin-up">

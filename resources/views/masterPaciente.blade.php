@@ -71,6 +71,7 @@
 		    		<li>
 		      			<a class="border" href="{{ url('citas')}}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		    		</li>
+					
 		    		<li>
 		      			<a class="border" href="{{ url('perfilPaciente')}}">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 					</li>
@@ -96,7 +97,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-            <a style=" height: 50px" class="border-a active hide-title tittle-mobile serif" href="prueba">Servicio de Salud Sede de Occidente</a>
+            <a style=" height: 50px" class="border-a active hide-title tittle-mobile serif" href="{{ url('citas')}}">Servicio de Salud Sede de Occidente</a>
       </div>
 
       <div id="myNavbar">

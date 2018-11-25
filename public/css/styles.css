@@ -148,6 +148,13 @@ div.logo-ucr2 {
   bottom:50px;
 
 }
+div.logo-ucr-3 {
+  position: fixed;
+  align: center;
+  margin-left: 45px;
+  bottom:100px;
+
+}
 
 @media screen and (max-height:585px) {
   div.logo-ucr2 {
@@ -217,7 +224,12 @@ div.logo-ucr2 {
 
 
 
-
+.right-aling-calendar {
+  margin-left:5px;
+}
+.right-aling-alt {
+  margin-left:10px;
+}
 
 
 
@@ -235,6 +247,17 @@ div.logo-ucr2 {
 
 .right-citas {
   margin-left:70px;
+}
+
+.right-citas-ac {
+  margin-left:45px;
+}
+
+.right-citas-fu {
+  margin-left:50px;
+}
+.right-citas-his {
+  margin-left:46px;
 }
 
 .right-perfil {
@@ -301,7 +324,7 @@ div.logo-ucr2 {
 .logo-ucr-asistente {
   position: fixed;
   margin-left: 45px;
-  bottom:200px;
+  bottom:150px;
 }
 
 .logo-ucr {
@@ -478,9 +501,18 @@ div.logo-ucr2 {
   }
 }
 
+/****ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
 
 
-
+.caret-right {
+  border-bottom: 4px solid transparent;
+  border-top: 4px  solid transparent;
+  border-left: 4px solid;
+  display: inline-block;
+  height: 0;
+  vertical-align: left;
+  width: 0;
+}
 
 
 

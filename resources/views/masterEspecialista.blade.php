@@ -56,10 +56,25 @@
 			<div id="sidebar-wrapper" class="sidebar-toggle sidebar">
 				
 				<ul class="sidebar-nav">
-		    		<li>
-		      			<a class="border" href="{{ url('Especialista') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
-					</li>
-		    		
+		    		<!--<li>
+		      			<a class="border" href="{{ url('Especialista') }}" data-toggle="collapse">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
+					</li>-->
+					
+
+
+					<li>
+                        <a class="accordion-toggle collapsed toggle-switch border" style="margin-left:0px;" data-toggle="collapse" href="#submenu-3">
+                            </i>
+                            <span class="">Citas</span>
+                            <b style="margin-left:72px;" class="caret"></b>
+                        </a>
+                        <ul style="list-style:none; margin:0 0 0 0; padding:0 0 0 0;" id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a class="border" href="{{ url('Especialista') }}"><span><b class="caret-right"></b> Actuales&nbsp</span></a></li>
+							<li><a class="border" href="{{ url('redirCitasAPartirHoy') }}"><span><b class="caret-right"></b> Futuras&nbsp&nbsp&nbsp</span></a></li>
+							<li><a class="border" href="{{ url('redirCitasHistEsp') }}"><span><b class="caret-right"></b> Histórico</span></a></li>
+                        </ul>
+                    </li>
+
 		    		<li>
 		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 					</li>
@@ -74,7 +89,7 @@
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
 		    		<li>	
-      					<div class="logo-ucr"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
+      					<div class="logo-ucr-3"><img src="https://medios.ucr.ac.cr/medios/imagenes/2016/ucr.svg" style="width:120px; height:120px;"></div>
       				</li>    			
 		  		</ul>
 			</div>
@@ -89,11 +104,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-            <a style="font-size:22px; height: 50px" class="border-a active hide-title tittle serif" href="prueba">Servicio de Salud Sede de Occidente</a>
+            <a style=" height: 50px" class="border-a active hide-title tittle-mobile serif" href="{{ url('Especialista') }}">Servicio de Salud Sede de Occidente</a>
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="{{ url('Especialista') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>
+	    <!--<a class="border-a" href="{{ url('Especialista') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>-->
+		<a class="border-a" href="{{ url('Especialista') }}">Citas Actuales<span class="glyphicon glyphicon-calendar right-aling-calendar"></span></a>
+		<a class="border-a" href="{{ url('redirCitasAPartirHoy') }}">Citas Futuras<span class="glyphicon glyphicon-list-alt right-aling-alt"></span></a>
+		<a class="border-a" href="{{ url('redirCitasHistEsp') }}"><span>Histórico de citas</span></a>
 		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="#">Horario<span class="glyphicon glyphicon-time right-hora-e"></a>
@@ -136,7 +154,24 @@
 
 	<script src="{{asset('js/menus_dinamicos.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/app.min.js')}}"></script>
+	<script src="{{asset('js/app.min.js')}}"></script>
+	<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
 </body>
 
 </html>
