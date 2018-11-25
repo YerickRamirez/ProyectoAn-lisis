@@ -230,8 +230,7 @@ class CitaControllerEspecialista extends Controller
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'No existen pacientes con la cédula digitada');
-				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO EL PACIENTE CON ESA CÉDULA NO EXISTE//////////////////////////////////////////////////////////////////////////////////////////////
-				 //return redirect('reservarCita');//no sé si esta ruta está bien
+				 return back();
 		} else {
 			$id = $paciente->first()->id;
 			$cita = new Cita();
@@ -265,10 +264,10 @@ class CitaControllerEspecialista extends Controller
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
 				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
-				 //return redirect('reservarCita');//no sé si esta ruta está bien
+				 return back();
 				 } else {
 				 $cita->save();
-				 return redirect()->route('Especialista.index');
+				 return back();
 				 }
 		}
 		
@@ -309,7 +308,7 @@ class CitaControllerEspecialista extends Controller
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'No existen pacientes con la cédula digitada');
 	////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO EL PACIENTE CON ESA CÉDULA NO EXISTE//////////////////////////////////////////////////////////////////////////////////////////////
-				 //return redirect('reservarCita');//no sé si esta ruta está bien			
+				return back();		
 				} else {
 				$id = $paciente->first()->id;
 				$cita = new Cita();
@@ -337,10 +336,10 @@ class CitaControllerEspecialista extends Controller
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
 				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
-				 //return redirect('reservarCita');//no sé si esta ruta está bien
+				 return back();
 				 } else {
 				 $cita->save();
-				 return redirect()->route('Especialista.index');
+				 return back();
 				}
 				}
 		}
@@ -381,12 +380,7 @@ class CitaControllerEspecialista extends Controller
 				$cita->estado_cita_id = 2;
 				$cita->save();
 		
-				/*Session::flash('message_type', 'negative');
-				Session::flash('message_icon', 'hide');
-				Session::flash('message_header', 'Success');
-				Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
-				//return "hola";*/
-				return redirect()->route('Especialista.index');
+				return back();
 			}
 
 			public function reprogramarCitaAjax($id_cita)
@@ -399,7 +393,13 @@ class CitaControllerEspecialista extends Controller
 			->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 			->select('pacientes.cedula_paciente');	
 			$cedula = $citas->first()->cedula_paciente;
-			return view('Especialista.reprogramarCitaEspecialista', compact('cedula'));
+
+			if(Auth::user()->id == 2) {
+				return view('Especialista.reprogramarCitaEspecialista', compact('cedula'));
+			}
+			if(Auth::user()->id == 3) {
+				return view('asistente.reprogramarCita', compact('cedula'));
+			}
 			}
 
 		public function cancelarCitaAjax($id_cita)
@@ -411,7 +411,7 @@ class CitaControllerEspecialista extends Controller
 		$cita->save();
 
 		//return "hola";
-		return redirect()->route('Especialista.index');
+		return back();
 	}
 
 	/**
