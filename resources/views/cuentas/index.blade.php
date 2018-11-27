@@ -18,14 +18,14 @@
                 {{ csrf_field() }}
               <input type="hidden" name="_method" value="DELETE">
                     <button  style="margin-left: 15px; margin-top: 10px;" class = 'btn btn-success mobile'  type ='submit'><span class="glyphicon glyphicon-ok"></span>
-                        Cuentas Activas</button>
+                        Nuevas cuentas activadas</button>
             </form>
             @else
             <form action="{{ route('cuentas_activas.destroy', $opcion->id) }}" method="POST"> 
                 {{ csrf_field() }}
               <input type="hidden" name="_method" value="DELETE">
                     <button  style="margin-left: 15px; margin-top: 10px;" class = 'btn btn-danger mobile'  type ='submit'><span class="glyphicon glyphicon-remove"></span>
-                        Cuentas Desactivadas</button>
+                        Nuevas cuentas desactivadas</button>
             </form>
             @endif
             

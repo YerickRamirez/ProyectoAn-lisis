@@ -385,6 +385,7 @@ class CitaControllerEspecialista extends Controller
 
 			public function reprogramarCitaAjax($id_cita)
 			{
+				//return "a";
 				$cita = Cita::find($id_cita);
 				$cita->estado_cita_id = 4;
 				$cita->save();
@@ -394,10 +395,10 @@ class CitaControllerEspecialista extends Controller
 			->select('pacientes.cedula_paciente');	
 			$cedula = $citas->first()->cedula_paciente;
 
-			if(Auth::user()->id == 2) {
+			if(Auth::user()->tipo == 2) {
 				return view('Especialista.reprogramarCitaEspecialista', compact('cedula'));
 			}
-			if(Auth::user()->id == 3) {
+			if(Auth::user()->tipo == 3) {
 				return view('asistente.reprogramarCita', compact('cedula'));
 			}
 			}
