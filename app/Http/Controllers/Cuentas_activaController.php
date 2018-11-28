@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Auth;
+use DB;
 
+use Illuminate\Support\Facades\Input;
 use App\Cuentas_activa;
 use Illuminate\Http\Request;
 use \Session;
@@ -139,6 +141,7 @@ class Cuentas_activaController extends Controller
 	public function destroy(Cuentas_activa $cuentas_activa)
 	{
 
+		//return "holi wakamoli 1";
 		$activar = array("1", "0");
 		//return $cuentas_activa;
 		//return $cuentas_activa->cuentas_activas = $activar[$cuentas_activa->cuentas_activas];
@@ -148,12 +151,20 @@ class Cuentas_activaController extends Controller
 		return redirect()->route('cuentas.index');
 	}
 
-	public function activar(Cuentas_activa $cuentas_activa)
+	public function activar(Request $request)
 	{
-		
-		$cuentas_activa->cuentas_activas = 1;
-		$cuentas_activa->save();
+		//$cuenta = User::where('id', '=', $paciente->id_user)->first();
 
+		$cuentas_activa = Cuentas_activa::where('id', '=', 1)->first();
+		$checked=Input::has('tipo');
+		$checkValue=Input::get('tipo');
+		if($checkValue == 1) {
+			$cuentas_activa->cuentas_activas = 1;
+		} else {
+			$cuentas_activa->cuentas_activas = 0;
+			//$cuentas_activa->save();
+		}
+		$cuentas_activa->save();
 		return redirect()->route('cuentas.index');
 	}
 
@@ -166,6 +177,7 @@ class Cuentas_activaController extends Controller
 	 */
 	public function reactivate(Cuentas_activa $cuentas_activa)
 	{
+		return "holi wakamoli 3";
 		$cuentas_activa->active_flag = 1;
 		$cuentas_activa->save();
 		return redirect()->route('cuentas_activas.index');

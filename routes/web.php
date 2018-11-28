@@ -442,6 +442,6 @@ Route::delete('pacientes.activar/{paciente}', 'PacienteController@activar')->nam
 Route::get('destroyCuentas/{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
 Route::get('reactivarCuentas/{cuenta}', 'CuentaController@reactivate')->name('reactivarCuentas');
 
-
+Route::post('activardesactivar', 'Cuentas_activaController@activar')->name('activardesactivar');
 
 

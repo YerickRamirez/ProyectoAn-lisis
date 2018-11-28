@@ -9,14 +9,16 @@
      <p class="center" style="font-size: 3vh;">Lista de citas del día {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</p>
     </div>
     <div class="panel-body">
-            <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select> </div>
+            <div style="margin-bottom: 15px;" class="col-md-4 col-md-offset-2" ><select id="dropRecintos" class="form-control"></select> </div>
             <div style="margin-bottom: 15px;" class="col-md-4">
             <select id="dropEstados" class="form-control"></select>
             </div>
+            
             <br>
             <br>
     <section class="">
     <div class="panel-heading">
+    <a class="btn btn-primary" style="" href="{{url('reservarCita')}}">Reservar cita</a>
         <!--<div class="margin-dwn btn">
     <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoyAsist') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
             <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistAsist') }}">Ver histórico citas</a> <span>

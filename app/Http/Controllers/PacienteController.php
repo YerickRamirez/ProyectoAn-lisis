@@ -192,12 +192,27 @@ class PacienteController extends Controller
 
 	public function updateRoot(Request $request, Paciente $paciente, User $user)
 	{
+		if ($request->input("cedula_paciente") != $request->input("cedula_original")){
+		$pacienteExistente = Paciente::where('cedula_paciente', $request->input("cedula_paciente"))->get();
+			if(!$pacienteExistente->isEmpty() ) {
+				return back()->withErrors(['cedula_paciente' => trans('Ya existe un paciente con la cédula indicada')]);
+		    }
+		}
 
 		$cuenta = User::where('id', '=', $paciente->id_user)->first();
 		$cuenta->name =$request->input("nombre");
 		$apellido = $request->input("primer_apellido_paciente") . " " . $request->input("segundo_apellido_paciente");
 		//return $apellido;
 		$cuenta->lastName = $apellido;
+
+		$cuentaExistente = User::where('email', $request->input("correo"))->get();
+		$cuentaA = $cuentaExistente->first();
+		
+		if((!$cuentaExistente->isEmpty()) && ($cuentaA->email == $request->input("correo") && ($cuenta->email != $request->input("correo")))) {
+			return back()->withErrors(['correo' => trans('Ya existe un paciente con el correo indicado')]);
+		}
+
+
 		$cuenta->email =$request->input("correo");
 		$cuenta->save();
 		
@@ -205,7 +220,7 @@ class PacienteController extends Controller
 		$telefono->telefono = $request->input("telefono");
 		$telefono->save();
 
-		$paciente->cedula_paciente = $request->input("segundo_apellido_paciente");
+		$paciente->cedula_paciente = $request->input("cedula_paciente");
 		$paciente->nombre = $request->input("nombre");
 		$paciente->primer_apellido_paciente = $request->input("primer_apellido_paciente");
 		$paciente->segundo_apellido_paciente = $request->input("segundo_apellido_paciente");
