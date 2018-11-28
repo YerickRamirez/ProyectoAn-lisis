@@ -40,9 +40,9 @@
                                 <td class="text-center">{{Carbon\Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i') }}</td>
                                 
                                 <td class="text-center">
-                                    
+                                    <?php $fecha = Carbon\Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i')?>
 
-                                    <form action="{{ route('citas.destroy', $cita->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea cancelar su cita?');">
+                                    <form action="{{ route('citas.destroy', $cita->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea cancelar su cita del día {{$fecha}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 

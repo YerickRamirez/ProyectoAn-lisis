@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\SendMailable;
 use App\User;
 use DB;
 use Auth;
@@ -116,6 +118,8 @@ class CitaController extends Controller
 		$cita->estado_cita_id = 1;
 		//return "a";
 		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
+		
+		//return $user;
 		$cita->paciente_id = $paciente->first()->id;
 		$cita->servicio_id = $request->dropServicios;
 		$cita->especialista_id = $request->dropEspecialistas;
@@ -147,6 +151,9 @@ class CitaController extends Controller
 		Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
 		return redirect('asistente.crearCita');
 		} else {
+		$user = User::where('id', Auth::user()->id)->first();
+		$email = $user->email;	
+		Mail::to($email)->send(new SendMailable($user->name, $fechaCita, $horaCita));
 		$cita->save();
 		return redirect()->route('citas.index');
 		}

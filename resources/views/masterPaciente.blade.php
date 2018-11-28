@@ -52,7 +52,7 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 				</a>
-				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px;" >Servicio de Salud Sede de Occidente</div>
+				<div class="tittle serif" style="color:#FFFFFF; margin-top:7px; " >Servicio de Salud Sede de Occidente</div>
 
 			</div>
 
