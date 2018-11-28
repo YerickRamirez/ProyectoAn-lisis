@@ -28,7 +28,8 @@
     <script id="_carbonads_projs" type="text/javascript" src="//srv.carbonads.net/ads/CK7DC5QN.json?segment=placement:eonasdangithubio&amp;callback=_carbonads_go"></script></head>
 
 </head>
-<body class="bg-color" onLoad="cargarCitas()">
+<!--body class="bg-color" onLoad="cargarCitas()" quitamos ese onload porque jodía todo el resto de cosas de asist-->
+<body class="bg-color">
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
