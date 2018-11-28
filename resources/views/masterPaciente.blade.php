@@ -10,10 +10,11 @@
 	<link href="https://revistas.ucr.ac.cr/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
+	<script src="{{asset('//code.jquery.com/jquery-1.11.1.min.js')}}"></script>
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
-	<script src="{{asset('//code.jquery.com/jquery-1.11.1.min.js')}}"></script>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 

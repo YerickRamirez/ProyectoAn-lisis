@@ -195,7 +195,6 @@ timeout: 15000
                     var momento = new Date();
                     console.log("Actual parseada: " + momento);
         $('#datetimepicker5').datetimepicker({
-            minDate: momento, //Muestra el calendario desde el dia actual y no desde antes
             maxDate: fechaMaxima(momento),
             format: 'DD/MM/YYYY', //Hay que ponerle un formato a la fecha, si no se pone esto se establecen con horas
             daysOfWeekDisabled:[0,6], //Asi se bloquean los fines de semana
@@ -406,9 +405,14 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
                 entry = entry.replace("0", "")
             }
             //alert(entry);
+            if(entry != 1700) {
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
-    var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+}
+
+    
+});
+var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
     var datepicked = new Date(dateTime);
     datepicked.setHours(datepicked.getHours() -6);
     datepicked = datepicked.toLocaleDateString();
@@ -416,9 +420,6 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
     var y = document.getElementById("Fecha");
     y.innerHTML = "Fecha seleccionada: " + datepicked;
     y.style.display ="block";
-
-    
-});
 }
 mostarHorario();
 }
