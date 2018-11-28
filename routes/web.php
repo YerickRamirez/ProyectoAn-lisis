@@ -194,6 +194,8 @@ Route::get('send/email/{email}/{name}/{fecha}/{hora}', 'CorreoCitaController@mai
 
 Route::get('sendCancelacion/email/{email}/{name}/{fecha}', 'CancelacionCitaController@mail');
 
+Route::get('recuperar/email/{email}', 'recuperarContrasennaController@mail');
+
 
 //Rutas prueba ajax
 Route::get('/recintosCombo', 'AjaxController@combobox');
@@ -442,6 +444,8 @@ Route::delete('pacientes.activar/{paciente}', 'PacienteController@activar')->nam
 Route::get('destroyCuentas/{cuenta}', 'CuentaController@destroy')->name('destroyCuentas');
 Route::get('reactivarCuentas/{cuenta}', 'CuentaController@reactivate')->name('reactivarCuentas');
 
+Route::post('activardesactivar', 'Cuentas_activaController@activar')->name('activardesactivar');
 
+Route::post('reestablecer', 'recuperarContrasennaController@mail')->name('reestablecer');
 
 

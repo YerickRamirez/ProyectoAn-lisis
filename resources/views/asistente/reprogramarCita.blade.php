@@ -283,7 +283,7 @@ timeout: 15000
                         alert("Elija una opción válida en todos los campos");
                } else {
             horaCita = String(hora) + minutos;
-            window.location.replace("/reprogramarCitaAsistente/" + horaCita + '/' + dropRecintos + 
+            window.location.replace("/annadirCitaAsistente/" + horaCita + '/' + dropRecintos + 
             '/' + dropServicios + '/' + dropEspecialistas + '/' + datepicked + '/' + cedula);
         }
         return false;

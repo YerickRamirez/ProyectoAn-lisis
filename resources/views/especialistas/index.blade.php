@@ -8,6 +8,9 @@
     <br/>
     <div class="panel-body">
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialistas.create') }}"> Crear</a>
+            <span>
+                <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialista_servicios.index') }}">Vincular Especialista</a>
+            </span>
     </div>
     
 <div class="">

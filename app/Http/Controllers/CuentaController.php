@@ -113,7 +113,7 @@ class CuentaController extends Controller
 		if($checkValue == 4) {//si es paciente, revisar si ya existe esa cédula
 			$pacienteExistente = Paciente::where('cedula_paciente', $request->cedula)->get();
 			if(!$pacienteExistente->isEmpty()) {
-				return back()->withErrors(['cedula' => trans('Ya existe un paciente con la cédula indicada')]);
+				return back()->withErrors(['cédula' => trans('Ya existe un paciente con la cédula indicada')]);
 		    }
 		}
 

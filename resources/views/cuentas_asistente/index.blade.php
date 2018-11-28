@@ -67,17 +67,15 @@
                                         {{csrf_field()}}
                                         @if($cuenta->active_flag == 1)
                                         <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i>Desactivar</button>
-                                        @else
-                                        <button type="submit" style="background-color:grey" disabled class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i>Desactivar</button>
+                                        
                                         @endif
                                     </form>
                                     <form style="display:inline" action="{{ route('reactivarCuentas', $cuenta->id) }}" method="DELETE" style="display: inline;" onsubmit="return confirm('¿Desea activar la cuenta de {{$nombre}}?');">
                                             <input type="hidden" name="_method" value="DELETE">
                                             {{csrf_field()}}
                                             @if($cuenta->active_flag == 0)
-                                            <button type="submit" class="btn  btn-success"><i class="glyphicon glyphicon-ok"></i>Activar</button>
-                                            @else
-                                            <button type="submit" style="background-color:grey" disabled class="btn  btn-success"><i class="glyphicon glyphicon-ok"></i>Activar</button>
+                                            <button type="submit" class="btn  btn-success"><i class="glyphicon glyphicon-ok"></i>&nbsp&nbsp Activar &nbsp&nbsp</button>
+                                            
                                             @endif
                                         </form>
                                 </td>
