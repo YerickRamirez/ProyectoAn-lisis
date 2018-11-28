@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use App\Mail\Confirmacion;
+use App\Mail\cuentaCreada;
 use Mail;
 use App\Telefono;
 use Illuminate\Auth\Events\Registered;
@@ -157,8 +158,10 @@ class RegisterController extends Controller
         event(new Registered($user));
     
         $this->guard()->login($user);
-
-        Mail::to($request->email)->send(new Confirmacion($request->name));
+        Mail::to($request->input("email"))->send(new cuentaCreada($request->input("name"), $request->input("email")));
+        //return $request->input("email");
+        
+        
     
         return redirect($this->redirectPath());
     }

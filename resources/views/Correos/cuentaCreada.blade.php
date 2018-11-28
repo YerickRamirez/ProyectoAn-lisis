@@ -12,8 +12,8 @@
 </head>
 <body>
 <div>
-    <p>Estimado/a {{$name}},</p>
-    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} ha sido cancelada.</p>
+    <p>Estimado/a {{$nombre}},</p>
+    <p>El servicio de salud universitaria le comunica que su cuenta ha sido creada exitosamente,</p>
     <p>¡Muchas gracias!</p>
     <br>
     <br>

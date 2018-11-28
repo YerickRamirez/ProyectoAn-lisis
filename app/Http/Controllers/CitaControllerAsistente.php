@@ -16,6 +16,9 @@ use App\Telefono;
 use Illuminate\Http\Request;
 use \Session;
 use Carbon\Carbon;
+use App\Mail\SendMailable;
+use App\Mail\reprogramarCitaAsistente;
+use Mail;
 
 
 class CitaControllerAsistente extends Controller
@@ -382,6 +385,15 @@ class CitaControllerAsistente extends Controller
 				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
 				 return redirect('reservarCita');//no sé si esta ruta está bien////////////////////////////////////////////////////////////////////
 				 } else {
+
+				$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
+				->first();
+				$nombre = $paciente->nombre;
+				$email = $paciente->correo;
+				$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
+
+				
+				Mail::to($email)->send(new SendMailable($nombre, $fecha, $horaCita));
 				 $cita->save();
 				 return redirect()->route('asistente.index');
 				 }
@@ -578,5 +590,64 @@ class CitaControllerAsistente extends Controller
 		Session::flash('message', 'The Cita ' . $cita->name . ' was Re-Activated.');
 
 		return redirect()->route('citas.index');
+	}
+
+
+
+
+
+
+	public function reprogramarCitaAsistente(Request $request, User $user)
+	{
+		
+		$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
+		->select('id')->get();
+		if($paciente->isEmpty()) {
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'No existen pacientes con la cédula digitada');
+				 return redirect('reservarCita');//no sé si esta ruta está bien////////////////////////////////////////////////////////////
+		} else {
+			$id = $paciente->first()->id;
+			$cita = new Cita();
+			
+			$cita->estado_cita_id = 1;
+			$cita->paciente_id = $id;
+			$cita->servicio_id = $request->dropServicios;
+			$cita->especialista_id = $request->dropEspecialistas;
+			$cita->recinto_id = $request->dropRecintos;
+			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+			$minutosCita = substr($request->horaCita, -2);
+			$horaCita = $request->horaCita[0];
+			if($horaCita == "9" || $horaCita == "8") {
+				$horaCita = "0" . $horaCita . ':' . $minutosCita;
+			} else {
+				$horaCita = $request->horaCita[0] . $request->horaCita[1]  . ':' . $minutosCita;
+			}
+			$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
+			$cita->active_flag = 1;
+	
+				 $revisarCitas = $this->existenciaCitas($request);
+				 if($revisarCitas == "true") {//Revisa si alguien le ganó el espacio
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
+				 return redirect('reservarCita');//no sé si esta ruta está bien////////////////////////////////////////////////////////////////////
+				 } else {
+
+				$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
+				->first();
+				$nombre = $paciente->nombre;
+				$email = $paciente->correo;
+				$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
+
+				
+				Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $horaCita));
+				 $cita->save();
+				 return redirect()->route('asistente.index');
+				 }
+		}
 	}
 }

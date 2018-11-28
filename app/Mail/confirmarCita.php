@@ -7,22 +7,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class recuperarContrasenna extends Mailable
+class confirmarCita extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $random;
-    public $nombre;
+    public $name;
+    public $fecha;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($random, $nombre)
+    public function __construct($name, $fecha)
     {
-        $this->random = $random;
-        $this->nombre = $nombre;
+        $this->name = $name;
+        $this->fecha = $fecha;
     }
 
     /**
@@ -32,9 +32,9 @@ class recuperarContrasenna extends Mailable
      */
     public function build()
     {
-        return $this->view('Correos/reestablecerContrasenna')
+        return $this->view('Correos/confirmarCita')
                 ->from('no-reply@nuestrodominio.com.ar')
-                ->subject('Reestablecer contraseña');
+                ->subject('Cita confirmada');
 
     }
 }

@@ -152,8 +152,9 @@ class CitaController extends Controller
 		return redirect('asistente.crearCita');
 		} else {
 		$user = User::where('id', Auth::user()->id)->first();
-		$email = $user->email;	
-		Mail::to($email)->send(new SendMailable($user->name, $fechaCita, $horaCita));
+		$email = $user->email;
+		$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
+		Mail::to($email)->send(new SendMailable($user->name, $fecha, $horaCita));
 		$cita->save();
 		return redirect()->route('citas.index');
 		}

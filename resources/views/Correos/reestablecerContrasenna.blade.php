@@ -12,8 +12,8 @@
 </head>
 <body>
 <div>
-	<p>El servicio de salud universitaria recibió una petición para cambiar la contraseña con esta cuenta de correo electrónico.</p>
-    <p>Se ha creado una nueva contraseña temporal con la cual podrá ingresar al sistema para crear una nueva</p>
+	<p>Hola {{$nombre}}, el servicio de salud universitaria recibió una petición para cambiar la contraseña asociada a esta cuenta de correo electrónico.</p>
+    <p>Se ha creado una nueva contraseña temporal con la cual podrá ingresar al sistema para crear una nueva.</p>
     <p>Su contraseña nueva es:</p>
     <h3 style="text-align:center;">{{$random}}</h3>
     

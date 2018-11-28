@@ -210,7 +210,7 @@ Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{
 //Ruta citas
 Route::resource('citas', 'CitaController');
 Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
-Route::get('/annadirCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@store');
+Route::get('/annadirCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@reprogramarCitaAsistente');
 //
 
 Route::get('combobox',function(){

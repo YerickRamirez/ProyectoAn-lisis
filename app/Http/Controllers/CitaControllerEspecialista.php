@@ -10,9 +10,13 @@ use Auth;
 
 use DB;
 
+use Mail;
+use App\Mail\confirmarCita;
+use App\Mail\EnviarCanceacion;
 use App\Cita;
 use App\Correo;
 use App\Telefono;
+use App\Paciente;
 use Illuminate\Http\Request;
 use \Session;
 use Carbon\Carbon;
@@ -376,6 +380,12 @@ class CitaControllerEspecialista extends Controller
 			{
 				//return "a";
 				$cita = Cita::find($id_cita);
+				$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
+				->first();
+				$nombre = $paciente->nombre;
+				$email = $paciente->correo;
+				$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i');
+				Mail::to($email)->send(new confirmarCita($nombre, $fecha));
 				//return $cita;
 				$cita->estado_cita_id = 2;
 				$cita->save();
@@ -405,9 +415,23 @@ class CitaControllerEspecialista extends Controller
 
 		public function cancelarCitaAjax($id_cita)
 	{
+
 		
 		$cita = Cita::find($id_cita);
 		$cita->estado_cita_id = 3;
+
+		
+		$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
+		->first();
+		$nombre = $paciente->nombre;
+		$email = $paciente->correo;
+		$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i');
+		//return $fecha;
+		
+		Mail::to($email)->send(new EnviarCanceacion($nombre, $fecha));
+   		//return "Correo enviado exitosamente";
+		//$paciente_id = $paciente->first()->id;
+
 		//return $cita;
 		$cita->save();
 

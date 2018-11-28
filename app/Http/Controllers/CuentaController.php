@@ -14,6 +14,7 @@ Use DB;
 use Illuminate\Support\Facades\Validator;
 use App\Telefono;
 use App\Mail\Confirmacion;
+use App\Mail\cuentaCreada;
 use Mail;
 
 use Illuminate\Support\Facades\Input;
@@ -144,7 +145,7 @@ class CuentaController extends Controller
             'active_flag' => $checkValue2,
 		]);
 
-		Mail::to($request->input("email"))->send(new Confirmacion($request->input("name")));
+		Mail::to($request->input("email"))->send(new cuentaCreada($request->input("name"), $request->input("email")));
 
 		if($checkValue == 2) {
 		$especialista->id_user = $user->id;
@@ -179,7 +180,7 @@ class CuentaController extends Controller
             'active_flag' => $checkValue2,
 		]);
 		
-		Mail::to($request->input("email"))->send(new Confirmacion($request->input("name")));
+		Mail::to($request->input("email"))->send(new cuentaCreada($request->input("name"), $request->input("email")));
 
 		if($checkValue == 2) {
 		$especialista->id_user = $user->id;

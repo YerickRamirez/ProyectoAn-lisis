@@ -14,7 +14,7 @@
 <div>
 	<h3>Cita reservada exitosamente</h3>
     <p>Estimado/a {{$name}},</p>
-    <p>El Servicio de Salud universitaria le comunica que su cita para el día  {{$fecha}} a la hora {{$hora}} ha sido reservada exitosamente,</p>
+    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} a la hora {{$hora}} ha sido reservada exitosamente,</p>
     <p>¡Muchas gracias!</p>
     <br>
     <br>

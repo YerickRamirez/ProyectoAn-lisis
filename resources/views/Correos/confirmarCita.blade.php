@@ -13,7 +13,7 @@
 <body>
 <div>
     <p>Estimado/a {{$name}},</p>
-    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} ha sido cancelada.</p>
+    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} ha sido confirmada,</p>
     <p>¡Muchas gracias!</p>
     <br>
     <br>

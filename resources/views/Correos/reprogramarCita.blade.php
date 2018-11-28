@@ -12,8 +12,9 @@
 </head>
 <body>
 <div>
+	<h3>Reprogramación de cita médica</h3>
     <p>Estimado/a {{$name}},</p>
-    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} ha sido cancelada.</p>
+    <p>El servicio de salud universitaria le comunica que su cita médica ha sido reprogramada para el día  {{$fecha}} a la hora {{$hora}}.</p>
     <p>¡Muchas gracias!</p>
     <br>
     <br>

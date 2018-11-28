@@ -16,7 +16,14 @@
  <div class="form-group">
 	<label for="cedula_paciente-field">Cédula</label>
 	<input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $paciente->cedula_paciente ) }}" />
-</div> <div class="form-group">
+    <input class="form-control" type="hidden" name="cedula_original" id="cedula_paciente-field" value="{{ old('cedula_paciente', $paciente->cedula_paciente ) }}" />
+    @if ($errors->has('cedula_paciente'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cedula_paciente') }}</strong>
+                                    </span>
+                                @endif
+</div> 
+<div class="form-group">
 	<label for="nombre-field">Nombre</label>
 	<input class="form-control" type="text" name="nombre" id="nombre-field" value="{{ old('nombre', $paciente->nombre ) }}" />
 </div> <div class="form-group">
@@ -29,6 +36,11 @@
 </div> <div class="form-group">
 	<label for="correo-field">Correo</label>
 	<input class="form-control" type="text" name="correo" id="correo-field" value="{{ old('correo', $paciente->correo ) }}" />
+    @if ($errors->has('correo'))
+        <span class="help-block">
+            <strong>{{ $errors->first('correo') }}</strong>
+        </span>
+    @endif
 </div>
 </div> <div class="form-group">
 	<label for="correo-field">Telefono</label>
