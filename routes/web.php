@@ -436,4 +436,8 @@ Route::post('activardesactivar', 'Cuentas_activaController@activar')->name('acti
 
 Route::post('reestablecer', 'recuperarContrasennaController@mail')->name('reestablecer');
 
-
+//Cambio contraseña asistente
+Route::resource('cambiarContrasennaAsistente', 'ContrasenneAsistenteController');
+Route::get('contrasennaAsistente', function() {
+    return view('asistente/cambiarContrasenna');
+});

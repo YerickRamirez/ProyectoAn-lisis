@@ -87,7 +87,9 @@
 		    		<li>
 		      			<a class="border" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
 		    		</li>
-		    		
+		    		<li>
+						<a class="border" href="{{ url('contrasennaAsistente') }}">Contraseña<span class="glyphicon glyphicon-lock right-aling-lock"></a>
+				  	</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
@@ -120,7 +122,8 @@
 		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="{{ url('cuentas_asistente') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('Asistente.horarios') }}">Horarios<span class="glyphicon glyphicon-time right-aling-glyphicon"></a>
-      	<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
+		<a class="border-a" href="{{ url('contrasennaAsistente') }}">Contraseña<span class="glyphicon glyphicon-lock right-aling-lock"></a>
+		<a class="border-a hide-button-exit" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
       </div>
     </div>
 
