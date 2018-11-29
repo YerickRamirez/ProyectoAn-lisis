@@ -51,13 +51,15 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="" style="text-align:center">
-                            <img src="{{asset('Imagenes/logo-login.ico')}}" style="height:150px; widght:150px">
-                        </div>
-                        
                         @if(session()->has('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
+                        </div>
+                    @endif
+
+                    @if(session()->has('info'))
+                        <div class="alert alert-info">
+                            {{ session()->get('info') }}
                         </div>
                     @endif
                     
@@ -66,10 +68,14 @@
                             {{ session()->get('error') }}
                         </div>
                     @endif
+                        <div class="" style="text-align:center">
+                            <img src="{{asset('Imagenes/logo-login.ico')}}" style="height:150px; widght:150px">
+                        </div>
                     </form>
                     </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </div>

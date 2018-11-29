@@ -46,9 +46,9 @@ class CitaController extends Controller
 		/*$citas = Cita::where('active_flag', 1)
 		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);*/
-		if(!Auth::check()) {
+		/*if(!Auth::check()) {
 			abort(404, 'ERROR DE AUTENTICACIÓN. INICIE SESIÓN DE NUEVO');
-		}
+		}*/
 
 		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
 		$paciente_id = $paciente->first()->id;
@@ -148,14 +148,18 @@ class CitaController extends Controller
 		Session::flash('message_type', 'negative');
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
-		return redirect('asistente.crearCita');
+		Session::flash('error', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
+		return redirect()->route('citas.index');
 		} else {
 		$user = User::where('id', Auth::user()->id)->first();
 		$email = $user->email;
 		$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
 		Mail::to($email)->send(new SendMailable($user->name, $fecha, $horaCita));
 		$cita->save();
+		Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'Cita para el ' . $fecha . ' a las ' . $horaCita . ' reservada existosamente');
 		return redirect()->route('citas.index');
 		}
 

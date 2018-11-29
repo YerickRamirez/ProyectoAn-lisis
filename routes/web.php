@@ -207,8 +207,10 @@ Route::get('/especialistasComboSinHorario/{ID_Servicio}/{ID_Recinto}', 'AjaxCont
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita');
 //fin rutas de ajax
 
-//Ruta citas
+
 Route::resource('citas', 'CitaController');
+
+//Ruta citas (creo que solo la usa paciente)
 Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
 
 //ruta reprogramarCita 
@@ -220,7 +222,8 @@ Route::get('/annadirCitaAsistenteEsp/{horaCita}/{dropRecintos}/{dropServicios}/{
 
 Route::get('combobox',function(){
     return view('PruebaCombobox.pruebacombo');
- });
+ });//->middleware('admin');
+ //ese es un ejemplo, a combobox debería de ser pacientes
 
 Route::get('ajax',function(){
     return view('message');

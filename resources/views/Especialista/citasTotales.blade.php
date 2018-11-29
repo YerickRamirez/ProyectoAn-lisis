@@ -16,8 +16,19 @@
     <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasHoyEsp') }}">Ver citas del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
             <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoy') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
         </div>-->
-<br>  
-<br>    
+        <br>
+        <br>
+        <a class="btn btn-primary" style="" href="{{url('reservarCitaEsp')}}">Reservar cita</a> 
+        <br>
+        <br>
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{@session('message')}}
+        </div>
+        @endif
     <div class="margin-up">
     <br> 
         <div class="margin-up">

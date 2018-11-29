@@ -195,6 +195,7 @@ timeout: 15000
                     var momento = new Date();
                     console.log("Actual parseada: " + momento);
         $('#datetimepicker5').datetimepicker({
+            minDate: momento,
             maxDate: fechaMaxima(momento),
             format: 'DD/MM/YYYY', //Hay que ponerle un formato a la fecha, si no se pone esto se establecen con horas
             daysOfWeekDisabled:[0,6], //Asi se bloquean los fines de semana
@@ -364,8 +365,10 @@ timeout: 15000
         function confirmarCita(hora , minutos) {
             var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);
-            datepicked.setHours(datepicked.getHours() -6);
+            //alert(datepicked)
+            //datepicked.setHours(datepicked.getHours() -6);
             datepicked = datepicked.toLocaleDateString();
+            //alert(datepicked);
                minutos = String(minutos);
                if(minutos == "0") {
                    minutos = "00";
@@ -374,6 +377,7 @@ timeout: 15000
             var datepicked = new Date(dateTime);
             datepicked.setHours(datepicked.getHours() -6);
                 datepicked = datepicked.toISOString();
+                //alert(datepicked + " para método")
                 var dropRecintos = $('#dropRecintos').val();           
                 var dropServicios = $('#dropServicios').val();           
                 var dropEspecialistas = $('#dropEspecialistas').val();           
@@ -414,7 +418,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 });
 var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
     var datepicked = new Date(dateTime);
-    datepicked.setHours(datepicked.getHours() -6);
+    //datepicked.setHours(datepicked.getHours() -6);
     datepicked = datepicked.toLocaleDateString();
 
     var y = document.getElementById("Fecha");
