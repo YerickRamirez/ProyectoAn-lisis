@@ -46,9 +46,21 @@ class CitaController extends Controller
 		/*$citas = Cita::where('active_flag', 1)
 		->orderBy('id', 'desc')->paginate(10);
 		$active = Cita::where('active_flag', 1);*/
-		/*if(!Auth::check()) {
-			abort(404, 'ERROR DE AUTENTICACIÓN. INICIE SESIÓN DE NUEVO');
-		}*/
+		if(!Auth::check()) {
+			Session::flash('message_type', 'negative');
+			Session::flash('message_icon', 'hide');
+			Session::flash('message_header', 'Failure');
+			Session::flash('info', 'Debe iniciar sesión');
+			return redirect('/login'); 
+		}
+
+		if(Auth::user()->tipo < 4) {
+			Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'No tiene permiso de acceder a esa sección');
+			return redirect('/'); 
+		}
 
 		$paciente = Paciente::where('id_user', Auth::user()->id)->select('pacientes.id')->get();
 		$paciente_id = $paciente->first()->id;
