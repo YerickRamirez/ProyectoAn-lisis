@@ -210,7 +210,12 @@ Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{
 //Ruta citas
 Route::resource('citas', 'CitaController');
 Route::get('/annadirCita/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'CitaController@store');
+
+//ruta reprogramarCita 
 Route::get('/annadirCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@reprogramarCitaAsistente');
+
+//ruta añadir cita (asist, esp)
+Route::get('/annadirCitaAsistenteEsp/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@store');
 //
 
 Route::get('combobox',function(){
@@ -268,6 +273,8 @@ Route::get('horarios_servicios_asistente', function () {
     return view('asistente.configurarHorarios') ;
 })->name('Asistente.horarios');
 
+
+//crear cita asist, la usa asist
 Route::get('asistente.crearCita', function () {
     return view('asistente.crearCita') ;
 })->name('Asistente.crearCita');
@@ -287,8 +294,15 @@ Route::resource('asistente', 'CitaControllerAsistente');
 Route::get('asistente', 'CitaControllerAsistente@index');
 Route::get('asistente', 'CitaControllerAsistente@index')->name('asistente.index');
 Route::get('/reprogramarCitaAsistente/{horaCita}/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}/{cedula}', 'CitaControllerAsistente@reprogramarCita');
+
+//ruta sacar cita (asist)
 Route::get('reservarCita',function(){
     return view('asistente.crearCita');
+ });
+
+ //ruta sacar cita (esp)
+ Route::get('reservarCitaEsp',function(){
+    return view('especialista_citas.crearCita');
  });
 
  
