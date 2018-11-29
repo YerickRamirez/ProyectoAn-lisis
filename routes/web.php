@@ -9,28 +9,6 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*//*
-
-//CREO QUE NINGUNO ES NECESARIO
-Route::get('master', function () {
-    return view('masterAdmin');
-});//->middleware('auth.basic');
-/*
-Route::get('root', function () {
-    return view('masterRoot');
-});//->middleware('auth.basic');
-
-/*CREO QUE NO ES NECESARIO ESTE
-Route::get('patient', function () {
-    return view('masterPatient');
-});//->middleware('auth.basic');
-
-
-
-
-Route::get('prueba', function () {
-    return view('Paciente/index') ;
-})->middleware('auth.basic');
 */
 
 Route::get('/',function () {
@@ -47,59 +25,52 @@ Route::get('/',function () {
 
 Route::get('admin', function () {
     return view('Admin/index') ;
-});//->middleware('auth.basic');
+})->middleware('admin');
 
 Route::get('cuentas', function () {
     return view('Admin/configurarCuentas') ;
-});//->middleware('auth.basic');
+})->middleware('admin');
 
 Route::get('crearCuentas', function () {
     return view('cuentas/create') ;
-});//->middleware('auth.basic');
+})->middleware('admin');//no estoy seguro de que sea admin
 
 
-Route::get('horarios', function () {
+/*Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
-});//->middleware('auth.basic');
+});*/ //esta estaba casi que repetida
 
 
 Route::get('recintos', function () {
     return view('recintos/index');
-});//->name('recintosA');
+})->middleware('admin');
 
-Route::get('cuentas/create', function(){return view('cuentas/create');}) ->name('Prueba.adn');
-//Route::get('cuentas/create', 'CuentaController@store') ->name('store.adn');
-Route::post('crearCuenta', 'CuentaController@store');
+//estas de cuentas las usan root y esp
+Route::get('cuentas/create', function(){return view('cuentas/create');}) ->name('Prueba.adn')->middleware('asistente');
+Route::post('crearCuenta', 'CuentaController@store')->middleware('asistente');
+//fin estas de cuentas las usan root y esp
 
-
-
+/* esta ruta literal no hace nada
 Route::get('Admin/configurarRecintos')->name('admin.recintos');
-
-Route::resource('servicio', 'ServicioController');
-
-/*
-Route::get('servicios', 'ServicioController@index')->name('servicios.index');//->middleware('auth.basic');
-Route::get('mostrarServicio', 'ServicioController@show')->name('servicios.show');//->middleware('auth.basic');
-Route::get('editarServicio', 'ServicioController@edit')->name('servicios.edit');//->middleware('auth.basic');
-Route::post('eliminarServicio', 'ServicioController@destroy')->name('servicios.destroy');//->middleware('auth.basic');
-Route::get('crearServicio', 'ServicioController@create')->name('servicios.create');//->middleware('auth.basic');
-Route::post('almacenarServicio', 'ServicioController@store')->name('servicios.store');//->middleware('auth.basic');
-Route::post('actualizarServicio', 'ServicioController@update')->name('servicios.update');//->middleware('auth.basic');
-
 */
+
+Route::resource('servicio', 'ServicioController')->middleware('admin');
 
 //---------------------------------------
 //Rutas Paciente
 //---------------------------------------
 //Para acceder a metodos del controlador Paciente
-Route::resource('pacientes', 'PacienteController');
+//todo mundo usa ese controlador de paciente :c
+Route::resource('pacientes', 'PacienteController')->middleware('paciente');
 
-//Pestanna para cambiar contrasenna
+//Pestanna para cambiar contrasenna del paciente
 Route::get('cambioContrasenna', function () {
     return view('pacientes/cambiarContrasenna');
-});
+})->middleware('paciente');
+
+
 //Controlador para contrasennas de pacientes
-Route::resource('contrasennas', 'cambiarContrasennaController');
+Route::resource('contrasennas', 'cambiarContrasennaController')->middleware('paciente'); 
 
 //Para acceder a la pagina de editar generada por el scaffold
 Route::get('perfilPaciente', 'PacienteController@edit');
@@ -257,7 +228,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rutas horarios servicios////////////////////////////////////////
 Route::get('horarios', function () {
     return view('Admin/configurarHorarios') ;
-})->name('Admin.horarios');
+})->name('Admin.horarios')->middleware('admin');
 
 Route::get('horarios_servicios', function () {
     return view('horarios_servicios/index') ;
