@@ -1,5 +1,5 @@
-@extends ('masterAsistente')
-@section ('contenido_Asistente')
+@extends ('masterEspecialista')
+@section ('contenido_Especialista')
 <div class="panel panel-primary class border-panel " >
      <div class="panel-heading border-panel bg-color-panel">
         <p class="center" style="font-size: 3vh;">Reservar citas</p>
@@ -294,7 +294,7 @@ timeout: 15000
                         alert("Elija una opción válida en todos los campos");
                } else {
             horaCita = String(hora) + minutos;
-            window.location.replace("/annadirCitaAsistenteEsp/" + horaCita + '/' + dropRecintos + 
+            window.location.replace("/annadirCitaAsistente/" + horaCita + '/' + dropRecintos + 
             '/' + dropServicios + '/' + dropEspecialistas + '/' + datepicked + '/' + cedula);
         }
         return false;

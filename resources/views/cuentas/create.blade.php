@@ -96,7 +96,7 @@
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>El correo ya se encuentra registrado</strong>
                                     </span>
                                 @endif
                             </div>

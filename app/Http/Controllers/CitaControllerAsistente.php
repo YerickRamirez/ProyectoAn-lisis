@@ -350,7 +350,12 @@ class CitaControllerAsistente extends Controller
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'No existen pacientes con la cédula digitada');
+				 if(Auth::user()->tipo == 3) {
 				 return redirect('reservarCita');//no sé si esta ruta está bien////////////////////////////////////////////////////////////
+				 }
+				 if(Auth::user()->tipo == 2) {
+					return redirect('reservarCitaEsp');
+				 }
 		} else {
 			$id = $paciente->first()->id;
 			$cita = new Cita();
@@ -383,7 +388,12 @@ class CitaControllerAsistente extends Controller
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
-				 return redirect('reservarCita');//no sé si esta ruta está bien////////////////////////////////////////////////////////////////////
+				 if(Auth::user()->tipo == 3) {
+					return redirect('reservarCita');//no sé si esta ruta está bien////////////////////////////////////////////////////////////
+				}
+				if(Auth::user()->tipo == 2) {
+					   return redirect('reservarCitaEsp');
+				}
 				 } else {
 
 				$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
@@ -395,7 +405,16 @@ class CitaControllerAsistente extends Controller
 				
 				Mail::to($email)->send(new SendMailable($nombre, $fecha, $horaCita));
 				 $cita->save();
-				 return redirect()->route('asistente.index');
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'Cita para el ' . $fecha . ' a las ' . $horaCita . ' reservada existosamente');
+				 if(Auth::user()->tipo == 3) {
+					return redirect()->route('asistente.index');
+				}
+					if(Auth::user()->tipo == 2) {
+						return redirect()->route('Especialista.index');
+					}
 				 }
 		}
 	}

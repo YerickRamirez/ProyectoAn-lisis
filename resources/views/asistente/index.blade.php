@@ -18,7 +18,17 @@
             <br>
     <section class="">
     <div class="panel-heading">
-    <a class="btn btn-primary" style="" href="{{url('reservarCita')}}">Reservar cita</a>
+    <a class="btn btn-primary" style="" href="{{url('reservarCita')}}">Reservar cita</a> 
+    <br>
+    <br>
+    @if(session('message'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{@session('message')}}
+    </div>
+    @endif
         <!--<div class="margin-dwn btn">
     <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoyAsist') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
             <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistAsist') }}">Ver histórico citas</a> <span>
@@ -220,6 +230,4 @@ $.each(datos, function()
 }//fin estado citas 
 
     </script>
-
-    
 @endsection

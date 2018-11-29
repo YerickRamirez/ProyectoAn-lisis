@@ -70,7 +70,8 @@
                             <span class="">Citas</span>
                             <b style="margin-left:72px;" class="caret"></b>
                         </a>
-                        <ul style="list-style:none; margin:0 0 0 0; padding:0 0 0 0;" id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+						<ul style="list-style:none; margin:0 0 0 0; padding:0 0 0 0;" id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+							<li><a class="border" href="{{ route('Asistente.crearCita') }}"><span><b class="caret-right"></b> Reservar&nbsp</span></a></li>
                             <li><a class="border" href="{{ url('asistente') }}"><span><b class="caret-right"></b> Actuales&nbsp</span></a></li>
 							<li><a class="border" href="{{ url('redirCitasAPartirHoyAsist') }}"><span><b class="caret-right"></b> Futuras&nbsp&nbsp&nbsp</span></a></li>
 							<li><a class="border" href="{{ url('redirCitasHistAsist') }}"><span><b class="caret-right"></b> Histórico</span></a></li>
@@ -112,6 +113,7 @@
       <div id="myNavbar">
 	    <!--<a class="border-a" href="{{ url('asistente') }}">Citas<span class="glyphicon glyphicon-calendar right-citas"></span></a>-->
 		<!--<a class="border-a" href="{{ route('asistente.confCuentas') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>-->
+			<a class="border-a" href="{{ route('Asistente.crearCita') }}">Reservar<span class="glyphicon glyphicon-check right-aling-check"></span></a>
 		<a class="border-a" href="{{ url('asistente') }}">Citas Actuales<span class="glyphicon glyphicon-calendar right-aling-calendar"></span></a>
 		<a class="border-a" href="{{ url('redirCitasAPartirHoyAsist') }}">Citas Futuras<span class="glyphicon glyphicon-list-alt right-aling-alt"></span></a>
 		<a class="border-a" href="{{ url('redirCitasHistAsist') }}"><span>Histórico de citas</span></a>
