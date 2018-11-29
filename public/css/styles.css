@@ -231,7 +231,9 @@ div.logo-ucr-3 {
   margin-left:10px;
 }
 
-
+.right-aling-check {
+  margin-left:38px;
+}
 
 .right-aling-lock {
   margin-left:30px;
@@ -324,7 +326,7 @@ div.logo-ucr-3 {
 .logo-ucr-asistente {
   position: fixed;
   margin-left: 45px;
-  bottom:150px;
+  bottom:50px;
 }
 
 .logo-ucr {

@@ -42,7 +42,7 @@
                                 @if($paciente->active_flag == 1)
                                 <td class="text-center">Activa</td>
                                 @else
-                                <td class="text-center">Desactiva</td>
+                                <td class="text-center">Deshabilitada</td>
                                 @endif
                                 <td class="text-center"><a class="btn btn-warning" href="{{ route('pacientes.editRoot', $paciente->id) }}">
                                     <i class="glyphicon glyphicon-edit"></i> Editar</a>

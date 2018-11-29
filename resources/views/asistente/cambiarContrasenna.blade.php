@@ -1,5 +1,5 @@
-@extends('masterPaciente')
-@section('contenido_Paciente')
+@extends ('masterAsistente')
+@section ('contenido_Asistente')
 
 <div class="panel panel-primary border-panel">
      <div class="panel-heading  bg-color-panel">
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
-            <form action="{{ route('contrasennas.update', Auth::user()->id) }}" method="POST">
+            <form action="{{ route('cambiarContrasennaAsistente.update', Auth::user()->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -28,7 +28,7 @@
                     </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
-                    <a class="btn btn-link pull-right" href="{{ url('paciente') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
+                    <a class="btn btn-link pull-right" href="{{ url('asistente') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
                 </div>
             </form>
 
