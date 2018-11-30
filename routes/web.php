@@ -447,6 +447,8 @@ Route::get('reactivarCuentas/{cuenta}', 'CuentaController@reactivate')->name('re
 Route::post('activardesactivar', 'Cuentas_activaController@activar')->name('activardesactivar')->middleware('asistente');
 
 Route::post('reestablecer', 'recuperarContrasennaController@mail')->name('reestablecer');
+//Route::get('reestablecer', 'recuperarContrasennaController@mail')->name('reestablecer');
+
 
 //Cambio contraseña asistente
 Route::resource('cambiarContrasennaAsistente', 'ContrasenneAsistenteController');

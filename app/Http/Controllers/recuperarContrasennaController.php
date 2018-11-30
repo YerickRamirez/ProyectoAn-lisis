@@ -35,6 +35,6 @@ class recuperarContrasennaController extends Controller
     $cuenta->password = bcrypt($randomString);
     $cuenta->save();
    Mail::to($email)->send(new recuperarContrasenna($randomString, $nombre));
-   return view('auth/login');
+   return redirect('login');
 }
 }

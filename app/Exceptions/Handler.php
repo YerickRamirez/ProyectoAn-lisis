@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
                 break;
 
                 // internal error
-                case '500':
+                case 500:
                 return redirect()->guest('log');
                 break;
                 default:
@@ -70,5 +70,5 @@ class Handler extends ExceptionHandler
         {
                 return parent::render($request, $e);
         }
-    }
+    } 
 }
