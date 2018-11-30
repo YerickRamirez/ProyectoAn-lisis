@@ -17,10 +17,11 @@ class recuperarContrasennaController extends Controller
 {
     $email = $request->email;
     $cuentaExistente = User::where('email', $email)->get();
-	$cuentaA = $cuentaExistente->first();
-	if($cuentaExistente->isEmpty()) {
+    if($cuentaExistente->isEmpty()) {
 		return back()->withErrors(['email' => trans('No existe un paciente registrado con el correo indicado')]);
     }
+    
+    $cuentaA = $cuentaExistente->first();
         
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -35,6 +36,6 @@ class recuperarContrasennaController extends Controller
     $cuenta->password = bcrypt($randomString);
     $cuenta->save();
    Mail::to($email)->send(new recuperarContrasenna($randomString, $nombre));
-   return view('auth/login');
+   return redirect('login');
 }
 }
