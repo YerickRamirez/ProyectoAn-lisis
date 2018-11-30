@@ -18,7 +18,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name-field">Nombre</label>
-                    <input class="form-control" type="text" name="name" id="name-field" required value="{{ old('name', $cuenta->name) }}" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,30}" title="Favor ingresar un formato correcto" />
+                    <input class="form-control" type="text" name="name" id="name-field" required value="{{ old('name', $cuenta->name) }}" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto" />
                 </div> 
                 <div class="form-group">
                     <label for="lastName-field">Primer Apellido</label>
@@ -27,15 +27,19 @@
                     $countApellidos = count($apellidos);
                         if($countApellidos >= 2) {
                             for($i=1; $i<$countApellidos; $i++){
+                                if($i == 1) {
+                                $lastName2 = ''.  $apellidos[$i];  
+                                } else {
                                 $lastName2 = $lastName2 . ' ' . $apellidos[$i];
+                            }
                             }
                         }
                     ?>
-                    <input class="form-control" type="text" name="lastName" id="lastName-field" required value="{{ old('lastName', $apellidos[0]) }}" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,30}" title="Favor ingresar un formato correcto"/>
+                    <input class="form-control" type="text" name="lastName" id="lastName-field" required value="{{ old('lastName', $apellidos[0]) }}" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>
                 </div>
                 <div class="form-group">
                     <label for="lastName2-field">Segundo Apellido</label>
-                    <input class="form-control" type="text" name="lastName2" id="lastName2-field" required value="{{ old('lastName2', $lastName2) }}" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,30}" title="Favor ingresar un formato correcto" />
+                    <input class="form-control" type="text" name="lastName2" id="lastName2-field" required value="{{ old('lastName2', $lastName2) }}" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto" />
                 </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email-field">Correo</label>

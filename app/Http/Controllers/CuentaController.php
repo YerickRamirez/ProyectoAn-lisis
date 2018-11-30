@@ -268,15 +268,15 @@ class CuentaController extends Controller
 	{
 		
 		//return $cuenta;
-		$rrr = $request->input('password');
+		/*$rrr = $request->input('password');
         $conf = $request->input("password-confirm");
         if (strlen($rrr)<6) {
             return back()->withErrors(['password' => 'Debe tener más de 6 caracteres']);
         }
         if ($rrr != $conf) {
             return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
-		}
-		
+		}*/
+		//return $request->email;
 		if($request->email != $cuenta->email){//quiere cambiar de correo
 			$usuarioConCorreo = User::where('email', $request->email)->get();
 			if(!$usuarioConCorreo->isEmpty()) {//en caso de que exista una cuenta con el nuevo correo
