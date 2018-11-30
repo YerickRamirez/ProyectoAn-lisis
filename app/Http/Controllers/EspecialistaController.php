@@ -62,6 +62,22 @@ class EspecialistaController extends Controller
 	public function store(Request $request, User $user)
 	{
 		$especialista = new Especialista();
+		//if ($request->input("cedula_especialista") != $request->input("cedula_original")){
+		$pacienteExistente = Especialista::where('cedula_especialista', $request->input("cedula_especialista"))->get();
+		if(!$pacienteExistente->isEmpty() ) {
+			return back()->withErrors(['cedula_especialista' => trans('Ya existe un especialista con la cédula indicada')]);
+		}
+		
+		$cuentaExistente = User::where('email', $request->input("email"))->get();
+		$cuentaA = $cuentaExistente->first();
+		if(!$cuentaExistente->isEmpty()) {
+			return back()->withErrors(['email' => trans('Ya existe un especialista con el correo indicado')]);
+		}
+
+		$rrr = $request->input('password');
+        if (strlen($rrr)<6) {
+            return back()->withErrors(['password' => 'Debe tener más de 6 caracteres']);
+        }
 
 		$user = User::create([
             'name' => $request->input("nombre"),
@@ -127,6 +143,13 @@ class EspecialistaController extends Controller
 	 */
 	public function update(Request $request, Especialista $especialista, User $user)
 	{
+
+		if ($request->input("cedula_especialista") != $request->input("cedula_original")){
+			$pacienteExistente = Especialista::where('cedula_especialista', $request->input("cedula_especialista"))->get();
+			if(!$pacienteExistente->isEmpty() ) {
+				return back()->withErrors(['cedula_especialista' => trans('Ya existe un especialista con la cédula indicada')]);
+			}
+		}
 
 		$especialista->cedula_especialista = $request->input("cedula_especialista");
 		$especialista->nombre = $request->input("nombre");
