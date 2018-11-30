@@ -13,6 +13,7 @@ use DB;
 use Mail;
 use App\Mail\confirmarCita;
 use App\Mail\EnviarCanceacion;
+use App\Mail\reprogramarCitaAsistente;
 use App\Cita;
 use App\Correo;
 use App\Telefono;
@@ -317,7 +318,7 @@ class CitaControllerEspecialista extends Controller
 				$id = $paciente->first()->id;
 				$cita = new Cita();
 			
-				$cita->estado_cita_id = 4;
+				$cita->estado_cita_id = 1;
 				$cita->paciente_id = $id;
 				$cita->servicio_id = $request->dropServicios;
 				$cita->especialista_id = $request->dropEspecialistas;
@@ -342,6 +343,15 @@ class CitaControllerEspecialista extends Controller
 				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
 				 return back();
 				 } else {
+					$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
+					->first();
+					$nombre = $paciente->nombre;
+					$email = $paciente->correo;
+					$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
+	
+					
+					Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $horaCita));
+
 				 $cita->save();
 				 return back();
 				}
