@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/log',function () {
+    return view('auth/login');
+});
+
 Route::get('/',function () {
     if(Auth::check()) {
         auth()->logout();
@@ -449,3 +453,4 @@ Route::resource('cambiarContrasennaAsistente', 'ContrasenneAsistenteController')
 Route::get('contrasennaAsistente', function() {
     return view('asistente/cambiarContrasenna');
 });
+
