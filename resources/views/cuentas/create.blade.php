@@ -72,7 +72,7 @@
 
                             <div class="col-md-3{{ $errors->has('cedula') ? ' has-error' : '' }}">
                                  <label for="cedula" class="control-label">Cédula</label>
-                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" autofocus required pattern="^[0-9]{7,20}" title="Formato incorrecto, favor ingresar cédula con ceros y sin espacios">
 
                                 @if ($errors->has('cedula'))
                                     <span class="help-block">
@@ -128,7 +128,7 @@
                         
                         <div class="col-md-3{{ $errors->has('telefono') ? ' has-error' : '' }}">
                             <label for="telefono" class=" control-label">Telefono</label>
-                           <input id="telefono" type="number" class="form-control" name="telefono">
+                           <input id="telefono" type="number" class="form-control" name="telefono" pattern="^[0-9]{4,10}" title="No se permiten letras en este campo/ingresar de 4-10 digitos">
                            @if ($errors->has('telefono'))
                            <span class="help-block">
                                <strong>{{ $errors->first('telefono') }}</strong>

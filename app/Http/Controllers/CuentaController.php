@@ -125,7 +125,7 @@ class CuentaController extends Controller
 		    }
 		}
 
-		//return "aquíxD";
+		//return $telefono;
 		if($telefono == "" || strlen($telefono) < 4) {
 			if($checkValue == 4) {
 				return back()->withErrors(['telefono' => trans('El paciente debe tener un teléfono válido')]);

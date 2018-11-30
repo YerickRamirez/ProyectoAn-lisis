@@ -5,9 +5,8 @@
         <p style="text-align: center; font-size: 3vh;">Editar Recinto</p>
     </div>
     <div class="panel-body">
-        <section class="">
-        <div class="content-c w3-container">    
-            <div class=" center">
+        <div class="row">
+       
   
                <div class="col-md-6 col-md-offset-3">
                 
@@ -26,8 +25,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-        </section>
     </div>
 </div>
 @stop

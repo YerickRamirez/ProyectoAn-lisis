@@ -76,10 +76,6 @@
 							<li><a class="border" href="{{ url('redirCitasHistEsp') }}"><span><b class="caret-right"></b> Histórico</span></a></li>
                         </ul>
                     </li>
-
-		    		<li>
-		      			<a class="border" href="">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
-					</li>
 					<li>
 		      			<a class="border" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		    		</li>
@@ -87,6 +83,9 @@
 		    		<li>
 		      			<a class="border" href="{{ route('Especialista.menuConfigHorarios') }}">Horario<span class="glyphicon glyphicon-time right-aling-glyphicon-h"></a>
 		    		</li>
+					<li>
+						<a class="border" href="{{ url('contrasennaEspecialista') }}">Contraseña<span class="glyphicon glyphicon-lock right-aling-lock"></a>
+				  	</li>
 		    		<li class="hide-button-side">
 		      			<a class="border" href="{{ url('/logout') }}">Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
 		    		</li>
@@ -115,7 +114,6 @@
 		<a class="border-a" href="{{ url('Especialista') }}">Citas Actuales<span class="glyphicon glyphicon-calendar right-aling-calendar"></span></a>
 		<a class="border-a" href="{{ url('redirCitasAPartirHoy') }}">Citas Futuras<span class="glyphicon glyphicon-list-alt right-aling-alt"></span></a>
 		<a class="border-a" href="{{ url('redirCitasHistEsp') }}"><span>Histórico de citas</span></a>
-		<a class="border-a" href="#">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="#">Horario<span class="glyphicon glyphicon-time right-hora-e"></a>
       	<a class="border-a hide-button-exit" href="{{ url('/logout') }}"> Salir<span class="glyphicon glyphicon-log-out right-aling-glyphicon-s"></a>
