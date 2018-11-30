@@ -274,7 +274,8 @@ timeout: 15000
         function confirmarCita(hora , minutos) {
             var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);
-            datepicked.setHours(datepicked.getHours() - 6);
+            //alert(datepicked)
+            //datepicked.setHours(datepicked.getHours() -6);
             datepicked = datepicked.toLocaleDateString();
                // alert("Fecha elegida: " + datepicked);
                minutos = String(minutos);
