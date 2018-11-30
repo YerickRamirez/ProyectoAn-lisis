@@ -430,10 +430,10 @@ Route::get('citasRecintoEstadoAsistHist/{ID_Recinto}/{estado}', 'CitaControllerA
 
 ////////////////////////////////////////////////////////////////////////////De aquí para abajo no quedé seguro de lo del middleware, hay que probarlo bien
 //Para editar los pacientes desde el root
-Route::get('pacientes.editRoot/{paciente}', 'PacienteController@editRoot')->name('pacientes.editRoot')->middleware('admin');
+Route::get('pacientes.editRoot/{paciente}', 'PacienteController@editRoot')->name('pacientes.editRoot')->middleware('asistente');
 
 //Para hacer el update de los datos del paciente desde el root
-Route::put('pacientes.updateRoot/{paciente}', 'PacienteController@updateRoot')->name('pacientes.updateRoot')->middleware('admin');
+Route::put('pacientes.updateRoot/{paciente}', 'PacienteController@updateRoot')->name('pacientes.updateRoot')->middleware('asistente');
 
 Route::get('asistente/verPacientes', 'PacienteController@index')->middleware('asistente');
 
