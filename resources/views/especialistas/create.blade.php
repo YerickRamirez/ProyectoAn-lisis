@@ -37,8 +37,8 @@
 	<input class="form-control" type="text" name="email" placeholder="Ingrese su email" id="email-field" value="" />
 </div>
 <div class="form-group">
-	<label for="password">contraseña</label>
-	<input class="form-control" type="text" name="password" placeholder="Ingrese su contrasenna(6 caracter minimo)" id="password-field" value="" />
+	<label for="password">Contraseña</label>
+	<input class="form-control" type="password" name="password" placeholder="Ingrese su contrasenna(6 caracter minimo)" id="password-field" value="" />
 </div>
 
 
