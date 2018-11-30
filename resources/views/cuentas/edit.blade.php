@@ -27,7 +27,11 @@
                     $countApellidos = count($apellidos);
                         if($countApellidos >= 2) {
                             for($i=1; $i<$countApellidos; $i++){
+                                if($i == 1) {
+                                $lastName2 = ''.  $apellidos[$i];  
+                                } else {
                                 $lastName2 = $lastName2 . ' ' . $apellidos[$i];
+                            }
                             }
                         }
                     ?>
