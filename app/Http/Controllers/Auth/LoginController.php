@@ -112,7 +112,7 @@ class LoginController extends Controller
         //Session::flush();
        //$user = Auth::user();
 
-        return redirect('login');
+        return redirect('/');
     }
     use AuthenticatesUsers;
 
