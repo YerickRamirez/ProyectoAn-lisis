@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Restablecer la Contraseña</div>
+            <div class="panel panel-primary border-panel">
+                <div class="panel-heading bg-color-panel" style=" font-size: 16px">Restablecer la Contraseña</div>
 
                 <div class="panel-body">
                     @if (session('status'))
