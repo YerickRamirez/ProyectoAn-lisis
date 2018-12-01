@@ -69,9 +69,6 @@
 				
 				<ul class="sidebar-nav">
 		    		<li>
-		      			<a class="border" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
-		    		</li>
-		    		<li>
 		      			<a class="border" href="{{ route('cuentas.index') }}">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 					</li>
 					<li>
@@ -115,7 +112,6 @@
       </div>
 
       <div id="myNavbar">
-	    <a class="border-a" href="admin">Inicio<span class="glyphicon glyphicon-home right-aling-glyphicon-i"></span></a>
 		<a class="border-a" href="cuentas">Cuentas<span class="glyphicon glyphicon-user right-aling-glyphicon"></a>
 		<a class="border-a" href="{{ route('pacientes.index') }}">Pacientes<span class="glyphicon glyphicon-search right-aling-glyphicon-paciente"></a>
 		<a class="border-a" href="{{ route('Admin.horarios') }}">Horarios<span class="glyphicon glyphicon glyphicon-wrench right-aling-glyphicon"></a>

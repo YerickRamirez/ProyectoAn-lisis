@@ -28,7 +28,7 @@ Route::get('/',function () {
 //---------------------------------------
 
 Route::get('admin', function () {
-    return view('Admin/index') ;
+    return redirect('cuentas') ;
 })->middleware('admin');
 
 Route::get('cuentas', function () {
