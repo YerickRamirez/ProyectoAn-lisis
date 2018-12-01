@@ -38,9 +38,7 @@
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Teléfono</th>
                         <!--<th class="text-center">Correo</th>-->  
-                        <th class="text-center">Especialista</th> 
                         <th class="text-center">Servicio</th> 
-                        <th class="text-center">Recinto</th> 
                         <th class="text-center">Fecha/Hora</th> 
                         <th class="text-center">Estado</th>                          
                     </thead>
@@ -117,21 +115,19 @@ function ajaxCitasRecinto(ID_Recinto){
                         '<input type="hidden" name="_method" value="DELETE">' +
                         '<button id="confirmado" type="submit" class="btn  btn-primary">&nbspConfirmar &nbsp</button>' +'</form>';*/
 
-            var btnReprogramarText = '<button id="reprogramar" onclick="redireccionarReprogramar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-warning">&nbspReprogramar &nbsp</button>';
-            var btnCancelarText = '<button id="cancelar" onclick="redireccionarCancelar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-danger">&nbspCancelar &nbsp</button>';
+            var btnReprogramarText = '<button id="reprogramar" onclick="redireccionarReprogramar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-repeat"></button>';
+            var btnCancelarText = '<button id="cancelar" onclick="redireccionarCancelar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></button>';
             
            if(this.estado_cita_id == 2){
-                var btnConfirmarText = '<button style="background-color:grey" disabled id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>';
+                var btnConfirmarText = '<button style="background-color:grey" disabled id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ok"></button>';
             } else {
-                var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>'
+                var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ok"></button>'
             }
             $('#tablita').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
-                this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
                 this.nombreServ,
-                this.descripcion,
                 this.fecha_cita,
                 btnConfirmarText + ' ' + btnReprogramarText + ' ' + btnCancelarText
         ] ).draw( false );   
@@ -145,16 +141,22 @@ function ajaxCitasRecinto(ID_Recinto){
         });
         }
 
-function redireccionarConfirmar(id_cita) {
+function redireccionarConfirmar(id_cita, nombre, apellido) {
+    if(confirm('¿Está seguro que desea confirmar la cita de ' + nombre + ' ' + apellido + '?')){
     window.location.replace('/confirmarCitaAjax/' + id_cita);
+    }
 }
 
-function redireccionarReprogramar(id_cita) {
+function redireccionarReprogramar(id_cita, nombre, apellido) {
+    if(confirm('¿Está seguro que desea reprogramar la cita de ' + nombre + ' ' + apellido + '?')){
     window.location.replace('/reprogramarCitaAjax/' + id_cita);
 }
+}
 
-function redireccionarCancelar(id_cita) {
+function redireccionarCancelar(id_cita, nombre, apellido) {
+    if(confirm('¿Está seguro que desea cancelar la cita de ' + nombre + ' ' + apellido + '?')){
     window.location.replace('/cancelarCitaAjax/' + id_cita);
+    }
 }
 
     $(document).ready(function() {

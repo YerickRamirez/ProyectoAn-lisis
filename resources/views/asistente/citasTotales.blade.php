@@ -41,7 +41,7 @@
                     </thead>
 
                     <tbody>
-                       
+                     
                     </tbody>
                 </table>
             </div>
@@ -113,20 +113,18 @@ function ajaxCitasRecintoEstado(ID_Recinto, estado){
                         '<input type="hidden" name="_method" value="DELETE">' +
                         '<button id="confirmado" type="submit" class="btn  btn-primary">&nbspConfirmar &nbsp</button>' +'</form>';*/
 
-            var btnReprogramarText = '<button id="reprogramar" onclick="redireccionarReprogramar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-warning">&nbspReprogramar &nbsp</button>';
-            var btnCancelarText = '<button id="cancelar" onclick="redireccionarCancelar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-danger">&nbspCancelar &nbsp</button>';
-
-            if(this.estado_cita_id == 2){
-                var btnConfirmarText = '<button style="background-color:grey" disabled id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>';
-            } else {
-                var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>'
-            }
             
-            if(this.estado_cita_id == 3 || this.estado_cita_id == 4){
-                var btnConfirmarText = '<button style="background-color:grey" disabled id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>';
-                var btnReprogramarText = '<button style="background-color:grey" disabled id="reprogramar" onclick="redireccionarReprogramar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-warning">&nbspReprogramar &nbsp</button>';
-                var btnCancelarText = '<button style="background-color:grey" disabled id="cancelar" onclick="redireccionarCancelar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-danger">&nbspCancelar &nbsp</button>';
-            }
+            var estado = "Reservada";
+            if(this.estado_cita_id == 2){
+                var estado = "Confirmada";
+            } 
+            if(this.estado_cita_id == 3 ){
+                var estado = "Cancelada";
+            } 
+            
+            if(this.estado_cita_id == 4 ){
+                var estado = "Reprogramada";
+            } 
 
             $('#tablita').DataTable().row.add( [
                 this.cedula_paciente,
@@ -136,7 +134,7 @@ function ajaxCitasRecintoEstado(ID_Recinto, estado){
                 this.nombreServ,
                 this.descripcion,
                 this.fecha_cita,
-                btnConfirmarText + ' ' + btnReprogramarText + ' ' + btnCancelarText
+                estado
         ] ).draw( false );   
         })
         

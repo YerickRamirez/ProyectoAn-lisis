@@ -211,7 +211,7 @@ timeout: 15000
         </div>
     </div>
     
-    <button id="mostar-tabla"  class = 'margin-button-agregar btn btn-success mobile' 
+    <button id="mostar-tabla" style="margin-left: 15px;" class = 'margin-button-agregar btn btn-success mobile' 
     onclick="revisarDisponibilidad()">Mostrar horario</button>
     <br><br>
     

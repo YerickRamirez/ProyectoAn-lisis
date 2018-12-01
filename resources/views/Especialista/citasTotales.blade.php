@@ -41,7 +41,6 @@
                         <!--<th class="text-center">Correo</th>-->  
                         <th class="text-center">Especialista</th> 
                         <th class="text-center">Servicio</th> 
-                        <th class="text-center">Recinto</th> 
                         <th class="text-center">Fecha/Hora</th> 
                         <th class="text-center">Estado</th>                          
                     </thead>
@@ -113,28 +112,25 @@ function ajaxCitasRecinto(ID_Recinto){
        // $('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
         $.each(datos.citas, function()
         {
-             /*var abcd = '<form style="display:inline" action="confirmarCitEspecialista/' + this.id_cita + '" method="POST" style="display: inline;" onsubmit="return confirm(' + "'" + "Desea confirmar la cita de " + this.nombre + "?'"+');">' +
-                    '<input type="hidden" name="_token" value="' + "'" + "+ document.getElementsByName('_token')[0].value + '"+">"+
-                        '<input type="hidden" name="_method" value="DELETE">' +
-                        '<button id="confirmado" type="submit" class="btn  btn-primary">&nbspConfirmar &nbsp</button>' +'</form>';*/
-
-            var btnReprogramarText = '<button id="reprogramar" onclick="redireccionarReprogramar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-warning">&nbspReprogramar &nbsp</button>';
-            var btnCancelarText = '<button id="cancelar" onclick="redireccionarCancelar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-danger">&nbspCancelar &nbsp</button>';
+            var estado = "Reservada";
+            if(this.estado_cita_id == 2){
+                var estado = "Confirmada";
+            } 
+            if(this.estado_cita_id == 3 ){
+                var estado = "Cancelada";
+            } 
             
-           if(this.estado_cita_id == 2){
-                var btnConfirmarText = '<button style="background-color:grey" disabled id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>';
-            } else {
-                var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + ')" class="btn  btn-primary">&nbspConfirmar &nbsp</button>'
-            }
+            if(this.estado_cita_id == 4 ){
+                var estado = "Reprogramada";
+            } 
             $('#tablita').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
                 this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
                 this.nombreServ,
-                this.descripcion,
                 this.fecha_cita,
-                btnConfirmarText + ' ' + btnReprogramarText + ' ' + btnCancelarText
+                estado
         ] ).draw( false );   
         })
         
