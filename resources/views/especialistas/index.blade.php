@@ -26,7 +26,8 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Primer Apellido</th>
                             <th class="text-center">Segundo Apellido</th>
-                            <th class="text-center"></th>
+                            <th class="text-center">Opciones</th>
+                        
                         </tr>
                     </thead>
 

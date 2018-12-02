@@ -95,4 +95,12 @@ $(window).resize(function() {
 		}
 	}
 
+	function parsearFecha(datepicked){
+		var fecha = datepicked.split("/");
+    	var dia = fecha[0];
+    	var mes = fecha[1];
+		var anio = fecha[2];
+		return  dia + "/" + mes + "/" + anio;
+	}
+
 	
