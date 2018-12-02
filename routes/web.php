@@ -119,7 +119,7 @@ Route::get('datepicker', function () {
 //---------------------------------------
 
 //este tiene el guest y prefiero no tocar, además es login, todos pueden sin problema
-Route::post('login', 'Auth\LoginController@login')-> name('login')->middleware('guest');
+//Route::post('login', 'Auth\LoginController@login')-> name('login');
 
 
 Route::post('/test/save', ['as' => 'save-date',
@@ -210,7 +210,12 @@ Route::get('combobox',function(){
 
 
 // Authentication Routes... no las voy a tocar con middle, no tiene sentido (quizá guest)
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('login',function () {
+    if(Auth::check()) {
+        auth()->logout();
+    }
+    return view('auth/login');
+});
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
