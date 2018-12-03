@@ -90,8 +90,8 @@ function insertarDeshabEsp() {
                 if (dropEspecialistas == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
-                alert('/crearDeshabEspecialista/' + dropEspecialistas + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
-  + horaFin);
+               /* alert('/crearDeshabEspecialista/' + dropEspecialistas + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  + horaFin);*/
                 $.ajax({
   url: '/crearDeshabEspecialista/' + dropEspecialistas + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
   + horaFin,

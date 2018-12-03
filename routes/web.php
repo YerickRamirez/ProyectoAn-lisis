@@ -306,9 +306,9 @@ Route::get('/algo', function() {
 Route::get('dropDiasBloqueo', 'AjaxController@dropDiasBloqueo')->middleware('asistente');
 
 //resource de bloqueoEspecialistas para root
-Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController')->middleware('admin');
+Route::resource('bloqueo_especialistas', 'Bloqueo_especialistumController')->middleware('asistente');
 //resource de deshabilitarEspecialistas para root
-Route::resource('deshab_especialistas', 'Deshabilitar_horarios_especialistaController')->middleware('admin');
+Route::resource('deshab_especialistas', 'Deshabilitar_horarios_especialistaController')->middleware('asistente');
 
 //resource de bloqueoEspecialistas para asistentes
 Route::resource('bloqueo_especialistas_asist', 'Bloqueo_especialistumController')->middleware('asistente');
