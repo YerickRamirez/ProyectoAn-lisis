@@ -27,7 +27,7 @@
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Correo</th>
                         <th class="text-center">Teléfono</th>
-                        <th class="text-center">Estado</th>    
+                        <th class="text-center">Estado Cuenta</th>    
                         <th class="text-center">Opciones</th>                         
                     </thead>
 

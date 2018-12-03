@@ -18,7 +18,7 @@
                 </div> 
                 <div class="form-group">
 	                <label for="descripcion-field">Descripción</label>
-	                <input class="form-control" type="text" name="descripcion" id="descripcion" value=""  required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>/>
+	                <input class="form-control" type="text" name="descripcion" id="descripcion" value=""  required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>
                 </div> 
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Crear</button>

@@ -417,12 +417,13 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
     
 });
 var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+    
     var datepicked = new Date(dateTime);
-    //datepicked.setHours(datepicked.getHours() -6);
     datepicked = datepicked.toLocaleDateString();
-
+    var fechaTica = parsearFecha(datepicked);
+    
     var y = document.getElementById("Fecha");
-    y.innerHTML = "Fecha seleccionada: " + datepicked;
+    y.innerHTML = "Fecha seleccionada: " + fechaTica;
     y.style.display ="block";
 }
 mostarHorario();

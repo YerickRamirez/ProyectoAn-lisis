@@ -16,14 +16,14 @@
             <form action="{{ url('activardesactivar') }}" method='POST' style="float:right;">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
         
-                <label for="name" ><strong>Creación de cuentas activas/desactivas por defecto</strong></label> 
+                <label for="name" ><strong>Creación de cuentas activas/bloqueadas por defecto</strong></label> 
                     <div class="radio">
                     @if($opcion->cuentas_activas == 0)
                         <label><input type="radio" name="tipo" value="1">Activadas</label>
-                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="2" checked>Desactivadas</label>
+                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="2" checked>Bloqueadas</label>
                     @else
                         <label><input type="radio" name="tipo" value="1" checked>Activadas</label>
-                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="2">Desactivadas</label>
+                        <label style="margin-left: 15px;"><input type="radio" name="tipo" value="2">Bloqueadas</label>
                     @endif    
                         <button style="margin-left: 20px;" class = 'btn btn-primary' type ='submit'><i class="fa fa-floppy-o"></i> Guardar</button>
                     </div>

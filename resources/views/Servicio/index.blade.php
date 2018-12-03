@@ -7,7 +7,7 @@
     <br/>
     <div class="panel-body">
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('servicio.create') }}">Agregar Servicio</a> <span>
-            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('recinto_servicios.index') }}">Vincular Servicio</a>
+            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('recinto_servicios.index') }}">Vincular Recinto</a>
             </span>
             <span>
                 <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialista_servicios.index') }}">Vincular Especialista</a>
