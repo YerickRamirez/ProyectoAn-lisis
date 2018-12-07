@@ -37,8 +37,8 @@ function mostarHorario() {
 function ocultarHorario() {
 	var x = document.getElementById("ocultar-tabla");
 	x.style.display = "none";
-	//var y = document.getElementById("Fecha");
-    //y.style.display ="none";
+	var y = document.getElementById("Fecha");
+    y.style.display ="none";
 }
 
 
