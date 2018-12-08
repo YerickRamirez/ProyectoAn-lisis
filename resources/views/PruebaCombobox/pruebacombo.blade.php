@@ -130,6 +130,17 @@ $(document).ready(function() {
             ocultarHorario();
             }
         )
+
+        $('#datetimepicker5').ready(function() {
+            var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+            var datepicked = new Date(dateTime);
+            datepicked = datepicked.toLocaleDateString();
+            var fechaTica = parsearFecha(datepicked);
+            var y = document.getElementById("Fecha");
+            y.innerHTML = "Fecha seleccionada: " + fechaTica;
+            y.style.display ="block";            }
+        )
+       
 })
 
 function limpiarDrop(nombreDrop, nombreTexto) {
@@ -193,7 +204,8 @@ timeout: 15000
                     <script type="text/javascript">
                 $(function () {
                     var momento = new Date();
-                    console.log("Actual parseada: " + momento);
+                    //console.log("Actual parseada: " + momento);
+                    
         $('#datetimepicker5').datetimepicker({
             minDate: momento,
             maxDate: fechaMaxima(momento),
@@ -202,7 +214,14 @@ timeout: 15000
             //disabledDates: ["10/24/2018"] //Lista de fechas que bloquear. 
             disabledDates: [] //Lista de fechas que bloquear. 
         }).on('dp.change', function prueba() {
-            });
+            var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+            var datepicked = new Date(dateTime);
+            datepicked = datepicked.toLocaleDateString();
+            var fechaTica = parsearFecha(datepicked);
+            var y = document.getElementById("Fecha");
+            y.innerHTML = "Fecha seleccionada: " + fechaTica;
+            y.style.display ="block";    
+        });
     
     
         function fechaMaxima (actual){
@@ -313,8 +332,13 @@ timeout: 15000
         {{@session('message')}}
     </div>
     @endif
+    
     <p style="display:none; margin-top:15px; text-align:center; font-size: 3vh;" id="Fecha">Hola</p>
 
+    <!--
+    <a href="" style="display:none; margin-top:15px; text-align:center; font-size: 3vh;"
+    data-toggle="tooltip" title="Fecha en la que se buscarán citas disponibles. Si desea
+    modificarla puede usar el calendario que se encuentra arriba" id="Fecha">Hola</a>-->
     <!-- /////////////////////////////////////////////////////////////////////////// -->
     
     <div class="panel-heading">
@@ -416,15 +440,6 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 
     
 });
-var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
-    
-    var datepicked = new Date(dateTime);
-    datepicked = datepicked.toLocaleDateString();
-    var fechaTica = parsearFecha(datepicked);
-    
-    var y = document.getElementById("Fecha");
-    y.innerHTML = "Fecha seleccionada: " + fechaTica;
-    y.style.display ="block";
 }
 mostarHorario();
 }
