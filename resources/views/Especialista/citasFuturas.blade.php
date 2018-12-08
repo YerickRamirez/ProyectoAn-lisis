@@ -121,7 +121,7 @@ function ajaxCitasRecinto(ID_Recinto){
            if(this.estado_cita_id == 2){
                 var btnConfirmarText = '<button style="background-color:grey" disabled id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ok"></button>';
             } else {
-                var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ok"></button>'
+                var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></button>'
             }
             $('#tablita').DataTable().row.add( [
                 this.cedula_paciente,

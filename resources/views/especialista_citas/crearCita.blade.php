@@ -10,7 +10,7 @@
     <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
     <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control"></select></div>
     <div class="col-md-4">
-    <input  placeholder="Cédula paciente" class="nombre form-control" name="cedula" type="number" id="cedula" pattern="^[0-9]{9}" title="No se permiten letras en este campo"> 
+    <input style="margin-bottom: 15px;" placeholder="Cédula paciente" class="nombre form-control" name="cedula" type="number" id="cedula" pattern="^[0-9]{9}" title="No se permiten letras en este campo"> 
 </div>
 
 <script>
@@ -223,7 +223,7 @@ timeout: 15000
         {{@session('message')}}
     </div>
     @endif
-
+    <p style="display:none; margin-top:15px; text-align:center; font-size: 3vh;" id="Fecha">Hola</p>
     <!-- /////////////////////////////////////////////////////////////////////////// -->
     
     <div class="panel-heading">
@@ -322,6 +322,13 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
     document.getElementById(entry).style.backgroundColor = "#656161";
     
 });
+    var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+    var datepicked = new Date(dateTime);
+    datepicked = datepicked.toLocaleDateString();
+    var fechaTica = parsearFecha(datepicked);
+    var y = document.getElementById("Fecha");
+    y.innerHTML = "Fecha seleccionada: " + fechaTica;
+    y.style.display ="block";
 }
 mostarHorario();
 }

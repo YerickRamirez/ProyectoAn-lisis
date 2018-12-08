@@ -14,8 +14,8 @@
 function recintos(){
         $('#dropRecintos').empty();
         $('#dropRecintos').append("<option>Cargando...</option>");
-        $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");
-        $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");
+        $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");
+        $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");
 
          $.ajax({
   url: '/recintosCombo',
@@ -23,7 +23,7 @@ function recintos(){
   dataType: "json",
   success:function(datos){ 
 $('#dropRecintos').empty();
-$('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
+$('#dropRecintos').append("<option value='defecto'>Seleccione Recinto</option>");   
 $.each(datos, function()
 {
         $.each(this, function(){//los datos del server vienen en una variable data
@@ -35,7 +35,7 @@ $.each(datos, function()
 }, error:function() {
         alert("¡Ha habido un error! Elija correctamente su recinto." +
         "Si este error persiste por favor comuníquese con el Servicio de Salud");
-        $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+        $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
 }
 });
 }
@@ -49,7 +49,7 @@ function servicios(ID_Recinto){
   dataType: "json",
   success:function(datos){ 
 $('#dropServicios').empty();
-$('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");   
+$('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");   
 $.each(datos, function()
 {
     
@@ -60,7 +60,7 @@ $.each(datos, function()
 
 }, error:function() {
         $('#dropServicios').empty();
-        $('#dropServicios').append("<option value='defecto'>----Seleccione Servicio----</option>");   
+        $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");   
         alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
 }
 }); //fin ajax
@@ -75,7 +75,7 @@ function especialistas(ID_Servicio, ID_Recinto){
   dataType: "json",
   success:function(datos){ 
 $('#dropEspecialistas').empty();
-$('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+$('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
 $.each(datos, function()
 {
         $.each(this, function(){
@@ -87,7 +87,7 @@ $.each(datos, function()
 
 }, error:function() {
         $('#dropEspecialistas').empty();
-        $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
+        $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
         alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
 }
 }); //fin ajax
@@ -145,12 +145,14 @@ $(document).ready(function() {
 
 function limpiarDrop(nombreDrop, nombreTexto) {
    $('#' + nombreDrop).empty();
-   $('#' + nombreDrop).append("<option value='defecto'>----Seleccione " + nombreTexto+ "----</option>");   
+   $('#' + nombreDrop).append("<option value='defecto'>Seleccione " + nombreTexto+ "</option>");   
 }
 
 </script>
 
+
 <script>
+
 function revisarDisponibilidad() {
         var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
         //var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
