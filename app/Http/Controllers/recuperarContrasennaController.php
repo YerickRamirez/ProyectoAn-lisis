@@ -8,6 +8,7 @@ use App\Mail\recuperarContrasenna;
 use App\User;
 use App\Telefono;
 use Auth;
+use \Session;
 use DB;
 
 class recuperarContrasennaController extends Controller
@@ -36,6 +37,11 @@ class recuperarContrasennaController extends Controller
     $cuenta->password = bcrypt($randomString);
     $cuenta->save();
    Mail::to($email)->send(new recuperarContrasenna($randomString, $nombre));
+
+    Session::flash('message_type', 'negative');
+    Session::flash('message_icon', 'hide');
+	Session::flash('message_header', 'Failure');
+	Session::flash('success', 'Correo de recuperación enviado correctamente. Por favor verifique su bandeja de entrada o la carpeta "spam". ');
    return redirect('login');
 }
 }
