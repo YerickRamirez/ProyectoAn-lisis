@@ -7,7 +7,7 @@
     </div>
     <br/>
     <div class="panel-body">
-            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialistas.create') }}"> Crear</a>
+            <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialistas.create') }}">Agregar</a>
             <span>
                 <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialista_servicios.index') }}">Vincular Especialista</a>
             </span>
@@ -42,15 +42,13 @@
                                 
                                 <td class="text-center">
                                     
-                                    <a class="btn btn-warning" href="{{ route('especialistas.edit', $especialista->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Editar
-                                    </a>
+                                    <a class="btn btn-warning" href="{{ route('especialistas.edit', $especialista->id) }}">Editar</a>
 
                                     <form action="{{ route('especialistas.destroy', $especialista->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea eliminar al especialista {{$especialista->nombre}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
