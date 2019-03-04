@@ -48,7 +48,7 @@
                                     'recinto'=>$especialista_servicio->id_recinto, 'especialista'=>$especialista_servicio->id_especialista]) }}" 
                                     style="display: inline;" onsubmit="return confirm('¿Desea eliminarlo?');">
 
-                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

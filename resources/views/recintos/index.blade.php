@@ -44,12 +44,11 @@
                                 <td class="text-center"><strong>{{$a}}</strong></td>
                                 <td class="text-center">{{$recinto->descripcion}}</td>
                                 <td class="text-center"> 
-                                 <a class="btn btn-warning" href="{{ route('recintos.edit', $recinto->id) }}">
-                                    <i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                 <a class="btn btn-warning" href="{{ route('recintos.edit', $recinto->id) }}">Editar</a>
                                     <form style="display:inline" action="{{ route('recintos.destroy', $recinto->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea eliminar el recinto?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                        <button type="submit" class="btn  btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

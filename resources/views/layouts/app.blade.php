@@ -10,10 +10,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Servicio de Salud</title>
+    
     <link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/menuPrincipal.css')}}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" src="{{asset('Imagenes/icono_pestanna.png')}}" type="image/png">
 </head>
 <body class="a" style="background-color:#F4F4F4;">
     <div id="app" class="contenido">
@@ -30,8 +32,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <div class="navbar-brand serif tittle">
-                    Servicio de Salud Sede Occidente
+                    <div class="logo-nombre">
+                    <img class="img-responsive logo-nombre" style="margin-top: 10px;" src="{{asset('Imagenes/logo_nombre_ucr.png')}}" >
                     </div>
                 </div>
 
@@ -80,8 +82,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 <footer class="main-footer">
-  	<div class="text-center main-footer"><strong>©2018 </strong>
-    	<a href="https://www.ucr.ac.cr/"><strong> Universidad de Costa Rica</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
+  	<div class="text-center main-footer">
+    	<a style="font-size:1em; color:#30A8D8;"><strong>Servicio de Salud</strong></a><img style="margin-top: 4px;" class="margin-logo" src="{{asset('Imagenes/logo-so-blc.png')}}" >
   	</div>
 	</footer>
 </html>

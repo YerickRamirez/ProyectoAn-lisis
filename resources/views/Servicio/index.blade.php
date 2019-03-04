@@ -40,15 +40,13 @@
                                 
                                 <td class="text-center">
                                                                        
-                                    <a class="btn btn-warning" href="{{ route('servicio.edit', $servicio->id) }}">
-                                        <i class="glyphicon glyphicon-edit"></i> Editar
-                                    </a>
+                                    <a class="btn btn-warning" href="{{ route('servicio.edit', $servicio->id) }}">Editar</a>
 
                                     <form action="{{ route('servicio.destroy', $servicio->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea eliminar el servicio {{$servicio->nombre}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

@@ -60,4 +60,31 @@
       min-height: calc(100% - 6.2em); 
   }
 
+  @media screen and (max-width: 390px) {
+    div.logo-nombre {
+      height: 20px; 
+      width: 240px;
+    }
+  }
+
+  @media screen and (max-width: 330px) {
+    div.logo-nombre {
+      height: 20px; 
+      width: 210px;
+    }
+  }
+  @media screen and (max-width: 300px) {
+    div.logo-nombre {
+      height: 20px; 
+      width: 180px;
+    }
+  }
+
+  @media screen and (max-width: 769px) {
+    img.logo-nombre {
+      margin-left: 25px; 
+    }
+  }
+
+
   

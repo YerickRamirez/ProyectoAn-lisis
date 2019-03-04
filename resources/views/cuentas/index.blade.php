@@ -82,14 +82,14 @@
                                 <td class="text-center"> 
                                  
                                         <a class="btn btn-warning" href="{{ route('cuentas.edit', $cuenta->id) }}">
-                                                <i class="glyphicon glyphicon-edit"></i> Editar
+                                                 Editar
                                         </a>
 
                                     <form style="display:inline" action="{{ route('destroyCuentas', $cuenta->id) }}" method="DELETE" style="display: inline;" onsubmit="return confirm('¿Desea desactivar la cuenta de {{$nombre}}?');">
                                         <input type="hidden" name="_method" value="DELETE">
                                         {{csrf_field()}}
                                         @if($cuenta->active_flag == 1)
-                                        <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i>Desactivar</button>
+                                        <button type="submit" class="btn  btn-danger">Desactivar</button>
                                         
                                         @endif
                                     </form>

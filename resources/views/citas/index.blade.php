@@ -62,7 +62,7 @@
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Cancelar</button>
+                                        <button type="submit" class="btn btn-danger">Cancelar</button>
                                     </form>
                                 </td>
                             </tr>
