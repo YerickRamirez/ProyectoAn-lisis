@@ -8,71 +8,63 @@
     </div>
     <div class="panel-body">
         <section class="">
-        <div class="content-c w3-container mobile">
-            <div>
+        <div class="content-c w3-container mobile"></div>
 
+        <div class="panel-heading">
+            <div class="">
+                @if($pacientes->count())
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
+                        <thead>
+                            <th class="text-center">Cédula</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Teléfono</th>
+                            <th class="text-center">Estado</th>    
+                            <th class="text-center">Opciones</th>                         
+                        </thead>
 
-            
-        </div>
-    </div>
-
-    <div class="panel-heading">
-        <div class="">
-        <div class="">
-            @if($pacientes->count())
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
-                    <thead>
-                        <th class="text-center">Cédula</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Correo</th>
-                        <th class="text-center">Teléfono</th>
-                        <th class="text-center">Estado</th>    
-                        <th class="text-center">Opciones</th>                         
-                    </thead>
-
-                    <tbody>
-                        @foreach($pacientes as $paciente)
-                        <?php $nombre = $paciente->nombre . " " . $paciente->primer_apellido_paciente . " " . $paciente->segundo_apellido_paciente?>
-                            <tr>
-                                <td class="text-center"><strong>{{$paciente->cedula_paciente}}</strong></td>
-                                <td class="text-center"><strong>{{$nombre}}</strong></td>
-                                <td class="text-center">{{$paciente->correo}}</td>
-                                <td class="text-center">{{$paciente->telefono}}</td>
-                                @if($paciente->active_flag == 1)
-                                <td class="text-center">Activa</td>
-                                @else
-                                <td class="text-center">Desactiva</td>
-                                @endif
-                                <td class="text-center"><a class="btn btn-warning" href="{{ route('pacientes.editRoot', $paciente->id) }}">
-                                    <i class="glyphicon glyphicon-edit"></i> Editar</a>
+                        <tbody>
+                            @foreach($pacientes as $paciente)
+                            <?php $nombre = $paciente->nombre . " " . $paciente->primer_apellido_paciente . " " . $paciente->segundo_apellido_paciente?>
+                                <tr>
+                                    <td class="text-center"><strong>{{$paciente->cedula_paciente}}</strong></td>
+                                    <td class="text-center"><strong>{{$nombre}}</strong></td>
+                                    <td class="text-center">{{$paciente->correo}}</td>
+                                    <td class="text-center">{{$paciente->telefono}}</td>
                                     @if($paciente->active_flag == 1)
-                                    <form style="display:inline" action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i> Desactivar</button>
-                                    </form>
+                                    <td class="text-center">Activa</td>
                                     @else
-                                    <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn  btn-primary">&nbsp<i class="glyphicon glyphicon-check"></i>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>
-                                    </form>
+                                    <td class="text-center">Desactiva</td>
                                     @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-                
-            @else
-                <h3 class="text-center alert alert-info">No hay nada para mostrar</h3>
-            @endif
+                                    <td class="text-center"><a class="btn btn-warning" href="{{ route('pacientes.editRoot', $paciente->id) }}">
+                                        Editar</a>
+                                        @if($paciente->active_flag == 1)
+                                        <form style="display:inline" action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn  btn-danger">Desactivar</button>
+                                        </form>
+                                        @else
+                                        <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn  btn-primary">&nbsp<i class="glyphicon glyphicon-check"></i>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>
+                                        </form>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                    
+                @else
+                    <h3 class="text-center alert alert-info">No hay nada para mostrar</h3>
+                @endif
 
-        </div>
-        </div>
-    </div> 
+            </div>
+        </div> 
     </div> 
     </section>
     </div>

@@ -503,9 +503,6 @@ div.logo-ucr-3 {
   }
 }
 
-/****ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
-
-
 .caret-right {
   border-bottom: 4px solid transparent;
   border-top: 4px  solid transparent;
@@ -514,6 +511,19 @@ div.logo-ucr-3 {
   height: 0;
   vertical-align: left;
   width: 0;
+}
+
+/*Decreases the size of the UCR logo name*/
+@media screen and (max-width: 330px) {
+  img.logo-nombre {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  img.logo-nombre {
+    width: 180px;
+  }
 }
 
 

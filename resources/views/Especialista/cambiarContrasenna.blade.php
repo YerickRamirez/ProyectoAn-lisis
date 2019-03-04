@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="password">Contraseña</label>
+                        <label for="password">Contraseña nueva</label>
                         <input class="form-control" type="password" name="password" id="password" required/>
                         @if ($errors->has('password'))
                             <span class="help-block">
@@ -23,7 +23,7 @@
                             </span>
                         @endif
                     </div> <div class="form-group">
-                        <label for="password-confirm">Confirmar Contraseña</label>
+                        <label for="password-confirm">Confirmar contraseña</label>
                         <input class="form-control" type="password" name="password_confirmation" id="password-confirm" required/>
                     </div>
                 <div class="well well-sm">

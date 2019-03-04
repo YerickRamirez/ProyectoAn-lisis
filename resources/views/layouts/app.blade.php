@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Servicio de Salud</title>
+    
     <link rel="stylesheet" type="text/css" href="{{asset('css/paneles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/menuPrincipal.css')}}">
     <!-- Styles -->
@@ -31,8 +32,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <div class="">
-                    <img class="img-responsive" style="margin-top: 10px;" class="" src="{{asset('Imagenes/logo_nombre_ucr.png')}}" >
+                    <div class="logo-nombre">
+                    <img class="img-responsive logo-nombre" style="margin-top: 10px;" src="{{asset('Imagenes/logo_nombre_ucr.png')}}" >
                     </div>
                 </div>
 

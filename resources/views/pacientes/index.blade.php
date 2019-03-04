@@ -9,10 +9,7 @@
     <div class="panel-body">
         <section class="">
         <div class="content-c w3-container mobile">
-            <div>
-
-
-            
+            <div> 
         </div>
     </div>
 
