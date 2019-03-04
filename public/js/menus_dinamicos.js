@@ -41,6 +41,11 @@ function ocultarHorario() {
     y.style.display ="none";
 }
 
+function ocultarUnaTabla() {//Este método oculta unada más una tabla que se tenga de id ocultar-tabla
+	var x = document.getElementById("ocultar-tabla");
+	x.style.display = "none";
+}
+
 
 $(window).resize(function() {
 		var path = $(this);

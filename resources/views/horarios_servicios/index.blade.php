@@ -12,10 +12,11 @@
         <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
         <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropEspecialistas" class="form-control" onChange="revisarHorario()"></select></div>
 
-        <?php
+        <?php 
             $semana = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes");
             $id = 1;
         ?>
+        
         <p id="info" style="display:none; text-align:center; font-size: 2.5vh;">Horarios</p>
         <div class="panel-heading">
             <div class="table-responsive" id="ocultar-tabla" style="display: none;">

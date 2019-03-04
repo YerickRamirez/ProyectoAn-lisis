@@ -53,9 +53,8 @@ $.each(datos, function()
 
 $(document).ready(function() {
         recintos();
-        
         $('#dropRecintos').change(function() {
-        ocultarHorario();
+        ocultarUnaTabla();
         var ID_Recinto = $('#dropRecintos').val();
         if(ID_Recinto != 'defecto'){
         servicios(ID_Recinto);   
@@ -66,7 +65,7 @@ $(document).ready(function() {
         })
         
         $('#dropServicios').change(function() {
-        ocultarHorario();
+        ocultarUnaTabla();
         var ID_Servicio = $('#dropServicios').val();
         var ID_Recinto = $('#dropRecintos').val();
         

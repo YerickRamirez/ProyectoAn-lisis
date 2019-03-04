@@ -43,7 +43,7 @@
                     </table>
                 </div>
                 <button class="btn btn-primary center" onClick="guardarHorario()">Guardar cambios</button>
-                <a class="btn btn-link pull-right" href="{{ route('Asistente.horarios') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
+                <a class="btn btn-link pull-right" href="{{ route('Especialista.menuConfigHorarios') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
             </div>
         </div>
            

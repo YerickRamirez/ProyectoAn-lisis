@@ -206,10 +206,13 @@ timeout: 15000
                     <script type="text/javascript">
                 $(function () {
                     var momento = new Date();
-                    //console.log("Actual parseada: " + momento);
+                    momentoInicioDia = new Date();
+                    momentoInicioDia.setHours(0,0,0,0);
+                    //console.log("Actual parseada: " + momento.toUTCString() + " s:" + momentoInicioDia);
                     
         $('#datetimepicker5').datetimepicker({
-            minDate: momento,
+            //useCurrent: true,
+            minDate: momentoInicioDia,
             maxDate: fechaMaxima(momento),
             format: 'DD/MM/YYYY', //Hay que ponerle un formato a la fecha, si no se pone esto se establecen con horas
             daysOfWeekDisabled:[0,6], //Asi se bloquean los fines de semana
