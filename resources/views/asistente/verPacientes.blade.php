@@ -45,18 +45,18 @@
                                 <td class="text-center">Deshabilitada</td>
                                 @endif
                                 <td class="text-center"><a class="btn btn-warning" href="{{ route('pacientes.editRoot', $paciente->id) }}">
-                                    <i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                    Editar</a>
                                     @if($paciente->active_flag == 1)
                                     <form style="display:inline" action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn  btn-danger"><i class="glyphicon glyphicon-trash"></i> Desactivar</button>
+                                        <button type="submit" class="btn  btn-danger">Desactivar</button>
                                     </form>
                                     @else
                                     <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn  btn-primary">&nbsp<i class="glyphicon glyphicon-check"></i>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>
+                                        <button type="submit" class="btn  btn-primary">&nbsp&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>
                                     </form>
                                     @endif
                                 </td>

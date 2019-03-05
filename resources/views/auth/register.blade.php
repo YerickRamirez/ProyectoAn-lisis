@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -15,7 +16,7 @@
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto, solo se permiten letras">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -28,7 +29,7 @@
                             <label for="lastName" class="col-md-4 control-label">Primer Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus>
+                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto">
 
                                 @if ($errors->has('lastName'))
                                     <span class="help-block">
@@ -42,7 +43,7 @@
                             <label for="lastName2" class="col-md-4 control-label">Segundo Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="lastName2" type="text" class="form-control" name="lastName2" value="{{ old('lastName2') }}" required autofocus>
+                                <input id="lastName2" type="text" class="form-control" name="lastName2" value="{{ old('lastName2') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto, solo se permiten letras">
 
                                 @if ($errors->has('lastName2'))
                                     <span class="help-block">
@@ -56,7 +57,7 @@
                             <label for="cedula" class="col-md-4 control-label">Cédula</label>
 
                             <div class="col-md-6">
-                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+                                <input data-toggle="tooltip" data-placement="right" title="Cédula sin espacios y con ceros, ejemplo: 201230456" id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
 
                                 @if ($errors->has('cedula'))
                                     <span class="help-block">
@@ -83,7 +84,7 @@
                         <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
                                 <label for="telefono" class="col-md-4 control-label">Teléfono</label>
                             <div class="col-md-6">
-                           <input id="telefono" type="number" class="form-control" name="telefono" value="{{ old('telefono') }}" required>
+                           <input id="telefono" type="text" class="form-control" name="telefono" pattern="^[0-9]{4,10}" value="{{ old('telefono') }}" required title="No se permiten letras en este campo/ingresar de 4-10 digitos">
                            @if ($errors->has('telefono'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('telefono') }}</strong>
@@ -96,7 +97,7 @@
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required minlength="6">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -110,7 +111,7 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required minlength="6">
                             </div>
                         </div>
 
@@ -127,4 +128,9 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 @endsection

@@ -32,7 +32,7 @@
                             <div class="row">
                             <div class="col-md-3">
 
-                                <label for="name" >Nombre</label> <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <label for="name" >Nombre</label> <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto, solo se permiten letras">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -47,7 +47,7 @@
 
                             <div class="col-md-3">
                                 <label for="lastName" class="">Primer Apellido</label>
-                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus>
+                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto, solo se permiten letras">
 
                                 @if ($errors->has('lastName'))
                                     <span class="help-block">
@@ -61,7 +61,7 @@
                             
                             <div class="col-md-3">
                                 <label for="lastName2" class="">Segundo Apellido</label>
-                                <input id="lastName2" type="text" class="form-control" name="lastName2" value="{{ old('lastName2') }}" required autofocus>
+                                <input id="lastName2" type="text" class="form-control" name="lastName2" value="{{ old('lastName2') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto, solo se permiten letras">
 
                                 @if ($errors->has('lastName2'))
                                     <span class="help-block">
@@ -106,7 +106,7 @@
                             
                             <div class="col-md-3">
                                 <label for="password" class="control-label">Contraseña</label>
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required minlength="6">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -122,13 +122,13 @@
 
                             <div class="col-md-3">
                                  <label for="password-confirm" class=" control-label">Confirmar Contraseña</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required minlength="6">
                             </div>
                         </div>
                         
                         <div class="col-md-3{{ $errors->has('telefono') ? ' has-error' : '' }}">
                             <label for="telefono" class=" control-label">Telefono</label>
-                           <input id="telefono" type="number" class="form-control" name="telefono" pattern="^[0-9]{4,10}" title="No se permiten letras en este campo/ingresar de 4-10 digitos">
+                           <input id="telefono" type="text" class="form-control" name="telefono" pattern="^[0-9]{4,10}" title="No se permiten letras en este campo/ingresar de 4-10 digitos">
                            @if ($errors->has('telefono'))
                            <span class="help-block">
                                <strong>{{ $errors->first('telefono') }}</strong>
