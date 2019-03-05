@@ -52,7 +52,7 @@
                                     <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea activar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn  btn-primary">&nbsp<i class="glyphicon glyphicon-check"></i>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>
+                                        <button type="submit" class="btn  btn-primary">&nbspActivar&nbsp</button>
                                     </form>
                                     @endif
                                 </td>

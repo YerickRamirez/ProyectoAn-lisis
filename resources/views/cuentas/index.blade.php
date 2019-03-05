@@ -97,7 +97,7 @@
                                             <input type="hidden" name="_method" value="DELETE">
                                             {{csrf_field()}}
                                             @if($cuenta->active_flag == 0)
-                                            <button type="submit" class="btn  btn-success"><i class="glyphicon glyphicon-ok"></i>&nbsp&nbsp Activar &nbsp&nbsp</button>
+                                            <button type="submit" class="btn  btn-success">&nbsp&nbsp&nbsp Activar &nbsp&nbsp</button>
                                            
                                             @endif
                                         </form>
