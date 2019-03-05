@@ -45,7 +45,7 @@
                     </div> 
                     <div class="form-group">
                         <label for="correo-field">Telefono</label>
-                        <input class="form-control" type="number" name="telefono" id="telefono-field" value="{{ old('telefono', $paciente->telefono ) }}" pattern="^[0-9]{2,48}" title="No se permiten letras en este campo/ingresar al menos 8 digitos"/>
+                        <input class="form-control" type="text" name="telefono" id="telefono-field" value="{{ old('telefono', $paciente->telefono ) }}" pattern="^[0-9]{2,10}" title="No se permiten letras en este campo/ingresar al menos 8 digitos"/>
                     </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Actualizar Datos</button>
