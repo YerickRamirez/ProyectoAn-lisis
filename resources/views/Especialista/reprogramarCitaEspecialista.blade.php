@@ -196,9 +196,11 @@ timeout: 15000
                     <script type="text/javascript">
                 $(function () {
                     var momento = new Date();
-                    console.log("Actual parseada: " + momento);
+                    //console.log("Actual parseada: " + momento);
+                    momentoInicioDia = new Date();
+                    momentoInicioDia.setHours(0,0,0,0);
         $('#datetimepicker5').datetimepicker({
-            minDate: momento, //Muestra el calendario desde el dia actual y no desde antes
+            minDate: momentoInicioDia, //Muestra el calendario desde el dia actual y no desde antes
             format: 'DD/MM/YYYY', //Hay que ponerle un formato a la fecha, si no se pone esto se establecen con horas
             daysOfWeekDisabled:[0,6], //Asi se bloquean los fines de semana
             //disabledDates: ["10/24/2018"] //Lista de fechas que bloquear. 
@@ -306,9 +308,10 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
                 entry = entry.replace("0", "")
             }
             //alert(entry);
+            if(entry != 1700) {
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
-    
+    }
 });
 
     var dateTime = $('#datetimepicker5').data("DateTimePicker").date();

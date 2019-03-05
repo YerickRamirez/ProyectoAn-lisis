@@ -185,7 +185,11 @@ Route::get('/vincular/{servicio}/{recinto}', 'Recinto_servicioController@store')
 Route::get('/especialistasCombo/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistas')->middleware('paciente');
 Route::get('/especialistasComboSinHorario/{ID_Servicio}/{ID_Recinto}', 'AjaxController@comboEspecialistasSinHorario')->middleware('paciente');
 Route::get('/verificarCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}/{datepicked}', 'AjaxController@datosCita')->middleware('paciente');
+
+//ruta prueba para sugerir citas
+Route::get('/sugerirCitas/{dropRecintos}/{dropServicios}/{dropEspecialistas}', 'AjaxController@datosSugerirCita')->middleware('paciente');
 //fin rutas de ajax
+
 
 //parece que solo la usa paciente (y creo que el store lo usan todos)
 Route::resource('citas', 'CitaController')->middleware('paciente');

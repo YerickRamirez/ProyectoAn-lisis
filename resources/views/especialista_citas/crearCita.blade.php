@@ -320,9 +320,10 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
                 entry = entry.replace("0", "")
             }
             //alert(entry);
+        if(entry != 1700) {
     document.getElementById(entry).disabled = true;
     document.getElementById(entry).style.backgroundColor = "#656161";
-    
+        }
 });
     var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
     var datepicked = new Date(dateTime);
