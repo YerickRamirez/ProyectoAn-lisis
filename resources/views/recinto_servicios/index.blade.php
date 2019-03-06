@@ -40,7 +40,7 @@
                                     <form action="{{ route('eliminarVinculo1', ['servicio'=>$recinto_servicio->servicio_id, 'recinto'=>$recinto_servicio->recinto_id]) }}" style="display: inline;" onsubmit="return confirm('¿Desea eliminarlo?');">
                                         
 
-                                        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

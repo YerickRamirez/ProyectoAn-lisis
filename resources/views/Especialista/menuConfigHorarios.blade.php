@@ -14,7 +14,7 @@
                   <div class="panel panel-default class border-panel">
                   
                   <div class="panel-body center">
-                  	<img class="img-responsive" src="{{asset('Imagenes/doc.jpg')}}" alt="Smiley face" max-width="100%" height="200" border="1" >
+                  	<img class="img-responsive" src="{{asset('Imagenes/doc.jpg')}}" alt="Smiley face" max-width="100%" height="200">
                   	<br>
                     <a class="btn btn-primary btn-block" href="{{ route('bloqueo_especialistas_especial.index') }}" style="margin-top: 7px"><strong>Bloqueo Horario Especialistas</strong></a>
                     <a class="btn btn-primary btn-block" href="{{ route('deshab_especial.index') }}" style="margin-top: 7px"><strong>Deshabilitar Horario Especialistas</strong></a>
@@ -24,7 +24,7 @@
             <div class="col-md-5 ">
                   <div class="panel panel-default class border-panel">   
                   <div class="panel-body center">
-                    <img class="img-responsive" src="{{asset('Imagenes/servicios.jpg')}}"  max-width="100%" height="220" border="1">
+                    <img class="img-responsive" src="{{asset('Imagenes/servicios.jpg')}}"  max-width="100%" height="220">
                   <a class="btn btn-primary btn-block" style="margin-top: 41px" href="{{ route('Especilista.horarios') }}"><strong>Horarios Servicios</strong></a>
                   </div>
                   </div>

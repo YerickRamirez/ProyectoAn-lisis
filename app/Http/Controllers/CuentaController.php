@@ -49,7 +49,7 @@ class CuentaController extends Controller
 	public function index()
 	{
 	
-		$cuentas = User::orderBy('id', 'asc')->get();
+		$cuentas = User::where('tipo', '!=', 1)->orderBy('id', 'asc')->get();
 		$active = User::where('active_flag', 1);
 		$opcion = Cuentas_activa::where('id', 1)->first();
 		if(Auth::user()->tipo == 1) {

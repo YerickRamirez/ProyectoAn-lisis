@@ -5,7 +5,7 @@
     @include('error')
     <div class="panel panel-primary border-panel">
     <div class="panel-heading bg-color-panel">
-        <p style="text-align: center; font-size: 3vh;">Editar Recinto</p>
+        <p style="text-align: center; font-size: 3vh;">Editar Servicio</p>
     </div>
     <div class="panel-body">
         <section class="">
