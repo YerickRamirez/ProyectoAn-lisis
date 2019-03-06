@@ -29,7 +29,7 @@
                             <label for="lastName" class="col-md-4 control-label">Primer Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto">
+                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto, solo se permiten letras">
 
                                 @if ($errors->has('lastName'))
                                     <span class="help-block">
@@ -57,7 +57,7 @@
                             <label for="cedula" class="col-md-4 control-label">Cédula</label>
 
                             <div class="col-md-6">
-                                <input data-toggle="tooltip" data-placement="right" title="Cédula sin espacios y con ceros, ejemplo: 201230456" id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+                                <input placeholder="Cédula con ceros y sin espacios, ej: 201230456" id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
 
                                 @if ($errors->has('cedula'))
                                     <span class="help-block">

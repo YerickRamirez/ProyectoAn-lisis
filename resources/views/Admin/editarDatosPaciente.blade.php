@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="cedula_paciente-field">Cédula</label>
-                        <input class="form-control" type="text" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $paciente->cedula_paciente ) }}" />
+                        <input class="form-control" type="text"  placeholder="Cédula con ceros y sin espacios, ej: 201230456" name="cedula_paciente" id="cedula_paciente-field" value="{{ old('cedula_paciente', $paciente->cedula_paciente ) }}" />
                         <input class="form-control" type="hidden" name="cedula_original" id="cedula_paciente-field" value="{{ old('cedula_paciente', $paciente->cedula_paciente ) }}" />
                         @if ($errors->has('cedula_paciente'))
                             <span class="help-block">
