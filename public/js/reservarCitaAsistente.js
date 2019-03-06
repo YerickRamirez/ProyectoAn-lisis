@@ -180,7 +180,7 @@ if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en 
         var dropServicios = $('#dropServicios').val();           
         var dropEspecialistas = $('#dropEspecialistas').val();           
         if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
-         dropEspecialistas == 'defecto' || cedula.length == 0) {
+         dropEspecialistas == 'defecto') {
                 alert("Elija una opción válida en todos los campos");
        } else {
     horaCita = String(hora) + minutos;

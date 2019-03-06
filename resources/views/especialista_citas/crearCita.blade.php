@@ -159,7 +159,7 @@ function revisarDisponibilidad() {
                 var dropEspecialistas = $('#dropEspecialistas').val();           
                 //alert(dropEspecialistas);
                 if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
-                 dropEspecialistas == 'defecto' || cedula.length == 0) {
+                 dropEspecialistas == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
                 $.ajax({
@@ -179,6 +179,9 @@ timeout: 15000
 }); 
 }}
 </script>
+
+
+
 
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
