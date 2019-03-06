@@ -33,7 +33,7 @@
     <br> 
         <div class="margin-up">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
+                <table class="table table-striped table-bordered table-condensed table-hover" id="tablaDatos">
                     <thead>
                         <th class="text-center">Cédula</th>
                         <th class="text-center">Nombre</th>
@@ -58,119 +58,6 @@
    </div>
  </div>
 
- <script>
-
-$('#tablita').DataTable(
-     {
-    "language": {
-        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-} ,
- stateSave: true,
- "ordering": false,    
-    } );
-</script>
-
-<script>
-        function recintos(){
-                $('#dropRecintos').empty();
-                $('#dropRecintos').append("<option>Cargando...</option>");
-        
-                 $.ajax({
-          url: '/recintosCombo',
-          type: 'GET',
-          dataType: "json",
-          success:function(datos){ 
-        $('#dropRecintos').empty();
-        $('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
-        $.each(datos, function()
-        {
-                $.each(this, function(){//los datos del server vienen en una variable data
-                //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
-                $('#dropRecintos').append('<option value="' + this.id + '">' + this.descripcion + '</option>');
-                })        
-        })
-        
-        }, error:function() {
-                alert("¡Ha habido un error! Elija correctamente su recinto." +
-                "Si este error persiste por favor comuníquese con el Servicio de Salud");
-                $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
-        }
-        });
-        }
-
-
-function ajaxCitasRecinto(ID_Recinto){
-        
-            $.ajax({
-          url: '/citasRecintoParaEspLoggeadoHistActivas/' + ID_Recinto,
-          type: 'GET',
-          dataType: "json",
-          success:function(datos){ 
-              //alert(datos);
-              //alert(datos.citas);
-       // $('#dropRecintos').empty();
-       // $('#dropRecintos').append("<option value='defecto'>----Seleccione Recinto----</option>");   
-        $.each(datos.citas, function()
-        {
-            var estado = "Reservada";
-            if(this.estado_cita_id == 2){
-                var estado = "Confirmada";
-            } 
-            if(this.estado_cita_id == 3 ){
-                var estado = "Cancelada";
-            } 
-            
-            if(this.estado_cita_id == 4 ){
-                var estado = "Reprogramada";
-            } 
-            $('#tablita').DataTable().row.add( [
-                this.cedula_paciente,
-                this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
-                this.telefono,
-                this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
-                this.nombreServ,
-                this.fecha_cita,
-                estado
-        ] ).draw( false );   
-        })
-        
-        }, error:function() {
-                alert("¡Ha habido un error! Elija correctamente su recinto." +
-                "Si este error persiste por favor comuníquese con el Servicio de Salud");
-                $('#dropEspecialistas').append("<option value='defecto'>----Seleccione Especialista----</option>");   
-        }
-        });
-        }
-
-function redireccionarConfirmar(id_cita) {
-    window.location.replace('/confirmarCitaAjax/' + id_cita);
-}
-
-function redireccionarReprogramar(id_cita) {
-    window.location.replace('/reprogramarCitaAjax/' + id_cita);
-}
-
-function redireccionarCancelar(id_cita) {
-    window.location.replace('/cancelarCitaAjax/' + id_cita);
-}
-
-    $(document).ready(function() {
-        recintos();
-        
-        $('#dropRecintos').change(function() {
-            $('#tablita').dataTable().fnClearTable();
-        var ID_Recinto = $('#dropRecintos').val();
-
-        if(ID_Recinto != 'defecto'){
-        ajaxCitasRecinto(ID_Recinto);
-        }else{
-        alert("Elija un recinto válido");
-        }
-        })
-})
-
-
-    </script>
-
-    
+ <script src="{{('js/lenguajeTabla.js')}}"></script>
+ <script src="{{('js/citasTotalesEspecialista.js')}}"></script>
 @endsection

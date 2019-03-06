@@ -57,17 +57,6 @@
     </section>
     </div>
     </div>
-    <script>
-            $('#tablaDeshabilitar').DataTable(
-                 {
-                "language": {
-         
-                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-         
-            } ,
-             stateSave: true,
-             "ordering": false,
-                } );
-            </script>
+    <script src="{{('js/lenguajeTabla.js')}}"></script>
 
 @endsection
