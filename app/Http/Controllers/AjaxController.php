@@ -217,7 +217,7 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
 
 }
 
-
+/*
 private function horasLibres($arrayOcupadas) {
 
 
@@ -242,7 +242,7 @@ private function horasLibres($arrayOcupadas) {
         }
     }
     return $horas;
-}
+}*/
 
 public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked){
 
@@ -335,10 +335,13 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
                     $hora_fin_deshabilitar = $this->arreglarHora(substr($deshabilitado_esp->hora_fin_deshabilitar, 0, 5));
 
 
-                    $a = $hora_inicio_deshabilitar . ' hasta las ' . $hora_fin_deshabilitar;
+                    //$a = $hora_inicio_deshabilitar . ' hasta las ' . $hora_fin_deshabilitar;
                     //return json_encode(["horasOcupadas"=>$a]);
-                    $this->llenarArrayhoras($horasOcupadas, $hora_inicio_deshabilitar, $hora_fin_deshabilitar);
-
+                    if(!($hora_inicio_deshabilitar == $hora_fin_deshabilitar)){
+                        $this->llenarArrayhoras($horasOcupadas, $hora_inicio_deshabilitar, $hora_fin_deshabilitar);
+                    } else {
+                        array_push($horasOcupadas, $hora_inicio_deshabilitar);
+                    }
                     //return json_encode(["horasOcupadas"=>$horasOcupadas]);
                 }
             }
@@ -395,8 +398,11 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
 
                     //$a = $hora_inicio_deshabilitar . ' hasta las ' . $hora_fin_deshabilitar;
                     //return json_encode(["horasOcupadas"=>$a]);
+                    if(!($hora_inicio_deshabilitar == $hora_fin_deshabilitar)){
                     $this->llenarArrayhoras($horasOcupadas, $hora_inicio_deshabilitar, $hora_fin_deshabilitar);
-
+                        } else {
+                            array_push($horasOcupadas, $hora_inicio_deshabilitar);
+                        }
                 }
                 }
             }
@@ -407,6 +413,23 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
     return json_encode(["horasOcupadas"=>$horasOcupadas]);
    // }
 }
+
+/*
+private function diferenciaMenorIgual40Minutos(&$array, $horaInicio, $horaFin) {
+
+    $ultimos_digitos_hora_inicio  = intval(substr($horaInicio, -2));
+    $ultimos_digitos_hora_fin  = intval(substr($horaFin, -2));
+
+    $primeros_digitos_hora_inicio = substr($horaInicio, 0, 2);
+    $primeros_digitos_hora_fin = substr($horaFin, 0, 2);
+
+    if($horaInicio == $horaFin) {//if  horas iguales
+        for($i = $horaInicio; $i <= $horaFin); $i+=20) {
+        }
+    }//fin if horas iguales
+
+
+}*/
 
 private function arreglarHora($hora) {
 
@@ -466,9 +489,12 @@ private function arreglarHora($hora) {
 }
 
 private function llenarArrayhoras(&$array, $horaInicio, $horaFin) {
-    $x = "";
+    //$x = "";
 
     //return substr($horaInicio, 0, 1);   
+
+    $terminaExacto = false;
+
     if(substr($horaInicio, 0, 1) == 0) {
         $horaInicio = substr($horaInicio, 1);
     }
@@ -477,6 +503,13 @@ private function llenarArrayhoras(&$array, $horaInicio, $horaFin) {
     }
     $horaInicio = str_replace(':', '', $horaInicio);
     $horaFin = str_replace(':', '', $horaFin);
+
+    
+    if(substr($horaFin, -2) == "00") {//si la hora termina en 00 había un error, este if la corrije
+        $terminaExacto = true;
+        $auxInicioDeHoraFin = intval(substr($horaFin, 0, 2)) - 1;
+        $horaFin = $auxInicioDeHoraFin . "40";
+    }
     //return $horaInicio .' '  . $horaFin;
 
     $horaFin = intval($horaFin);
@@ -490,7 +523,8 @@ private function llenarArrayhoras(&$array, $horaInicio, $horaFin) {
         $horaFin = 1700; 
     }
 
-    for($i; $i <= intval($horaFin); $i+=20) {
+    for($i; $i <= intval($horaFin); $i= $i + 20) {
+
         if(substr($i, 1) == "60" || substr($i, 2) == "60") {
         $i = $i + 40;
         }
@@ -505,6 +539,11 @@ private function llenarArrayhoras(&$array, $horaInicio, $horaFin) {
         array_push($array, $varInsert);
         //$x = $x . ' ' . $varInsert;
     }
+        //////////AQUÍ ORIGINALMENTE NO VA EL IF de +20, LO PUSE DE PRUEBA ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if((($i + 20) >=  intval($horaFin)) && !$terminaExacto) {
+            break;
+        }
+ //////////////////////////FIN IF PRUEBA //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     //return $x;
 }
