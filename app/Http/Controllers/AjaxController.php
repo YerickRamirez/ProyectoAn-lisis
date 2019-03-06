@@ -33,6 +33,8 @@ use DB;
 
 use Flash;
 
+use DateTimeZone;
+
 use Illuminate\Support\Facades\Crypt;
 
 
@@ -169,10 +171,102 @@ public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
     return ["especialistas"=> $especialistas_return];
 }
 
-public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked, Request $request){
+public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialista){
 
     
-        $dropEspecialistas = $request->dropEspecialistas;
+    $date =  Carbon::now(new DateTimeZone('America/Costa_Rica'));
+    $end_date = Carbon::now(new DateTimeZone('America/Costa_Rica'))->addDay(7);
+    
+    $auxDate = $date;
+    $cantidadCitasDisp = 0;
+    $cantidadTotalCitas = 24;
+    $disponibles = array();
+    
+
+	while ($end_date->greaterThanOrEqualTo($date)) {
+
+       if(!$date->isWeekend()) {
+        $arrayxD = json_decode($this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $date), true);
+        
+        foreach ($arrayxD as $elemento) {
+            $cantidadCitasDisp += ($cantidadTotalCitas - count($elemento));
+            //return $cantidadCitasDisp;
+            //return $elemento;
+            array_push($disponibles, $auxDate->format('d-m-Y'));
+        }
+
+        if($cantidadCitasDisp >= 10) {
+            break;
+        }
+
+        $auxDate = $date;
+
+       /* $horasLibres = $this->horasLibres($arrayxD);
+        if (!ctype_space($horasLibres) && !$horasLibres == '') {
+            array_push($disponibles, $auxDate->format('d-m-Y') . ': ' . implode(" ", $horasLibres));
+        }*/
+
+        //return $horasLibres;
+
+        
+
+        //return $posiblesCitasLibres;
+        
+        //return $cantidadCitas;
+        /*foreach ($arrayxD as $elemento) {
+            foreach($elemento as $elementito){
+            array_push($horasOcupadasDia, $elementito);
+            }
+        }*/
+
+        /*if(!empty($arrayxD)){
+            array_push($horasOcupadas, "holi");
+        }
+        if(!strcmp($this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $datepicked), '\"horasOcupadas\":[]')) {
+            array_push($horasOcupadas, "jajaja");
+        }*/
+        
+        //array_push($horasOcupadas, $this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $datepicked));
+        }
+        $date = $date->addDay();
+    }
+    //return $cantidadCitasOcupadas;
+    return json_encode(["disponibles"=>$disponibles]);
+    //return json_encode(["horasOcupadas"=>$this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $datepicked)]);
+
+}
+
+
+private function horasLibres($arrayOcupadas) {
+
+
+    $horas = array('08:00, ', '08:20, ', '08:40, ', 
+                          '09:00, ', '09:20, ', '09:40, ', 
+                          '10:00, ', '10:20, ', '10:40, ',
+                          '11:00, ', '11:20, ', '11:40, ',
+                          '13:00, ', '13:20, ', '13:40, ',
+                          '14:00, ', '14:20, ', '14:40, ',
+                          '15:00, ', '15:20, ', '15:40, ',
+                          '16:00, ', '16:20, ', '16:40, ');
+    
+    foreach ($arrayOcupadas as $elemento) {
+        return count($elemento);
+        foreach($elemento as $elementito){
+            $horas = str_replace($elementito . ', ' ,  '', $horas, $count);
+
+        if($count > 0) {
+            $counter = $counter + 1;
+        }
+            //reemplaza las horasOcupadas, dejando así solo las horas libres para citas
+        }
+    }
+    return $horas;
+}
+
+public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked){
+
+    
+        $dropEspecialistas = $dropEspecialistaxD;
     
         $fechaElegidaCarbon = Carbon::createFromFormat('Y-m-d', Carbon::parse($datepicked)->format('Y-m-d'), 
         'America/Costa_Rica');//hace un string de la fecha elegida por el usuario y luego lo hace un Carbon*/
@@ -233,7 +327,11 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         if(!$fechaCitas->isEmpty()) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {
                 $cualquiera=  Carbon::parse($fechaCita->fecha_cita)->format('H:i');
+                if(substr($cualquiera, 0,1) == "0"){
+                    array_push($horasOcupadas, substr($cualquiera, 1));
+                } else {
                 array_push($horasOcupadas, $cualquiera);
+            }
             }
         }
 
@@ -324,6 +422,7 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
             //return json_encode(["horasOcupadas"=>$horasOcupadas]);
         }// fin revisar horario_deshabilitado por reuniones
 
+        $horasOcupadas = array_unique($horasOcupadas);
     return json_encode(["horasOcupadas"=>$horasOcupadas]);
    // }
 }
