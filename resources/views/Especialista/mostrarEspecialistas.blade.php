@@ -17,21 +17,13 @@
         <div class="panel-heading">
             <div class="content-b w3-container">
 		      <div class="table-responsive">
-			     <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
+			     <table class="table table-striped table-bordered table-condensed table-hover" id="tablaDatos">
 				    <thead>
 					   <th class="center">Cédula</th>
                         <th class="center">Nombre</th>
                         <th class="center">Opciones</th>
 				    </thead>
-
-                    <script>
-                    function confirmarEliminar(cedula) {
-                    if (confirm("¿Está seguro que desea eliminar al especilista con cédula " + String(cedula) + " ?")) {
-                        window.location.replace("/especialistas/" + cedula + "/eliminarEspecialista");
-                    }
-                    return false;
-                    }
-                    </script>
+                    <script src="{{('js/mostrarEspecialistas.js')}}"></script>
                 @foreach ($especialistas as $especialista)
 				<tr>
 					<td class="center">{{ $especialista->cedula_especialista}}</td>
@@ -56,21 +48,6 @@
 	</div>
 </div>
 
-<script>
-
-    $('#tablita').DataTable(
-         {
- 
-        "language": {
- 
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
- 
-    } ,
-     stateSave: true,
-     "ordering": false,
- 
-        
-        } );
-    </script>
+<script src="{{('js/lenguajeTabla.js')}}"></script>
 
 @endsection
