@@ -107,8 +107,8 @@ function insertarBloqueoEsp() {
                 if (dropDiasBloqueo == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
-                //alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
-  //+ horaFin);
+                /*alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  + horaFin);*/
                 $.ajax({
   url: '/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
   + horaFin,
@@ -127,7 +127,8 @@ timeout: 15000
 
 
 
-                $(function () {
+
+$(function () {
                     var momento = new Date();
                     console.log("Actual parseada: " + momento);
         $('#datetimepickerInicio').datetimepicker({
@@ -150,13 +151,11 @@ timeout: 15000
             disabledDates: [] //Lista de fechas que bloquear. 
         }).on('dp.change', function prueba() {
             });
-    });
+});
 
 
 
-
-
-     function arreglarHora(hora) {
+function arreglarHora(hora) {
         var horaReturn = "";
         if(hora.includes("AM")) {
             horaReturn = hora.slice(0, -3);

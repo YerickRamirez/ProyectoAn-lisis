@@ -53,7 +53,7 @@
         <div class="">
             @if($cuentas->count())
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
+                <table class="table table-striped table-bordered table-condensed table-hover" id="tablaDatos">
                     <thead>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Correo</th>
@@ -120,15 +120,6 @@
     </div>
 </div>
 
-<script>
-$('#tablita').DataTable(
-     {
-    "language": {
-        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-} ,
- stateSave: true,
- "ordering": false,    
-    } );
-</script>
+<script src="{{('js/lenguajeTabla.js')}}"></script>
         
 @stop

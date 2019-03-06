@@ -8,14 +8,14 @@
     <div class="page-header clearfix">
         <h1>
             Bloqueo Especialistas
-            <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
+            <a class="btn btn-success pull-right" href="{{ route('bloqueo_especialistas.create') }}">Crear</a>
         </h1>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             @if($bloqueo_especialistas->count())
-                <table class="table table-condensed table-striped" id='tablaBloqueos'>
+                <table class="table table-condensed table-striped" id='tablaDatos'>
                     <thead>
                         <tr>
                             <th>Especialista</th> <th>Dia bloqueado</th> <th>Fecha inicio bloqueo</th> <th>Fecha fin bloqueo</th> <th>Hora inicio bloqueo</th> <th>Hora fin bloqueo</th>
@@ -39,7 +39,7 @@
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                        <button type="submit" class="btn btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Eliminar</button>
+                                        <button type="submit" class="btn btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
@@ -53,20 +53,6 @@
         </div>
     </div>
 
-    <script>
-        $('#tablaBloqueos').DataTable(
-             {
-     
-            "language": {
-     
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-     
-        } ,
-         stateSave: true,
-         "ordering": false,
-     
-            
-            } );
-        </script>
+    <script src="{{asset('js/lenguajeTabla.js')}}"></script>
 
 @endsection

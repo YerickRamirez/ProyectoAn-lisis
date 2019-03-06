@@ -27,7 +27,7 @@
     <br> 
         <div class="margin-up">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-condensed table-hover" id="tablita">
+                <table class="table table-striped table-bordered table-condensed table-hover" id="tablaDatos">
                     <thead>
                         <th class="text-center">Cédula</th>
                         <th class="text-center">Nombre</th>

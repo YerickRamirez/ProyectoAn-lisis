@@ -27,7 +27,7 @@ function especialistas(){
             $('#dropEspecialistas').empty();
             $('#dropEspecialistas').append("<option>Cargando...<option>");
                 $.ajax({
-  url: '/cargarEspecialistas/',
+  url: '/cargarEspecialistaLoggeado/',
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
@@ -77,8 +77,6 @@ function limpiarDrop(nombreDrop, nombreTexto) {
 }
 
 
-
-
 function insertarBloqueoEsp() {
 
     var dropDiasBloqueo = $('#dropDiasBloqueo').val(); 
@@ -107,8 +105,8 @@ function insertarBloqueoEsp() {
                 if (dropDiasBloqueo == 'defecto') {
                         alert("Elija una opción válida en todos los campos");
                } else {
-                //alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
-  //+ horaFin);
+               /* alert('/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
+  + horaFin);*/
                 $.ajax({
   url: '/crearBloqueoEspecialista/' + dropEspecialistas + '/' + dropDiasBloqueo + '/'+ datepickedInicio + '/' + datepickedFin + '/' + horaInicio + '/' 
   + horaFin,
@@ -126,8 +124,7 @@ timeout: 15000
 }//fin método
 
 
-
-                $(function () {
+$(function () {
                     var momento = new Date();
                     console.log("Actual parseada: " + momento);
         $('#datetimepickerInicio').datetimepicker({
@@ -153,10 +150,7 @@ timeout: 15000
     });
 
 
-
-
-
-     function arreglarHora(hora) {
+    function arreglarHora(hora) {
         var horaReturn = "";
         if(hora.includes("AM")) {
             horaReturn = hora.slice(0, -3);

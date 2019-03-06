@@ -58,7 +58,7 @@ function ajaxCitasRecintoEstado(ID_Recinto, estado){
                 var estado = "Reprogramada";
             } 
 
-            $('#tablita').DataTable().row.add( [
+            $('#tablaDatos').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
@@ -93,7 +93,7 @@ function redireccionarCancelar(id_cita) {
     $(document).ready(function() {
         recintos();
         $('#dropRecintos').change(function() {
-        $('#tablita').dataTable().fnClearTable();
+        $('#tablaDatos').dataTable().fnClearTable();
         var ID_Recinto = $('#dropRecintos').val();
 
         if(ID_Recinto != 'defecto'){
@@ -105,7 +105,7 @@ function redireccionarCancelar(id_cita) {
         })
 
         $('#dropEstados').change(function() {
-        $('#tablita').dataTable().fnClearTable();
+        $('#tablaDatos').dataTable().fnClearTable();
         var ID_Recinto = $('#dropRecintos').val();
         var estado = $('#dropEstados').val();
         if(ID_Recinto != 'defecto' || estado != 'defecto'){
