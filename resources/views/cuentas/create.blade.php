@@ -14,7 +14,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <label for="name" ><strong>Tipo de usuario</strong></label> 
                         <div class="radio">
-                        <label><input type="radio" name="tipo" value="1" checked>Root</label>
+                        <label><input type="radio" name="tipo" value="1" checked>Administrador</label>
                         
                         
                         <label style="margin-left: 15px;"><input type="radio" name="tipo" value="2">Especialista</label>
