@@ -197,6 +197,9 @@ function cargarFechasDisponibles(horas) {
 limpiarCitas();
 //alert("/"+horas+"/");
 if(horas != undefined && horas !== "") {
+    if(!Array.isArray(horas)) {//En caso de que sea un array de objetos este if lo castea a array.
+        horas = Object.values(horas);
+    }
 horas.forEach(function(entry) {
     entry = entry.replace(/\:/g, '');
     if(entry.charAt(0) == "0") {

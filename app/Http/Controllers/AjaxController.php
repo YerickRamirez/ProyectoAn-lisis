@@ -175,7 +175,7 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
 
     
     $date =  Carbon::now(new DateTimeZone('America/Costa_Rica'));
-    $end_date = Carbon::now(new DateTimeZone('America/Costa_Rica'))->addDay(7);
+    $end_date = Carbon::now(new DateTimeZone('America/Costa_Rica'));//->addDay(7);
     
     $auxDate = $date;
     $cantidadCitasDisp = 0;
