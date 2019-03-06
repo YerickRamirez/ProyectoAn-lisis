@@ -9,7 +9,7 @@
        </div>
        <div class="panel-body">
 
-        <script src="{{('js/deshabilitarEspecial.js')}}"></script>
+        <script src="{{asset('js/deshabilitarEspecial.js')}}"></script>
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 

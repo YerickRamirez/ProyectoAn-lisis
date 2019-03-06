@@ -312,9 +312,22 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 <script>
     function cargarFechasDisponibles(horas) {
         limpiarCitas();
-        console.log(horas.toString());
-        alert("/"+horas+"/");
+        //console.log(horas);
+        //alert("/"+horas.toString()+"/");
         if(horas != undefined && horas !== "") {
+            if(!Array.isArray(horas)) {//En caso de que sea un array de objetos este if lo castea a array.
+                
+                /*Object.size = function(horas) {
+                var size = 0, key;
+                for (key in horas) {
+                 if (horas.hasOwnProperty(key)) size++;
+                }
+                return size;
+                };
+                var size = Object.size(horas);*/
+
+                horas = Object.values(horas);
+            }
         horas.forEach(function(entry) {
             entry = entry.replace(/\:/g, '');
             if(entry.charAt(0) == "0") {

@@ -10,7 +10,7 @@
        <div class="panel-body">
 
 
-        <script src="{{('js/deshabilitarAsistente.js')}}"></script>
+        <script src="{{asset('js/deshabilitarAsistente.js')}}"></script>
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 

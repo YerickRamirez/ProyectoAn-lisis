@@ -47,7 +47,7 @@
             </div>
         </div>
            
-        <script src="{{('js/configurarHorariosEspecialistas.js')}}"></script>
+        <script src="{{asset('js/configurarHorariosEspecialistas.js')}}"></script>
         </section>
     </div>
     </div>

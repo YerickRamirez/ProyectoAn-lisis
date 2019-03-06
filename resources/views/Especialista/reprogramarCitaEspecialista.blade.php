@@ -13,7 +13,7 @@
     <input style="margin-bottom: 15px;" placeholder="Cédula paciente" class="nombre form-control" name="cedula" type="text" id="cedula" value="{{$cedula}}" readonly> 
 </div>
 
-<script src="{{('js/reprogramarCitasEspecialista.js')}}"></script>
+<script src="{{asset('js/reprogramarCitasEspecialista.js')}}"></script>
 
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->

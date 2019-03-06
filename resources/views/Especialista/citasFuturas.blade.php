@@ -56,9 +56,9 @@
    </div>
  </div>
 
- <script src="{{('js/lenguajeTabla.js')}}"></script>
+ <script src="{{asset('js/lenguajeTabla.js')}}"></script>
 
- <script src="{{('js/citasFuturasEspecialista.js')}}"></script>
+ <script src="{{asset('js/citasFuturasEspecialista.js')}}"></script>
 
     
 @endsection

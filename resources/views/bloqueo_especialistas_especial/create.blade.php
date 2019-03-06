@@ -9,7 +9,7 @@
        </div>
        <div class="panel-body">
 
-        <script src="{{('js/crearBloqueoEspecialistaEspecial.js')}}"></script>
+        <script src="{{asset('js/crearBloqueoEspecialistaEspecial.js')}}"></script>
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 

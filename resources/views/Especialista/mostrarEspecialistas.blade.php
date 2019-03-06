@@ -23,7 +23,7 @@
                         <th class="center">Nombre</th>
                         <th class="center">Opciones</th>
 				    </thead>
-                    <script src="{{('js/mostrarEspecialistas.js')}}"></script>
+                    <script src="{{asset('js/mostrarEspecialistas.js')}}"></script>
                 @foreach ($especialistas as $especialista)
 				<tr>
 					<td class="center">{{ $especialista->cedula_especialista}}</td>
@@ -48,6 +48,6 @@
 	</div>
 </div>
 
-<script src="{{('js/lenguajeTabla.js')}}"></script>
+<script src="{{asset('js/lenguajeTabla.js')}}"></script>
 
 @endsection

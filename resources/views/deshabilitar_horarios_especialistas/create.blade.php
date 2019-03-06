@@ -8,7 +8,7 @@
            <p style="text-align: center; font-size: 3vh;">Deshabilitar Horario</p>
        </div>
        <div class="panel-body">
-        <script src="{{('js/deshabilitarHorariosEspecialistas.js')}}"></script>
+        <script src="{{asset('js/deshabilitarHorariosEspecialistas.js')}}"></script>
 
 <!-- sdfghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 

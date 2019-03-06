@@ -58,6 +58,6 @@
    </div>
  </div>
 
- <script src="{{('js/lenguajeTabla.js')}}"></script>
- <script src="{{('js/citasTotalesEspecialista.js')}}"></script>
+ <script src="{{asset('js/lenguajeTabla.js')}}"></script>
+ <script src="{{asset('js/citasTotalesEspecialista.js')}}"></script>
 @endsection
