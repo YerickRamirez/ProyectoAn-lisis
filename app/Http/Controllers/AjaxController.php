@@ -181,7 +181,7 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
     $cantidadCitasDisp = 0;
     $cantidadTotalCitas = 24;
     $disponibles = array();
-    
+    $a = array();
 
 	while ($end_date->greaterThanOrEqualTo($date)) {
 
@@ -189,10 +189,19 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
         $arrayxD = json_decode($this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $date), true);
         
         foreach ($arrayxD as $elemento) {
-            $cantidadCitasDisp += ($cantidadTotalCitas - count($elemento));
-            //return $cantidadCitasDisp;
-            //return $elemento;
-            array_push($disponibles, $auxDate->format('d-m-Y'));
+            
+            $cantidadBloqueadas = count($elemento);
+            if($cantidadBloqueadas < $cantidadTotalCitas) {//Si la cantidad de blpqueadas es menor a 24
+                $cantidadCitasDisp += ($cantidadTotalCitas - $cantidadBloqueadas);
+                array_push($disponibles, $auxDate->format('d-m-Y'));
+                    if($cantidadCitasDisp >= 10) {
+                        break;
+                    }
+            }
+            
+            //array_push($a, $arrayxD);
+            
+            
         }
 
         if($cantidadCitasDisp >= 10) {
@@ -200,39 +209,11 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
         }
 
         $auxDate = $date;
-
-       /* $horasLibres = $this->horasLibres($arrayxD);
-        if (!ctype_space($horasLibres) && !$horasLibres == '') {
-            array_push($disponibles, $auxDate->format('d-m-Y') . ': ' . implode(" ", $horasLibres));
-        }*/
-
-        //return $horasLibres;
-
-        
-
-        //return $posiblesCitasLibres;
-        
-        //return $cantidadCitas;
-        /*foreach ($arrayxD as $elemento) {
-            foreach($elemento as $elementito){
-            array_push($horasOcupadasDia, $elementito);
-            }
-        }*/
-
-        /*if(!empty($arrayxD)){
-            array_push($horasOcupadas, "holi");
         }
-        if(!strcmp($this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $datepicked), '\"horasOcupadas\":[]')) {
-            array_push($horasOcupadas, "jajaja");
-        }*/
         
-        //array_push($horasOcupadas, $this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $datepicked));
-        }
         $date = $date->addDay();
     }
-    //return $cantidadCitasOcupadas;
     return json_encode(["disponibles"=>$disponibles]);
-    //return json_encode(["horasOcupadas"=>$this->datosCita($dropRecintos, $dropServicios, $dropEspecialista, $datepicked)]);
 
 }
 
