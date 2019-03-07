@@ -86,7 +86,16 @@
     }
   }
 
+  .phone-number .col-xs-3::after{
+    content: "-";
+    position:absolute;
+       right: 0px;
+       color: black;
+       border: 0px solid;
+       top: 5px;
+   }
 
+  
 
 
   

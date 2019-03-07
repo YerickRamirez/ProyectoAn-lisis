@@ -60,13 +60,23 @@ function ajaxCitasRecintoEstado(ID_Recinto, estado){
                 var btnCancelarText = '<button style="background-color:grey" disabled id="cancelar" onclick="redireccionarCancelar(' +"'" + this.id_cita +"'" + ')" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></button>';
             }
 
+            var fecha = this.fecha_cita.split("-");
+    	    var anio = fecha[0];
+    	    var mes = fecha[1];
+            var dia = fecha[2];
+            var diaHora = dia.split(" ");
+            dia = diaHora[0];
+            hora = diaHora[1];
+            fecha = dia + "/" + mes + "/" + anio + " " + hora;
+
+
             $('#tablaDatos').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
                 this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
                 this.nombreServ,
-                this.fecha_cita,
+                fecha,
                 btnConfirmarText + ' ' + btnReprogramarText + ' ' + btnCancelarText
         ] ).draw( false );   
         })

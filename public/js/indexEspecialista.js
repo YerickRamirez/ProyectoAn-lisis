@@ -52,12 +52,22 @@ function ajaxCitasRecinto(ID_Recinto){
             } else {
                 var btnConfirmarText = '<button id="confirmado" onclick="redireccionarConfirmar(' +"'" + this.id_cita +"'" + "," + "'" + this.nombre  +  "'" + "," + "'" + this.primer_apellido_paciente +  "'" + ')" class="btn btn-xs btn-success" style=""><span class="glyphicon glyphicon-ok"></button>'
             }
+
+            var fecha = this.fecha_cita.split("-");
+    	    var anio = fecha[0];
+    	    var mes = fecha[1];
+            var dia = fecha[2];
+            var diaHora = dia.split(" ");
+            dia = diaHora[0];
+            hora = diaHora[1];
+            fecha = dia + "/" + mes + "/" + anio + " " + hora;
+
             $('#tablaDatos').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
                 this.nombreServ,
-                this.fecha_cita,
+                fecha,
                 btnConfirmarText + ' ' + btnReprogramarText + ' ' + btnCancelarText
         ] ).draw( false );   
         })

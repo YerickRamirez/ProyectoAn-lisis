@@ -48,7 +48,7 @@
                     </div> 
                     <div class="form-group">
                         <label for="correo-field">Telefono</label>
-                        <input class="form-control" type="text" name="telefono" id="telefono-field" value="{{ old('telefono', $variable->telefono ) }}" required pattern="^[0-9]{4,10}" title="No se permiten letras en este campo/ingresar de 4-10 digitos"/>
+                        <input class="form-control" type="text" name="telefono" id="telefono-field" value="{{ old('telefono', $variable->telefono ) }}" required size="8" maxlength="8" pattern="^[0-9]{8}" title="No se permiten letras en este campo/Debe contener al menos 8 dígitos"/>
                     </div>
                     <a href="{{ url('cambioContrasenna')}}">Cambiar Contraseña</a>
                 <div class="well well-sm">

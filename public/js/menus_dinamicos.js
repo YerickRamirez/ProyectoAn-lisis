@@ -108,4 +108,5 @@ $(window).resize(function() {
 		return  dia + "/" + mes + "/" + anio;
 	}
 
+
 	

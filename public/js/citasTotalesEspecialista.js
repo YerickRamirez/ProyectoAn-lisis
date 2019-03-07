@@ -50,13 +50,22 @@ function ajaxCitasRecinto(ID_Recinto){
             if(this.estado_cita_id == 4 ){
                 var estado = "Reprogramada";
             } 
+            var fecha = this.fecha_cita.split("-");
+    	    var anio = fecha[0];
+    	    var mes = fecha[1];
+            var dia = fecha[2];
+            var diaHora = dia.split(" ");
+            dia = diaHora[0];
+            hora = diaHora[1];
+            fecha = dia + "/" + mes + "/" + anio + " " + hora;
+
             $('#tablaDatos').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
                 this.telefono,
-                this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
+                //this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
                 this.nombreServ,
-                this.fecha_cita,
+                fecha,
                 estado
         ] ).draw( false );   
         })
