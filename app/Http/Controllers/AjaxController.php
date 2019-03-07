@@ -248,11 +248,69 @@ private function horasLibres($arrayOcupadas) {
 public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked){
 
     
+        $horasOcupadas = array();
+
         $dropEspecialistas = $dropEspecialistaxD;
     
         $fechaElegidaCarbon = Carbon::createFromFormat('Y-m-d', Carbon::parse($datepicked)->format('Y-m-d'), 
         'America/Costa_Rica');//hace un string de la fecha elegida por el usuario y luego lo hace un Carbon*/
       
+        $fechaHoy =  Carbon::now(new DateTimeZone('America/Costa_Rica'));
+
+        //return json_encode(["horasOcupadas"=>$fechaHoy->toDateString() == $fechaElegidaCarbon->toDateString()]);
+        if($fechaHoy->toDateString() == $fechaElegidaCarbon->toDateString()) {
+            $horaHoy = intval($fechaHoy->hour);
+            $minutosHoy = intval($fechaHoy->minute);
+            //$sinCitasHoy = false;
+            if((intval($horaHoy) >= 17)){//si por ejemplo son las 22:15 lo vuelve 16:40 
+                $horaHoy = "16";
+                $minutosHoy = "40";
+            } 
+            if(!(intval($horaHoy) < 8)) {//si la hora NO es menor a las 8. Si es menor nada se hace
+            if(($minutosHoy - 20) < 0) {//13:18 = 18 - 20 -> 13:00 para atrás bloqueado
+                $minutosHoy = "00";
+            } elseif(($minutosHoy - 20) == 0) {//13:20 = 20 - 20 -> 13:20 para atrás bloqueado
+                $minutosHoy = "20";
+            } elseif(($minutosHoy - 20) < 20) {//13:25 = 25 - 20 -> 13:20 para atrás bloqueado
+                    $minutosHoy = "20";
+            } elseif(($minutosHoy - 20) == 20) {//13:40 = 40 - 20 -> 13:40 para atrás bloqueado
+                    $minutosHoy = "40";
+            } else {//13:45 = 45 - 20 -> 13:40 para trás bloqueado
+                    $minutosHoy = "40";
+            }
+           //return intval($horaHoy . $minutosHoy);
+           $horaFinBloqueo = intval($horaHoy . $minutosHoy);
+           $restarHora = false;
+           //return $horaFinBloqueo;
+           for($x = $horaFinBloqueo; $x >= 800; $x= $x-20) {
+            
+            $minutosCiclo = substr($x, -2);
+
+               if($horaHoy == 12){
+                   $horaHoy = 11;
+               }
+                if($minutosCiclo >= 00 && $minutosCiclo < 60){
+                    if($minutosCiclo == 00){
+                        $restarHora = true;
+                    }
+                array_push($horasOcupadas, $horaHoy . ':' . $minutosCiclo);
+                }
+                /*if($minutosCiclo >= 60){
+                    $restarHora = true;
+                }*/
+                if($restarHora){
+                    $horaHoy = intval($horaHoy) - 1;
+                    $minutosCiclo = "40";
+                    $restarHora = false;
+                    
+                    if($horaHoy < 8) {
+                        break;
+                    }
+                }
+           }//fin for
+          }//fin if menor a 8
+          //return json_encode(["horasOcupadas"=>$horasOcupadas]);
+        }//fin si el dia es hoy
 
         $diaElegido = $fechaElegidaCarbon->dayOfWeek;
         $diaElegido2 = $fechaElegidaCarbon->dayOfWeek;
@@ -303,8 +361,6 @@ public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $d
         //rango de fechas bloqueando un día en específico, como los miércoles en la mañana.
 
         //return $horarios_bloqueados_esp;
-
-        $horasOcupadas = array();
 
         if(!$fechaCitas->isEmpty()) {//citas existentes de la fecha elegidas
             foreach ($fechaCitas as $fechaCita) {

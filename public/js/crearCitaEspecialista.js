@@ -216,12 +216,14 @@ function confirmarCita(hora , minutos) {
             //alert(datepicked)
             //datepicked.setHours(datepicked.getHours() -6);
             datepicked = datepicked.toLocaleDateString();
+            datepicked = datepicked.split("/");
                // alert("Fecha elegida: " + datepicked);
                minutos = String(minutos);
                if(minutos == "0") {
                    minutos = "00";
                }
-        if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked + "?")) {
+        if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked[1] + "/" +
+        datepicked[0] + "/" + datepicked[2]+ "?")) {
             var datepicked = new Date(dateTime);
             datepicked.setHours(datepicked.getHours() - 6);
                 datepicked = datepicked.toISOString();
@@ -265,6 +267,7 @@ function confirmarCita(hora , minutos) {
     datepicked = datepicked.toLocaleDateString();
     var fechaTica = parsearFecha(datepicked);
     var y = document.getElementById("Fecha");
+    //alert(fechaTica);
     y.innerHTML = "Fecha seleccionada: " + fechaTica;
     y.style.display ="block";
 }
