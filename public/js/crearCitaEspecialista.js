@@ -130,7 +130,6 @@ $('#' + nombreDrop).append("<option value='defecto'>----Seleccione " + nombreTex
 
 
 function revisarDisponibilidad() {
-//limpiarTablaSugeridas();
     var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
     //var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);
@@ -284,11 +283,11 @@ function limpiarCitas() {
 }
 
 function limpiarTablaSugeridas() {
-    $('#ocultar-tabla-sugeridas').innerHTML = "";
+    $("#ocultar-tabla-sugeridas tr").remove();
 }
 
 function llenarTablaSugeridas(fechasSugeridas) {
-    //limpiarTablaSugeridas();
+    limpiarTablaSugeridas();
     codigoTabla = "";
     $.each(fechasSugeridas, function (i) {
         //alert(fechasSugeridas[i])
