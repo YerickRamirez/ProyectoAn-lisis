@@ -1,81 +1,81 @@
 function recintos(){
-        $('#dropRecintos').empty();
-        $('#dropRecintos').append("<option>Cargando...</option>");
-        $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");
-        $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");
+    $('#dropRecintos').empty();
+    $('#dropRecintos').append("<option>Cargando...</option>");
+    $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");
+    $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");
 
-         $.ajax({
-  url: '/recintosCombo',
-  type: 'GET',
-  dataType: "json",
-  success:function(datos){ 
+     $.ajax({
+url: '/recintosCombo',
+type: 'GET',
+dataType: "json",
+success:function(datos){ 
 $('#dropRecintos').empty();
 $('#dropRecintos').append("<option value='defecto'>Seleccione Recinto</option>");   
 $.each(datos, function()
 {
-        $.each(this, function(){//los datos del server vienen en una variable data
-        //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
-        $('#dropRecintos').append('<option value="' + this.id + '">' + this.descripcion + '</option>');
-        })        
+    $.each(this, function(){//los datos del server vienen en una variable data
+    //si quieren ver esos datos pongan en la URL "/recintosCombo" por ejemplo.
+    $('#dropRecintos').append('<option value="' + this.id + '">' + this.descripcion + '</option>');
+    })        
 })
 
 }, error:function() {
-        alert("¡Ha habido un error! Elija correctamente su recinto." +
-        "Si este error persiste por favor comuníquese con el Servicio de Salud");
-        $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
+    alert("¡Ha habido un error! Elija correctamente su recinto." +
+    "Si este error persiste por favor comuníquese con el Servicio de Salud");
+    $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
 }
 });
 }
 
 function servicios(ID_Recinto){
-            $('#dropServicios').empty();
-            $('#dropServicios').append("<option>Cargando...<option>");
-                $.ajax({
-  url: '/serviciosCombo/' + ID_Recinto,
-  type: 'GET',
-  dataType: "json",
-  success:function(datos){ 
+        $('#dropServicios').empty();
+        $('#dropServicios').append("<option>Cargando...<option>");
+            $.ajax({
+url: '/serviciosCombo/' + ID_Recinto,
+type: 'GET',
+dataType: "json",
+success:function(datos){ 
 $('#dropServicios').empty();
 $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");   
 $.each(datos, function()
 {
-    
-        $.each(this, function(){
-        $('#dropServicios').append('<option value="' + this.id + '">' + this.nombre + '</option>');
-        }) 
+
+    $.each(this, function(){
+    $('#dropServicios').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+    }) 
 }) 
 
 }, error:function() {
-        $('#dropServicios').empty();
-        $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");   
-        alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
+    $('#dropServicios').empty();
+    $('#dropServicios').append("<option value='defecto'>Seleccione Servicio</option>");   
+    alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
 }
 }); //fin ajax
 }//fin servicios 
 
 function especialistas(ID_Servicio, ID_Recinto){
-            $('#dropEspecialistas').empty();
-            $('#dropEspecialistas').append("<option>Cargando...<option>");
-                $.ajax({
-  url: '/especialistasCombo/' + ID_Servicio + '/' + ID_Recinto,
-  type: 'GET',
-  dataType: "json",
-  success:function(datos){ 
+        $('#dropEspecialistas').empty();
+        $('#dropEspecialistas').append("<option>Cargando...<option>");
+            $.ajax({
+url: '/especialistasCombo/' + ID_Servicio + '/' + ID_Recinto,
+type: 'GET',
+dataType: "json",
+success:function(datos){ 
 $('#dropEspecialistas').empty();
 $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
 $.each(datos, function()
 {
-        $.each(this, function(){
-        $('#dropEspecialistas').append('<option value="' + this.id + '">' + this.nombre + " "  + this.primer_apellido_especialista + 
-        " " +  this.segundo_apellido_especialista + '</option>');
-        }) 
+    $.each(this, function(){
+    $('#dropEspecialistas').append('<option value="' + this.id + '">' + this.nombre + " "  + this.primer_apellido_especialista + 
+    " " +  this.segundo_apellido_especialista + '</option>');
+    }) 
 
 })
 
 }, error:function() {
-        $('#dropEspecialistas').empty();
-        $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
-        alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
+    $('#dropEspecialistas').empty();
+    $('#dropEspecialistas').append("<option value='defecto'>Seleccione Especialista</option>");   
+    alert("¡Ha habido un error! Si este persiste por favor comuníquese con el Servicio de Salud");
 }
 }); //fin ajax
 }//fin especialistas 
@@ -83,79 +83,84 @@ $.each(datos, function()
 
 
 $(document).ready(function() {
-        recintos();
-        
-        $('#dropRecintos').change(function() {
-        ocultarHorario();
-        var ID_Recinto = $('#dropRecintos').val();
-        if(ID_Recinto != 'defecto'){
-        servicios(ID_Recinto);   
-        limpiarDrop("dropEspecialistas", "Especialista")
-        }else{
-        limpiarDrop("dropServicios", "Servicio")
-        limpiarDrop("dropEspecialistas", "Especialista")
-        }
-        })
-        
-        $('#dropServicios').change(function() {
-        ocultarHorario();
-        var ID_Servicio = $('#dropServicios').val();
-        var ID_Recinto = $('#dropRecintos').val();
-        if(ID_Servicio != 'defecto' && ID_Recinto != 'defecto'){
-        especialistas(ID_Servicio, ID_Recinto);   
-        }else{
-        limpiarDrop("dropEspecialistas", "Especialista")
-        }
-        })
+    recintos();
+    
+    $('#dropRecintos').change(function() {
+    ocultarHorario();
+    ocultarTablaCitasSugeridas();
+    var ID_Recinto = $('#dropRecintos').val();
+    if(ID_Recinto != 'defecto'){
+    servicios(ID_Recinto);   
+    limpiarDrop("dropEspecialistas", "Especialista")
+    }else{
+    limpiarDrop("dropServicios", "Servicio")
+    limpiarDrop("dropEspecialistas", "Especialista")
+    }
+    })
+    
+    $('#dropServicios').change(function() {
+    ocultarHorario();
+    ocultarTablaCitasSugeridas();
+    var ID_Servicio = $('#dropServicios').val();
+    var ID_Recinto = $('#dropRecintos').val();
+    if(ID_Servicio != 'defecto' && ID_Recinto != 'defecto'){
+    especialistas(ID_Servicio, ID_Recinto);   
+    }else{
+    limpiarDrop("dropEspecialistas", "Especialista")
+    }
+    })
 
-        $('#dropEspecialistas').change(function() {
-            ocultarHorario();
-            }
-        )
+    $('#dropEspecialistas').change(function() {
+        ocultarHorario();
+        ocultarTablaCitasSugeridas();
+        }
+    )
 
-        $('#datetimepicker5').click(function() {
-            ocultarHorario();
-            }
-        )
+    $('#datetimepicker5').click(function() {
+        ocultarHorario();
+        ocultarTablaCitasSugeridas();
+        }
+    )
 })
 
 function limpiarDrop(nombreDrop, nombreTexto) {
-   $('#' + nombreDrop).empty();
-   $('#' + nombreDrop).append("<option value='defecto'>----Seleccione " + nombreTexto+ "----</option>");   
+$('#' + nombreDrop).empty();
+$('#' + nombreDrop).append("<option value='defecto'>----Seleccione " + nombreTexto+ "----</option>");   
 }
 
 
 function revisarDisponibilidad() {
-        var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
-        //var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
-                var datepicked = new Date(dateTime);
-                datepicked.setHours(datepicked.getHours() -6);
-                datepicked = datepicked.toISOString();
-                //alert(datepicked);
-                //alert("Fecha elegida: " + datepicked);
-                var cedula = $('#cedula').val(); 
-                var dropRecintos = $('#dropRecintos').val();           
-                //alert(dropRecintos);
-                var dropServicios = $('#dropServicios').val();           
-                //alert(dropServicios);
-                var dropEspecialistas = $('#dropEspecialistas').val();           
-                //alert(dropEspecialistas);
-                if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
-                 dropEspecialistas == 'defecto') {
-                        alert("Elija una opción válida en todos los campos");
-               } else {
-                $.ajax({
-  url: '/verificarCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas + '/' 
-  + datepicked,
-  type: 'GET',
-  dataType: "json",
-  success:function(datos){ 
-    //alert(datos + " jajaja");
-    //alert(datos.horasOcupadas);
-        cargarFechasDisponibles(datos.horasOcupadas);
+//limpiarTablaSugeridas();
+    var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+    //var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
+            var datepicked = new Date(dateTime);
+            datepicked.setHours(datepicked.getHours() -6);
+            datepicked = datepicked.toISOString();
+            //alert(datepicked);
+            //alert("Fecha elegida: " + datepicked);
+            var cedula = $('#cedula').val(); 
+            var dropRecintos = $('#dropRecintos').val();           
+            //alert(dropRecintos);
+            var dropServicios = $('#dropServicios').val();           
+            //alert(dropServicios);
+            var dropEspecialistas = $('#dropEspecialistas').val();           
+            //alert(dropEspecialistas);
+            if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
+             dropEspecialistas == 'defecto') {
+                    alert("Elija una opción válida en todos los campos");
+           } else {
+            $.ajax({
+url: '/verificarCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas + '/' 
++ datepicked,
+type: 'GET',
+dataType: "json",
+success:function(datos){ 
+//alert(datos + " jajaja");
+//alert(datos.horasOcupadas);
+    cargarFechasDisponibles(datos.horasOcupadas);
 }, error:function() {
-     alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
-     " con el Servicio de Salud");   
+ alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
+ " con el Servicio de Salud");   
 },
 timeout: 15000
 }); 
@@ -177,7 +182,35 @@ $(function () {
             });
     });
 
-
+    function sugerirCitas() {
+                    var dropRecintos = $('#dropRecintos').val();           
+                    var dropServicios = $('#dropServicios').val();           
+                    var dropEspecialistas = $('#dropEspecialistas').val();           
+                    if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
+                     dropEspecialistas == 'defecto') {
+                            alert("Elija una opción válida en todos los campos");
+                   } else {
+                    $.ajax({
+      url: '/sugerirCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas,
+      type: 'GET',
+      dataType: "json",
+      success:function(datos){ 
+        //alert(datos + " jajaja");
+        //console.log("xD" +datos.disponibles + "xD");
+        //console.log(datos.disponibles != "");
+        if(datos.disponibles != undefined && datos.disponibles != ""){
+            llenarTablaSugeridas(datos.disponibles);
+        } else {
+            alert("No hay cita próxima rasta");
+        }
+    }, error:function() {
+         alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
+         " con el Servicio de Salud");   
+    },
+    timeout: 15000
+    }); 
+    }}
+    
 function confirmarCita(hora , minutos) {
             var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
             var datepicked = new Date(dateTime);
@@ -209,7 +242,7 @@ function confirmarCita(hora , minutos) {
         }
     }
 
-        function cargarFechasDisponibles(horas) {
+    function cargarFechasDisponibles(horas) {
         limpiarCitas();
         //console.log(horas);
         //alert("/"+horas.toString()+"/");
@@ -248,4 +281,48 @@ function limpiarCitas() {
         document.getElementById(horaCita).style.backgroundColor = "#33cc33";
     }
 } 
+}
+
+function limpiarTablaSugeridas() {
+    $('#ocultar-tabla-sugeridas').innerHTML = "";
+}
+
+function llenarTablaSugeridas(fechasSugeridas) {
+    //limpiarTablaSugeridas();
+    codigoTabla = "";
+    $.each(fechasSugeridas, function (i) {
+        //alert(fechasSugeridas[i])
+        fechaAux = fechasSugeridas[i].split("/");
+        fechaAux = new Date(fechaAux[2], parseInt(fechaAux[1])-1, fechaAux[0]);
+        //new Date(fechasSugeridas[i]);
+        //alert(fechaAux);
+        /*auxSugeridas = "!" + fechasSugeridas[i].replace("/", "!");
+        auxSugeridas = auxSugeridas.replace("/", '!');
+        auxSugeridas = JSON.stringify(auxSugeridas);*/
+        codigoTabla +=  '<tr><td style="text-align: center">' + fechasSugeridas[i] + '</td>'+ 
+            '<td><buttton type="submit" style=" width:80px;" class="size btn  btn-success"' + 
+            'onclick="cambiarFechaCalendario(' + fechaAux.getTime() + ')">Revisar Fecha</td></tr><br>';
+                                       // <button id="{{$horaMilitar . '0' . $minutos}}" type="submit" style=" width:80px;" class="size btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:0{{$minutos}} {{$des}}</button>
+});
+$('#ocultar-tabla-sugeridas').append(codigoTabla);
+
+
+    //alert(fechasSugeridas + "llegaron las fechas XD");
+    mostarTablaCitasSugeridas();
+}
+
+function cambiarFechaCalendario(fechaSugerida) {
+
+$('#datetimepicker5').data("DateTimePicker").date(new Date(fechaSugerida));
+revisarDisponibilidad();
+/*
+$('#datetimepicker5').val("11/11/1998").change(function() {
+  alert( "Handler for .change() called." );
+});*/
+/*
+$('#datetimepicker5').data("DateTimePicker").date("11/11/1998");
+*/
+    /*$('#datetimepicker5').datetimepicker({
+    date: new Date(1434544882775)
+});*/
 }
