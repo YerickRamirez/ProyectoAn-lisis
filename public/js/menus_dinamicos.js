@@ -46,6 +46,19 @@ function ocultarUnaTabla() {//Este método oculta unada más una tabla que se te
 	x.style.display = "none";
 }
 
+function ocultarTablaCitasSugeridas() {//Este método oculta la tabla de citas sugeridas
+	var x = document.getElementById("ocultar-tabla-sugeridas");
+	x.style.display = "none";
+}
+
+function mostarTablaCitasSugeridas() {
+	var x = document.getElementById("ocultar-tabla-sugeridas");
+	
+    if (x.style.display === "none") {
+		//y.style.display ="none";
+        x.style.display = "block";
+    }
+}
 
 $(window).resize(function() {
 		var path = $(this);
