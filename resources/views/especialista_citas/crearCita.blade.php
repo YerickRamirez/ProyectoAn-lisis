@@ -31,12 +31,13 @@
         </div>
     </div>
     
-    <button id="mostar-tabla" style="margin-left: 15px;" class = 'margin-button-agregar btn btn-success mobile' 
+    <div style="text-align:center">
+    <button id="mostar-tabla" style=" margin-top: 10px; margin-bottom: 5px;" class = 'margin-button-agregar btn btn-success mobile' 
     onclick="revisarDisponibilidad()">Mostrar horario</button>
     
-    <button id="mostar-tabla" style="margin-left: 15px;" class = 'margin-button-agregar btn btn-warning mobile' 
+    <button id="mostar-tabla" style="margin-top: 10px; margin-left: 10px; margin-bottom: 5px;" class = 'margin-button-agregar btn btn-primary mobile' 
     onclick="sugerirCitas()">Sugerir fecha de cita</button>
-    <br><br>
+    </div>
     
     @if(session('message'))
     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -100,16 +101,11 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 
 </div>
 </div>
-
-<div class="panel-heading">
+    <div class="col-md-6 col-md-offset-3" style="text-align:center; isplay:inline-block;">
     <div class="table-responsive" id="ocultar-tabla-sugeridas" style="display: none;">
            
-    <table class="table table-striped table-bordered table-condensed table-hover">
-                        
-                
-        </table>
-                    </div>
-                </div>
+    </div>
+    <div>
 	</section>
    </div>
  </div>
