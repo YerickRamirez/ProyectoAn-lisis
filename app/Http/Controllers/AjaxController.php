@@ -175,11 +175,12 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
 
     
     $date =  Carbon::now(new DateTimeZone('America/Costa_Rica'));
-    $end_date = Carbon::now(new DateTimeZone('America/Costa_Rica'));//->addDay(7);
+    $end_date = Carbon::now(new DateTimeZone('America/Costa_Rica'))->addDay(7);
     
     $auxDate = $date;
     $cantidadCitasDisp = 0;
     $cantidadTotalCitas = 24;
+    $maxCitasSugerir = 10;
     $disponibles = array();
     $a = array();
 
@@ -193,8 +194,8 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
             $cantidadBloqueadas = count($elemento);
             if($cantidadBloqueadas < $cantidadTotalCitas) {//Si la cantidad de blpqueadas es menor a 24
                 $cantidadCitasDisp += ($cantidadTotalCitas - $cantidadBloqueadas);
-                array_push($disponibles, $auxDate->format('d-m-Y'));
-                    if($cantidadCitasDisp >= 10) {
+                array_push($disponibles, $auxDate->format('d/m/Y'));
+                    if($cantidadCitasDisp >= $maxCitasSugerir) {
                         break;
                     }
             }
@@ -204,7 +205,7 @@ public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialist
             
         }
 
-        if($cantidadCitasDisp >= 10) {
+        if($cantidadCitasDisp >= $maxCitasSugerir) {
             break;
         }
 
