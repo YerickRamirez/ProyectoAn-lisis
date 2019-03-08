@@ -105,7 +105,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
     <div class="table-responsive" id="ocultar-tabla-sugeridas" style="display: none;">
            
     </div>
-    <div>
+    </div>
 	</section>
    </div>
  </div>
