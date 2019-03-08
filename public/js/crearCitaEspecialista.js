@@ -286,7 +286,7 @@ function limpiarCitas() {
 }
 
 function limpiarTablaSugeridas() {
-    $("#ocultar-tabla-sugeridas tr").remove();
+    $("#ocultar-tabla-sugeridas table").remove();
 }
 
 function llenarTablaSugeridas(fechasSugeridas) {
@@ -301,9 +301,11 @@ function llenarTablaSugeridas(fechasSugeridas) {
         /*auxSugeridas = "!" + fechasSugeridas[i].replace("/", "!");
         auxSugeridas = auxSugeridas.replace("/", '!');
         auxSugeridas = JSON.stringify(auxSugeridas);*/
-        codigoTabla += '<table class="table table-striped table-bordered table-condensed table-hover">' + '<thead> <th class="text-center">Fecha' + '</th>' + '<th class="text-center">Opción' + '</th>' + '</thead>'+ '<tbody>' + '<tr><td style="text-align: center">' + fechasSugeridas[i] + '</td>'+ 
+        codigoTabla += '<table id="ocultar-tabla-sugeridas" class="table table-striped table-bordered table-condensed table-hover">' + '<thead> <th class="text-center">Fecha' + '</th>' + '<th class="text-center">Opción' + '</th>' + '</thead>'+ '<tbody>' + '<tr><td style="text-align: center">' + fechasSugeridas[i] + '</td>'+ 
             '<td><button type="submit" style=" width:150px;" class=" btn  btn-success"' + 
-            'onclick="cambiarFechaCalendario(' + fechaAux.getTime() + ')">Revisar Fecha</td></tr><br>' + '</tbody>' + '</table>';
+            'onclick="cambiarFechaCalendario(' + fechaAux.getTime() + ')">Revisar Fecha</td></tr>' + '</tbody>' + '</table>';
+        
+        
                                        // <button id="{{$horaMilitar . '0' . $minutos}}" type="submit" style=" width:80px;" class="size btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:0{{$minutos}} {{$des}}</button>
 });
 $('#ocultar-tabla-sugeridas').append(codigoTabla);

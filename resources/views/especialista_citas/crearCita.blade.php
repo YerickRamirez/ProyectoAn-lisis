@@ -103,7 +103,7 @@ $holas = array(90000, 80000, 130000,"114000", "94000", 164000, 140000);
 </div>
     <div class="col-md-6 col-md-offset-3" style="text-align:center; isplay:inline-block;">
     <div class="table-responsive" id="ocultar-tabla-sugeridas" style="display: none;">
-           
+    
     </div>
     <div>
 	</section>
