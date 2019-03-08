@@ -30,9 +30,13 @@
         </div>
     </div>
     
-    <button id="mostar-tabla"  class = 'margin-button-agregar btn btn-success mobile' 
-    onclick="revisarDisponibilidad()">Mostrar horario</button>
-    
+    <div style="text-align:center">
+        <button id="mostar-tabla" style=" margin-top: 10px; margin-bottom: 5px;" class = 'margin-button-agregar btn btn-success mobile' 
+        onclick="revisarDisponibilidad()">Mostrar horario</button>
+        
+        <button id="mostar-tabla" style="margin-top: 10px; margin-left: 10px; margin-bottom: 5px;" class = 'margin-button-agregar btn btn-primary mobile' 
+        onclick="sugerirCitas()">Sugerir fecha de cita</button>
+        </div>
     @if(session('message'))
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -89,6 +93,11 @@
 </table>
 </div>
 </div>
+<div class="col-md-6 col-md-offset-3" style="text-align:center; isplay:inline-block;">
+    <div class="table-responsive" id="ocultar-tabla-sugeridas" style="display: none;">
+    
+    </div>
+    </div>
 	</section>
    </div>
  </div>

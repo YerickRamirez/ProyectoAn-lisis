@@ -137,7 +137,7 @@ function revisarDisponibilidad() {
             datepicked = datepicked.toISOString();
             //alert(datepicked);
             //alert("Fecha elegida: " + datepicked);
-            var cedula = $('#cedula').val(); 
+            //var cedula = $('#cedula').val(); 
             var dropRecintos = $('#dropRecintos').val();           
             //alert(dropRecintos);
             var dropServicios = $('#dropServicios').val();           

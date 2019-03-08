@@ -87,6 +87,7 @@ $(document).ready(function() {
     
     $('#dropRecintos').change(function() {
     ocultarHorario();
+    ocultarTablaCitasSugeridas();
     var ID_Recinto = $('#dropRecintos').val();
     if(ID_Recinto != 'defecto'){
     servicios(ID_Recinto);   
@@ -99,6 +100,7 @@ $(document).ready(function() {
     
     $('#dropServicios').change(function() {
     ocultarHorario();
+    ocultarTablaCitasSugeridas();
     var ID_Servicio = $('#dropServicios').val();
     var ID_Recinto = $('#dropRecintos').val();
     if(ID_Servicio != 'defecto' && ID_Recinto != 'defecto'){
@@ -110,11 +112,13 @@ $(document).ready(function() {
 
     $('#dropEspecialistas').change(function() {
         ocultarHorario();
+        ocultarTablaCitasSugeridas();
         }
     )
 
     $('#datetimepicker5').click(function() {
         ocultarHorario();
+        ocultarTablaCitasSugeridas();
         }
     )
 })
@@ -155,6 +159,35 @@ success:function(datos){
 }, error:function() {
  alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
  " con el Servicio de Salud");   
+},
+timeout: 15000
+}); 
+}}
+
+function sugerirCitas() {
+    var dropRecintos = $('#dropRecintos').val();           
+    var dropServicios = $('#dropServicios').val();           
+    var dropEspecialistas = $('#dropEspecialistas').val();           
+    if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
+     dropEspecialistas == 'defecto') {
+            alert("Elija una opción válida en todos los campos");
+   } else {
+    $.ajax({
+url: '/sugerirCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas,
+type: 'GET',
+dataType: "json",
+success:function(datos){ 
+//alert(datos + " jajaja");
+//console.log("xD" +datos.disponibles + "xD");
+//console.log(datos.disponibles != "");
+if(datos.disponibles != undefined && datos.disponibles != ""){
+llenarTablaSugeridas(datos.disponibles);
+} else {
+alert("No hay cita próxima rasta");
+}
+}, error:function() {
+alert("Ha habido un error verificando la existencia de citas. Si este persiste comuníquese" +
+" con el Servicio de Salud");   
 },
 timeout: 15000
 }); 
@@ -249,3 +282,39 @@ disabledDates: [] //Lista de fechas que bloquear.
 }).on('dp.change', function prueba() {
 });
 });
+
+function limpiarTablaSugeridas() {
+    $("#ocultar-tabla-sugeridas table").remove();
+}
+
+function llenarTablaSugeridas(fechasSugeridas) {
+    limpiarTablaSugeridas();
+    codigoTabla = "";
+    $.each(fechasSugeridas, function (i) {
+        //alert(fechasSugeridas[i])
+        fechaAux = fechasSugeridas[i].split("/");
+        fechaAux = new Date(fechaAux[2], parseInt(fechaAux[1])-1, fechaAux[0]);
+        //new Date(fechasSugeridas[i]);
+        //alert(fechaAux);
+        /*auxSugeridas = "!" + fechasSugeridas[i].replace("/", "!");
+        auxSugeridas = auxSugeridas.replace("/", '!');
+        auxSugeridas = JSON.stringify(auxSugeridas);*/
+        codigoTabla += '<table id="ocultar-tabla-sugeridas" class="table table-striped table-bordered table-condensed table-hover">' + '<thead> <th class="text-center">Fecha' + '</th>' + '<th class="text-center">Opción' + '</th>' + '</thead>'+ '<tbody>' + '<tr><td style="text-align: center">' + fechasSugeridas[i] + '</td>'+ 
+            '<td><button type="submit" style=" width:150px;" class=" btn  btn-success"' + 
+            'onclick="cambiarFechaCalendario(' + fechaAux.getTime() + ')">Revisar Fecha</td></tr>' + '</tbody>' + '</table>';
+        
+        
+                                       // <button id="{{$horaMilitar . '0' . $minutos}}" type="submit" style=" width:80px;" class="size btn  btn-success" onclick="confirmarCita({{json_encode($horaMilitar)}}, {{json_encode($minutos)}})">{{$hora}}:0{{$minutos}} {{$des}}</button>
+});
+$('#ocultar-tabla-sugeridas').append(codigoTabla);
+
+
+    //alert(fechasSugeridas + "llegaron las fechas XD");
+    mostarTablaCitasSugeridas();
+}
+
+function cambiarFechaCalendario(fechaSugerida) {
+
+$('#datetimepicker5').data("DateTimePicker").date(new Date(fechaSugerida));
+revisarDisponibilidad();
+}
