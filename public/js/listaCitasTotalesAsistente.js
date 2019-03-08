@@ -67,10 +67,16 @@ function ajaxCitasRecintoEstado(ID_Recinto, estado){
             hora = diaHora[1];
             fecha = dia + "/" + mes + "/" + anio + " " + hora;
 
+            var tel = this.telefono + "";
+            tel = tel.split("");
+            var tel1 = tel[0] + "" + tel[1] + "" + tel[2] + "" + tel[3];
+            var tel2 = tel[4] + "" + tel[5] + "" + tel[6] + "" + tel[7];
+            var telefono = tel1 + " - " + tel2;
+
             $('#tablaDatos').DataTable().row.add( [
                 this.cedula_paciente,
                 this.nombre + ' ' + this.primer_apellido_paciente + ' ' + this.segundo_apellido_paciente,
-                this.telefono,
+                telefono,
                 this.nombreEsp + ' ' + this.apellidoEsp + ' ' + this.apellido2Esp,
                 this.nombreServ,
                 this.descripcion,

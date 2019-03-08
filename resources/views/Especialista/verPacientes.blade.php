@@ -27,6 +27,7 @@
                         <tbody>
                             @foreach($pacientes as $paciente)
                             <?php $nombre = $paciente->nombre . " " . $paciente->primer_apellido_paciente . " " . $paciente->segundo_apellido_paciente?>
+                            
                                 <tr>
                                     <td class="text-center"><strong>{{$paciente->cedula_paciente}}</strong></td>
                                     <td class="text-center"><strong>{{$nombre}}</strong></td>
