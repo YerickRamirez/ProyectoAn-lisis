@@ -18,7 +18,7 @@ class cambiarContrasennaController extends Controller
         $rrr = $request->input('password');
         $conf = $request->input("password_confirmation");
         if (strlen($rrr)<6) {
-            return back()->withErrors(['password' => 'Debe tener más de 6 caracteres']);
+            return back()->withErrors(['password' => 'La contraseña debe tener más de 6 caracteres']);
         }
         if ($rrr != $conf) {
             # code...

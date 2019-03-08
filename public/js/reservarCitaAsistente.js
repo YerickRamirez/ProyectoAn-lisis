@@ -196,17 +196,14 @@ timeout: 15000
 function confirmarCita(hora , minutos) {
     var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
     var datepicked = new Date(dateTime);
-    //alert(datepicked)
-    //datepicked.setHours(datepicked.getHours() -6);
-    datepicked = datepicked.toLocaleDateString();
-    datepicked = datepicked.split("/");
-       // alert("Fecha elegida: " + datepicked);
+    datepicked.setHours(datepicked.getHours() - 6);
+    datepicked = datepicked.toISOString().split("-");
        minutos = String(minutos);
        if(minutos == "0") {
            minutos = "00";
        }
-if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked[1] + "/" +
-datepicked[0] + "/" + datepicked[2] + "?")) {
+if (confirm("¿Desea una cita a la hora " + String(hora) + ":" + minutos + " en la fecha " + datepicked[2].substring(0, 2)+ "/" +
+datepicked[1] + "/" + datepicked[0] + "?")) {
     var datepicked = new Date(dateTime);
     datepicked.setHours(datepicked.getHours() - 6);
         datepicked = datepicked.toISOString();
@@ -248,10 +245,10 @@ document.getElementById(entry).style.backgroundColor = "#656161";
 });
 var dateTime = $('#datetimepicker5').data("DateTimePicker").date();
 var datepicked = new Date(dateTime);
-datepicked = datepicked.toLocaleDateString();
-var fechaTica = parsearFecha(datepicked);
+datepicked.setHours(datepicked.getHours() - 6);
+datepicked = datepicked.toISOString().split("-");
 var y = document.getElementById("Fecha");
-y.innerHTML = "Fecha seleccionada: " + fechaTica;
+y.innerHTML = "Fecha seleccionada: " + datepicked[2].substring(0, 2) + "/" + datepicked[1] + "/" + datepicked[0];
 y.style.display ="block";
 }
 mostarHorario();
