@@ -27,11 +27,11 @@ $.each(datos, function()
 });
 }
 
-function extraerServicios(){
+function extraerServicios(ID_Recinto){
             $('#dropServicios').empty();
             $('#dropServicios').append("<option>Cargando...<option>");
                 $.ajax({
-  url: '/serviciosCombo',
+  url: '/serviciosCombo/' + ID_Recinto,
   type: 'GET',
   dataType: "json",
   success:function(datos){ 
@@ -95,8 +95,18 @@ function vincular() {
 ***********/
 //VER ESTO QUE ES IMPORTANTE E INVISIBLE, TOTALMENTE
 $(document).ready(function() {
-        extraerServicios();
-        extraerRecintos();    
+        extraerRecintos();
+
+        $('#dropRecintos').change(function() {
+        var ID_Recinto = $('#dropRecintos').val();
+        if(ID_Recinto != 'defecto'){
+        extraerServicios(ID_Recinto);   
+        //limpiarDrop("dropEspecialistas", "Especialista")
+        }else{
+        limpiarDrop("dropServicios", "Servicio")
+        //limpiarDrop("dropEspecialistas", "Especialista")
+        }
+        })
         extraerEspecialistas();
 })
 
@@ -106,14 +116,11 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
 *************/
 
 
 
+function limpiarDrop(nombreDrop, nombreTexto) {
+   $('#' + nombreDrop).empty();
+   $('#' + nombreDrop).append("<option value='defecto'>----Seleccione " + nombreTexto+ "----</option>");   
+}
