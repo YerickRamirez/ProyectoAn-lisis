@@ -84,14 +84,15 @@
                         <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
                                 <label for="telefono" class="col-md-4 control-label">Teléfono</label>
                             <div class="col-md-6">
-                           <input id="telefono" type="text" class="form-control" name="telefono" pattern="^[0-9]{4,10}" value="{{ old('telefono') }}" required title="No se permiten letras en este campo/ingresar de 4-10 digitos">
-                           @if ($errors->has('telefono'))
+                                <input id="telefono" type="text" class="form-control" name="telefono"  size="8" maxlength="8" pattern="^[0-9]{8}" value="{{ old('telefono') }}" required title="No se permiten letras en este campo/Debe contener al menos 8 dígitos">
+                                @if ($errors->has('telefono'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('telefono') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                            
                         </div>
-                    </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Contraseña</label>

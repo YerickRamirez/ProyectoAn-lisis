@@ -39,7 +39,7 @@
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Teléfono</th>
                         <!--<th class="text-center">Correo</th>-->  
-                        <th class="text-center">Especialista</th> 
+                        <!--<th class="text-center">Especialista</th> -->
                         <th class="text-center">Servicio</th> 
                         <th class="text-center">Fecha/Hora</th> 
                         <th class="text-center">Estado</th>                          
