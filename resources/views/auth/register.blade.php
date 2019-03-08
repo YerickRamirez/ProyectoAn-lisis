@@ -98,7 +98,7 @@
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required minlength="6">
+                                <input minlength="6" id="password" type="password" class="form-control" name="password" required minlength="6">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -112,7 +112,7 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required minlength="6">
+                                <input minlength="6" id="password-confirm" type="password" class="form-control" name="password_confirmation" required minlength="6">
                             </div>
                         </div>
 

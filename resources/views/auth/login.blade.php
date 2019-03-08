@@ -30,7 +30,7 @@
                             
 
                             <div class="">
-                                <input placeholder="Contraseña" id="password" type="password" class="form-control" name="password" required>
+                                <input minlength="6" placeholder="Contraseña" id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
