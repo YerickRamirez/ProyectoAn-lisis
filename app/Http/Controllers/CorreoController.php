@@ -75,12 +75,12 @@ class CorreoController extends Controller
 			 ]);
 
 		$correo->save();
-
+/*
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "The Correo \"<a href='correos/$correo->slug'>" . $correo->name . "</a>\" was Created.");
-
+*/
 		return redirect()->route('correos.index');
 	}
 
@@ -132,12 +132,12 @@ class CorreoController extends Controller
 			 ]);
 
 		$correo->save();
-
+/*
 		Session::flash('message_type', 'blue');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "The Correo \"<a href='correos/$correo->slug'>" . $correo->name . "</a>\" was Updated.");
-
+*/
 		return redirect()->route('correos.index');
 	}
 
@@ -151,12 +151,12 @@ class CorreoController extends Controller
 	{
 		$correo->active_flag = 0;
 		$correo->save();
-
+/*
 		Session::flash('message_type', 'negative');
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', 'The Correo ' . $correo->name . ' was De-Activated.');
-
+*/
 		return redirect()->route('correos.index');
 	}
 
@@ -170,12 +170,12 @@ class CorreoController extends Controller
 	{
 		$correo->active_flag = 1;
 		$correo->save();
-
+/*
 		Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', 'The Correo ' . $correo->name . ' was Re-Activated.');
-
+*/
 		return redirect()->route('correos.index');
 	}
 }

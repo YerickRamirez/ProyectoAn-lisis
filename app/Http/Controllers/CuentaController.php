@@ -105,7 +105,7 @@ class CuentaController extends Controller
         $rrr = $request->input('password');
         $conf = $request->input("password_confirmation");
         if (strlen($rrr)<6) {
-            return back()->withErrors(['password' => 'Debe tener más de 6 caracteres']);
+            return back()->withErrors(['password' => 'La contraseña debe tener más de 6 caracteres']);
         }
         if ($rrr != $conf) {
             return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
@@ -125,8 +125,8 @@ class CuentaController extends Controller
 		    }
 		}
 
-		//return $telefono;
-		if($telefono == "" || strlen($telefono) < 4) {
+		//return $telefono; 
+		if($telefono == "" || strlen($telefono) < 8) {
 			if($checkValue == 4) {
 				return back()->withErrors(['telefono' => trans('El paciente debe tener un teléfono válido')]);
 			} else {

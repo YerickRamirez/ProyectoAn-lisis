@@ -395,9 +395,9 @@ class CitaControllerAsistente extends Controller
 				$email = $paciente->correo;
 				$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
 
-				
+				$cita->save();
 				Mail::to($email)->send(new SendMailable($nombre, $fecha, $horaCita));
-				 $cita->save();
+				 
 				 Session::flash('message_type', 'negative');
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');

@@ -166,8 +166,8 @@ class CitaController extends Controller
 		$user = User::where('id', Auth::user()->id)->first();
 		$email = $user->email;
 		$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
-		Mail::to($email)->send(new SendMailable($user->name, $fecha, $horaCita));
 		$cita->save();
+		Mail::to($email)->send(new SendMailable($user->name, $fecha, $horaCita));
 		Session::flash('message_type', 'negative');
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
@@ -252,11 +252,12 @@ class CitaController extends Controller
 
 		$cita->save();
 
+		/*
 		Session::flash('message_type', 'blue');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
 		Session::flash('message', "The Cita \"<a href='citas/$cita->slug'>" . $cita->name . "</a>\" was Updated.");
-
+*/
 		return redirect()->route('citas.index');
 	}
 
@@ -272,10 +273,10 @@ class CitaController extends Controller
 		$cita->estado_cita_id = 3;
 		$cita->save();
 
-		Session::flash('message_type', 'negative');
+		/*Session::flash('message_type', 'negative');
 		Session::flash('message_icon', 'hide');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');
+		Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');*/
 		return redirect()->route('citas.index');
 	}
 
@@ -290,10 +291,10 @@ class CitaController extends Controller
 		$cita->active_flag = 1;
 		$cita->save();
 
-		Session::flash('message_type', 'success');
+	/*	Session::flash('message_type', 'success');
 		Session::flash('message_icon', 'checkmark');
 		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cita ' . $cita->name . ' was Re-Activated.');
+		Session::flash('message', 'The Cita ' . $cita->name . ' was Re-Activated.');*/
 
 		return redirect()->route('citas.index');
 	}
