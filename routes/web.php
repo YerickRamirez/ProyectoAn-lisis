@@ -463,10 +463,10 @@ Route::post('reestablecer', 'recuperarContrasennaController@mail')->name('reesta
 Route::resource('cambiarContrasennaAsistente', 'ContrasenneAsistenteController');
 Route::get('contrasennaAsistente', function() {
     return view('asistente/cambiarContrasenna');
-});
+})->middleware('asistente');
 
 //Cambio contraseña especialista
 Route::resource('cambiarContrasennaEspecialista', 'ContrasenneEspecialistaController');
 Route::get('contrasennaEspecialista', function() {
     return view('Especialista/cambiarContrasenna');
-});
+})->middleware('especialista');

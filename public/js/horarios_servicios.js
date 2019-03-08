@@ -87,6 +87,7 @@ $(document).ready(function() {
         
         $('#dropRecintos').change(function() {
         ocultarUnaTabla();
+        ocultarCampo("info");
         var ID_Recinto = $('#dropRecintos').val();
         if(ID_Recinto != 'defecto'){
         servicios(ID_Recinto);   
@@ -99,6 +100,7 @@ $(document).ready(function() {
         
         $('#dropServicios').change(function() {
         ocultarUnaTabla();
+        ocultarCampo("info");
         var ID_Servicio = $('#dropServicios').val();
         var ID_Recinto = $('#dropRecintos').val();
         if(ID_Servicio != 'defecto' && ID_Recinto != 'defecto'){
@@ -110,11 +112,19 @@ $(document).ready(function() {
 
         $('#dropEspecialistas').change(function() {
              ocultarUnaTabla();
+             ocultarCampo("info");
             }
         )
 
        
 })
+
+function ocultarCampo(nombreCampo) {
+        var y = document.getElementById(nombreCampo);
+        if(y != null && y != undefined) {
+                    y.style.display ="none";
+        }
+}
 
 function limpiarDrop(nombreDrop, nombreTexto) {
    $('#' + nombreDrop).empty();

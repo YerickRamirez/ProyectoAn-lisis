@@ -16,7 +16,7 @@
                            
 
                             <div class="">
-                                <input placeholder="Correo" id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input placeholder="Correo electrónico" id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
