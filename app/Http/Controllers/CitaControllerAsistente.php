@@ -361,6 +361,7 @@ class CitaControllerAsistente extends Controller
 			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
 			$minutosCita = substr($request->horaCita, -2);
 			$horaCita = $request->horaCita[0];
+			
 			if($horaCita == "9" || $horaCita == "8") {
 				$horaCita = "0" . $horaCita . ':' . $minutosCita;
 			} else {
@@ -393,10 +394,39 @@ class CitaControllerAsistente extends Controller
 				->first();
 				$nombre = $paciente->nombre;
 				$email = $paciente->correo;
-				$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
+				$fecha = Carbon::parse($fechaCita)->format('d/m/Y');
+				
+				$especialista = DB::table('especialistas')->where('especialistas.id', $request->dropEspecialistas)
+				->first();
+				$especialista = $especialista->nombre . " " . $especialista->primer_apellido_especialista;
+				$recinto = DB::table('recintos')->where('recintos.id', $request->dropRecintos)
+				->first();
+				$recinto = $recinto->descripcion;
+				
+				
+				$hora =  Carbon::parse($cita->fecha_cita)->format('H');
+				$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
+				$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
+				if($hora == "13") {
+					$hora = "01";
+				} else if($hora == "14") {
+					$hora = "02";
+				} else if($hora == "15") {
+					$hora = "03";
+				} else if($hora == "16") {
+					$hora = "04";
+				} else if($hora == "17") {
+					$hora = "05";
+				}
 
+				if($horaFormato > "12") {
+					$hora = $hora . ":" . $minuto . " pm";
+				} else {
+					$hora = $hora . ":" . $minuto . " am";
+				}
+				
 				$cita->save();
-				Mail::to($email)->send(new SendMailable($nombre, $fecha, $horaCita));
+				Mail::to($email)->send(new SendMailable($nombre, $fecha, $hora, $recinto, $especialista));
 				 
 				 Session::flash('message_type', 'negative');
 				 Session::flash('message_icon', 'hide');

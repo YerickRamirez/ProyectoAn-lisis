@@ -433,10 +433,36 @@ class CitaControllerEspecialista extends Controller
 		->first();
 		$nombre = $paciente->nombre;
 		$email = $paciente->correo;
-		$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i');
-		//return $fecha;
+		$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y');
+		$hora =  Carbon::parse($cita->fecha_cita)->format('H');
+		$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
+		$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
+		if($hora == "13") {
+			$hora = "01";
+		} else if($hora == "14") {
+			$hora = "02";
+		} else if($hora == "15") {
+			$hora = "03";
+		} else if($hora == "16") {
+			$hora = "04";
+		} else if($hora == "17") {
+			$hora = "05";
+		}
+
+		if($horaFormato > "12") {
+			$hora = $hora . ":" . $minuto . " pm";
+		} else {
+			$hora = $hora . ":" . $minuto . " am";
+		}
+
+		$especialista = DB::table('especialistas')->where('especialistas.id', $cita->especialista_id)
+		->first();
+		$especialista = $especialista->nombre . " " . $especialista->primer_apellido_especialista;
+		$recinto = DB::table('recintos')->where('recintos.id', $cita->recinto_id)
+		->first();
+		$recinto = $recinto->descripcion;
 		
-		Mail::to($email)->send(new EnviarCanceacion($nombre, $fecha));
+		Mail::to($email)->send(new EnviarCanceacion($nombre, $fecha, $hora, $recinto, $especialista));
    		//return "Correo enviado exitosamente";
 		//$paciente_id = $paciente->first()->id;
 

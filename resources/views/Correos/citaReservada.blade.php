@@ -12,10 +12,10 @@
 </head>
 <body>
 <div>
-	<h3>Cita reservada exitosamente</h3>
-    <p>Estimado/a {{$name}},</p>
-    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} a la hora {{$hora}} ha sido reservada exitosamente,</p>
-    <p>¡Muchas gracias!</p>
+    <p>Estimado(a) {{$name}}.</p>
+    <p>El Servicio de Salud, Sede de Occidente de la Universidad de Costa Rica le informa que su cita para las {{$hora}} del día  {{$fecha}} ha sido reservada con éxito, 
+    con el/la especialista {{$especialista}}, del recinto de {{$recinto}}.</p>
+    <p>Le recordamos que debe de apersonarse de manera puntual. Por razones operativas, posterior a cinco minutos de la hora establecida su cita deberá reprogramarse según disponibilidad de horario.</p>
     <br>
     <br>
 </div>

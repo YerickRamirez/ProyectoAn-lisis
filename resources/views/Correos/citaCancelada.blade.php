@@ -12,9 +12,9 @@
 </head>
 <body>
 <div>
-    <p>Estimado/a {{$name}},</p>
-    <p>El servicio de salud universitaria le comunica que su cita para el día  {{$fecha}} ha sido cancelada.</p>
-    <p>¡Muchas gracias!</p>
+    <p>Estimado(a) {{$name}},</p>
+    <p>El Servicio de Salud, Sede de Occidente de la Universidad de Costa Rica le informa que su cita para las {{$hora}} del día {{$fecha}}, 
+    con el/la especialista {{$especialista}}, del recinto de {{$recinto}} ha sido cancelada.</p>
     <br>
     <br>
 </div>

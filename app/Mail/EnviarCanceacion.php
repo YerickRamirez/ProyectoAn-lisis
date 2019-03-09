@@ -13,16 +13,22 @@ class EnviarCanceacion extends Mailable
 
     public $name;
     public $fecha;
+    public $hora;
+    public $recinto;
+    public $especialista;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $fecha)
+    public function __construct($name, $fecha, $hora, $recinto, $especialista)
     {
         $this->name = $name;
         $this->fecha = $fecha;
+        $this->hora = $hora;
+        $this->recinto = $recinto;
+        $this->especialista = $especialista;
     }
 
     /**
@@ -34,7 +40,7 @@ class EnviarCanceacion extends Mailable
     {
         return $this->view('Correos/citaCancelada')
                 ->from('no-reply@nuestrodominio.com.ar')
-                ->subject('Cancelación cita médica');
+                ->subject('Cita médica cancelada');
 
     }
 }
