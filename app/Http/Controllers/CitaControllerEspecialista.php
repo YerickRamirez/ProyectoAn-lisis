@@ -346,11 +346,37 @@ class CitaControllerEspecialista extends Controller
 					$email = $paciente->correo;
 					$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
 	
+					$especialista = DB::table('especialistas')->where('especialistas.id', $request->dropEspecialistas)
+					->first();
+					$especialista = $especialista->nombre . " " . $especialista->primer_apellido_especialista;
+					$recinto = DB::table('recintos')->where('recintos.id', $request->dropRecintos)
+					->first();
+					$recinto = $recinto->descripcion;
 					
 					
-
+					$hora =  Carbon::parse($cita->fecha_cita)->format('H');
+					$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
+					$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
+					if($hora == "13") {
+						$hora = "01";
+					} else if($hora == "14") {
+						$hora = "02";
+					} else if($hora == "15") {
+						$hora = "03";
+					} else if($hora == "16") {
+						$hora = "04";
+					} else if($hora == "17") {
+						$hora = "05";
+					}
+	
+					if($horaFormato > "12") {
+						$hora = $hora . ":" . $minuto . " pm";
+					} else {
+						$hora = $hora . ":" . $minuto . " am";
+					}	
+					
+				 Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $hora, $recinto, $especialista));
 				 $cita->save();
-				 Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $horaCita));
 				 return back();
 				}
 				}
@@ -392,8 +418,37 @@ class CitaControllerEspecialista extends Controller
 				->first();
 				$nombre = $paciente->nombre;
 				$email = $paciente->correo;
-				$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i');
-				Mail::to($email)->send(new confirmarCita($nombre, $fecha));
+				$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y');
+
+				$especialista = DB::table('especialistas')->where('especialistas.id', $cita->especialista_id)
+				->first();
+				$especialista = $especialista->nombre . " " . $especialista->primer_apellido_especialista;
+				$recinto = DB::table('recintos')->where('recintos.id', $cita->recinto_id)
+				->first();
+				$recinto = $recinto->descripcion;
+				
+				
+				$hora =  Carbon::parse($cita->fecha_cita)->format('H');
+				$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
+				$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
+				if($hora == "13") {
+					$hora = "01";
+				} else if($hora == "14") {
+					$hora = "02";
+				} else if($hora == "15") {
+					$hora = "03";
+				} else if($hora == "16") {
+					$hora = "04";
+				} else if($hora == "17") {
+					$hora = "05";
+				}
+
+				if($horaFormato > "12") {
+					$hora = $hora . ":" . $minuto . " pm";
+				} else {
+					$hora = $hora . ":" . $minuto . " am";
+				}
+				Mail::to($email)->send(new confirmarCita($nombre, $fecha, $hora, $recinto, $especialista));
 				//return $cita;
 				$cita->estado_cita_id = 2;
 				$cita->save();
