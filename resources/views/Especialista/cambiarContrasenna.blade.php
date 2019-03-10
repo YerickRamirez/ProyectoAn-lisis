@@ -28,7 +28,7 @@
                     </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
-                    <a class="btn btn-link pull-right" href="{{ url('asistente') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
+                    <a class="btn btn-link pull-right" href="{{ url('Especialista') }}"><i class="glyphicon glyphicon-backward"></i>  Regresar</a>
                 </div>
             </form>
 

@@ -217,7 +217,6 @@ class PacienteController extends Controller
 		$cuenta->name =$request->input("nombre");
 		$apellido = $request->input("primer_apellido_paciente") . " " . $request->input("segundo_apellido_paciente");
 		$cuenta->lastName = $apellido;
-
 		$cuentaExistente = User::where('email', $request->input("correo"))->get();
 		$cuentaA = $cuentaExistente->first();
 		if((!$cuentaExistente->isEmpty()) && ($cuentaA->email == $request->input("correo") && ($cuenta->email != $request->input("correo")))) {
@@ -237,7 +236,7 @@ class PacienteController extends Controller
 		$paciente->segundo_apellido_paciente = $request->input("segundo_apellido_paciente");
 		$paciente->correo = $request->input("correo");
 		//$paciente->te = $request->input("correo");
-		$paciente->active_flag = 1;//change to reflect current status or changed status
+		$paciente->active_flag = $cuenta->active_flag;//change to reflect current status or changed status
 		
 		$correoNuevo = $request->input("correo");
 		$user = User::where('id', $paciente->id_user)->update(array('email'=>$correoNuevo));

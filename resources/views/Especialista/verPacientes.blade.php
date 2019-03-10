@@ -27,12 +27,12 @@
                         <tbody>
                             @foreach($pacientes as $paciente)
                             <?php $nombre = $paciente->nombre . " " . $paciente->primer_apellido_paciente . " " . $paciente->segundo_apellido_paciente?>
-                            
+                            <?php $tel = str_split($paciente->telefono); $numeroTel = $tel[0] .  $tel[1] .  $tel[2] .  $tel[3] . ' - ' .  $tel[4] .  $tel[5] .  $tel[6] .  $tel[7]?>
                                 <tr>
                                     <td class="text-center"><strong>{{$paciente->cedula_paciente}}</strong></td>
                                     <td class="text-center"><strong>{{$nombre}}</strong></td>
                                     <td class="text-center">{{$paciente->correo}}</td>
-                                    <td class="text-center">{{$paciente->telefono}}</td>
+                                    <td class="text-center">{{$numeroTel}}</td>
                                     @if($paciente->active_flag == 1)
                                     <td class="text-center">Activa</td>
                                     @else
