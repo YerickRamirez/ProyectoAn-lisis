@@ -113,6 +113,12 @@ class RegisterController extends Controller
     }*/
 
     public function register(Request $request) {
+        $contrasena = $request->input('password');
+        $conrasenaConfirmada = $request->input("password_confirmation");
+        if ($contrasena != $conrasenaConfirmada) {
+            # code...
+            return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
+        }
         $this->validator($request->all())->validate();
 
         $active_flag = Cuentas_activa::orderBy('id')->first()->cuentas_activas;
