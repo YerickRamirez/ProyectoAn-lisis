@@ -87,7 +87,7 @@
 		<a style="height: 50px" class="border-a active hide-title tittle-mobile" href="admin"><img style="display: block; margin-left: auto; margin-right: auto;" class="img-responsive center logo-nombre" height="20" width="250"  src="{{asset('Imagenes/logo_nombre_ucr.png')}}" ></a>
       </div>
 
-      <div id="myNavbar">
+      <div id="myNavbar" class="collapse">
 		<a class="border-a" href="{{ url('reservarCitaEsp') }}">Reservar<span class="glyphicon glyphicon-check right-aling-check"></span></a>
 		<a class="border-a" href="{{ url('Especialista') }}">Citas Actuales<span class="glyphicon glyphicon-calendar right-aling-calendar"></span></a>
 		<a class="border-a" href="{{ url('redirCitasAPartirHoy') }}">Citas Futuras<span class="glyphicon glyphicon-list-alt right-aling-alt"></span></a>
