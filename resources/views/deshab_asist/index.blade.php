@@ -11,7 +11,7 @@
     <div class="panel-body">
     <section class="">
     <div class="page-header clearfix">
-            <a class="btn btn-success pull-left" href="{{ route('deshab_asist.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
+            <a class="btn btn-success pull-left" href="{{ route('deshab_asist.create') }}">Crear</a>
     </div>
 
     <div class="row">

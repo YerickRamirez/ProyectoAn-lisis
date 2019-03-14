@@ -10,7 +10,7 @@
     <div class="panel-body">
     <section class="">
     <div class="page-header clearfix">
-            <a class="btn btn-success pull-left" href="{{ route('deshab_especial.create') }}"><i class="glyphicon glyphicon-plus"></i> Crear</a>
+            <a class="btn btn-success pull-left" href="{{ route('deshab_especial.create') }}"> Crear</a>
     </div>
 
     <div class="row">
