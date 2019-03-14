@@ -79,7 +79,7 @@
 		<a style="height: 50px" class="border-a active hide-title tittle-mobile" href="admin"><img style="display: block; margin-left: auto; margin-right: auto;" class="img-responsive center logo-nombre" height="20" width="250"  src="{{asset('Imagenes/logo_nombre_ucr.png')}}" ></a>
       </div>
 
-      <div id="myNavbar">
+      <div id="myNavbar" class="collapse">
 		<a class="border-a" href="{{ url('citas')}}">Citas<span class="glyphicon glyphicon-calendar right-citas"></a>
 		<a class="border-a" href="{{ url('perfilPaciente')}}">Perfil<span class="glyphicon glyphicon-user right-perfil"></a>
 		<a class="border-a" href="{{ url('cambioContrasenna')}}">Contraseña<span class="glyphicon glyphicon-lock right-aling-lock"></a>
