@@ -137,26 +137,14 @@ class CuentaController extends Controller
 		$paciente = new Paciente();
 		$opcion = Cuentas_activa::where('id', 1)->first();
 
-		if($checkValue != 4){
-			$user = User::create([
-				'name' => $request->input("name"),
-				'lastName' => $request->input("lastName"). ' ' .$request->input("lastName2"),
-				'email' => $request->input("email"),
-				'password' => bcrypt($request->input("password")),
-				'tipo' => $checkValue,
-				'active_flag' => $checkValue2,
-			]);
-		} else {
-			$user = User::create([
-				'name' => $request->input("name"),
-				'lastName' => $request->input("lastName"). ' ' .$request->input("lastName2"),
-				'email' => $request->input("email"),
-				'password' => bcrypt($request->input("password")),
-				'tipo' => $checkValue,
-				'active_flag' => 0,
-			]);
-		}
-
+		$user = User::create([
+			'name' => $request->input("name"),
+			'lastName' => $request->input("lastName"). ' ' .$request->input("lastName2"),
+			'email' => $request->input("email"),
+			'password' => bcrypt($request->input("password")),
+			'tipo' => $checkValue,
+			'active_flag' => $checkValue2,
+		]);
 		
 		Mail::to($request->input("email"))->send(new cuentaCreada($request->input("name"), $request->input("email")));
 
@@ -213,14 +201,7 @@ class CuentaController extends Controller
 				$paciente->primer_apellido_paciente = $request->input("lastName");
 				$paciente->segundo_apellido_paciente = $request->input("lastName2");
 				$paciente->correo = $user->email;
-
-				$opcion = Cuentas_activa::where('id', 1)->first();
-				if($opcion->cuentas_activas == 0){
-					$paciente->active_flag = 0;
-				} else {
-					$paciente->active_flag = $checkValue2;//change to reflect current status or changed status
-				}
-		
+				$paciente->active_flag = $checkValue2;//change to reflect current status or changed status
 				$paciente->save();
 
 				$telefonoModel = new Telefono();
