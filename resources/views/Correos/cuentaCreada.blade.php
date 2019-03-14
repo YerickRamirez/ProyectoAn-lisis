@@ -12,8 +12,8 @@
 </head>
 <body>
 <div>
-    <p>Estimado/a {{$nombre}},</p>
-    <p>El servicio de salud universitaria le comunica que su cuenta ha sido creada exitosamente,</p>
+    <p>Estimado(a) {{$nombre}}.</p>
+    <p>El Servicio de Salud, Sede de Occidente de la Universidad de Costa Rica le informa que su cuenta ha sido creada exitosamente,</p>
     <p>¡Muchas gracias!</p>
     <br>
     <br>
