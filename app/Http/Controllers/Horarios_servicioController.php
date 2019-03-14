@@ -203,8 +203,23 @@ class Horarios_servicioController extends Controller
 			}
 			
 		}
-	
-		return redirect()->route('horarios_servicios.index');
+
+			$tipo = Auth::user()->tipo;
+                if($tipo == 3){
+                return redirect()->route('Asistente.horarios');
+                } else{
+                    if($tipo == 2){
+                return redirect()->route('Especialista.menuConfigHorarios');
+                    } else{
+                        if($tipo == 1){
+													return redirect()->route('horarios_servicios.index');
+                    }
+                }
+                }
+               // return $dato;
+
+
+		
 	}
 
 	public function annadirActualizarHorariosEspecialista(Request $request, User $user, $array_horario_servicio)

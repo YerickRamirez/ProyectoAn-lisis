@@ -16,7 +16,7 @@
 	
 </div> <div class="form-group">
 	<label for="cedula_especialista-field">Cedula</label>
-	<input class="form-control" type="text" name="cedula_especialista" placeholder="Ingrese su cedula" id="cedula_especialista-field" value="" required pattern="^[0-9]{7,20}" title="Formato incorrecto, favor ingresar cédula con ceros y sin espacios"/>
+	<input class="form-control" type="text" name="cedula_especialista" placeholder="Ingrese su cédula" id="cedula_especialista-field" value="" required pattern="^[0-9]{7,20}" title="Formato incorrecto, favor ingresar cédula con ceros y sin espacios"/>
     @if ($errors->has('cedula_especialista'))
                 <span class="help-block">
                     <strong>{{ $errors->first('cedula_especialista') }}</strong>
@@ -29,15 +29,15 @@
 </div> 
 <div class="form-group">
 	<label for="primer_apellido_especialista-field">Primer Apellido</label>
-	<input class="form-control" type="text" name="primer_apellido_especialista" placeholder="Primer Apellido" id="primer_apellido_especialista-field" value="" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>
+	<input class="form-control" type="text" name="primer_apellido_especialista" placeholder="Ingrese su primer apellido" id="primer_apellido_especialista-field" value="" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>
 </div> 
 <div class="form-group">
 	<label for="segundo_apellido_especialista-field">Segundo Apellido</label>
-	<input class="form-control" type="text" name="segundo_apellido_especialista" placeholder="Segundo Apellido" id="segundo_apellido_especialista-field" value="" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>
+	<input class="form-control" type="text" name="segundo_apellido_especialista" placeholder="Ingrese su segundo apellido" id="segundo_apellido_especialista-field" value="" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}" title="Favor ingresar un formato correcto"/>
 </div>
 <div class="form-group">
 	<label for="email">Email</label>
-	<input class="form-control" type="email" name="email" placeholder="Ingrese su email" id="email-field" value="" />
+	<input class="form-control" type="email" name="email" placeholder="Ingrese su correo electrónico" id="email-field" value="" />
     @if ($errors->has('email'))
         <span class="help-block">
             <strong>{{ $errors->first('email') }}</strong>
@@ -46,7 +46,7 @@
 </div>
 <div class="form-group">
 	<label for="password">Contraseña</label>
-	<input class="form-control" type="password" name="password" placeholder="Ingrese su contrasenna(6 caracter minimo)" id="password-field" value="" />
+	<input class="form-control" type="password" name="password" placeholder="Ingrese su contraseña (mínimo 6 caracteres)" id="password-field" value="" />
     @if ($errors->has('password'))
         <span class="help-block">
             <strong>{{ $errors->first('password') }}</strong>
