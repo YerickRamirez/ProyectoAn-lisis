@@ -470,3 +470,6 @@ Route::resource('cambiarContrasennaEspecialista', 'ContrasenneEspecialistaContro
 Route::get('contrasennaEspecialista', function() {
     return view('Especialista/cambiarContrasenna');
 })->middleware('especialista');
+
+//Mostrar horario del servicio elegido según recinto y esp
+Route::get('/mostrarHorarioEsp/{dropRecintos}/{dropServicios}/{dropEspecialistas}', 'AjaxController@mostrarHorarioEsp')->middleware('paciente');

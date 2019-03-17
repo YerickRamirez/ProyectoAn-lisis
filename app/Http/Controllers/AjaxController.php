@@ -656,6 +656,17 @@ public function cargarCitas() {
     return json_encode(["citas"=>$citas]);
 }
 
+    public function mostrarHorarioEsp($dropRecintos, $dropServicios, $dropEspecialista){
 
+        //$horarios_servicios_especialista = Horarios_servicio::where('id_especialista', $dropEspecialista)->where('id_servicio', $dropServicios)
+        //->where('id_recinto', $dropRecintos)->where('active_flag', 1)->get();
 
+        $horarios_servicios_especialista = DB::table('horarios_servicios')->where('id_especialista', $dropEspecialista)
+        ->where('id_servicio', $dropServicios)->where('id_recinto', $dropRecintos)
+		->join('dia_horario_servicios', 'horarios_servicios.id_dia', '=', 'dia_horario_servicios.id')
+            ->orderBy('horarios_servicios.id_dia', 'asc')->get();
+            
+            
+        return json_encode(["mostrarHorarioEsp"=>$horarios_servicios_especialista]);
+    }
 }
