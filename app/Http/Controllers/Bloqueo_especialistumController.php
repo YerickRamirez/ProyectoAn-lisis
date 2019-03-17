@@ -16,6 +16,15 @@ use \Session;
 use DB;
 class Bloqueo_especialistumController extends Controller
 {
+	  /*
+    |--------------------------------------------------------------------------
+    | Bloqueo_especialistumController
+    |--------------------------------------------------------------------------
+    | This controller is responsible for handling the the schedule
+	| blockages of the specialists
+    |
+	*/
+	
 	/**
 	 * Variable to model
 	 *
