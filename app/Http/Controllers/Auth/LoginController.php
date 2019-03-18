@@ -9,35 +9,32 @@ use App;
 
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen.
+    |
+    */
 
-/*
-    public function revisarInicio() {
-        if(Auth::check()) {
-            $this->logout();
-          //  $this->auth->logout();
-        }
-        return view('auth/login');
-    }*/
-
+    /**
+     * Method in charge of verifying the credential and the type of users that 
+     * enter in the system.
+     */
     public function login(){
-
         $credentials = $this->validate(request(),[
             'email' => 'email|required|string',
             'password' => 'required|string'
         ]);
 
-     //  $credentials = $this->validate()->check($_POST,array(
-       // 'email' => 'email|required|string',
-       // 'password' => 'required|string'//,
-    //));
-
-        if(Auth::attempt($credentials)){
-
-              if(Auth::user()->active_flag == 1) {
+        if(Auth::attempt($credentials)){ //In case the credentials are corect.
+            if(Auth::user()->active_flag == 1) { //In case the patient's account is active.
             $tipo = Auth::user()->tipo;
             if($tipo == 4) {
                 return redirect('paciente');
-            } else{
+            } else {
                 if($tipo == 3){
                 return redirect('asistente');
                 } else{
@@ -48,17 +45,14 @@ class LoginController extends Controller
                 return redirect('admin');
                     }
                 }
-                }
-               // return $dato;
+              }
             }
 
-               // return redirect('especialistas');
-          //  }
-          } else {
+          } else { //In case the patient's account was desactive.
             return back()->withErrors(['password' => 'Su cuenta está desactivada. Contacte con el 
             Servicio de Salud para verificar el procedimiento de activación']);        
         }
-        } else {
+        } else {  //In case the credentials are incorect.
         return back()->withErrors(['email' => trans('Correo electrónico o contraseña incorrectos.')]);        
     }
     }
@@ -75,42 +69,11 @@ class LoginController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */ /*
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-} *//*
-
-    //Auth::logout();
-
-
-/*<?php
-
-namespace blog\Http\Controllers\Auth;
-
-use blog\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-class LoginController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+     */ 
 
     public function logout () {
-        //logout user
         auth()->logout();
         Auth::logout();
-        //$request->session()->flush();
-        //Session::flush();
-       //$user = Auth::user();
 
         return redirect('/');
     }

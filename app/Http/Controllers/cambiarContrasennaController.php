@@ -10,17 +10,27 @@ use Illuminate\Http\Request;
 
 class cambiarContrasennaController extends Controller
 {
-    	public function update(Request $request)
+    /*
+    |--------------------------------------------------------------------------
+    | cambiarContrasennaController
+    |--------------------------------------------------------------------------
+    | This controller is responsible for handling the password change.
+    |
+	*/
+    
+    /**
+     * This method is responsible for handling the password change of the users.
+     */
+    public function update(Request $request)
 	{
-
         $user = User::where('id', Auth::user()->id)->first();
         $user->password = bcrypt($request->input('password'));
-        $rrr = $request->input('password');
-        $conf = $request->input("password_confirmation");
-        if (strlen($rrr)<6) {
+        $password = $request->input('password'); //New password incoming.
+        $passwordConfirm = $request->input("password_confirmation");//Password confirmation incoming.
+        if (strlen($password)<6) { //Error message in case of wrong format (size of the password).
             return back()->withErrors(['password' => 'La contraseña debe tener más de 6 caracteres']);
         }
-        if ($rrr != $conf) {
+        if ($password != $passwordConfirm) { //Error message in case the passwords do not match.
             # code...
             return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
         }

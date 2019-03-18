@@ -75,12 +75,6 @@ class CorreoController extends Controller
 			 ]);
 
 		$correo->save();
-/*
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Correo \"<a href='correos/$correo->slug'>" . $correo->name . "</a>\" was Created.");
-*/
 		return redirect()->route('correos.index');
 	}
 
@@ -92,8 +86,6 @@ class CorreoController extends Controller
 	 */
 	public function show(Correo $correo)
 	{
-		//$correo = $this->model->findOrFail($id);
-
 		return view('correos.show', compact('correo'));
 	}
 
@@ -121,7 +113,7 @@ class CorreoController extends Controller
 	{
 
 		$correo->name = ucfirst($request->input("name"));
-    $correo->slug = str_slug($request->input("name"), "-");
+    	$correo->slug = str_slug($request->input("name"), "-");
 		$correo->description = ucfirst($request->input("description"));
 		$correo->active_flag = 1;//change to reflect current status or changed status
 		$correo->author_id = $request->user()->id;
@@ -132,12 +124,6 @@ class CorreoController extends Controller
 			 ]);
 
 		$correo->save();
-/*
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Correo \"<a href='correos/$correo->slug'>" . $correo->name . "</a>\" was Updated.");
-*/
 		return redirect()->route('correos.index');
 	}
 
@@ -151,12 +137,6 @@ class CorreoController extends Controller
 	{
 		$correo->active_flag = 0;
 		$correo->save();
-/*
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Correo ' . $correo->name . ' was De-Activated.');
-*/
 		return redirect()->route('correos.index');
 	}
 
@@ -170,12 +150,6 @@ class CorreoController extends Controller
 	{
 		$correo->active_flag = 1;
 		$correo->save();
-/*
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Correo ' . $correo->name . ' was Re-Activated.');
-*/
 		return redirect()->route('correos.index');
 	}
 }

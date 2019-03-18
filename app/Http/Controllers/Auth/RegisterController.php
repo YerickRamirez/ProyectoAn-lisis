@@ -24,9 +24,8 @@ class RegisterController extends Controller
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | This controller handles the registration of new user (patient) as well as their
+    | validation and creation.
     |
     */
 
@@ -69,71 +68,35 @@ class RegisterController extends Controller
     {
        Mail::to($email)->send(new SendMailable($name));
        Auth::logout();
-      // return view('');
     }
+
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
+     * Create a new user and patient after a valid registration.
+     * Send an email confirming the registration to the new user.
+     * @param  Request $request data entered in the registration form
      * @return \App\User
      */
-   /* protected function create(array $data)
-    {
-       
-
-        $pacienteExistente = Paciente::where('cedula_paciente', $data['cedula'])->get();
-        $user = null;
-        
-        if(!$pacienteExistente->isEmpty()) {
-             return back()->withErrors(['email' => trans('Correo electrónico o contraseña incorrectos.')]);
-        } else {
-        
-        $user = User::create([
-            'name' => $data['name'],
-            'lastName' => $data['lastName']. ' ' .  $data['lastName2'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'tipo' => 4,//tipo 4 = Paciente
-            'active_flag' => $active_flag,
-        ]);
-
-        Paciente::create([
-            'id_user' => $user->id,
-            'cedula_paciente' => $data['cedula'],
-            'nombre' => $data['name'],
-            'primer_apellido_paciente' => $data['lastName'],
-            'segundo_apellido_paciente' => $data['lastName2'],
-            'correo' => $data['email'],
-            'active_flag' => $active_flag,
-        ]);
-        
-        
-        return $user;
-    }
-    }*/
 
     public function register(Request $request) {
         $contrasena = $request->input('password');
         $conrasenaConfirmada = $request->input("password_confirmation");
-        if ($contrasena != $conrasenaConfirmada) {
+        if ($contrasena != $conrasenaConfirmada) {//confirm that the passwords match
             # code...
             return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
         }
         $this->validator($request->all())->validate();
 
         $active_flag = Cuentas_activa::orderBy('id')->first()->cuentas_activas;
-
         $paciente = Paciente::where('cedula_paciente', $request->cedula)->get();
-        //return $paciente;
-        if(!$paciente->isEmpty()) { // Existe un paciente con esa cédula
+        if(!$paciente->isEmpty()) { //Confirm that there is no patient with the id inserted.
             return back()->withErrors(['cedula' => trans('Ya existe un paciente con la cédula indicada')]);
-            return redirect('/register'); // ya hay un return arriba. :v
+            return redirect('/register');
         }
 
         $telefono = $request->input("telefono");
-        if($telefono == "" || strlen($telefono) < 4) {
+        if($telefono == "" || strlen($telefono) < 4) { //validate the phone number format
 			return back()->withErrors(['telefono' => trans('Digite un teléfono válido')]);
-            return redirect('/register'); //ya hay un return. :v
+            return redirect('/register');
         }
     
         $user = User::create([
@@ -143,7 +106,7 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
             'tipo' => 4,//tipo 4 = Paciente
             'active_flag' => $active_flag,
-        ]);
+        ]); //Create a new user in users table.
 
         $paciente = Paciente::create([
             'id_user' => $user->id,
@@ -153,7 +116,7 @@ class RegisterController extends Controller
             'segundo_apellido_paciente' => $request->lastName2,
             'correo' => $request->email,
             'active_flag' => $active_flag,
-        ]);
+        ]); //Create a new patient in pacientes table.
 
                 $telefonoModel = new Telefono();
 				$telefonoModel->paciente_id = $paciente->id;
@@ -164,11 +127,7 @@ class RegisterController extends Controller
         event(new Registered($user));
     
         $this->guard()->login($user);
-        Mail::to($request->input("email"))->send(new cuentaCreada($request->input("name"), $request->input("email")));
-        //return $request->input("email");
-        
-        
-    
+        Mail::to($request->input("email"))->send(new cuentaCreada($request->input("name"), $request->input("email")));//Send an email confirming the registration to the new user.
         return redirect($this->redirectPath());
     }
 }

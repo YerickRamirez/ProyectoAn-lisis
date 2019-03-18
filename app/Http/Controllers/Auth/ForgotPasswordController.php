@@ -11,7 +11,8 @@ class ForgotPasswordController extends Controller
     |--------------------------------------------------------------------------
     | Password Reset Controller
     |--------------------------------------------------------------------------
-    |
+    | This is a class created automatically by laravel. (The right class
+    | for retrieve the password is recuperarContrasennaController).
     | This controller is responsible for handling password reset emails and
     | includes a trait which assists in sending these notifications from
     | your application to your users. Feel free to explore this trait.

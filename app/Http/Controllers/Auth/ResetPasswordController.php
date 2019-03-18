@@ -11,7 +11,8 @@ class ResetPasswordController extends Controller
     |--------------------------------------------------------------------------
     | Password Reset Controller
     |--------------------------------------------------------------------------
-    |
+    | This is a class created automatically by laravel. (The right class
+    | for retrieve the password is recuperarContrasennaController).
     | This controller is responsible for handling password reset requests
     | and uses a simple trait to include this behavior. You're free to
     | explore this trait and override any methods you wish to tweak.
