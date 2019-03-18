@@ -25,12 +25,12 @@ class cambiarContrasennaController extends Controller
 	{
         $user = User::where('id', Auth::user()->id)->first();
         $user->password = bcrypt($request->input('password'));
-        $pasword = $request->input('password'); //New password incoming.
-        $paswordConfirm = $request->input("password_confirmation");//Password confirmation incoming.
-        if (strlen($pasword)<6) { //Error message in case of wrong format (size of the password).
+        $password = $request->input('password'); //New password incoming.
+        $passwordConfirm = $request->input("password_confirmation");//Password confirmation incoming.
+        if (strlen($password)<6) { //Error message in case of wrong format (size of the password).
             return back()->withErrors(['password' => 'La contraseña debe tener más de 6 caracteres']);
         }
-        if ($pasword != $paswordConfirm) { //Error message in case the passwords do not match.
+        if ($password != $passwordConfirm) { //Error message in case the passwords do not match.
             # code...
             return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
         }
