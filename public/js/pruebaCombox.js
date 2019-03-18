@@ -447,7 +447,7 @@ function horario_Recinto_Serv_Esp() {
             success:function(horario){ 
             horario = horario.mostrarHorarioEsp;
 
-            var textoHorario = "";
+            var textoHorario = "Disponibilidad de horario: \n\n";
             var servicioDia = false; //esta variable sirve para saber si un día
             //en específico existe un horario para el servicio
 
@@ -479,6 +479,9 @@ function horario_Recinto_Serv_Esp() {
                 var servicioDia = false;
             });
             alert(textoHorario);
+        } else {
+            alert("Ha habido un error verificando el horario del especialista. Si este persiste comuníquese" +
+            " con el Servicio de Salud");    
         }
                 
         }, error:function() {

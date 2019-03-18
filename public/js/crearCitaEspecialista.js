@@ -113,6 +113,13 @@ $(document).ready(function() {
     $('#dropEspecialistas').change(function() {
         ocultarHorario();
         ocultarTablaCitasSugeridas();
+
+        var ID_Servicio = $('#dropServicios').val();
+        var ID_Recinto = $('#dropRecintos').val();
+        var ID_Especialista = $('#dropEspecialistas').val();
+    if(ID_Servicio != 'defecto' && ID_Recinto != 'defecto' && ID_Especialista != 'defecto'){
+        horario_Recinto_Serv_Esp();
+    }
         }
     )
 
@@ -326,3 +333,65 @@ $('#datetimepicker5').data("DateTimePicker").date("11/11/1998");
     date: new Date(1434544882775)
 });*/
 }
+
+function horario_Recinto_Serv_Esp() {
+    var dropRecintos = $('#dropRecintos').val();           
+    var dropServicios = $('#dropServicios').val();           
+    var dropEspecialistas = $('#dropEspecialistas').val();           
+    if (dropRecintos == 'defecto' || dropServicios == 'defecto' ||
+     dropEspecialistas == 'defecto') {
+            alert("No se ha podido verificar el horario del especialista. Por favor" + 
+            "elija una opción válida en todos los campos");
+   } else {
+    $.ajax({
+        url: '/mostrarHorarioEsp/' + dropRecintos + '/' + dropServicios + '/' + dropEspecialistas,
+        type: 'GET',
+        dataType: "json",
+        success:function(horario){ 
+        horario = horario.mostrarHorarioEsp;
+
+        var textoHorario = "Disponibilidad de horario: \n\n";
+        var servicioDia = false; //esta variable sirve para saber si un día
+        //en específico existe un horario para el servicio
+
+    if(horario != undefined && horario !== "") {
+        if(!Array.isArray(horario)) {//En caso de que sea un array de objetos este if lo castea a array.
+            horario = Object.values(horario);
+        }
+        horario.forEach(function(diaHorario) {
+            textoHorario += diaHorario.dia + ": ";
+
+            if(diaHorario.disponibilidad_manana == "1") {
+                textoHorario += "Mañana" 
+                var servicioDia = true;
+            }
+            if(diaHorario.disponibilidad_tarde == "1") {
+                if(servicioDia) {
+                    textoHorario += " y tarde"
+                    var servicioDia = true;
+                } else {
+                 textoHorario += "Tarde" 
+                 var servicioDia = true;
+                }
+            }
+
+            if(!servicioDia) {
+                textoHorario += "Sin servicio"
+            }
+            textoHorario += "\n";
+            var servicioDia = false;
+        });
+        alert(textoHorario);
+    } else {
+        alert("Ha habido un error verificando el horario del especialista. Si este persiste comuníquese" +
+        " con el Servicio de Salud");    
+    }
+            
+    }, error:function() {
+        alert("Ha habido un error verificando el horario del especialista. Si este persiste comuníquese" +
+        " con el Servicio de Salud");   
+    },
+    timeout: 15000
+    }); 
+    }}
+
