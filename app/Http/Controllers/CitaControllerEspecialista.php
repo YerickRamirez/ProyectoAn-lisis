@@ -25,6 +25,14 @@ use Carbon\Carbon;
 
 class CitaControllerEspecialista extends Controller
 {
+
+	/*
+    |--------------------------------------------------------------------------
+    | CitaControllerEspecialista
+    |--------------------------------------------------------------------------
+    | This driver is responsible for handling appointments manage by the specialist.
+    |
+	*/
 	/**
 	 * Variable to model
 	 *
@@ -43,64 +51,33 @@ class CitaControllerEspecialista extends Controller
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Show the current day appointments in the specialist module. 
 	 *
 	 * @return Response
 	 */
-	/**ESTE VA A MOSTRAR LAS CITAS DEL DIA ACTUAL EN EL MODULO ESPECIALISTA*/
 	public function index()
 	{
-		/*$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
-		$fechaFinCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->endOfDay();
-		//Carbon::createFromFormat(Carbon::now(), 'America/Costa_Rica')->startOfDay();
-		//return $fechaInicioCarbon. ' ' . $fechaFinCarbon;
-		//$citas = Cita::where('active_flag', 1)->orderBy('id', 'desc')->paginate(10);
-		//$active = Cita::where('active_flag', 1);
-		$citas = $cita = DB::table('citas')->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
-		->whereDate('fecha_cita', '<=', $fechaFinCarbon)
-		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
-		->where('citas.active_flag', '!=',0)
-		->where('citas.estado_cita_id', '!=',3)
-		->where('telefonos.active_flag', 1)
-		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
-		->where('pacientes.active_flag', 1)
-		->select('citas.id as id_cita',
-			'citas.fecha_cita',
-			'citas.estado_cita_id', 
-			'pacientes.id',
-			'pacientes.nombre',
-			'pacientes.primer_apellido_paciente',
-			'pacientes.segundo_apellido_paciente',
-			'pacientes.cedula_paciente',       
-			'telefonos.telefono',
-			'pacientes.correo' )
-			->orderBy('fecha_cita', 'asc')->get();
-			//return $citas;*/
 		return view('Especialista.index');
-
 	}
 
-	//DEVUELVE SOLICITADAS Y CONFIRMADAS para el especialista loggeado el día actual!
+	/**
+	 * Return the appointments list reserved and confirmed for the specialist logged on the actual day.
+	 */
 	public function citaRecintoDia($ID_Recinto)
 	{
-		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
-		$fechaFinCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->endOfDay();
+		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay(); //Change date format
+		$fechaFinCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->endOfDay(); //Change date format
 
 		$citas = $cita = DB::table('citas')->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
 		->whereDate('fecha_cita', '<=', $fechaFinCarbon)
 		->where('recintos.id', $ID_Recinto)
 		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
-		//->where('recintos.active_flag', '!=',0)
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
-		//->where('citas.active_flag', '!=',0)
 		->where('citas.estado_cita_id', '!=',3)
 		->where('citas.estado_cita_id', '!=',4)
-		//->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
-		//->where('especialistas.active_flag', 1)
 		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
-		//->where('servicios.active_flag', 1)
 		->where('especialistas.id_user', Auth::user()->id)
 		->select('citas.id as id_cita',
 			'citas.fecha_cita',
@@ -118,30 +95,26 @@ class CitaControllerEspecialista extends Controller
 			'especialistas.segundo_apellido_especialista as apellido2Esp',
 			'servicios.nombre as nombreServ')
 			->orderBy('fecha_cita', 'asc')->get();
-			//return $citas;
 		return json_encode(["citas"=>$citas]);
 
 	}
 
-	//DEVUELVE SOLICITADAS Y CONFIRMADAS para el especialista loggeado A PARTIR del día actual!
+	/**
+	 * Return the appointments list reserved and confirmed from today (future appointments) for the specialist.
+	 */
 	public function citaRecintoAPartirHoy($ID_Recinto)
 	{
-		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay();
+		$fechaInicioCarbon = Carbon::now(new \DateTimeZone('America/Costa_Rica'))->startOfDay(); //Change date format
 
 		$citas = $cita = DB::table('citas')->whereDate('fecha_cita', '>=', $fechaInicioCarbon)
 		->where('recintos.id', $ID_Recinto)
 		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
-		//->where('recintos.active_flag', '!=',0)
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
-		//->where('citas.active_flag', '!=',0)
 		->where('citas.estado_cita_id', '!=',3)
 		->where('citas.estado_cita_id', '!=',4)
-		//->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
-		//->where('especialistas.active_flag', 1)
 		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
-		//->where('servicios.active_flag', 1)
 		->where('especialistas.id_user', Auth::user()->id)
 		->select('citas.id as id_cita',
 			'citas.fecha_cita',
@@ -159,28 +132,24 @@ class CitaControllerEspecialista extends Controller
 			'especialistas.segundo_apellido_especialista as apellido2Esp',
 			'servicios.nombre as nombreServ')
 			->orderBy('fecha_cita', 'asc')->get();
-			//return $citas;
 		return json_encode(["citas"=>$citas]);
 
 	}
 
+	/**  
+	* Return the appointmentslist reserved and confirmed historic for the specialist.
+	*/
 	public function historicoCitasActivasRecinto($ID_Recinto)
 	{
-
 		$citas = $cita = DB::table('citas')
 		->where('recintos.id', $ID_Recinto)
 		->join('recintos', 'citas.recinto_id', '=', 'recintos.id')
-		//->where('recintos.active_flag', '!=',0)
 		->join('telefonos', 'citas.paciente_id', '=', 'telefonos.paciente_id')
-		//->where('citas.active_flag', '!=',0)
 		->where('citas.estado_cita_id', '!=',3)
 		->where('citas.estado_cita_id', '!=',4)
-		//->where('telefonos.active_flag', 1)
 		->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 		->join('especialistas', 'citas.especialista_id', '=', 'especialistas.id')
-		//->where('especialistas.active_flag', 1)
 		->join('servicios', 'citas.servicio_id', '=', 'servicios.id')
-		//->where('servicios.active_flag', 1)
 		->where('especialistas.id_user', Auth::user()->id)
 		->select('citas.id as id_cita',
 			'citas.fecha_cita',
@@ -198,28 +167,16 @@ class CitaControllerEspecialista extends Controller
 			'especialistas.segundo_apellido_especialista as apellido2Esp',
 			'servicios.nombre as nombreServ')
 			->orderBy('fecha_cita', 'asc')->get();
-			//return $citas;
 		return json_encode(["citas"=>$citas]);
 
 	}
 	
 
-	/*CREO QUE EL ESPECIALISTA NO OCUPA ESTO
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Store a newly created appointment in storage.
 	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return view('citas.create');
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param Request $request
+	 * @param Request $request are all data incoming of the new appointment.
 	 * @return Response
 	 */
 	public function store(Request $request, User $user)
@@ -227,7 +184,7 @@ class CitaControllerEspecialista extends Controller
 		
 		$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
 		->select('id')->get();
-		if($paciente->isEmpty()) {
+		if($paciente->isEmpty()) { //Check if the ID card entered exists.
 				 Session::flash('message_type', 'negative');
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
@@ -242,7 +199,7 @@ class CitaControllerEspecialista extends Controller
 			$cita->servicio_id = $request->dropServicios;
 			$cita->especialista_id = $request->dropEspecialistas;
 			$cita->recinto_id = $request->dropRecintos;
-			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d'); //Change date format
 			$minutosCita = substr($request->horaCita, -2);
 			$horaCita = $request->horaCita[0];
 			if($horaCita == "9" || $horaCita == "8") {
@@ -252,31 +209,27 @@ class CitaControllerEspecialista extends Controller
 			}
 			$cita->fecha_cita = $fechaCita . ' ' . $horaCita;
 			$cita->active_flag = 1;
-			//$cita->author_id = $request->user()->id;
-	
-			/*$this->validate($request, [
-						 'name' => 'required|max:255|unique:citas',
-						 'description' => 'required'
-				 ]);*/
-	
-				 $revisarCitas = $this->existenciaCitas($request);
-				 if($revisarCitas == "true") {//Revisa si alguien le ganó el espacio
-				 Session::flash('message_type', 'negative');
-				 Session::flash('message_icon', 'hide');
-				 Session::flash('message_header', 'Success');
-				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
-				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
-				 return back();
-				 } else {
-				 $cita->save();
-				 return back();
-				 }
+
+			$revisarCitas = $this->existenciaCitas($request);
+			if($revisarCitas == "true") { //Check if someone took an appointment before.
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
+				return back();
+				} else {
+				$cita->save();
+				return back();
+			}
 		}
 		
 		}
 
+		/**
+		 * Check if someone took an appointment before.
+		 */
 		private function existenciaCitas(Request $request) {
-			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+			$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d'); //Change date format
 			$minutosCita = substr($request->horaCita, -2);
 			$horaCita = $request->horaCita[0];
 			if($horaCita == "9" || $horaCita == "8") {
@@ -293,23 +246,26 @@ class CitaControllerEspecialista extends Controller
 			->where('especialista_id', $request->dropEspecialistas)
 			->get();
 	
-			if(!$citas->isEmpty()) {//
+			if(!$citas->isEmpty()) {
 				return "true";
 			} else {
 				return "false";
 			}
 		}
 
+		/**
+		 * Allows you to reschedule a patient's appointment.
+		 * @param Request $request are all data incoming of the new appointment.
+		 */
 		public function reprogramarCita(Request $request, User $user)
 		{
 			$paciente = DB::table('pacientes')->where('cedula_paciente', $request->cedula)
 			->select('id')->get();
-			if($paciente->isEmpty()) {
+			if($paciente->isEmpty()) { //Check if the ID card entered exists.
 				Session::flash('message_type', 'negative');
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'No existen pacientes con la cédula digitada');
-	////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO EL PACIENTE CON ESA CÉDULA NO EXISTE//////////////////////////////////////////////////////////////////////////////////////////////
 				return back();		
 				} else {
 				$id = $paciente->first()->id;
@@ -320,7 +276,7 @@ class CitaControllerEspecialista extends Controller
 				$cita->servicio_id = $request->dropServicios;
 				$cita->especialista_id = $request->dropEspecialistas;
 				$cita->recinto_id = $request->dropRecintos;
-				$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d');
+				$fechaCita = Carbon::parse($request->datepicked)->format('Y-m-d'); //Change date format
 				$minutosCita = substr($request->horaCita, -2);
 				$horaCita = $request->horaCita[0];
 				if($horaCita == "9" || $horaCita == "8") {
@@ -332,19 +288,18 @@ class CitaControllerEspecialista extends Controller
 				$cita->active_flag = 1;
 
 				$revisarCitas = $this->existenciaCitas($request);
-				 if($revisarCitas == "true") {//Revisa si alguien le ganó el espacio
+				 if($revisarCitas == "true") { //Check if someone took an appointment before.
 				 Session::flash('message_type', 'negative');
 				 Session::flash('message_icon', 'hide');
 				 Session::flash('message_header', 'Success');
 				 Session::flash('message', 'Ya existe una cita en la fecha seleccionada con el especialista seleccionado');
-				 ////////////AQUÍ HAY QUE ARREGLAR LA RUTA CUANDO ELE GANAN LA CITA//////////////////////////////////////////////////////////////////////////////////////////////
 				 return back();
 				 } else {
 					$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
 					->first();
 					$nombre = $paciente->nombre;
 					$email = $paciente->correo;
-					$fecha = Carbon::parse($fechaCita)->format('d/m/Y');	
+					$fecha = Carbon::parse($fechaCita)->format('d/m/Y'); //Change date format	
 	
 					$especialista = DB::table('especialistas')->where('especialistas.id', $request->dropEspecialistas)
 					->first();
@@ -353,7 +308,7 @@ class CitaControllerEspecialista extends Controller
 					->first();
 					$recinto = $recinto->descripcion;
 					
-					
+					//This code change the military time to normal time to be send in the reserved appointment mail.
 					$hora =  Carbon::parse($cita->fecha_cita)->format('H');
 					$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
 					$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
@@ -375,15 +330,19 @@ class CitaControllerEspecialista extends Controller
 						$hora = $hora . ":" . $minuto . " am";
 					}	
 					
-				 Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $hora, $recinto, $especialista));
+				 Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $hora, $recinto, $especialista));  //Send the email rescheduling the appointment.
 				 $cita->save();
 				 return back();
 				}
 				}
 		}
 
-			public function reprogramar(Cita $cita)
-			{
+		/**
+		 * Allows you to reschedule a patient's appointment.
+		 * @param Cita $cita are all data incoming of the new appointment.
+		 */
+		public function reprogramar(Cita $cita)
+		{
 			$citas = DB::table('citas')
 			->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
 			->select('pacientes.cedula_paciente')->get();	
@@ -395,30 +354,23 @@ class CitaControllerEspecialista extends Controller
 
 			public function confirmar(Cita $cita)
 			{
-				//return "a";
-				//return redirect()->route('Especialista.index');
-				
 				$cita->estado_cita_id = 2;
 				$cita->save();
-		/*
-				Session::flash('message_type', 'negative');
-				Session::flash('message_icon', 'hide');
-				Session::flash('message_header', 'Success');
-				Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');*/
-				//return "hola";
 				return redirect()->route('Especialista.index');
-		
 			}
 
+			/**
+		 	* Allows you to confirm a patient's appointment.
+		 	* $id_cita are the id of appointment incoming to be confirmed.
+		 	*/
 			public function confirmarCitaAjax($id_cita)
 			{
-				//return "a";
 				$cita = Cita::find($id_cita);
 				$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
 				->first();
 				$nombre = $paciente->nombre;
 				$email = $paciente->correo;
-				$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y');
+				$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y'); //Change date format
 
 				$especialista = DB::table('especialistas')->where('especialistas.id', $cita->especialista_id)
 				->first();
@@ -427,7 +379,7 @@ class CitaControllerEspecialista extends Controller
 				->first();
 				$recinto = $recinto->descripcion;
 				
-				
+				//This code change the military time to normal time to be send in the reserved appointment mail.
 				$hora =  Carbon::parse($cita->fecha_cita)->format('H');
 				$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
 				$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
@@ -449,16 +401,18 @@ class CitaControllerEspecialista extends Controller
 					$hora = $hora . ":" . $minuto . " am";
 				}
 				Mail::to($email)->send(new confirmarCita($nombre, $fecha, $hora, $recinto, $especialista));
-				//return $cita;
 				$cita->estado_cita_id = 2;
 				$cita->save();
 		
 				return back();
 			}
 
+			/**
+		 	* Allows you to reschedule a patient's appointment.
+		 	* $id_cita are the id of appointment incoming to be reschedule.
+		 	*/
 			public function reprogramarCitaAjax($id_cita)
 			{
-				//return "a";
 				$cita = Cita::find($id_cita);
 				$cita->estado_cita_id = 4;
 				$cita->save();
@@ -474,21 +428,27 @@ class CitaControllerEspecialista extends Controller
 			if(Auth::user()->tipo == 3) {
 				return view('asistente.reprogramarCita', compact('cedula'));
 			}
-			}
-
-		public function cancelarCitaAjax($id_cita)
-	{
+		}
 
 		
+		/**
+	 	* Remove an specified appointment from storage.
+	 	*
+	 	* $id_cita are the id of appointment incoming to be canceled.
+	 	* @return Response
+	 	*/
+		public function cancelarCitaAjax($id_cita)
+		{
 		$cita = Cita::find($id_cita);
 		$cita->estado_cita_id = 3;
-
 		
 		$paciente = DB::table('pacientes')->where('pacientes.id', $cita->paciente_id)
 		->first();
 		$nombre = $paciente->nombre;
 		$email = $paciente->correo;
-		$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y');
+		$fecha = Carbon::parse($cita->fecha_cita)->format('d/m/Y'); //Change date format
+		
+		//This code change the military time to normal time to be send in the canceled appointment mail.
 		$hora =  Carbon::parse($cita->fecha_cita)->format('H');
 		$horaFormato =  Carbon::parse($cita->fecha_cita)->format('H');
 		$minuto =  Carbon::parse($cita->fecha_cita)->format('i');
@@ -517,19 +477,15 @@ class CitaControllerEspecialista extends Controller
 		->first();
 		$recinto = $recinto->descripcion;
 		
-		Mail::to($email)->send(new EnviarCanceacion($nombre, $fecha, $hora, $recinto, $especialista));
-   		//return "Correo enviado exitosamente";
-		//$paciente_id = $paciente->first()->id;
+		Mail::to($email)->send(new EnviarCanceacion($nombre, $fecha, $hora, $recinto, $especialista)); //Send appointment cancellation mail.
 
-		//return $cita;
 		$cita->save();
 
-		//return "hola";
 		return back();
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified appointment.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -541,86 +497,20 @@ class CitaControllerEspecialista extends Controller
 		return view('citas.show', compact('cita'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit(Cita $cita)
-	{
-		//$cita = $this->model->findOrFail($id);
-
-		return view('citas.edit', compact('cita'));
-	}
 
 	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @param Request $request
-	 * @return Response
-	 */
-	public function update(Request $request, Cita $cita, User $user)
-	{
-		$cita->name = ucfirst($request->input("name"));
-    	$cita->slug = str_slug($request->input("name"), "-");
-		$cita->description = ucfirst($request->input("description"));
-		$cita->active_flag = 1;//change to reflect current status or changed status
-		$cita->author_id = $request->user()->id;
-
-		$this->validate($request, [
-					 'name' => 'required|max:255|unique:citas,name,' . $cita->id,
-					 'description' => 'required'
-			 ]);
-
-		$cita->save();
-/*
-		Session::flash('message_type', 'blue');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', "The Cita \"<a href='citas/$cita->slug'>" . $cita->name . "</a>\" was Updated.");
-*/
-		return redirect()->route('citas.index');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified appointment from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function destroy(Cita $cita)
 	{
-		//return $cita;
 		$cita->active_flag = 0;
 		$cita->estado_cita_id = 3;
 		$cita->save();
-/*
-		Session::flash('message_type', 'negative');
-		Session::flash('message_icon', 'hide');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cita ' . $cita->name . ' was De-Activated.');*/
-		//return "hola";
 		return redirect()->route('Especialista.index');
 	}
 
-	/**
-	 * Re-Activate the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function reactivate(Cita $cita)
-	{
-		$cita->active_flag = 1;
-		$cita->save();
-/*
-		Session::flash('message_type', 'success');
-		Session::flash('message_icon', 'checkmark');
-		Session::flash('message_header', 'Success');
-		Session::flash('message', 'The Cita ' . $cita->name . ' was Re-Activated.');*/
-
-		return redirect()->route('citas.index');
-	}
+	
 }

@@ -73,7 +73,7 @@ class RegisterController extends Controller
     /**
      * Create a new user and patient after a valid registration.
      * Send an email confirming the registration to the new user.
-     * @param  array  $data
+     * @param  Request $request data entered in the registration form
      * @return \App\User
      */
 
