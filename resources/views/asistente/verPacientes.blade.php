@@ -19,6 +19,23 @@
     <div class="panel-heading">
         <div class="">
         <div class="">
+                @if(session('message'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{@session('message')}}
+                </div>
+                @endif
+                @if(session('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{@session('error')}}
+                </div>
+                @endif
+                <br>
             @if($pacientes->count())
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-condensed table-hover" id="tablaDatos">
@@ -54,7 +71,7 @@
                                         <button type="submit" class="btn  btn-danger">Desactivar</button>
                                     </form>
                                     @else
-                                    <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea desactivar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
+                                    <form style="display:inline" action="{{ route('pacientes.activar', $paciente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea activar el paciente {{$paciente->nombre}} {{$paciente->primer_apellido_paciente}} {{$paciente->segundo_apellido_paciente}}?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-primary">&nbsp&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</button>

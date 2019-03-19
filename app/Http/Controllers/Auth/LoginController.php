@@ -39,7 +39,7 @@ class LoginController extends Controller
                 return redirect('asistente');
                 } else{
                     if($tipo == 2){
-                return view('Especialista.index');
+                return redirect()->route('Especialista.index');
                     } else{
                         if($tipo == 1){
                 return redirect('admin');

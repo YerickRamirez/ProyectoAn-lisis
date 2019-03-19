@@ -201,6 +201,12 @@ class PacienteController extends Controller
 		$user = User::where('id', $paciente->id_user)->update(array('email'=>$correoNuevo));
 		//$user->save();
 		$paciente->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Datos del paciente actualizados correctamente');//shows confirm message that the data was updated
+
 		return redirect()->route('citas.index');
 	}
 
@@ -243,6 +249,10 @@ class PacienteController extends Controller
 		//$user->save();
 		$paciente->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Datos del paciente actualizados correctamente');
 		return redirect()->route('pacientes.index');
 	}
 
@@ -260,6 +270,11 @@ class PacienteController extends Controller
 		$paciente->active_flag = 0;
 		$paciente->save();
 		$cuenta->save();
+		
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Paciente desactivado correctamente');
 
 		return redirect()->route('pacientes.index');
 	}
@@ -273,6 +288,11 @@ class PacienteController extends Controller
 		$paciente->active_flag = 1;
 		$paciente->save();
 		$cuenta->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Paciente activado correctamente');//shows appointment message successfully reserved
 
 		return redirect()->route('pacientes.index');
 	}

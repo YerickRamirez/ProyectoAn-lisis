@@ -327,6 +327,12 @@ class CuentaController extends Controller
 			}
 			$cuenta->save();
 		}
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Cuenta modificada exitosamente');//shows confirmation that the account (user) was updated successfully
+		
 		if(Auth::user()->tipo == 1) {
 		return redirect()->route('cuentas.index');
 		} 
@@ -360,6 +366,11 @@ class CuentaController extends Controller
 		}
 		$cuenta->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'La cuenta ha sido desactivada existosamente');//shows confirmation message that the account was activated
+
 		if(Auth::user()->tipo == 1) {
 			return redirect()->route('cuentas.index');
 			} 
@@ -391,6 +402,11 @@ class CuentaController extends Controller
 			$especialista->save();
 		}
 		$cuenta->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'La cuenta ha sido activada existosamente');//shows confirmation message that the account was deactivated
 
 		if(Auth::user()->tipo == 1) {
 		return redirect()->route('cuentas.index');

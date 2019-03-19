@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Paciente;
 use App\User;
 use Auth;
-
+use \Session;
 use Illuminate\Http\Request;
 
 
@@ -36,6 +36,11 @@ class cambiarContrasennaController extends Controller
         }
         $user->save();
         
+
+        Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Contraseña modificada exitosamente');//shows confirm message that the password was changed succesfully
 		return redirect()->route('citas.index');
     }
 

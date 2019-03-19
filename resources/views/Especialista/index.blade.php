@@ -9,26 +9,32 @@
      <p class="center" style="font-size: 3vh;">Lista de citas del día de hoy para {{Auth::user()->name . ' ' . Auth::user()->lastName}}</p>
     </div>
     <div class="panel-body">
+            @if(session('message'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{@session('message')}}
+            </div>
+            @endif   
+            @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{@session('error')}}
+                        </div>
+                        @endif
             <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
     <section class="">
     <div class="panel-heading">
-        <div class="margin-dwn btn">
-    <!--<a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoy') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
-            <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistEsp') }}">Ver histórico citas</a> <span>-->
-        </div>
+
 <br> 
 <br> 
 <a class="btn btn-primary" style="" href="{{url('reservarCitaEsp')}}">Reservar cita</a> 
     <br>
     <br>
-    @if(session('message'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        {{@session('message')}}
-    </div>
-    @endif   
+    
     <div class="margin-up">
     <br> 
         <div class="margin-up">

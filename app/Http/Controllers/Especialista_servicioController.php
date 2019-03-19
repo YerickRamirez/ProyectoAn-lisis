@@ -88,15 +88,23 @@ class Especialista_servicioController extends Controller
 
 		if ($sentencia->count())
             {
-                Flash::error("Ya existe ese servicio vinculado al recinto seleccionado");
-            }
-            else{
-                $especialista_servicio = new Especialista_servicio();
-				$especialista_servicio->id_servicio = $servicio;
-				$especialista_servicio->id_recinto = $recinto;
-				$especialista_servicio->id_especialista = $especialista;
-				$especialista_servicio->active_flag = 1;
-				$especialista_servicio->save();
+							Session::flash('message_type', 'negative');
+							Session::flash('message_icon', 'hide');
+							Session::flash('message_header', 'Failure');
+							Session::flash('error', "Ya existe ese servicio vinculado al recinto y especialista seleccionado");//shows error message that the vinculation already exists
+            } else {
+        				$especialista_servicio = new Especialista_servicio();
+								$especialista_servicio->id_servicio = $servicio;
+								$especialista_servicio->id_recinto = $recinto;
+								$especialista_servicio->id_especialista = $especialista;
+								$especialista_servicio->active_flag = 1;
+								$especialista_servicio->save();
+								
+								Session::flash('message_type', 'negative');
+								Session::flash('message_icon', 'hide');
+								Session::flash('message_header', 'Success');
+								Session::flash('message', 'Vinculación creada exitosamente');//shows confirmation message that the link between the entities was succesfully created
+
 		}
 		return redirect()->route('especialista_servicios.index');
 	}
@@ -161,7 +169,12 @@ class Especialista_servicioController extends Controller
 		->where('id_servicio', $servicio)
 		->where('id_recinto', $recinto)
 		->where('id_especialista', $especialista)->update(['active_flag'=>0]);
-		
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Vínculo eliminado satisfactoriamente');//shows confirmation message that the link between the entities was deleted
+
 		return redirect()->route('especialista_servicios.index');
 	}
 }

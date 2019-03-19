@@ -8,7 +8,14 @@
     <div class="panel-body">
     <section class="">
         <div class="panel-heading">
-
+                @if(session('message'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{@session('message')}}
+                </div>
+                @endif
         <div class="row"  style="margin: text-align: center;">
             <div style="margin-bottom: 15px; " class="col-md-4 col-md-offset-2"><select id="dropRecintos" class="form-control"></select></div>
             <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control" onChange="revisarHorario()"></select></div>

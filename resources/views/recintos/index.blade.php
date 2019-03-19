@@ -9,6 +9,22 @@
         <section class="">
         <div class="content-c w3-container mobile">
             <div>
+                    @if(session('message'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{@session('message')}}
+                    </div>
+                    @endif
+                    @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{@session('error')}}
+                    </div>
+                    @endif
             <button id="mybutton" class = ' margin-button-agregar btn btn-success mobile' onclick="myFunction()">Nuevo Recinto</button>
 
             <form action="{{ route('recintos.store') }}" method="POST">
@@ -45,7 +61,7 @@
                                 <td class="text-center">{{$recinto->descripcion}}</td>
                                 <td class="text-center"> 
                                  <a class="btn btn-warning" href="{{ route('recintos.edit', $recinto->id) }}">Editar</a>
-                                    <form style="display:inline" action="{{ route('recintos.destroy', $recinto->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Desea eliminar el recinto?');">
+                                    <form style="display:inline" action="{{ route('recintos.destroy', $recinto->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Desea eliminar el recinto?');">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn  btn-danger">Eliminar</button>

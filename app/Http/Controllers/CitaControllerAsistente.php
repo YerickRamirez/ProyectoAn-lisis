@@ -608,6 +608,12 @@ class CitaControllerAsistente extends Controller
 				
 				Mail::to($email)->send(new reprogramarCitaAsistente($nombre, $fecha, $hora, $recinto, $especialista)); //Send appointment rescheduling mail
 				 $cita->save();
+				 
+				 Session::flash('message_type', 'negative');
+				 Session::flash('message_icon', 'hide');
+				 Session::flash('message_header', 'Success');
+				 Session::flash('message', 'Cita para el ' . $fecha . ' a las ' . $hora . ' reservada existosamente');//shows appointment message successfully reserved
+
 				 return redirect()->route('asistente.index');
 				 }
 		}

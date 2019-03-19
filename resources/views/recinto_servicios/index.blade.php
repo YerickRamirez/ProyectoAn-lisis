@@ -7,6 +7,22 @@
     </div>
     <br/>
     <div class="panel-body">
+            @if(session('message'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{@session('message')}}
+            </div>
+            @endif
+            @if(session('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{@session('error')}}
+            </div>
+            @endif
             <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropRecintos" class="form-control"></select></div>
         <div style="margin-bottom: 15px;" class="col-md-4"><select id="dropServicios" class="form-control"></select></div>
         <a class="margin-button-agregar btn btn-success mobile" onclick="vincular()">Vincular</a> <span>

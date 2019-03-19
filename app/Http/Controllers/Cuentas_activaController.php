@@ -158,13 +158,27 @@ class Cuentas_activaController extends Controller
 		$cuentas_activa = Cuentas_activa::where('id', '=', 1)->first();
 		$checked=Input::has('tipo');
 		$checkValue=Input::get('tipo');
+		$activadas = false;
 		if($checkValue == 1) {
 			$cuentas_activa->cuentas_activas = 1;
+			$activadas = true;
 		} else {
 			$cuentas_activa->cuentas_activas = 0;
 			//$cuentas_activa->save();
 		}
 		$cuentas_activa->save();
+
+		if($activadas){//If the accounts were activated show activation message to user
+			Session::flash('message_type', 'negative');
+			Session::flash('message_icon', 'hide');
+			Session::flash('message_header', 'Success');
+			Session::flash('message', 'Las nuevas cuentas registradas por pacientes estarán activadas');	
+		} else {//If the accounts were deactivated show activation message to user
+			Session::flash('message_type', 'negative');
+			Session::flash('message_icon', 'hide');
+			Session::flash('message_header', 'Failure');
+			Session::flash('error', 'Las nuevas cuentas registradas por pacientes estarán desactivadas');	
+		}
 		return redirect()->route('cuentas.index');
 	}
 

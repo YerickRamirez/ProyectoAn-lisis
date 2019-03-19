@@ -269,6 +269,12 @@ class CitaController extends Controller
 		
 		Mail::to($email)->send(new EnviarCanceacion($nombre, $fecha, $hora, $recinto, $especialista)); //Send appointment cancellation mail.
 
+		//Show user message that confirms the deletion of it´s appointment.
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Cita para el ' . $fecha . ' a las ' . $hora . ' cancelada existosamente');
+
 		return redirect()->route('citas.index');
 	}
 

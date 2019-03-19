@@ -193,12 +193,23 @@ class Horarios_servicioController extends Controller
 				$horarios_servicio->disponibilidad_tarde = $tarde;
 				$horarios_servicio->active_flag = 1;
 				$horarios_servicio->save();
+
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'Horario creado correctamente');//shows confirm message that the schedule was succesfully created
+				
 			} else {
 				$id = $horarioServicios[0]->id;
 				$actualizado = Horarios_servicio::find($id);
 				$actualizado->disponibilidad_manana = $manana;
 				$actualizado->disponibilidad_tarde = $tarde;
 				$actualizado->save();
+
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'Horario actualizado correctamente');//shows confirm message that the schedule was succesfully updated
 
 			}
 			
@@ -212,7 +223,7 @@ class Horarios_servicioController extends Controller
                 return redirect()->route('Especialista.menuConfigHorarios');
                     } else{
                         if($tipo == 1){
-													return redirect()->route('horarios_servicios.index');
+							return redirect()->route('horarios_servicios.index');
                     }
                 }
                 }
@@ -253,12 +264,23 @@ class Horarios_servicioController extends Controller
 				$horarios_servicio->disponibilidad_tarde = $tarde;
 				$horarios_servicio->active_flag = 1;
 				$horarios_servicio->save();
+
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'Horario creado exitosamente');//shows message that confirms to user the schedule was created succesfully
+
 			} else {
 				$id = $horarioServicios[0]->id;
 				$actualizado = Horarios_servicio::find($id);
 				$actualizado->disponibilidad_manana = $manana;
 				$actualizado->disponibilidad_tarde = $tarde;
 				$actualizado->save();
+
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'Horario actualizado exitosamente');//shows message that confirms to user the schedule was updated succesfully
 
 			}
 			

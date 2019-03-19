@@ -184,6 +184,11 @@ class Deshabilitar_horarios_especialistaController extends Controller
 		//return $bloqueo_especialistum;
 		$deshab_esp->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Deshabilitación de horario eliminada exitosamente');//shows confirm message that schedule disable was succesfully deleted
+		
 		return redirect()->action('Deshabilitar_horarios_especialistaController@index');
 	}
 
@@ -204,6 +209,12 @@ class Deshabilitar_horarios_especialistaController extends Controller
 		//return json_encode(["a"=>$bloqueo_especialistum]);
 
 		$deshab_esp->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Deshabilitación de horario creada exitosamente');//shows confirm message that schedule disable was succesfully created
+
 
 		return json_encode(["varInnecesaria"=>"ESTOESNECESARIOSINOELAJAXNOSIRVE:c"]);
 	}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use \Session;
 
 class ContrasenneAsistenteController extends Controller
 {
@@ -34,6 +35,11 @@ class ContrasenneAsistenteController extends Controller
             return back()->withErrors(['password' => 'Las contraseñas no coinciden']);
         }
         $user->save();
+
+        Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Contraseña actualizada exitosamente');//shows confirm message that the password was updated
         
 		return redirect('asistente');
 	}

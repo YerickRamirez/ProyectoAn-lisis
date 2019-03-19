@@ -79,14 +79,22 @@ class Recinto_servicioController extends Controller
 
 		if ($sentencia->count())
             {
-                Flash::error("Ya existe ese servicio vinculado al recinto seleccionado");
-            }
-            else{
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Failure');
+				Session::flash('error', 'Ya existe ese servicio vinculado al recinto seleccionado');//shows error that the link already exists
+            } else {
                 $recinto_servicio = new Recinto_servicio();
 				$recinto_servicio->servicio_id = $servicio;
 				$recinto_servicio->recinto_id = $recinto;
 				$recinto_servicio->active_flag = 1;
 				$recinto_servicio->save();
+
+				Session::flash('message_type', 'negative');
+				Session::flash('message_icon', 'hide');
+				Session::flash('message_header', 'Success');
+				Session::flash('message', 'Vínculo creado exitosamente');//shows message that the link was created succesfully.
+
 		}
 
 		return redirect()->route('recinto_servicios.index');
@@ -99,6 +107,11 @@ class Recinto_servicioController extends Controller
 		where('active_flag', 1)
 		->where('servicio_id', $servicio)
 		->where('recinto_id', $recinto)->update(['active_flag'=>0]);
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Vínculo eliminado exitosamente');//shows confirmation about deletion
 		
 		return redirect()->route('recinto_servicios.index');
 	}

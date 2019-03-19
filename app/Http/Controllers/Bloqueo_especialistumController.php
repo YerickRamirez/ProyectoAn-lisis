@@ -60,10 +60,10 @@ class Bloqueo_especialistumController extends Controller
 			->get();
 
 		$tipo_usuario = Auth::user()->tipo;
-		if($tipo_usuario == 1) {
+		if($tipo_usuario == 1) {//if the user is the administrator
 		return view('bloqueo_especialistas.index', compact('bloqueo_especialistas'));
 		}
-		if($tipo_usuario == 2) {
+		if($tipo_usuario == 2) {//If the user is an '0especialist' (doctor, nurse)
 			$especialistaLoggeado = Especialista::where('id_user', Auth::user()->id)->first();
 			$bloqueo_especialistas = DB::table('bloqueo_especialistas')
 			->join('especialistas', 'bloqueo_especialistas.id_especialista', '=', 'especialistas.id')
@@ -78,7 +78,7 @@ class Bloqueo_especialistumController extends Controller
 
 			return view('bloqueo_especialistas_especial.index', compact('bloqueo_especialistas'));
 		}
-		if($tipo_usuario == 3) {
+		if($tipo_usuario == 3) {//If the user is an assistant
 			return view('bloqueo_especialistas_asist.index', compact('bloqueo_especialistas'));
 		}
 	}
@@ -129,6 +129,11 @@ class Bloqueo_especialistumController extends Controller
 
 		$bloqueo_especialistum->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Bloqueo de horario creado existosamente');//shows schedule lock creation success message
+
 		return json_encode(["varInnecesaria"=>"ESTOESNECESARIOSINOELAJAXNOSIRVE:c"]);
 	}
 
@@ -143,6 +148,11 @@ class Bloqueo_especialistumController extends Controller
 		$bloqueo_especialistum = Bloqueo_especialistum::where('id', $id)->first();
 		$bloqueo_especialistum->active_flag = 0;
 		$bloqueo_especialistum->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Bloqueo de horario eliminado exitosamente');
 
 		return redirect()->action('Bloqueo_especialistumController@index');
 	}

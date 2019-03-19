@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use \Session;
 
 class ContrasennaRootController extends Controller
 {
@@ -35,6 +36,11 @@ class ContrasennaRootController extends Controller
         }
         $user->save();
         
-		return redirect('admin');
+        Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Contraseña actualizada satisfactoriamente');//shows confirm message that the password was updated
+
+		return redirect('cuentas');
 	}
 }

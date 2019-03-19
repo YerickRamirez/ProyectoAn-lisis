@@ -6,7 +6,24 @@
         <p style="text-align: center; font-size: 3vh;">Configuración Especialistas</p>
     </div>
     <br/>
+
     <div class="panel-body">
+            @if(session('message'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{@session('message')}}
+            </div>
+@endif
+@if(session('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{@session('error')}}
+            </div>
+@endif
             <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialistas.create') }}">Agregar</a>
             <span>
                 <a class="margin-button-agregar btn btn-success mobile" href="{{ route('especialista_servicios.index') }}">Vincular Especialista</a>

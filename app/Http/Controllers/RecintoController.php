@@ -81,6 +81,11 @@ class RecintoController extends Controller
 
 		$recinto->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Recinto creado exitosamente');//shows that precint was succesfully created
+
 		return redirect()->route('recintos.index');
 	}
 
@@ -133,6 +138,12 @@ class RecintoController extends Controller
 
 		$recinto->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Recinto actualizado exitosamente');//shows that precint was succesfully updated
+
+
 		return redirect()->route('recintos.index');
 	}
 
@@ -146,6 +157,12 @@ class RecintoController extends Controller
 	{
 		$recinto->active_flag = 0;
 		$recinto->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Failure');
+		Session::flash('error', 'Recinto desactivado exitosamente');//shows that precint was succesfully deleted
+
 		return redirect()->route('recintos.index');
 	}
 

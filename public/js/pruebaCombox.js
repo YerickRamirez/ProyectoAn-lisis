@@ -306,9 +306,6 @@ url: '/sugerirCitas/' + dropRecintos + '/' + dropServicios + '/' + dropEspeciali
 type: 'GET',
 dataType: "json",
 success:function(datos){ 
-//alert(datos + " jajaja");
-//console.log("xD" +datos.disponibles + "xD");
-//console.log(datos.disponibles != "");
 if(datos.disponibles != undefined && datos.disponibles != ""){
 llenarTablaSugeridas(datos.disponibles);
 } else {

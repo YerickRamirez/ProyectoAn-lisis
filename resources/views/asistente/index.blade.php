@@ -29,6 +29,14 @@
         {{@session('message')}}
     </div>
     @endif
+    @if(session('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{@session('error')}}
+                </div>
+                @endif
         <!--<div class="margin-dwn btn">
     <a class="margin-button-agregar margin-dwn btn btn-success mobile" href="{{ url('redirCitasAPartirHoyAsist') }}">Ver citas a partir del {{ \Carbon\Carbon::now(new \DateTimeZone('America/Costa_Rica'))->format('d/m/Y') }}</a> <span>
             <a class="margin-button-agregar margin-dwn btn btn-warning mobile" href="{{ url('redirCitasHistAsist') }}">Ver histórico citas</a> <span>

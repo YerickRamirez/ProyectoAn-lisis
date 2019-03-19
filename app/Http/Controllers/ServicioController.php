@@ -74,6 +74,11 @@ class ServicioController extends Controller
 
 		$servicio->save();
 
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Servicio creado exitosamente');//shows message that confirms the service was created
+
 		return redirect()->route('servicio.index');
 	}
 
@@ -141,6 +146,12 @@ class ServicioController extends Controller
 			'descripcion' => 'required'
 	]);
 		$servicio->save();
+
+		Session::flash('message_type', 'negative');
+		Session::flash('message_icon', 'hide');
+		Session::flash('message_header', 'Success');
+		Session::flash('message', 'Servicio actualizado exitosamente');//shows message that confirms the service was updated
+
 		return redirect()->route('servicio.index');
 	}
 
@@ -154,6 +165,12 @@ class ServicioController extends Controller
 	{
 		$servicio->active_flag = 0;
 		$servicio->save();
+
+		Session::flash('message_type', 'negative');
+			Session::flash('message_icon', 'hide');
+			Session::flash('message_header', 'Failure');
+			Session::flash('error', 'Servicio eliminado exitosamente');//shows message that confirms the service was deleted
+
 
 		return redirect()->route('servicio.index');
 	}
