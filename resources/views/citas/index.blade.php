@@ -41,6 +41,7 @@
                             <!--<th class="text-center">Paciente</th> -->
                             <th class="text-center">Servicio</th> 
                             <th class="text-center">Especialista</th> 
+                            <th class="text-center">Recinto</th>
                             <th class="text-center">Fecha/hora</th>
                             <th class="text-center">Opciones</th>
                         </tr>
@@ -53,6 +54,7 @@
                                 <!--<td class="text-center">{{$cita->nombrePaciente}} {{$cita->apellidoP1}} {{$cita->apellidoP2}}</td> -->
                                 <td class="text-center">{{$cita->servicio}}</td> 
                                 <td class="text-center">{{$cita->nombreEspecialista}} {{$cita->apellidoE1}} {{$cita->apellidoE2}}</td> 
+                                <td class="text-center">{{$cita->recinto}}</td> 
                                 <td class="text-center">{{Carbon\Carbon::parse($cita->fecha_cita)->format('d/m/Y H:i') }}</td>
                                 
                                 <td class="text-center">

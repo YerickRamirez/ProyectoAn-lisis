@@ -88,7 +88,8 @@ public function comboServicios($ID_Recinto, Request $request){
 
     $servicios= Recinto_servicio::where('recinto_id', $ID_Recinto)
     ->where('recinto_servicios.active_flag', 1)
-    ->join('servicios', 'recinto_servicios.servicio_id', '=', 'servicios.id')->get();
+    ->join('servicios', 'recinto_servicios.servicio_id', '=', 'servicios.id')->
+    where('servicios.active_flag' , 1)->get();
 
     return ["servicios"=>$servicios];
 }

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/log',function () {
+Route::get('/log',function () {//No tocar esta ruta, cada que laravel hace algo pasa por acá
     return view('auth/login');
 });
 

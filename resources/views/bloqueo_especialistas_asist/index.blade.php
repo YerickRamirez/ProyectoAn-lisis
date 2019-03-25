@@ -47,8 +47,8 @@
 
                                 <td>{{$bloqueo_especialistum->nombre . ' ' . $bloqueo_especialistum->primer_apellido_especialista . ' ' . $bloqueo_especialistum->segundo_apellido_especialista}}</td>
                                 <td>{{$bloqueo_especialistum->dia}}</td> 
-                                <td>{{$bloqueo_especialistum->fecha_inicio_bloqueo_especialista}}</td> 
-                                <td>{{$bloqueo_especialistum->fecha_fin_bloqueo_especialista}}</td>
+                                <td>{{Carbon\Carbon::parse($bloqueo_especialistum->fecha_inicio_bloqueo_especialista)->format('d/m/Y')}}</td> 
+                                <td>{{Carbon\Carbon::parse($bloqueo_especialistum->fecha_fin_bloqueo_especialista)->format('d/m/Y')}}</td>
                                 <td>{{$bloqueo_especialistum->hora_inicio_bloqueo_especialista}}</td> 
                                 <td>{{$bloqueo_especialistum->hora_fin_bloqueo_especialista}}</td>
                                 

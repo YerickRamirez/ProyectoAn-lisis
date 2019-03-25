@@ -44,10 +44,9 @@
                     <tbody>
                         @foreach($deshabilitar_horarios_especialistas as $deshabilitar_horarios_especialista)
                             <tr>
-
                                 <td>{{$deshabilitar_horarios_especialista->nombre . ' ' . $deshabilitar_horarios_especialista->primer_apellido_especialista . ' ' . $deshabilitar_horarios_especialista->segundo_apellido_especialista}}</td>
-                                <td>{{$deshabilitar_horarios_especialista->fecha_inicio_deshabilitar}}</td> 
-                                <td>{{$deshabilitar_horarios_especialista->fecha_fin_deshabilitar}}</td>
+                                <td>{{Carbon\Carbon::parse($deshabilitar_horarios_especialista->fecha_inicio_deshabilitar)->format('d/m/Y')}}</td> 
+                                <td>{{Carbon\Carbon::parse($deshabilitar_horarios_especialista->fecha_fin_deshabilitar)->format('d/m/Y')}}</td> 
                                 <td>{{$deshabilitar_horarios_especialista->hora_inicio_deshabilitar}}</td> 
                                 <td>{{$deshabilitar_horarios_especialista->hora_fin_deshabilitar}}</td>
                                 
