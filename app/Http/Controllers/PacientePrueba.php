@@ -10,6 +10,12 @@ use User;
 
 class PacientePrueba extends Controller
 {
+	/**
+	 * Inserts paciente
+	 *
+	 * @param [type] $id
+	 * @return void
+	 */
     public function insertarUsuarioPaciente($id)
 	{
 

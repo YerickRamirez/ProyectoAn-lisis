@@ -100,7 +100,13 @@ class Recinto_servicioController extends Controller
 		return redirect()->route('recinto_servicios.index');
 	}
 
-
+		/**
+		 * Delete method, uses the servicio and recinto choosen to deactivate the 'recinto_servicio'
+		 *
+		 * @param [type] $servicio
+		 * @param [type] $recinto
+		 * @return void
+		 */
 		public function eliminar($servicio, $recinto)
 	{
 		$vinculos = $users = Recinto_servicio::

@@ -13,13 +13,19 @@ use DB;
 
 class recuperarContrasennaController extends Controller
 {
-    
+    /**
+     * This method generates a random password for the user if it has been forgotten,
+     * and send the random password to the user email
+     *
+     * @param Request $request
+     * @return void
+     */
     public function mail(Request $request)
 {
     $email = $request->email;
     $cuentaExistente = User::where('email', $email)->get();
     if($cuentaExistente->isEmpty()) {
-		return back()->withErrors(['email' => trans('No existe un paciente registrado con el correo indicado')]);
+		return back()->withErrors(['email' => trans('No existe un usuario registrado con el correo indicado')]);
     }
     
     $cuentaA = $cuentaExistente->first();

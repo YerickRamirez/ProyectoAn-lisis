@@ -165,7 +165,15 @@ class Horarios_servicioController extends Controller
 		return redirect()->route('horarios_servicios.index');
 	}
 	
-
+/**
+ * Receives an array as JSON about what the user chooses and then created or updates the schedule
+ * of the recinto, especialista and servicio choosen. 
+ *
+ * @param Request $request
+ * @param User $user
+ * @param [JSON] $array_horario_servicio
+ * @return void
+ */
 	public function annadirActualizarHorarios(Request $request, User $user, $array_horario_servicio)
 	{
 		
@@ -233,6 +241,14 @@ class Horarios_servicioController extends Controller
 		
 	}
 
+	/**
+	 * Receives an array as JSON about what the user chooses and then created or updates the schedule
+ 	 * of the recinto, LOGGED especialista and servicio choosen. 
+	 * @param Request $request
+	 * @param User $user
+	 * @param [type] $array_horario_servicio
+	 * @return void
+	 */
 	public function annadirActualizarHorariosEspecialista(Request $request, User $user, $array_horario_servicio)
 	{
 		$name = Auth::user()->id;

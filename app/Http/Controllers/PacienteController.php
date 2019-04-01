@@ -140,6 +140,12 @@ class PacienteController extends Controller
 		return view('pacientes.edit', compact('variable'));
 	}
 
+	/**
+	 * Redirects to edit view depending on the user privilege
+	 *
+	 * @param Paciente $paciente
+	 * @return void
+	 */
 	public function editRoot(Paciente $paciente)
 	{
 		
@@ -210,6 +216,14 @@ class PacienteController extends Controller
 		return redirect()->route('citas.index');
 	}
 
+	/**
+	 * Update method for the highest module privilege 
+	 *
+	 * @param Request $request
+	 * @param Paciente $paciente
+	 * @param User $user
+	 * @return void
+	 */
 	public function updateRoot(Request $request, Paciente $paciente, User $user)
 	{
 		if ($request->input("cedula_paciente") != $request->input("cedula_original")){

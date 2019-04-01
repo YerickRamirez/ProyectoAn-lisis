@@ -161,7 +161,15 @@ class Especialista_servicioController extends Controller
 		return redirect()->route('especialista_servicios.index');
 	}
 
-
+/**
+ * Deletes the 'especialista_servicio' on a determined recinto, servicio
+ * and especialista.
+ *
+ * @param [type] $servicio
+ * @param [type] $recinto
+ * @param [type] $especialista
+ * @return void
+ */
 	public function eliminar($servicio, $recinto, $especialista)
 	{
 		$vinculos = $users = Especialista_servicio::

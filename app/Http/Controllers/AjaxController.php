@@ -44,13 +44,22 @@ class AjaxController extends Controller {
       return  $msg;
    }
 
+   /**
+    * Used after a user has created it´s account succesfully, redirects to login with message
+    *
+    * @return void
+    */
    public function logoutMensajeRegistro () {
     //logout user y mandar mensaje bonito :3
     auth()->logout();
     return redirect('login')->with('success', 'Su cuenta ha sido creada exitosamente');
 }
 
-
+/**
+ * Gets ACTIVE Dia_bloqueo_especialista
+ * Returns json with the days
+ * @return void
+ */
 public function dropDiasBloqueo(){
     /*$query=trim($request->get('searchText'));*/
 
@@ -61,7 +70,11 @@ public function dropDiasBloqueo(){
 
 
 
-
+/**
+ * Gets ACTIVE recintos order them by attribute 'descripcion'
+ * Returns the recintos as JSON
+ * @return void
+ */
    public function combobox(){
         /*$query=trim($request->get('searchText'));*/
 
@@ -72,6 +85,11 @@ public function dropDiasBloqueo(){
         return json_encode(["recintos"=>$recintos]);
 }
 
+/**
+ * Gets all ACTIVE estado citas
+ * return the estado_citas as JSON
+ * @return void
+ */
 public function estadosCitas(){
     /*$query=trim($request->get('searchText'));*/
 
@@ -82,7 +100,13 @@ public function estadosCitas(){
     return json_encode(["estado_citas"=>$estado_citas]);
 }
 
-
+/**
+ * Gets all ACTIVE 'servicios' at the param received ACTIVE 'recinto' 
+ *  Returns the result of the query as JSON
+ * @param [varchar] $ID_Recinto
+ * @param Request $request
+ * @return void
+ */
 public function comboServicios($ID_Recinto, Request $request){
     /*$query=trim($request->get('searchText'));*/
 
@@ -94,6 +118,12 @@ public function comboServicios($ID_Recinto, Request $request){
     return ["servicios"=>$servicios];
 }
 
+/**
+ * Return as JSON all ACTIVE 'especialistas'.
+ *
+ * @param Request $request
+ * @return void
+ */
 public function cargarEspecialistas(Request $request){
     /*$query=trim($request->get('searchText'));*/
     $especialistas= Especialista::where('active_flag', 1)->get();
@@ -101,12 +131,24 @@ public function cargarEspecialistas(Request $request){
     return ["especialistas"=>$especialistas];
 }
 
+/**
+ * Return all the ACTIVE 'especialista' data, assuming the user LOGGED is one of them
+ *
+ * @param Request $request
+ * @return void
+ */
 public function cargarEspecialistaLoggeado(Request $request){
     /*$query=trim($request->get('searchText'));*/
     $especialistas= Especialista::where('active_flag', 1)->where('id_user', Auth::user()->id)->get();
     return ["especialistas"=>$especialistas];
 }
 
+/**
+ * Return all ACTIVE 'servicios'.
+ *
+ * @param Request $request
+ * @return void
+ */
 public function cargarServicios(Request $request){
     /*$query=trim($request->get('searchText'));*/
 
@@ -115,6 +157,14 @@ public function cargarServicios(Request $request){
     return ["servicios"=>$servicios];
 }
 
+/**
+ * Gets all the 'especialistas' from a determined ACTIVE 'servicio'
+ *
+ * @param [type] $ID_Servicio
+ * @param [type] $ID_Recinto 
+ * @param Request $request
+ * @return void
+ */
 public function comboEspecialistasSinHorario($ID_Servicio, $ID_Recinto, Request $request){
 
     $especialistas_servicio = Servicio::where('active_flag', 1)->where('id', $ID_Servicio)->firstOrFail()
@@ -135,6 +185,14 @@ public function comboEspecialistasSinHorario($ID_Servicio, $ID_Recinto, Request 
     return ["especialistas"=> $especialistas_return];
 }
 
+/**
+ * Return all the ACTIVE 'especialista' that has 'horararios' in a determined 'servicio' and 'recinto'
+ *
+ * @param [type] $ID_Servicio
+ * @param [type] $ID_Recinto
+ * @param Request $request
+ * @return void
+ */
 public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
 
     // return ["especialistas"=> Servicio::findOrFail($ID_Servicio)->especialistas->where('active_flag', '=', 1)];
@@ -172,6 +230,14 @@ public function comboEspecialistas($ID_Servicio, $ID_Recinto, Request $request){
     return ["especialistas"=> $especialistas_return];
 }
 
+/**
+ * Used to suggest dates for appointments.  
+ * Returns JSON array with the suggested dates.
+ * @param [type] $dropRecintos 'Recinto' for the appointment
+ * @param [type] $dropServicios 'Servicio' fot the appointment
+ * @param [type] $dropEspecialista 'Especialista' for the appointment.
+ * @return void
+ */
 public function datosSugerirCita($dropRecintos, $dropServicios, $dropEspecialista){
 
     
@@ -246,6 +312,16 @@ private function horasLibres($arrayOcupadas) {
     return $horas;
 }*/
 
+/**
+ * Used to get the ocuuppied time for appointments at the 'especialista', 'recinto' and 'servicio'
+ * the user picked to check if there´s an appointment available. 
+ * Returns JSON with the possible time that an appointment CAN´T be scheduled.
+ * @param [type] $dropRecintos The 'recinto' the user picked
+ * @param [type] $dropServicios The 'Servicio' the user picked
+ * @param [type] $dropEspecialistaxD The 'Especialista' the user picked
+ * @param [type] $datepicked The date the user picked.
+ * @return void
+ */
 public function datosCita($dropRecintos, $dropServicios, $dropEspecialistaxD, $datepicked){
 
     
@@ -489,6 +565,12 @@ private function diferenciaMenorIgual40Minutos(&$array, $horaInicio, $horaFin) {
 
 }*/
 
+/**
+ * private method used to give format to the date
+ *
+ * @param [type] $hora The hour that will receive format change
+ * @return void
+ */
 private function arreglarHora($hora) {
 
     $ultimos_digitos_hora  = substr($hora, -2);
@@ -546,6 +628,15 @@ private function arreglarHora($hora) {
     }*/
 }
 
+/**
+ * Private  method that fills an array from the start hour received
+ * to the final hour received, doing a +20 (every 20 minutes)
+ *
+ * @param [type] $array The array to be filled (by value)
+ * @param [type] $horaInicio The start hour
+ * @param [type] $horaFin The end hour
+ * @return void
+ */
 private function llenarArrayhoras(&$array, $horaInicio, $horaFin) {
     //$x = "";
 
@@ -607,14 +698,23 @@ private function llenarArrayhoras(&$array, $horaInicio, $horaFin) {
 }
 
 
-
+/**
+ * Gets the 'horario_servicio' from a chosen 'recinto', 'especialista' and 'servicio', to know if 
+ * the specialist has a horary for the determined service and precint.
+ *
+ * @param [type] $recinto
+ * @param [type] $servicio
+ * @param [type] $especialista
+ * @param Request $request
+ * @return void
+ */
 public function horarioServicios($recinto, $servicio, $especialista, Request $request){
     $horarioServicio = Horarios_servicio::where('id_recinto', $recinto)->where('id_especialista', $especialista)
-    ->where('id_servicio', $servicio)->get();//citas en la fecha elegida
+    ->where('id_servicio', $servicio)->get();//Revisar si existe horario para el especialista en el recinto y servicio
     
     $horasOcupadas = array();
 
-    if(!$horarioServicio->isEmpty()) {//citas existentes de la fecha elegidas
+    if(!$horarioServicio->isEmpty()) {//Si hay horario se inserta en un array
         foreach ($horarioServicio as $horario) {
             array_push($horasOcupadas,  $horario);
         }
@@ -625,6 +725,15 @@ public function horarioServicios($recinto, $servicio, $especialista, Request $re
     return json_encode(["horario"=>$xD]);
 }
 
+/**
+ * Gets the 'horarioServicio' for the 'recinto' and 'servicio' given, assumming the
+ * user loggedLOGGED id is from one 'especialista'
+ *
+ * @param [type] $recinto
+ * @param [type] $servicio
+ * @param Request $request
+ * @return void
+ */
 public function horarioServiciosEspecialista($recinto, $servicio, Request $request){
     $name = Auth::user()->id;
     	$especialista = DB::table('especialistas')->where('id_user', $name)
@@ -647,6 +756,11 @@ public function horarioServiciosEspecialista($recinto, $servicio, Request $reque
     return json_encode(["horario"=>$xD]);
 }
 
+/**
+ * Gets ALL ACTIVE 'citas', ordering by their date.
+ *
+ * @return void
+ */
 public function cargarCitas() {
 
     $citas=DB::table('citas')->where('active_flag', '=', 1)->orderBy('fecha_cita','desc')->get();
@@ -657,6 +771,15 @@ public function cargarCitas() {
     return json_encode(["citas"=>$citas]);
 }
 
+/**
+ * Gets the day and the information about the horary of a determined
+ * 'especialista' at certain 'recinto' and 'servicio'
+ *
+ * @param [type] $dropRecintos
+ * @param [type] $dropServicios
+ * @param [type] $dropEspecialista
+ * @return void
+ */
     public function mostrarHorarioEsp($dropRecintos, $dropServicios, $dropEspecialista){
 
         //$horarios_servicios_especialista = Horarios_servicio::where('id_especialista', $dropEspecialista)->where('id_servicio', $dropServicios)

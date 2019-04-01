@@ -42,7 +42,11 @@ class RecintoController1 extends Controller
 	}
 
 
-
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
 	public function index(Request $request)
 	{
 		if ($request) {
@@ -85,7 +89,12 @@ class RecintoController1 extends Controller
         }
 	}	
 
-	
+	/**
+	 * Used to delete recintos
+	 *
+	 * @param [type] $ID_Recinto
+	 * @return void
+	 */
 	public function eliminarRecinto($ID_Recinto)
     {
         /*$placaDecrypted = Crypt::decrypt($placa);*/
